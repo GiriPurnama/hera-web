@@ -5060,3 +5060,35 @@ a .btn.btn-warning i{
 .table-report .box-body.table-responsive {
     background: #FFF;
 }
+
+.info-success{
+  display: block;
+  text-align: center;
+}
+
+.info-success i{
+  font-size: 150px;
+  color: green;
+}
+
+.info-success label{
+  width: 100%;
+  margin-top: 17px;
+  font-size: 24px;
+}
+
+.modal-header.info .close {
+  margin-top: -2px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 25px;
+}
+
+.modal-header.info {
+  border-bottom: none;
+}
+
+img.img-home {
+  width: 300px;
+}

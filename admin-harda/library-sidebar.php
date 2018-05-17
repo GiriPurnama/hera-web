@@ -31,6 +31,21 @@
             </span>
           </a>
         </li>
+        <li class="treeview">
+            <a href="#">
+              <i class="fa fa-files-o"></i>
+              <span>Page Web Hera</span>
+              <span class="pull-right-container">
+                <span class="label label-primary pull-right">4</span>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="page-home.php"><i class="fa fa-home"></i>Page Home</a></li>
+              <li><a href="page-client.php"><i class="fa fa-users"></i>Page Client</a></li>
+              <li><a href="page-team.php"><i class="fa fa-address-book"></i>Page Team</a></li>
+              <li><a href="page-contact"><i class="fa fa-envelope"></i>Page Contact</a></li>
+            </ul>
+          </li>
         <!-- 
           <li class="treeview">
             <a href="#">
