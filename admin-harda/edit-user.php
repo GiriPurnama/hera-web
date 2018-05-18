@@ -415,8 +415,6 @@ if (isset($_POST['simpan_ijazah'])) {
 
 
 
-
-
 if (isset($_POST['simpan'])) {
   if (isset($_POST['id'])) {
     $id             = $_POST['id'];

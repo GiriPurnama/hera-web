@@ -55,6 +55,7 @@
                 </tr>
               </thead>
               <tbody>
+                
                 <?php
                     $no = 1;
                     $home = mysqli_query($db, "SELECT * FROM menu_home");
@@ -63,16 +64,18 @@
                     $deksripsi_image = $row['desc_img'];
                     $image_home = $row['image_home'];
                 ?>
+
                 <tr>
                   <td><?php echo $no ?></td>
                   <td><?php echo $title_image ?></td>
                   <td><?php echo $deksripsi_image ?></td>
                   <td><img class="img-home" src="<?php echo $image_home ?>"></td>
                   <td>
-                    <a href='javascript:void(0)'><span class='action-icon'><i class='fa fa-cogs'></i></span></a>
+
+                    <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['idhome']."><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
                     
                     <a href='server.php?idhome=<?php echo $row['idhome']; ?>' onclick="return confirm('Apakah yakin data ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
-                    <!-- <a href=""><span class="action-icon"><i class="fa fa-eye"></i></span></a> -->
+                 
                   </td>
                 </tr>
 
@@ -127,6 +130,19 @@
     // $('#example1').DataTable()
    
   })
+  $('#modalHomeEdit').on('show.bs.modal', function (e) {
+      var rowid = $(e.relatedTarget).data('id');
+      //menggunakan fungsi ajax untuk pengambilan data
+      $.ajax({
+          type : 'post',
+          url : 'update-form.php',
+          data :  'rowid='+ rowid,
+          success : function(data){
+          $('.fetched-data').html(data);//menampilkan data ke dalam modal
+          }
+      });
+  });
+
 </script>
 <?php
   include "library-js.php";

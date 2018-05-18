@@ -56,4 +56,48 @@
 	  		}
 	  	}
   	}
+
+
+  	if (isset($_POST['update_home'])) {
+	  if (isset($_POST['idhome'])) {
+
+	    $idhome = $_POST['idhome'];
+
+	  	$query = mysqli_query($db, "SELECT * FROM menu_home WHERE idhome='$idhome'") or die('Query Error : '.mysqli_error($db));
+        while ($data  = mysqli_fetch_assoc($query)) {
+        	$image_home = $data['image_home'];
+        		
+        }
+
+	    $title_image = $_POST['title_img'];
+        $deksripsi_image = $_POST['desc_img'];
+
+        $type = $_FILES['image_home']['type'];
+	    $fileinfo=PATHINFO($_FILES["image_home"]["name"]);
+	    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+	    if (!$image_home==""){  
+		    unlink($image_home);
+		    move_uploaded_file($_FILES["image_home"]["tmp_name"],"../upload/page-home/" . $newFilename);
+		    $location="../upload/page-home/" . $newFilename;
+		}
+
+	    // perintah query untuk mengubah data pada tabel is_siswa
+	    $query = mysqli_query($db, "UPDATE menu_home SET title_img = '$title_image',
+	                            desc_img  = '$deksripsi_image',
+	                            image_home = '$location'
+	                            WHERE idhome   = '$idhome'");   
+
+	    // cek query
+	    if ($query) {
+	      // jika berhasil tampilkan pesan berhasil update data
+	      header('location: page-home.php');
+	      // echo "Berhasil";
+	    } else {
+	      // jika gagal tampilkan pesan kesalahan
+	      // header('location: index.php?alert=1');
+	      echo "Gagal";
+	    } 
+
+	  }
+	} 
 ?>
