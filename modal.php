@@ -61,6 +61,70 @@
   </div>
 </div>
 
+<div class="modal fade" id="modalTeam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-body">
+        <div class="col-md-12">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tambah Aggota</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" id="formTeam" method="POST" action="server.php" enctype="multipart/form-data">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" name="username" id="username_title" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" name="email_admin" id="email_title" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" name="password" id="password_title" placeholder="Password" required>
+                </div>
+               <!--  <div class="form-group">
+                  <label for="deskripsi">Konfirmasi Password</label>
+                  <input type="password" class="form-control" name="password" id="confpass_title" placeholder="Konfirmasi Password">
+                </div> -->
+                 <div class="form-group">
+                  <label for="nama_lengkap">Nama Lengkap</label>
+                  <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap" required>
+                </div>
+                <div class="form-group">
+                  <label for="divisi">Divisi</label>
+                  <input type="text" class="form-control" name="divisi" id="divisi_title" placeholder="Divisi" required>
+                </div>
+                <div class="form-group">
+                  <label for="upload">Upload Image</label>
+                  <input type="file" name="img_divisi" id="img_divisi" required>
+                </div>
+                <div class="form-group">
+                  <label for="status">Status</label>
+                  <select class="form-control" name="status" id="status_title">
+                      <option value="">-</option>
+                      <option value="ADMIN">Admin</option>
+                      <option value="RECRUITMENT">Recruitment</option>
+                  </select>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="team" id="teamSave">Simpan</button>
+                <button type="button" class="btn" data-dismiss="modal">Keluar</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+
+        </div>
+      </div>
+  </div>
+</div>
+
 <div class="modal fade" id="modalHomeEdit" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

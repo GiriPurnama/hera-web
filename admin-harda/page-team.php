@@ -50,8 +50,10 @@
                   <th>No</th>
                   <th>Username</th>
                   <th>Email</th>
+                  <th>Nama Lengkap</th>
                   <th>Divisi</th>
                   <th>Image</th>
+                  <th>Status</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -61,21 +63,22 @@
                     $no = 1;
                     $team = mysqli_query($db, "SELECT * FROM login");
                     while ($row = mysqli_fetch_assoc($team)) {
-                    // $title_image = $row['title_img'];
-                    // $deksripsi_image = $row['desc_img'];
-                    // $image_home = $row['image_home'];
+                    $img_team = $row['img_divisi'];
                 ?>
 
                 <tr>
                   <td><?php echo $no ?></td>
-                  <td><?php echo $title_image ?></td>
-                  <td><?php echo $deksripsi_image ?></td>
-                  <td><img class="img-home" src="<?php echo $image_home ?>"></td>
+                  <td><?php echo $row['username']; ?></td>
+                  <td><?php echo $row['email_admin']; ?></td>
+                  <td><?php echo $row['nama_lengkap'] ?></td>
+                  <td><?php echo $row['divisi'] ?></td>
+                  <td><img class="img-home" src="<?php echo $img_team ?>"></td>
+                  <td><?php echo $row['status'] ?></td>
                   <td>
 
-                    <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['idhome']."><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
+                    <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['id_admin']."><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
                     
-                    <a href='server.php?idhome=<?php echo $row['idhome']; ?>' onclick="return confirm('Apakah yakin data ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
+                    <a href='server.php?id_admin=<?php echo $row['id_admin']; ?>' onclick="return confirm('Apakah yakin data ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
                  
                   </td>
                 </tr>
@@ -132,12 +135,12 @@
    
   })
   $('#modalHomeEdit').on('show.bs.modal', function (e) {
-      var rowid = $(e.relatedTarget).data('id');
+      var rowteam = $(e.relatedTarget).data('id');
       //menggunakan fungsi ajax untuk pengambilan data
       $.ajax({
           type : 'post',
           url : 'update-form.php',
-          data :  'rowid='+ rowid,
+          data :  'rowteam='+ rowteam,
           success : function(data){
           $('.fetched-data').html(data);//menampilkan data ke dalam modal
           }
