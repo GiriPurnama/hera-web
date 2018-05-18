@@ -22,8 +22,8 @@
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-user"></i>Page Web</a></li>
-        <li class="active">Page Home</li>
+        <li><a href="#"><i class="fa fa-user"></i>Beranda</a></li>
+        <li class="active">Page Team</li>
       </ol>
     </section>
 
@@ -42,14 +42,15 @@
 
             <div class="box-body table-responsive no-padding">
               <a class="btn-export-excel" href="javascript:void(0);" target="_BLANK">
-                <button class="btn btn-warning btn-submit" data-toggle="modal" data-target="#modalHome">Tambah Baru <i class="fa fa-plus-square"></i></button>
+                <button class="btn btn-warning btn-submit" data-toggle="modal" data-target="#modalTeam">Tambah Baru <i class="fa fa-plus-square"></i></button>
               </a>
               <table class="table table-bordered table-hover" id="table-user">
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Title</th>
-                  <th>Deskripsi</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Divisi</th>
                   <th>Image</th>
                   <th>Aksi</th>
                 </tr>
@@ -58,11 +59,11 @@
                 
                 <?php
                     $no = 1;
-                    $home = mysqli_query($db, "SELECT * FROM menu_home");
-                    while ($row = mysqli_fetch_assoc($home)) {
-                    $title_image = $row['title_img'];
-                    $deksripsi_image = $row['desc_img'];
-                    $image_home = $row['image_home'];
+                    $team = mysqli_query($db, "SELECT * FROM login");
+                    while ($row = mysqli_fetch_assoc($team)) {
+                    // $title_image = $row['title_img'];
+                    // $deksripsi_image = $row['desc_img'];
+                    // $image_home = $row['image_home'];
                 ?>
 
                 <tr>

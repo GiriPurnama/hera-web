@@ -31,7 +31,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" id="formHome" method="POST" enctype="multipart/form-data">
+            <form role="form" id="formHome" method="POST" action="server.php" enctype="multipart/form-data">
               <div class="box-body">
                 <div class="form-group">
                   <label for="title">Judul Image</label>
@@ -49,7 +49,7 @@
 
               <!-- /.box-body -->
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary" id="homeSave">Simpan</button>
+                <button type="submit" class="btn btn-primary" name="save" id="homeSave">Simpan</button>
                 <button type="button" id="closeBtn" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
               </div>
             </form>
@@ -100,28 +100,28 @@
 <script type="text/javascript">
 
   // Page Home Insert
-  $(document).on('click', '#homeSave', function(){
-      var data = new FormData(this);
-      data.append('title_img', $('#title_image').val());
-      data.append('desc_img', $('#deskripsi_image').val());
-      data.append('image_home', $('#upload_image')[0].files[0]);
-      data.append('home', $('#homeSave').text());
+  // $(document).on('click', '#homeSave', function(){
+  //     var data = new FormData(this);
+  //     data.append('title_img', $('#title_image').val());
+  //     data.append('desc_img', $('#deskripsi_image').val());
+  //     data.append('image_home', $('#upload_image')[0].files[0]);
+  //     data.append('save', $('#homeSave').text());
       
-      $.ajax({
-         url : "server.php",  
-         method: 'POST',
-         cache: false,
-         contentType: false,
-         processData: false,
-         data : data,
+  //     $.ajax({
+  //        url : "server.php",  
+  //        method: 'POST',
+  //        cache: false,
+  //        contentType: false,
+  //        processData: false,
+  //        data : data,
 
-         success: function(data){
-            $('#formHome').trigger("reset");
-            $('#closeBtn').click();
-            $("#modalSuccess").modal("show");
-         }
-      });
+  //        success: function(data){
+  //           $('#formHome').trigger("reset");
+  //           $('#closeBtn').click();
+  //           $("#modalSuccess").modal("show");
+  //        }
+  //     });
 
-  });
+  // });
       
 </script>

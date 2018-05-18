@@ -20,7 +20,7 @@
   	}
 
   	// Page Home
-  	if (isset($_POST['home'])) {
+  	if (isset($_POST['save'])) {
   		  $title_img = mysqli_real_escape_string($db, trim($_POST['title_img']));
   		  $desc_img = mysqli_real_escape_string($db, trim($_POST['desc_img']));
   		  
@@ -32,7 +32,7 @@
 		
   		  $query = mysqli_query($db, "INSERT INTO menu_home(title_img, desc_img, image_home) values ('$title_img','$desc_img','$image_home')");
   		  if ($query) {
-  		  		echo "Sukses Simpan";
+  		  		header('location: page-home.php');
   		  } else {
   		  		echo "Gagal Simpan";
   		  }
