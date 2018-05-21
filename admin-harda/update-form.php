@@ -65,12 +65,12 @@ if($_POST['rowteam']) {
                 </div>
                 <div class="form-group">
                   <label for="password">Password</label>
-                  <input type="password" class="form-control" name="password" id="password_title" value="<?php echo $password; ?>" required>
+                  <input type="password" class="form-control" name="password" id="password_title" placeholder="Password" required>
                 </div>
-               <!--  <div class="form-group">
+                <div class="form-group">
                   <label for="deskripsi">Konfirmasi Password</label>
-                  <input type="password" class="form-control" name="password" id="confpass_title" placeholder="Konfirmasi Password">
-                </div> -->
+                  <input type="password" class="form-control" id="confpass_title" placeholder="Konfirmasi Password">
+                </div>
                  <div class="form-group">
                   <label for="nama_lengkap">Nama Lengkap</label>
                   <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" value="<?php echo $nama_lengkap; ?>" required>
@@ -101,3 +101,62 @@ if($_POST['rowteam']) {
 <?php }
   }
 ?>
+
+<?php 
+if($_POST['rowpesan']) {
+      $idpesan = $_POST['rowpesan'];
+      $load_data = mysqli_query($db, "SELECT * FROM pesan WHERE idpesan='$idpesan'");
+      while ($row = mysqli_fetch_assoc($load_data)) {
+        $username = $row['nama'];
+        $subjek = $row['subjek'];
+        $email = $row['email'];
+        $isi_pesan = $row['isi_pesan'];
+        $id_pesan = $row['idpesan']        
+      ?>
+
+      <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
+         <div class="box-body">
+                <div class="form-group">
+                  <input type="hidden" name="id_pesan" value="<?php echo $id_pesan; ?>">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" name="nama" id="username_title" value="<?php echo $username; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label for="subjek">Subjek</label>
+                  <input type="text" class="form-control" name="subjek" id="subject" value="<?php echo $subjek; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" name="email" id="email_title" value="<?php echo $email; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsi">Balas Pesan</label>
+                  <textarea class="form-control" name="isi_pesan"></textarea>
+                </div>
+            </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="kirim_pesan" id="teamSave">Kirim</button>
+                <button type="button" class="btn" data-dismiss="modal">Keluar</button>
+              </div>
+      </form>
+<?php }
+  }
+?>
+
+<script type="text/javascript">
+  function password_match() {
+    var password = $("#password_title").val();
+    var confirmPassword = $("#confpass_title").val();
+
+    if (password != confirmPassword) {
+        $("#teamSave").prop('disabled', true);
+        $("#confpass_title").css("border", "1px solid red");
+    } else {
+        $("#teamSave").prop('disabled', false);
+        $("#confpass_title").css("border", "1px solid #d2d6de");
+    } 
+}
+
+jQuery("#confpass_title").keyup(password_match);
+</script>

@@ -43,7 +43,7 @@
               <li><a href="page-home.php"><i class="fa fa-home"></i>Page Home</a></li>
               <li><a href="page-client.php"><i class="fa fa-users"></i>Page Client</a></li>
               <li><a href="page-team.php"><i class="fa fa-address-book"></i>Page Team</a></li>
-              <li><a href="page-contact"><i class="fa fa-envelope"></i>Page Contact</a></li>
+              <li><a href="page-contact.php"><i class="fa fa-envelope"></i>Page Contact</a></li>
             </ul>
           </li>
         <!-- 

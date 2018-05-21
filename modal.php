@@ -86,10 +86,10 @@
                   <label for="password">Password</label>
                   <input type="password" class="form-control" name="password" id="password_title" placeholder="Password" required>
                 </div>
-               <!--  <div class="form-group">
+                <div class="form-group">
                   <label for="deskripsi">Konfirmasi Password</label>
                   <input type="password" class="form-control" name="password" id="confpass_title" placeholder="Konfirmasi Password">
-                </div> -->
+                </div>
                  <div class="form-group">
                   <label for="nama_lengkap">Nama Lengkap</label>
                   <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap" required>
@@ -162,6 +162,21 @@
 <!-- Ajax -->
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
+
+function password_match() {
+    var password = $("#password_title").val();
+    var confirmPassword = $("#confpass_title").val();
+
+    if (password != confirmPassword) {
+        $("#teamSave").prop('disabled', true);
+        $("#confpass_title").css("border", "1px solid red");
+    } else {
+        $("#teamSave").prop('disabled', false);
+        $("#confpass_title").css("border", "1px solid #d2d6de");
+    } 
+}
+
+jQuery("#confpass_title").keyup(password_match);
 
   // Page Home Insert
   // $(document).on('click', '#homeSave', function(){

@@ -199,4 +199,16 @@
 	  }
 	} 
 //===================== Page Team ================================================
+
+//===================== Page Contact ================================================
+	if (isset($_GET['idpesan'])) {
+	  	$idpesan = $_GET['idpesan'];	
+	  	$query_delete = mysqli_query($db, "DELETE FROM pesan WHERE idpesan='$idpesan'");
+	  	if ($query_delete) {
+	  		header('location: page-contact.php');
+	  	} else{
+	  		echo "gagal";
+	  	}
+  	}
+//===================== Page Contact ================================================ 
 ?>
