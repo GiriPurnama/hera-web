@@ -39,11 +39,15 @@
                 <span class="label label-primary pull-right">4</span>
               </span>
             </a>
+            <?php  
+              $jum_pesan = mysqli_query($db, "SELECT * FROM pesan WHERE status = ''");
+              $jum_hasil = mysqli_num_rows($jum_pesan);
+            ?>
             <ul class="treeview-menu">
               <li><a href="page-home.php"><i class="fa fa-home"></i>Page Home</a></li>
               <li><a href="page-client.php"><i class="fa fa-users"></i>Page Client</a></li>
               <li><a href="page-team.php"><i class="fa fa-address-book"></i>Page Team</a></li>
-              <li><a href="page-contact.php"><i class="fa fa-envelope"></i>Page Contact</a></li>
+              <li><a href="page-contact.php" style="display:inline"><i class="fa fa-envelope"></i>Page Contact</a> <span class="label label-primary pull-right"><?= $jum_hasil; ?></span></li>
             </ul>
           </li>
         <!-- 
