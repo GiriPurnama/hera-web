@@ -106,6 +106,7 @@ if($_POST['rowteam']) {
 if($_POST['rowpesan']) {
       $idpesan = $_POST['rowpesan'];
       $load_data = mysqli_query($db, "SELECT * FROM pesan WHERE idpesan='$idpesan'");
+      $sqlupdate = mysqli_query($db, "UPDATE pesan SET status = '1' WHERE idpesan = '$idpesan'");
       while ($row = mysqli_fetch_assoc($load_data)) {
         $username = $row['nama'];
         $subjek = $row['subjek'];
@@ -114,10 +115,10 @@ if($_POST['rowpesan']) {
         $id_pesan = $row['idpesan']        
       ?>
 
-      <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
+      <form role="form" action="server.php" method="POST">
          <div class="box-body">
                 <div class="form-group">
-                  <input type="hidden" name="id_pesan" value="<?php echo $id_pesan; ?>">
+                  <input type="hidden" name="idpesan" value="<?php echo $id_pesan; ?>">
                   <label for="username">Username</label>
                   <input type="text" class="form-control" name="nama" id="username_title" value="<?php echo $username; ?>" required>
                 </div>
@@ -137,7 +138,7 @@ if($_POST['rowpesan']) {
               <!-- /.box-body -->
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary" name="kirim_pesan" id="teamSave">Kirim</button>
-                <button type="button" class="btn" data-dismiss="modal">Keluar</button>
+                <button type="button" id="loadPage" class="btn" data-dismiss="modal">Keluar</button>
               </div>
       </form>
 <?php }
@@ -156,7 +157,11 @@ if($_POST['rowpesan']) {
         $("#teamSave").prop('disabled', false);
         $("#confpass_title").css("border", "1px solid #d2d6de");
     } 
-}
+  }
+
+$('#loadPage').click(function() {
+    location.reload();
+});
 
 jQuery("#confpass_title").keyup(password_match);
 </script>

@@ -5092,3 +5092,7 @@ a .btn.btn-warning i{
 img.img-home {
   width: 300px;
 }
+
+.font-bold{
+  font-weight: bold;
+}

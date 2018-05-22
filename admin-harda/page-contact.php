@@ -60,12 +60,14 @@
                     $pesan = mysqli_query($db, "SELECT * FROM pesan");
                     while ($row = mysqli_fetch_assoc($pesan)) {
                     $post_date = $row['tgl_kirim'];
+                    $status = $row['status'];
+                    $timestamp = strtotime($post_date);
+                    $newDate = date('j-F-Y', $timestamp); 
+                  
+                  if ($status == "") {                    
+                  ?>
 
-                     $timestamp = strtotime($post_date);
-                     $newDate = date('j-F-Y', $timestamp); 
-                ?>
-
-                <tr>
+                <tr class="font-bold">
                   <td><?php echo $no ?></td>
                   <td><?php echo $row['nama']; ?></td>
                   <td><?php echo $row['subjek']; ?></td>
@@ -81,7 +83,25 @@
                   </td>
                 </tr>
 
-                <?php $no++; } ?>
+                <?php } else { ?>
+                
+                <tr>
+                  <td><?php echo $no ?></td>
+                  <td><?php echo $row['nama']; ?></td>
+                  <td><?php echo $row['subjek']; ?></td>
+                  <td><?php echo $row['email']; ?></td>
+                  <td><?php echo $row['isi_pesan']; ?></td>
+                  <td><?php echo $newDate; ?></td>
+                  <td>
+
+                    <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['idpesan']."><span class='action-icon'><i class='fa fa-mail-reply-all'></i></span></a>" ?>
+                    
+                    <a href='server.php?idpesan=<?php echo $row['idpesan']; ?>' onclick="return confirm('Apakah yakin data ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
+                 
+                  </td>
+                </tr>                
+                
+                <?php  } $no++;}?>
               </tbody>
               </table>
             </div>
@@ -140,10 +160,11 @@
           url : 'update-form.php',
           data :  'rowpesan='+ rowpesan,
           success : function(data){
-          $('.fetched-data').html(data);//menampilkan data ke dalam modal
+            $('.fetched-data').html(data);//menampilkan data ke dalam modal
           }
       });
   });
+
 
 </script>
 <?php
