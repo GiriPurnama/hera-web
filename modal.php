@@ -125,6 +125,50 @@
   </div>
 </div>
 
+<div class="modal fade" id="modalClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-body">
+        <div class="col-md-12">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tambah Data Client</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" id="formClient" method="POST" action="server.php" enctype="multipart/form-data">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="title">Nama Client</label>
+                  <input type="text" class="form-control" name="title_client" id="title_client" placeholder="Nama Client" required>
+                </div>
+                 <div class="form-group">
+                  <label for="deskripsi">Deskripsi Client</label>
+                  <input type="text" class="form-control" name="desc_client" id="deskripsi_client" placeholder="Deskripsi Client" required>
+                </div>
+                <div class="form-group">
+                  <label for="upload">Logo Client</label>
+                  <input type="file" name="img_client" id="img_client" required>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsi">Tanggal Join</label>
+                  <input type="text" class="form-control" name="tgl_join" id="tgl_join" placeholder="Tanggal Join" required>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="save_client" id="clientSave">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+
+        </div>
+      </div>
+  </div>
+</div>
+
 <div class="modal fade" id="modalHomeEdit" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

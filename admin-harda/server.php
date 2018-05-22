@@ -104,6 +104,8 @@
 	} 
 //===================== Page Home ================================================
 
+
+
 //===================== Page Team ================================================
 	// Insert
   	if (isset($_POST['team'])) {
@@ -224,5 +226,95 @@
 	  	header('location: page-contact.php');
 	
 	}
-//===================== Page Contact ================================================ 
+//===================== Page Contact ================================================
+
+
+
+//===================== Page Client ================================================
+	// Insert
+  	if (isset($_POST['save_client'])) {
+  		  $nama_client = mysqli_real_escape_string($db, trim($_POST['title_client']));
+  		  $desc_client = mysqli_real_escape_string($db, trim($_POST['desc_client']));
+  		  $tgl_join = $_POST['tgl_join'];
+
+  		  $type = $_FILES['img_client']['type'];
+		  $fileinfo=PATHINFO($_FILES["img_client"]["name"]);
+		  $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+		  move_uploaded_file($_FILES["img_client"]["tmp_name"],"../upload/page-client/" . $newFilename);
+		  $img_client="../upload/page-client/" . $newFilename;
+		
+  		  $query = mysqli_query($db, "INSERT INTO menu_client(title_client, desc_client, img_client, tgl_join) values ('$nama_client','$desc_client','$img_client','$tgl_join')");
+  		  if ($query) {
+  		  		 header('location: page-client.php');
+  		  } else {
+  		  		echo "Gagal Simpan";
+  		  }
+  	}
+
+  	// Delete
+  	if (isset($_GET['idclient'])) {
+	  	$idclient = $_GET['idclient'];
+	  	$load_data = mysqli_query($db, "SELECT * FROM menu_client WHERE idclient='$idclient'");
+	  	while ($row = mysqli_fetch_assoc($load_data)) {
+	  		if (is_file($row['img_client'])) {
+	  			unlink($row['img_client']);
+			  	$query_delete = mysqli_query($db, "DELETE FROM menu_client WHERE idclient='$idclient'");
+			  	if ($query_delete) {
+			  		header('location: page-client.php');
+			  	} else{
+			  		echo "gagal";
+			  	}
+	  		} else { 
+	  			echo "File Tidak Ditemukan";
+	  		}
+	  	}
+  	}
+
+  	// Update
+  	if (isset($_POST['update_client'])) {
+
+	  if (isset($_POST['idclient'])) {
+
+		    $idclient = $_POST['idclient'];
+
+		  	$query = mysqli_query($db, "SELECT * FROM menu_client WHERE idclient='$idclient'") or die('Query Error : '.mysqli_error($db));
+	        while ($data  = mysqli_fetch_assoc($query)) {
+	        	$img_client = $data['img_client'];
+	        }
+
+		    $nama_client = $_POST['title_client'];
+	  		$desc_client = $_POST['desc_client'];
+	  		$tgl_join = $_POST['tgl_join'];
+
+	        $type = $_FILES['img_client']['type'];
+		    $fileinfo=PATHINFO($_FILES["img_client"]["name"]);
+		    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+		    if (!$img_client==""){  
+			    unlink($img_client);
+			    move_uploaded_file($_FILES["img_client"]["tmp_name"],"../upload/page-client/" . $newFilename);
+			    $location="../upload/page-client/" . $newFilename;
+			}
+
+		    // perintah query untuk mengubah data pada tabel is_siswa
+		    $query = mysqli_query($db, "UPDATE menu_client SET title_client = '$nama_client',
+		                            desc_client  = '$desc_client',
+		                            img_client = '$location',
+		                            tgl_join = '$tgl_join'
+		                            WHERE idclient   = '$idclient'");   
+
+		    // cek query
+		    if ($query) {
+		      // jika berhasil tampilkan pesan berhasil update data
+		      header('location: page-client.php');
+		      // echo "Berhasil";
+		    } else {
+		      // jika gagal tampilkan pesan kesalahan
+		      // header('location: index.php?alert=1');
+		      echo "Gagal";
+		    } 
+
+	  }
+	} 
+//===================== Page Client ================================================
+
 ?>

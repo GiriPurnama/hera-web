@@ -145,6 +145,46 @@ if($_POST['rowpesan']) {
   }
 ?>
 
+<?php
+  if($_POST['rowclient']) {
+      $id = $_POST['rowclient'];
+      $load_data = mysqli_query($db, "SELECT * FROM menu_client WHERE idclient='$id'");
+      while ($row = mysqli_fetch_assoc($load_data)) { 
+        $title_client = $row['title_client'];
+        $desc_client = $row['desc_client'];
+        $img_client = $row['img_client'];
+        $tgl_join = $row['tgl_join'];
+        $idclient = $row['idclient'];
+?>
+
+      <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
+          <div class="box-body">
+            <div class="form-group">
+              <input type="hidden" name="idclient" value="<?php echo $idclient; ?>">
+              <label for="title">Nama Client</label>
+              <input type="text" class="form-control" name="title_client" id="title_image" value="<?php echo $title_client; ?>" required>
+            </div>
+            <div class="form-group">
+              <label for="deskripsi">Deskripsi Client</label>
+              <input type="text" class="form-control" name="desc_client" id="deskirpsi_client" value="<?php echo $desc_client; ?>" required>
+            </div>
+            <div class="form-group">
+              <label for="upload">Logo Client</label>
+              <input type="file" name="img_client" id="upload_image" value="<?php $img_client; ?>">
+            </div>
+            <div class="form-group">
+              <label for="tgl_join">Tanggal Join</label>
+              <input type="text" class="form-control" name="tgl_join" id="tgl_join" value="<?php echo $tgl_join; ?>" required>
+            </div>
+          </div>
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary" name="update_client" id="clientUpdate">Simpan</button>
+            <button type="button" id="closeBtn" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+          </div>
+      </form>
+<?php }
+  }
+?>
 <script type="text/javascript">
   function password_match() {
     var password = $("#password_title").val();
