@@ -13,6 +13,8 @@
       $_SESSION['password'] = $row['password'];
       $_SESSION['nama_lengkap'] = $row['nama_lengkap'];
       $_SESSION['divisi'] = $row['divisi'];
+      $_SESSION['status'] = $row['status'];
+      $_SESSION['id_admin'] = $row['id_admin'];
       header('location:dashboard.php');
     }
     else

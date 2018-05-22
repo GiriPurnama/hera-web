@@ -13,6 +13,12 @@
         </div>
       </div>
       
+      <?php
+        $status = $_SESSION['status'];
+
+        if ($status == "RECRUITMENT" || $status == "ADMIN") {
+      ?>
+
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Navigasi</li>
         <li class="">
@@ -31,6 +37,9 @@
             </span>
           </a>
         </li>
+
+        <?php } if ($status == "ADMIN") { ?>
+        
         <li class="treeview">
             <a href="#">
               <i class="fa fa-files-o"></i>
@@ -49,7 +58,9 @@
               <li><a href="page-team.php"><i class="fa fa-address-book"></i>Page Team</a></li>
               <li><a href="page-contact.php" style="display:inline"><i class="fa fa-envelope"></i>Page Contact</a> <span class="label label-primary pull-right"><?= $jum_hasil; ?></span></li>
             </ul>
-          </li>
+        </li>
+
+        <?php } ?>
         <!-- 
           <li class="treeview">
             <a href="#">
