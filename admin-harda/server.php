@@ -337,6 +337,74 @@
   		  }
   	}
 
+  	// Delete
+  	if (isset($_GET['albumid'])) {
+	  	$albumid = $_GET['albumid'];
+	  	$load_data = mysqli_query($db, "SELECT album.albumid, galeri_foto.albumid, image, foto, gid FROM album INNER JOIN galeri_foto ON album.albumid = galeri_foto.albumid WHERE album.albumid='$albumid'");
+	  	while ($row = mysqli_fetch_assoc($load_data)) {
+	  		
+	  		$gid=$row['gid'];
+
+	  		if (is_file($row['image']) && is_file($row['foto'])) {
+	  			unlink($row['image']);
+	  			unlink($row['foto']);
+			  	$query_delete = mysqli_query($db, "DELETE FROM album WHERE albumid='$albumid'");
+			  	$query_foto = mysqli_query($db, "DELETE FROM galeri_foto WHERE gid='$gid'");
+			  	if ($query_delete) {
+			  		header('location: page-album.php');
+			  	} else{
+			  		echo "gagal";
+			  	}
+	  		} else { 
+	  			echo "File Tidak Ditemukan";
+	  		}
+	  	}
+  	}
+
+
+  	// Update
+  	if (isset($_POST['update_album'])) {
+
+	  if (isset($_POST['albumid'])) {
+
+		    $albumid = $_POST['albumid'];
+
+		  	$query = mysqli_query($db, "SELECT * FROM album WHERE albumid='$albumid'") or die('Query Error : '.mysqli_error($db));
+	        while ($data  = mysqli_fetch_assoc($query)) {
+	        	$cover_album = $data['image'];
+	        }
+
+		    $nama_album = $_POST['nama_album'];
+	  		$album_deskripsi = $_POST['album_deskripsi'];
+
+	        $type = $_FILES['image']['type'];
+		    $fileinfo=PATHINFO($_FILES["image"]["name"]);
+		    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+		    if (!$cover_album==""){  
+			    unlink($cover_album);
+			    move_uploaded_file($_FILES["image"]["tmp_name"],"../upload/page-album/" . $newFilename);
+			    $location="../upload/page-album/" . $newFilename;
+			}
+
+		    // perintah query untuk mengubah data pada tabel is_siswa
+		    $query = mysqli_query($db, "UPDATE album SET nama_album = '$nama_album',
+		                            album_deskripsi  = '$album_deskripsi',
+		                            image = '$location'
+		                            WHERE albumid   = '$albumid'");   
+
+		    // cek query
+		    if ($query) {
+		      // jika berhasil tampilkan pesan berhasil update data
+		      header('location: page-album.php');
+		      // echo "Berhasil";
+		    } else {
+		      // jika gagal tampilkan pesan kesalahan
+		      // header('location: index.php?alert=1');
+		      echo "Gagal";
+		    } 
+
+	  }
+	} 
 
 //===================== Page Album ================================================
 

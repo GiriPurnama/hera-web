@@ -234,6 +234,44 @@ if($_POST['rowpesan']) {
 <?php }
   }
 ?>
+
+<?php
+    if($_POST['rowalbum']) {
+      $albumid = $_POST['rowalbum'];
+      $load_data = mysqli_query($db, "SELECT * FROM album WHERE albumid='$albumid'");
+      while ($row = mysqli_fetch_assoc($load_data)) { 
+        
+        $nama_album = $row['nama_album'];
+        $album_deskripsi = $row['album_deskripsi'];
+        $cover_album = $row['image'];
+        $albumid = $row['albumid'];
+      
+?>
+
+      <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
+         <div class="box-body">
+                <div class="form-group">
+                  <input type="hidden" name="albumid" value="<?php echo $albumid; ?>">
+                  <label for="title">Nama Album</label>
+                  <input type="text" class="form-control" name="nama_album" id="title_album" value="<?php echo $nama_album; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsi">Deskripsi Album</label>
+                  <input type="text" class="form-control" name="album_deskripsi" id="deskripsi_album" value="<?php echo $album_deskripsi; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label for="upload">Upload Cover</label>
+                  <input type="file" name="image" id="upload_image" value="<?php echo $cover_album; ?>">
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="update_album" id="fotoUpdate">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+              </div>
+      </form>
+<?php }
+  }
+?>
 <script type="text/javascript">
   function password_match() {
     var password = $("#password_title").val();
