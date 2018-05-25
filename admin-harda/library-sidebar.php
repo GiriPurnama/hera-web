@@ -60,6 +60,17 @@
             </ul>
         </li>
 
+         <li class="treeview">
+            <a href="#">
+              <i class="fa fa-folder"></i>
+              <span>Gallery</span>
+            <ul class="treeview-menu">
+              <li><a href="page-album.php"><i class="fa fa-archive"></i>Album</a></li>
+              <li><a href="page-foto.php"><i class="fa fa-file-image-o"></i>Foto</a></li>
+              <li><a href="page-video.php"><i class="fa fa-file-movie-o"></i>Video</a></li>
+            </ul>
+        </li>
+
         <?php } ?>
         <!-- 
           <li class="treeview">

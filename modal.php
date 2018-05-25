@@ -169,12 +169,105 @@
   </div>
 </div>
 
+<div class="modal fade" id="modalAlbum" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-body">
+        <div class="col-md-12">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tambah Data Album</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" id="formAlbum" method="POST" action="server.php" enctype="multipart/form-data">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="title">Nama Album</label>
+                  <input type="text" class="form-control" name="nama_album" id="nama_album" placeholder="Nama Album" required>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsi">Album Deskripsi</label>
+                  <input type="text" class="form-control" name="album_deskripsi" placeholder="Deskripsi Image" required>
+                </div>
+                <div class="form-group">
+                  <label for="upload">Cover Album</label>
+                  <input type="file" name="image" id="cover" required>
+                </div>
+              </div>
+
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="album_save" id="albumSave">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalGaleri" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-body">
+        <div class="col-md-12">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tambah Data Galeri</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" id="formGaleri" method="POST" action="server.php" enctype="multipart/form-data">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="album">Album</label>
+                  <?php 
+                    echo "<select class='form-control' name='albumid'>";
+                      $album_query = mysqli_query($db, "SELECT * FROM album");
+                      while ($row = mysqli_fetch_assoc($album_query)) {
+                        echo "<option value=$row[albumid]>$row[nama_album]</option>";
+                    }
+                    echo "</select>";
+                  ?>
+                </div>
+                <div class="form-group">
+                  <label for="title">Nama Foto</label>
+                  <input type="text" class="form-control" name="nama_foto" placeholder="Judul Foto" required>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsi">Deskripsi</label>
+                  <input type="text" class="form-control" name="desc_foto" placeholder="Deskripsi Foto" required>
+                </div>
+                <div class="form-group">
+                  <label for="upload">Foto</label>
+                  <input type="file" name="foto" id="photo" required>
+                </div>
+              </div>
+
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="galeri_save" id="galeriSave">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+
+        </div>
+      </div>
+  </div>
+</div>
+
 <div class="modal fade" id="modalHomeEdit" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" id="loadPage" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Form Update</h4>
+                <h4 class="modal-title">Update Information</h4>
             </div>
             <div class="modal-body">
                 <div class="fetched-data"></div>

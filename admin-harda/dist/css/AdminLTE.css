@@ -5090,7 +5090,8 @@ a .btn.btn-warning i{
 }
 
 img.img-home {
-  width: 300px;
+  width: 100px;
+  height: auto;
 }
 
 .font-bold{

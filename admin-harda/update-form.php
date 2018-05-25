@@ -138,7 +138,7 @@ if($_POST['rowpesan']) {
               <!-- /.box-body -->
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary" name="kirim_pesan" id="teamSave">Kirim</button>
-                <button type="button" id="loadPage" class="btn" data-dismiss="modal">Keluar</button>
+                <button type="button" class="loadPage btn" data-dismiss="modal">Keluar</button>
               </div>
       </form>
 <?php }
@@ -185,6 +185,55 @@ if($_POST['rowpesan']) {
 <?php }
   }
 ?>
+
+<?php
+    if($_POST['rowfoto']) {
+      $gid = $_POST['rowfoto'];
+      $load_data = mysqli_query($db, "SELECT * FROM galeri_foto WHERE gid='$gid'");
+      while ($row = mysqli_fetch_assoc($load_data)) { 
+        
+        $nama_foto = $row['nama_foto'];
+        $desc_foto = $row['desc_foto'];
+        $foto = $row['foto'];
+        $gid = $row['gid'];
+      
+?>
+
+      <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
+         <div class="box-body">
+                <div class="form-group">
+                  <input type="hidden" name="gid" value="<?php echo $gid; ?>">
+                  <label for="album">Album</label>
+                  <?php 
+                    echo "<select class='form-control' name='albumid'>";
+                      $album_query = mysqli_query($db, "SELECT * FROM album");
+                      while ($row = mysqli_fetch_assoc($album_query)) {
+                        echo "<option value=$row[albumid]>$row[nama_album]</option>";
+                    }
+                    echo "</select>";
+                  ?>
+                </div>
+                <div class="form-group">
+                  <label for="title">Nama Foto</label>
+                  <input type="text" class="form-control" name="nama_foto" id="title_foto" value="<?php echo $nama_foto; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsi">Deskripsi Foto</label>
+                  <input type="text" class="form-control" name="desc_foto" id="deskripsi_foto" value="<?php echo $desc_foto; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label for="upload">Upload Foto</label>
+                  <input type="file" name="foto" id="upload_image" value="<?php $foto; ?>">
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="update_foto" id="fotoUpdate">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+              </div>
+      </form>
+<?php }
+  }
+?>
 <script type="text/javascript">
   function password_match() {
     var password = $("#password_title").val();
@@ -199,7 +248,7 @@ if($_POST['rowpesan']) {
     } 
   }
 
-$('#loadPage').click(function() {
+$('.loadPage').click(function() {
     location.reload();
 });
 

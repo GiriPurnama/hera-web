@@ -317,4 +317,117 @@
 	} 
 //===================== Page Client ================================================
 
+
+//===================== Page Album ================================================
+	if (isset($_POST['album_save'])) {
+  		  $nama_album = mysqli_real_escape_string($db, trim($_POST['nama_album']));
+  		  $desc_album = mysqli_real_escape_string($db, trim($_POST['album_deskripsi']));
+
+  		  $type = $_FILES['image']['type'];
+		  $fileinfo=PATHINFO($_FILES["image"]["name"]);
+		  $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+		  move_uploaded_file($_FILES["image"]["tmp_name"],"../upload/page-album/" . $newFilename);
+		  $img_album="../upload/page-album/" . $newFilename;
+		
+  		  $query = mysqli_query($db, "INSERT INTO album(nama_album, album_deskripsi, image, album_date) values ('$nama_album','$desc_album','$img_album',NOW())");
+  		  if ($query) {
+  		  		 header('location: page-album.php');
+  		  } else {
+  		  		echo "Gagal Simpan";
+  		  }
+  	}
+
+
+//===================== Page Album ================================================
+
+
+
+//===================== Page Foto ================================================
+  	// Insert
+  	if (isset($_POST['galeri_save'])) {
+
+  		  $albumid = mysqli_real_escape_string($db, trim($_POST['albumid']));	
+  		  $nama_foto = mysqli_real_escape_string($db, trim($_POST['nama_foto']));
+  		  $desc_foto = mysqli_real_escape_string($db, trim($_POST['desc_foto']));
+
+  		  $type = $_FILES['foto']['type'];
+		  $fileinfo=PATHINFO($_FILES["foto"]["name"]);
+		  $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+		  move_uploaded_file($_FILES["foto"]["tmp_name"],"../upload/page-foto/" . $newFilename);
+		  $img_foto="../upload/page-foto/" . $newFilename;
+		
+  		  $query = mysqli_query($db, "INSERT INTO galeri_foto(albumid, nama_foto, desc_foto, foto, date_foto) values ('$albumid','$nama_foto','$desc_foto','$img_foto',NOW())");
+  		  if ($query) {
+  		  		 header('location: page-foto.php');
+  		  } else {
+  		  		echo "Gagal Simpan";
+  		  }
+  	}
+
+  	// Delete
+  	if (isset($_GET['gid'])) {
+	  	$gid = $_GET['gid'];
+	  	$load_data = mysqli_query($db, "SELECT * FROM galeri_foto WHERE gid='$gid'");
+	  	while ($row = mysqli_fetch_assoc($load_data)) {
+	  		if (is_file($row['foto'])) {
+	  			unlink($row['foto']);
+			  	$query_delete = mysqli_query($db, "DELETE FROM galeri_foto WHERE gid='$gid'");
+			  	if ($query_delete) {
+			  		header('location: page-foto.php');
+			  	} else{
+			  		echo "gagal";
+			  	}
+	  		} else { 
+	  			echo "File Tidak Ditemukan";
+	  		}
+	  	}
+  	}
+
+
+  	// Update
+  	if (isset($_POST['update_foto'])) {
+
+	  if (isset($_POST['gid'])) {
+
+		    $gid = $_POST['gid'];
+
+		  	$query = mysqli_query($db, "SELECT * FROM galeri_foto WHERE gid='$gid'") or die('Query Error : '.mysqli_error($db));
+	        while ($data  = mysqli_fetch_assoc($query)) {
+	        	$foto = $data['foto'];
+	        }
+
+		    $nama_foto = $_POST['nama_foto'];
+	  		$desc_foto = $_POST['desc_foto'];
+
+	        $type = $_FILES['foto']['type'];
+		    $fileinfo=PATHINFO($_FILES["foto"]["name"]);
+		    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+		    if (!$foto==""){  
+			    unlink($foto);
+			    move_uploaded_file($_FILES["foto"]["tmp_name"],"../upload/page-foto/" . $newFilename);
+			    $location="../upload/page-foto/" . $newFilename;
+			}
+
+		    // perintah query untuk mengubah data pada tabel is_siswa
+		    $query = mysqli_query($db, "UPDATE galeri_foto SET nama_foto = '$nama_foto',
+		                            desc_foto  = '$desc_foto',
+		                            foto = '$location'
+		                            WHERE gid = '$gid'");   
+
+		    // cek query
+		    if ($query) {
+		      // jika berhasil tampilkan pesan berhasil update data
+		      header('location: page-foto.php');
+		      // echo "Berhasil";
+		    } else {
+		      // jika gagal tampilkan pesan kesalahan
+		      // header('location: index.php?alert=1');
+		      echo "Gagal";
+		    } 
+
+	  }
+	} 
+
+
+//===================== Page Foto ================================================
 ?>
