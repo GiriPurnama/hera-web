@@ -203,6 +203,7 @@
 //===================== Page Team ================================================
 
 //===================== Page Contact ================================================
+	// Delete
 	if (isset($_GET['idpesan'])) {
 	  	$idpesan = $_GET['idpesan'];	
 	  	$query_delete = mysqli_query($db, "DELETE FROM pesan WHERE idpesan='$idpesan'");
@@ -213,6 +214,8 @@
 	  	}
   	}
 
+
+  	// Send Message
   	if (isset($_POST['kirim_pesan'])) {
   		$to = "giri.purnama78@gmail.com"; // this is your Email address
 	    $from = $_POST['email']; // this is the sender's Email address
@@ -498,4 +501,71 @@
 
 
 //===================== Page Foto ================================================
+
+
+
+//===================== Page Video================================================
+	if (isset($_POST['save_video'])) {
+  		  $nama_video = mysqli_real_escape_string($db, trim($_POST['nama_video']));
+  		  $video_deskripsi = mysqli_real_escape_string($db, trim($_POST['video_deskripsi']));
+  		  $video = $_POST['video'];
+		
+  		  $query = mysqli_query($db, "INSERT INTO galeri_video(nama_video, video_deskripsi, video, date_video) values ('$nama_video','$video_deskripsi','$video',NOW())");
+  		  if ($query) {
+  		  		 header('location: page-video.php');
+  		  } else {
+  		  		echo "Gagal Simpan";
+  		  }
+  	}
+
+  	// Delete
+  	if (isset($_GET['videoid'])) {
+	  	$videoid = $_GET['videoid'];	
+	  	$query_delete = mysqli_query($db, "DELETE FROM galeri_video WHERE videoid='$videoid'");
+	  	if ($query_delete) {
+	  		header('location: page-video.php');
+	  	} else{
+	  		echo "gagal";
+	  	}
+  	}
+
+  	// Update
+  	if (isset($_POST['update_video'])) {
+
+	  if (isset($_POST['videoid'])) {
+
+		    $videoid = $_POST['videoid'];
+
+		  	$query = mysqli_query($db, "SELECT * FROM galeri_video WHERE videoid='$videoid'") or die('Query Error : '.mysqli_error($db));
+	        while ($data  = mysqli_fetch_assoc($query)) {
+	        	$video_link = $data['video'];
+	        }
+
+		    $nama_video = $_POST['nama_video'];
+	  		$video_deskripsi = $_POST['video_deskripsi'];
+	  		$video = $_POST['video'];
+
+		    // perintah query untuk mengubah data pada tabel is_siswa
+		    $query = mysqli_query($db, "UPDATE galeri_video SET nama_video = '$nama_video',
+		                            video_deskripsi  = '$video_deskripsi',
+		                            video = '$video'
+		                            WHERE videoid   = '$videoid'");   
+
+		    // cek query
+		    if ($query) {
+		      // jika berhasil tampilkan pesan berhasil update data
+		      header('location: page-video.php');
+		      // echo "Berhasil";
+		    } else {
+		      // jika gagal tampilkan pesan kesalahan
+		      // header('location: index.php?alert=1');
+		      echo "Gagal";
+		    } 
+
+	  }
+	} 
+
+//===================== Page Video ================================================
+
+
 ?>

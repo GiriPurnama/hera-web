@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<!-- Modal Admin -->
+<!---================== Modal Admin =================================-->
 <div class="modal fade" id="modalHome" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
       <div class="modal-body">
@@ -261,6 +261,49 @@
       </div>
   </div>
 </div>
+
+<div class="modal fade" id="modalVideo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-body">
+        <div class="col-md-12">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tambah Video</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" id="formVideo" method="POST" action="server.php" enctype="multipart/form-data">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="title">Nama Video</label>
+                  <input type="text" class="form-control" name="nama_video"  placeholder="Judul Video" required>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsi">Deskripsi Video</label>
+                  <input type="text" class="form-control" name="video_deskripsi"  placeholder="Deskripsi Image" required>
+                </div>
+                <div class="form-group">
+                  <label for="upload">Link Video</label>
+                  <input type="text" class="form-control" name="video" placeholder="Link Video" required>
+                </div>
+              </div>
+
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="save_video" id="videoSave">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- ======================================================================== -->
 
 <div class="modal fade" id="modalHomeEdit" role="dialog">
     <div class="modal-dialog" role="document">

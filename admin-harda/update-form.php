@@ -272,6 +272,44 @@ if($_POST['rowpesan']) {
 <?php }
   }
 ?>
+
+<?php
+    if($_POST['rowvideo']) {
+      $videoid = $_POST['rowvideo'];
+      $load_data = mysqli_query($db, "SELECT * FROM galeri_video WHERE videoid='$videoid'");
+      while ($row = mysqli_fetch_assoc($load_data)) { 
+        
+        $nama_video = $row['nama_video'];
+        $video_deskripsi = $row['video_deskripsi'];
+        $video = $row['video'];
+        $videoid = $row['videoid'];
+      
+?>
+
+      <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
+         <div class="box-body">
+                <div class="form-group">
+                  <input type="hidden" name="videoid" value="<?php echo $videoid; ?>">
+                  <label for="title">Nama Video</label>
+                  <input type="text" class="form-control" name="nama_video" value="<?php echo $nama_video; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsi">Deskripsi Video</label>
+                  <input type="text" class="form-control" name="video_deskripsi" value="<?php echo $video_deskripsi; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label for="upload">Link Video</label>
+                  <input type="text" class="form-control" name="video" value="<?php echo $video; ?>">
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="update_video" id="fotoUpdate">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+              </div>
+      </form>
+<?php }
+  }
+?>
 <script type="text/javascript">
   function password_match() {
     var password = $("#password_title").val();
