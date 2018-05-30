@@ -504,7 +504,8 @@
 
 
 
-//===================== Page Video================================================
+//===================== Page Video ================================================
+	// Insert
 	if (isset($_POST['save_video'])) {
   		  $nama_video = mysqli_real_escape_string($db, trim($_POST['nama_video']));
   		  $video_deskripsi = mysqli_real_escape_string($db, trim($_POST['video_deskripsi']));
@@ -555,6 +556,77 @@
 		    if ($query) {
 		      // jika berhasil tampilkan pesan berhasil update data
 		      header('location: page-video.php');
+		      // echo "Berhasil";
+		    } else {
+		      // jika gagal tampilkan pesan kesalahan
+		      // header('location: index.php?alert=1');
+		      echo "Gagal";
+		    } 
+
+	  }
+	} 
+
+//===================== Page Video ================================================
+
+//===================== Page Video ================================================
+	// Insert
+	if (isset($_POST['save_branch'])) {
+  		  $wilayah = mysqli_real_escape_string($db, trim($_POST['wilayah']));
+  		  $alamat = mysqli_real_escape_string($db, trim($_POST['alamat']));
+  		  $telepon = mysqli_real_escape_string($db, trim($_POST['telepon']));
+  		  $email = mysqli_real_escape_string($db, trim($_POST['email']));
+  		  $maps = $_POST['maps'];
+		
+  		  $query = mysqli_query($db, "INSERT INTO kontak(wilayah, alamat, telepon, email, maps) values ('$wilayah','$alamat','$telepon','$email','$maps')");
+  		  if ($query) {
+  		  		 header('location: page-branch.php');
+  		  } else {
+  		  		echo "Gagal Simpan";
+  		  }
+  	}
+
+  	// Delete
+  	if (isset($_GET['idkontak'])) {
+	  	$idkontak = $_GET['idkontak'];	
+	  	$query_delete = mysqli_query($db, "DELETE FROM kontak WHERE idkontak='$idkontak'");
+	  	if ($query_delete) {
+	  		header('location: page-branch.php');
+	  	} else{
+	  		echo "gagal";
+	  	}
+  	}
+
+  	// Update
+  	if (isset($_POST['update_branch'])) {
+
+	  if (isset($_POST['idkontak'])) {
+
+		    $idkontak = $_POST['idkontak'];
+
+		  	$query = mysqli_query($db, "SELECT * FROM kontak WHERE idkontak='$idkontak'") or die('Query Error : '.mysqli_error($db));
+	        while ($data  = mysqli_fetch_assoc($query)) {
+	        	$maps = $data['maps'];
+	        }
+
+		    $wilayah = $_POST['wilayah'];
+	  		$alamat = $_POST['alamat'];
+	  		$telepon = $_POST['telepon'];
+	  		$email = $_POST['email'];
+	  		$maps = $_POST['maps'];
+
+
+		    // perintah query untuk mengubah data pada tabel is_siswa
+		    $query = mysqli_query($db, "UPDATE kontak SET wilayah = '$wilayah',
+		                            alamat  = '$alamat',
+		                            telepon= '$telepon',
+		                            email = '$email',
+		                            maps = '$maps'
+		                            WHERE idkontak = '$idkontak'");   
+
+		    // cek query
+		    if ($query) {
+		      // jika berhasil tampilkan pesan berhasil update data
+		      header('location: page-branch.php');
 		      // echo "Berhasil";
 		    } else {
 		      // jika gagal tampilkan pesan kesalahan

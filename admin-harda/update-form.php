@@ -303,7 +303,53 @@ if($_POST['rowpesan']) {
                 </div>
               </div>
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary" name="update_video" id="fotoUpdate">Simpan</button>
+                <button type="submit" class="btn btn-primary" name="update_video" id="videoUpdate">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+              </div>
+      </form>
+<?php }
+  }
+?>
+
+<?php
+    if($_POST['rowkontak']) {
+      $idkontak = $_POST['rowkontak'];
+      $load_data = mysqli_query($db, "SELECT * FROM kontak WHERE idkontak='$idkontak'");
+      while ($row = mysqli_fetch_assoc($load_data)) { 
+        
+        $wilayah = $row['wilayah'];
+        $alamat = $row['alamat'];
+        $telepon = $row['telepon'];
+        $email = $row['email'];
+        $maps = $row['maps'];
+?>
+
+      <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
+         <div class="box-body">
+                <div class="form-group">
+                  <input type="hidden" name="idkontak" value="<?php echo $idkontak; ?>">
+                  <label for="title">Wilayah</label>
+                  <input type="text" class="form-control" name="wilayah" value="<?php echo $wilayah; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsi">Alamat</label>
+                  <input type="text" class="form-control" name="alamat" value="<?php echo $alamat; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label for="telepon">Telepon</label>
+                  <input type="text" class="form-control" name="telepon" value="<?php echo $telepon; ?>">
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" name="email" value="<?php echo $email; ?>">
+                </div>
+                <div class="form-group">
+                  <label for="maps">Maps</label>
+                  <input type="text" class="form-control" name="maps" value="<?php echo $maps; ?>">
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="update_branch" id="branchUpdate">Simpan</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
               </div>
       </form>

@@ -22,8 +22,8 @@
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-user"></i>Video</a></li>
-        <li class="active">Page Video</li>
+        <li><a href="#"><i class="fa fa-user"></i>Branch</a></li>
+        <li class="active">Page Branch</li>
       </ol>
     </section>
 
@@ -33,7 +33,7 @@
         <div class="col-xs-12">
           <div class="box pad10">
             <div class="box-header">
-              <h3 class="box-title">Video</h3>
+              <h3 class="box-title">Branch</h3>
               <div class="box-tools">
                 
               </div>
@@ -42,7 +42,7 @@
 
             <div class="box-body table-responsive no-padding">
               <a class="btn-export-excel" href="javascript:void(0);" target="_BLANK">
-                <button class="btn btn-warning btn-submit" data-toggle="modal" data-target="#modalVideo">Tambah Video<i class="fa fa-video-camera"></i></button>
+                <button class="btn btn-warning btn-submit" data-toggle="modal" data-target="#modalBranch">Tambah Branch<i class="fa fa-users"></i></button>
               </a>
                <!-- <a class="btn-export-excel" href="javascript:void(0);" target="_BLANK">
                 <button class="btn btn-warning btn-submit" data-toggle="modal" data-target="#modalGaleri">Tambah Foto<i class="fa fa-file-image-o"></i></button>
@@ -51,10 +51,11 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Judul Video</th>
-                  <th>Deskripsi Video</th>
-                  <th>Video</th>
-                  <th>Tanggal Video</th>
+                  <th>Branch</th>
+                  <th>Alamat</th>
+                  <th>Telepon</th>
+                  <th>Email</th>
+                  <th>Maps</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -62,27 +63,27 @@
                 
                 <?php
                     $no = 1;
-                    $video = mysqli_query($db, "SELECT * FROM galeri_video");
-                    while ($row = mysqli_fetch_assoc($video)) {
-                      $nama_video = $row['nama_video'];
-                      $video_deskripsi = $row['video_deskripsi'];
-                      $video_date = $row['date_video'];
-                      $video = $row['video'];
-                      $timestamp = strtotime($video_date);
-                      $newDate = date('j-F-Y', $timestamp);  
+                    $branch = mysqli_query($db, "SELECT * FROM kontak");
+                    while ($row = mysqli_fetch_assoc($branch)) {
+                      $wilayah = $row['wilayah'];
+                      $alamat = $row['alamat'];
+                      $telepon = $row['telepon'];
+                      $email = $row['email'];
+                      $maps = $row['maps']; 
                 ?>
 
                 <tr>
                   <td><?php echo $no; ?></td>
-                  <td><?php echo $nama_video; ?></td>
-                  <td><?php echo $video_deskripsi; ?></td>
-                  <td><iframe height="auto" width="200px" src="<?= $video; ?>"></iframe></td>
-                  <td><?= $newDate; ?></td>
+                  <td><?php echo $wilayah; ?></td>
+                  <td><?php echo $alamat; ?></td>
+                  <td><?= $telepon; ?></td>
+                  <td><?= $email; ?></td>
+                  <td><iframe height="auto" width="200px" src="<?= $maps; ?>"></iframe></td>
                   <td>
 
-                    <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['videoid']."><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
+                    <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['idkontak']."><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
                     
-                    <a href='server.php?videoid=<?php echo $row['videoid']; ?>' onclick="return confirm('Apakah yakin video ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
+                    <a href='server.php?idkontak=<?php echo $row['idkontak']; ?>' onclick="return confirm('Apakah yakin data ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
                  
                   </td>
                 </tr>
@@ -139,12 +140,12 @@
    
   })
   $('#modalHomeEdit').on('show.bs.modal', function (e) {
-      var rowvideo = $(e.relatedTarget).data('id');
+      var rowkontak = $(e.relatedTarget).data('id');
       //menggunakan fungsi ajax untuk pengambilan data
       $.ajax({
           type : 'post',
           url : 'update-form.php',
-          data :  'rowvideo='+ rowvideo,
+          data :  'rowkontak='+ rowkontak,
           success : function(data){
           $('.fetched-data').html(data);//menampilkan data ke dalam modal
           }

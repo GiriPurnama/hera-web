@@ -303,6 +303,55 @@
   </div>
 </div>
 
+<div class="modal fade" id="modalBranch" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-body">
+        <div class="col-md-12">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tambah Branch</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" id="formBranch" method="POST" action="server.php" enctype="multipart/form-data">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="title">Wilayah</label>
+                  <input type="text" class="form-control" name="wilayah"  placeholder="Wilayah" required>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsi">Alamat</label>
+                  <input type="text" class="form-control" name="alamat"  placeholder="Alamat" required>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsi">Telepon</label>
+                  <input type="text" class="form-control" name="telepon"  placeholder="Telepon" required>
+                </div>
+                  <div class="form-group">
+                  <label for="deskripsi">Email</label>
+                  <input type="email" class="form-control" name="email"  placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                  <label for="upload">Maps</label>
+                  <input type="text" class="form-control" name="maps" placeholder="Maps" required>
+                </div>
+              </div>
+
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="save_branch" id="branchSave">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+
+        </div>
+      </div>
+  </div>
+</div>
+
 <!-- ======================================================================== -->
 
 <div class="modal fade" id="modalHomeEdit" role="dialog">
