@@ -114,6 +114,7 @@
   		  $password = mysqli_real_escape_string($db, trim(md5($_POST['password'])));
   		  $nama_lengkap = mysqli_real_escape_string($db, trim($_POST['nama_lengkap']));
   		  $divisi = mysqli_real_escape_string($db, trim($_POST['divisi']));
+  		  $branch = $_POST['branch'];
   		  $status = $_POST['status'];
 
   		  $type = $_FILES['img_divisi']['type'];
@@ -122,7 +123,7 @@
 		  move_uploaded_file($_FILES["img_divisi"]["tmp_name"],"../upload/page-team/" . $newFilename);
 		  $img_divisi="../upload/page-team/" . $newFilename;
 		
-  		  $query = mysqli_query($db, "INSERT INTO login(username, email_admin, password, nama_lengkap, divisi, img_divisi, status) values ('$username','$email_admin','$password','$nama_lengkap','$divisi','$img_divisi','$status')");
+  		  $query = mysqli_query($db, "INSERT INTO login(username, email_admin, password, nama_lengkap, divisi, branch, img_divisi, status) values ('$username','$email_admin','$password','$nama_lengkap','$divisi','$branch',$img_divisi','$status')");
   		  if ($query) {
   		  		 header('location: page-team.php');
   		  } else {
@@ -166,6 +167,7 @@
 	  		$password = md5($_POST['password']);
 	  		$nama_lengkap = $_POST['nama_lengkap'];
 	  		$divisi = $_POST['divisi'];
+	  		$branch = $_POST['branch'];
 	  		$status = $_POST['status'];
 
 	        $type = $_FILES['img_divisi']['type'];
@@ -183,6 +185,7 @@
 		                            password = '$password',
 		                            nama_lengkap = '$nama_lengkap',
 		                            divisi = '$divisi',
+		                            branch = '$branch',
 		                            img_divisi = '$location',
 		                            status = '$status'
 		                            WHERE id_admin   = '$id_admin'");   

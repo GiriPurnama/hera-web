@@ -3,7 +3,7 @@
 <html>
   <?php 
     include "library-css.php";
-    include "../modal.php";
+    // include "../modal.php";
   ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -62,8 +62,8 @@
                 
                 <?php
                     $no = 1;
-                    $video = mysqli_query($db, "SELECT * FROM galeri_video");
-                    while ($row = mysqli_fetch_assoc($video)) {
+                    $video_link = mysqli_query($db, "SELECT * FROM galeri_video");
+                    while ($row = mysqli_fetch_assoc($video_link)) {
                       $nama_video = $row['nama_video'];
                       $video_deskripsi = $row['video_deskripsi'];
                       $video_date = $row['date_video'];

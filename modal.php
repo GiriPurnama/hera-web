@@ -99,6 +99,17 @@
                   <input type="text" class="form-control" name="divisi" id="divisi_title" placeholder="Divisi" required>
                 </div>
                 <div class="form-group">
+                  <label for="Branch">Branch</label>
+                  <?php 
+                    echo "<select class='form-control' name='branch'>";
+                      $branch_wilayah = mysqli_query($db, "SELECT * FROM kontak");
+                      while ($row = mysqli_fetch_assoc($branch_wilayah)) {
+                        echo "<option value=$row[wilayah]>$row[wilayah]</option>";
+                    }
+                    echo "</select>";
+                  ?>
+                </div>
+                <div class="form-group">
                   <label for="upload">Upload Image</label>
                   <input type="file" name="img_divisi" id="img_divisi" required>
                 </div>

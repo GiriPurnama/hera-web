@@ -3,7 +3,7 @@
 <html>
   <?php 
     include "library-css.php";
-    include "../modal.php";
+    // include "../modal.php";
   ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">

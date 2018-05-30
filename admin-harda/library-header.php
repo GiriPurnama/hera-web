@@ -1,3 +1,6 @@
+  <?php 
+     include "../modal.php";
+  ?>
   <header class="main-header">
     <!-- Logo -->
     <a href="dashboard.php" class="logo">
@@ -44,18 +47,23 @@
           <!-- Tasks: style can be found in dropdown.less -->
         
           <!-- User Account: style can be found in dropdown.less -->
+          <?php
+            $idlogin = $_SESSION['id_admin'];
+            $query_login = mysqli_query($db, "SELECT * FROM login WHERE id_admin = '$idlogin'");
+            while ($row = mysqli_fetch_assoc($query_login)) {
+          ?>
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="img/arata.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $_SESSION['nama_lengkap'];?></span>
+              <img src="<?= $row['img_divisi']; ?>" class="user-image" alt="User Image">
+              <span class="hidden-xs"><?= $row['nama_lengkap'];?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="img/arata.jpg" class="img-circle" alt="User Image">
+                <img src="<?= $row['img_divisi']; ?>" class="img-circle" alt="User Image">
 
                 <p>
-                  <?php echo $_SESSION['nama_lengkap']; ?> - <?php echo $_SESSION['divisi']; ?>
+                  <?= $row['nama_lengkap']; ?> - <?= $row['divisi']; ?>
                   <!-- <small>Member since Nov. 2012</small> -->
                 </p>
               </li>
@@ -63,16 +71,33 @@
 
               <!-- Menu Footer-->
               <li class="user-footer">
-                <!-- <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div> -->
+                <div class="pull-left">
+                  <!-- <a href="#" class="btn btn-default btn-flat">Profile</a> -->
+                  <?php echo "<a href='#modalHomeEdit'class='btn btn-default btn-flat' id='profile' data-toggle='modal' data-id=".$_SESSION['id_admin'].">Profile</a>" ?>
+                </div>
                 <div class="pull-right">
                   <a href="logout.php" class="btn btn-default btn-flat">Keluar</a>
                 </div>
               </li>
             </ul>
           </li>
+          <?php } ?>
         </ul>
       </div>
     </nav>
   </header>
+  <script type="text/javascript">
+     $('#modalHomeEdit').on('show.bs.modal', function (e) {
+      var rowteam = $(e.relatedTarget).data('id');
+      //menggunakan fungsi ajax untuk pengambilan data
+        $.ajax({
+            type : 'post',
+            url : 'update-form.php',
+            data :  'rowteam='+ rowteam,
+            success : function(data){
+            $('.fetched-data').html(data);//menampilkan data ke dalam modal
+            }
+        });
+    });
+
+  </script>

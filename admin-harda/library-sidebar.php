@@ -3,17 +3,23 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
+      <?php
+        $idlogin = $_SESSION['id_admin'];
+        $query_login = mysqli_query($db, "SELECT * FROM login WHERE id_admin = '$idlogin'");
+        while ($row = mysqli_fetch_assoc($query_login)) {
+      ?>
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="img/arata.jpg" class="img-circle" alt="User Image">
+          <img src="<?= $row['img_divisi']; ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><?php echo $_SESSION['nama_lengkap'] ?></p>
+          <p><?= $row['nama_lengkap']; ?></p>
           <!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
         </div>
       </div>
       
       <?php
+        }
         $status = $_SESSION['status'];
 
         if ($status == "RECRUITMENT" || $status == "ADMIN") {
@@ -44,9 +50,6 @@
             <a href="#">
               <i class="fa fa-files-o"></i>
               <span>Page Web Hera</span>
-              <span class="pull-right-container">
-                <span class="label label-primary pull-right">4</span>
-              </span>
             </a>
             <?php  
               $jum_pesan = mysqli_query($db, "SELECT * FROM pesan WHERE status = ''");
@@ -70,6 +73,16 @@
               <li><a href="page-video.php"><i class="fa fa-file-movie-o"></i>Video</a></li>
             </ul>
         </li>
+
+        <li class="">
+          <a href="page-branch.php">
+            <i class="fa fa-group"></i> <span>Branch</span>
+            <span class="pull-right-container">
+              <!-- <i class="fa fa-angle-left pull-right"></i> -->
+            </span>
+          </a>
+        </li>
+
 
         <?php } ?>
         <!-- 
