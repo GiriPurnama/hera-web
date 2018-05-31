@@ -643,4 +643,113 @@
 //===================== Page Video ================================================
 
 
+//===================== Edit Profile ================================================
+	// Update Profile
+	if (isset($_POST['update_profile'])) {
+
+	  if (isset($_POST['id_admin'])) {
+
+		    $id_admin = $_POST['id_admin'];
+
+		  	$query = mysqli_query($db, "SELECT * FROM login WHERE id_admin='$id_admin'") or die('Query Error : '.mysqli_error($db));
+	        while ($data  = mysqli_fetch_assoc($query)) {
+	        	$id_profile = $data['id_admin'];
+	        }
+
+		    $email_admin = $_POST['email_admin'];
+	  		$nama_lengkap = $_POST['nama_lengkap'];
+	  		$divisi = $_POST['divisi'];
+
+		    // perintah query untuk mengubah data pada tabel is_siswa
+		    $query = mysqli_query($db, "UPDATE login SET email_admin = '$email_admin',
+		                            nama_lengkap  = '$nama_lengkap',
+		                            divisi = '$divisi'
+		                            WHERE id_admin = '$id_admin'");   
+
+		    // cek query
+		    if ($query) {
+		      // jika berhasil tampilkan pesan berhasil update data
+		      header('location: edit-profile.php?id_admin='.$id_profile);
+		      // echo "Berhasil";
+		    } else {
+		      // jika gagal tampilkan pesan kesalahan
+		      // header('location: index.php?alert=1');
+		      echo "Gagal";
+		    } 
+
+	  }
+	}
+
+	// Ubah Foto Profile
+	if (isset($_POST['ubah_foto'])) {
+
+	  if (isset($_POST['id_admin'])) {
+
+		    $id_admin = $_POST['id_admin'];
+
+		  	$query = mysqli_query($db, "SELECT * FROM login WHERE id_admin='$id_admin'") or die('Query Error : '.mysqli_error($db));
+	        while ($data  = mysqli_fetch_assoc($query)) {
+	        	$img_divisi = $data['img_divisi'];
+	        }
+
+
+	        $type = $_FILES['img_divisi']['type'];
+		    $fileinfo=PATHINFO($_FILES["img_divisi"]["name"]);
+		    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+		    if (!$img_divisi==""){  
+			    unlink($img_divisi);
+			    move_uploaded_file($_FILES["img_divisi"]["tmp_name"],"../upload/page-team/" . $newFilename);
+			    $location="../upload/page-team/" . $newFilename;
+			}
+
+		    // perintah query untuk mengubah data pada tabel is_siswa
+		   $query = mysqli_query($db, "UPDATE login SET img_divisi = '$location'
+		                            WHERE id_admin = '$id_admin'");   
+
+
+		    // cek query
+		    if ($query) {
+		      // jika berhasil tampilkan pesan berhasil update data
+		      header('location: edit-profile.php?id_admin='.$id_admin);
+		      // echo "Berhasil";
+		    } else {
+		      // jika gagal tampilkan pesan kesalahan
+		      // header('location: index.php?alert=1');
+		      echo "Gagal";
+		    } 
+
+	  }
+	}
+
+	// Ubah Pass
+	if (isset($_POST['ubah_pass'])) {
+
+	  if (isset($_POST['id_admin'])) {
+
+		    $id_admin = $_POST['id_admin'];
+		    $password = md5($_POST['password']);
+
+		  	$query = mysqli_query($db, "SELECT * FROM login WHERE id_admin='$id_admin'") or die('Query Error : '.mysqli_error($db));
+
+		    // perintah query untuk mengubah data pada tabel is_siswa
+		   	$query = mysqli_query($db, "UPDATE login SET password = '$password'
+		                            WHERE id_admin = '$id_admin'");   
+
+
+		    // cek query
+		    if ($query) {
+		      // jika berhasil tampilkan pesan berhasil update data
+		      header('location: edit-profile.php?id_admin='.$id_admin);
+		      // echo "Berhasil";
+		    } else {
+		      // jika gagal tampilkan pesan kesalahan
+		      // header('location: index.php?alert=1');
+		      echo "Gagal";
+		    } 
+
+	  }
+	}  
+
+
+//===================== Edit Profile ================================================
 ?>

@@ -367,6 +367,71 @@ if($_POST['rowpesan']) {
 <?php }
   }
 ?>
+
+<?php 
+if($_POST['rowimage']) {
+      $id_admin = $_POST['rowimage'];
+      $load_data = mysqli_query($db, "SELECT * FROM login WHERE id_admin='$id_admin'");
+      while ($row = mysqli_fetch_assoc($load_data)) {
+        $id_admin = $row['id_admin'];
+        $img_divisi = $row['img_divisi'];        
+      ?>
+
+      <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
+         <div class="box-body">
+            <div class="form-group">
+              <input type="hidden" name="id_admin" value="<?php echo $id_admin; ?>">
+              <img src="<?= $img_divisi; ?>" class="profile-img">
+            </div>
+            
+            <div class="form-group">
+              <label>Ubah Foto</label>
+              <input type="file" name="img_divisi" id="img_divisi" value="<?php echo $img_divisi; ?>">
+            </div>
+          </div>
+            <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary" name="ubah_foto">Simpan</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+          </div>
+      </form>
+<?php }
+  }
+?>
+
+<?php 
+if($_POST['rowpass']) {
+      $id_admin = $_POST['rowpass'];
+      $load_data = mysqli_query($db, "SELECT * FROM login WHERE id_admin='$id_admin'");
+      while ($row = mysqli_fetch_assoc($load_data)) {
+        $id_admin = $row['id_admin'];
+        $img_divisi = $row['img_divisi'];        
+      ?>
+
+      <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
+         <div class="box-body">
+            <div class="form-group">
+              <input type="hidden" name="id_admin" value="<?php echo $id_admin; ?>">
+              <label>Password</label>
+              <input type="password" class="form-control pass_primary" name="password" \>
+            </div>
+            
+            <div class="form-group">
+              <label>Ulangi Password</label>
+              <input type="password" class="form-control pass_conf" name="password_conf" \>
+            </div>
+          </div>
+            <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary savePass" name="ubah_pass">Simpan</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+          </div>
+      </form>
+<?php }
+  }
+?>
+
+
 <script type="text/javascript">
   function password_match() {
     var password = $("#password_title").val();
@@ -380,6 +445,7 @@ if($_POST['rowpesan']) {
         $("#confpass_title").css("border", "1px solid #d2d6de");
     } 
   }
+
 
 $('.loadPage').click(function() {
     location.reload();

@@ -73,7 +73,7 @@
               <li class="user-footer">
                 <div class="pull-left">
                   <!-- <a href="#" class="btn btn-default btn-flat">Profile</a> -->
-                  <?php echo "<a href='#modalHomeEdit'class='btn btn-default btn-flat' id='profile' data-toggle='modal' data-id=".$_SESSION['id_admin'].">Profile</a>" ?>
+                  <?php echo "<a href='edit-profile.php?id_admin=$row[id_admin]' class='btn btn-default btn-flat'>Profile</a>" ?>
                 </div>
                 <div class="pull-right">
                   <a href="logout.php" class="btn btn-default btn-flat">Keluar</a>
@@ -86,18 +86,3 @@
       </div>
     </nav>
   </header>
-  <script type="text/javascript">
-     $('#modalHomeEdit').on('show.bs.modal', function (e) {
-      var rowteam = $(e.relatedTarget).data('id');
-      //menggunakan fungsi ajax untuk pengambilan data
-        $.ajax({
-            type : 'post',
-            url : 'update-form.php',
-            data :  'rowteam='+ rowteam,
-            success : function(data){
-            $('.fetched-data').html(data);//menampilkan data ke dalam modal
-            }
-        });
-    });
-
-  </script>

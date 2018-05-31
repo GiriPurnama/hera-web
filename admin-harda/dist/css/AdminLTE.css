@@ -5097,3 +5097,7 @@ img.img-home {
 .font-bold{
   font-weight: bold;
 }
+.profile-img{
+  width: 300px;
+  height: auto;
+}
