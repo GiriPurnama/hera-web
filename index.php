@@ -200,7 +200,7 @@
 
           <div class="col-lg-12 col-md-12 box wow bounceInUp" data-wow-duration="1.4s">
             <img src="img/flow.png">
-             <a href="#featured-services" class="btn-get-started scrollto">Lihat Lowongan</a>  
+             <a data-toggle="modal" data-target="#modalPelamar" href="javascript:void(0);" class="btn-get-started scrollto">Lihat Lowongan</a>  
             <!-- <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p> -->
             <!-- <a href="#featured-services" class="btn-get-started scrollto">Daftar Lowongan</a> -->
           </div>

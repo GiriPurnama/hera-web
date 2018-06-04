@@ -52,8 +52,11 @@
           $berat_badan = $data['berat_badan'];
           $tinggi_badan = $data['tinggi_badan'];
           $interview = $data['interview'];
+          $copy_cv = $data['copy_cv'];
         }
       }
+
+        $noImage = "/img/no-image.jpg";
 
         $timestamp = strtotime($post_date);
         $newDate = date('j-F-Y', $timestamp); 
@@ -87,7 +90,18 @@
                     <img class="img-logo" src="img/hera-black.png">
                   </div>
                   <div class="col-md-6">
-                    <img class="img-user-height" src="<?php echo $foto; ?>">
+                    <?php 
+                      $orientation = 1;
+                      if (function_exists('exif_read_data')) {
+                          $exif = @exif_read_data($foto);
+                          if (isset($exif['Orientation']))
+                              $orientation = $exif['Orientation'];
+                      } else if (preg_match('@\x12\x01\x03\x00\x01\x00\x00\x00(.)\x00\x00\x00@', file_get_contents($foto), $matches)) {
+                          $orientation = ord($matches[1]);
+                      }
+                        $imageFoto = $orientation ?: $noImage;  
+                    ?>
+                    <img class="img-user-height" data-val="<?php echo $imageFoto ?>" id="photo" src="<?php echo $foto; ?>">
                   </div>
               </div>
               <div class="col-md-12 mg-bottom">
@@ -196,10 +210,32 @@
             </div>
             <div class="col-md-12 text-center">
               <div class="col-md-6">
-                  <img class="img-user-width" src="<?php echo $ktp; ?>">
+                  <?php 
+                    $orientation2 = 1;
+                    if (function_exists('exif_read_data')) {
+                        $exif = @exif_read_data($foto);
+                        if (isset($exif['Orientation']))
+                            $orientation2 = $exif['Orientation'];
+                    } else if (preg_match('@\x12\x01\x03\x00\x01\x00\x00\x00(.)\x00\x00\x00@', file_get_contents($ktp), $matches)) {
+                        $orientation2 = ord($matches[1]);
+                    }
+                    $imageKtp = $orientation2 ?: $noImage;  
+                  ?>
+                  <img class="img-user-width" id="ktp" data-val="<?php echo $imageKtp; ?>" src="<?php echo $ktp; ?>">
               </div>
               <div class="col-md-6">
-                  <img class="img-user-width" src="<?php echo $ijazah; ?>">
+                  <?php 
+                    $orientation3 = 1;
+                    if (function_exists('exif_read_data')) {
+                        $exif = @exif_read_data($foto);
+                        if (isset($exif['Orientation']))
+                            $orientation3 = $exif['Orientation'];
+                    } else if (preg_match('@\x12\x01\x03\x00\x01\x00\x00\x00(.)\x00\x00\x00@', file_get_contents($ijazah), $matches)) {
+                        $orientation3 = ord($matches[1]);
+                    }
+                    $imageIjazah = $orientation3 ?: $noImage;  
+                  ?>
+                  <img class="img-user-width" id="ijazah" data-val="<?php echo $imageIjazah; ?>" src="<?php echo $ijazah; ?>">
               </div>
             </div>
             <!-- /.box-header -->
@@ -238,6 +274,11 @@
                 <div class="form-group col-md-12">
                   <input type="submit" class="btn btn-primary btn-submit" name="simpan" id="send" value="Simpan">
                   <input type="submit" class="btn btn-warning btn-submit" name="export-pdf" id="pdf" value="Export PDF" href="javascript:void(0);" onclick="window.open('export-pdf.php?id=<?php echo $id; ?>')">
+                  <?PHP if ($copy_cv != "") 
+                        {  
+                  ?>
+                    <a href="<?= $copy_cv; ?>" class="btn btn-success">Download</a>
+                  <?PHP } ?>
                 </div>
               </form>
 
@@ -315,6 +356,25 @@
     //bootstrap WYSIHTML5 - text editor
     $('.textarea').wysihtml5()
   })
+
+  if ($("#photo").attr('data-val') == 8) {
+    $('#photo').css({'transform': 'rotate(-90deg)'});
+  } else if($("#photo").attr('data-val') == 3){
+    $('#photo').css({'transform': 'rotate(-180deg)'});
+  }
+
+  if($("#ktp").attr('data-val') == 3){
+    $('#ktp').css({'transform': 'rotate(-180deg)'});
+  } else if ($("#ktp").attr('data-val') == 6) {
+    $('#ktp').css({'transform': 'rotate(-180deg)'});
+  }
+
+  if($("#ijazah").attr('data-val') == 3){
+    $('#ijazah').css({'transform': 'rotate(-180deg)'});
+  } else if ($("#ijazah").attr('data-val') == 6) {
+    $('#ijazah').css({'transform': 'rotate(-180deg)'});
+  }
+
 </script>
 
 <?php
@@ -323,6 +383,38 @@
 </body>
 </html>
 <?php 
+
+// ============================= Function Rotate Image ====================================
+function correctImageOrientationFoto($foto) {
+  if (function_exists('exif_read_data')) {
+    $exif = exif_read_data($foto);
+    if($exif && isset($exif['Orientation'])) {
+      $orientation = $exif['Orientation'];
+      if($orientation != 1){
+        $img = imagecreatefromjpeg($foto);
+        $deg = 0;
+        switch ($orientation) {
+          case 3:
+            $deg = 180;
+            break;
+          case 6:
+            $deg = 270;
+            break;
+          case 8:
+            $deg = 90;
+            break;
+        }
+        if ($deg) {
+          $img = imagerotate($img, $deg, 0);       
+        }
+        imagejpeg($img, $foto, 95);
+      } // if there is some rotation necessary
+    } // if have the exif orientation info
+  } // if function exists     
+}
+
+
+
 
 if (isset($_POST['simpan_foto'])) {
   if (isset($_POST['id'])) {
@@ -335,6 +427,7 @@ if (isset($_POST['simpan_foto'])) {
       unlink($foto);
       move_uploaded_file($_FILES["foto"]["tmp_name"],"../upload/" . $newFilename);
       $location="../upload/" . $newFilename;
+      correctImageOrientationFoto($location);
     }
 
     $query = mysqli_query($db, "UPDATE recruitment SET foto = '$location' WHERE id = '$id'");   
@@ -412,6 +505,8 @@ if (isset($_POST['simpan_ijazah'])) {
 
   }
 }
+
+
 
 
 
