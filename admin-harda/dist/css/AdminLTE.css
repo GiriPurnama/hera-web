@@ -1711,7 +1711,7 @@ a:focus {
   display: block;
   padding: 10px;
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 .box-header.with-border {
   border-bottom: 1px solid #f4f4f4;
@@ -5015,10 +5015,11 @@ span.label-user {
     display: table;
 }
 span.field-user {
-    position: absolute;
+    position: relative;
     left: 38%;
-    top: 0px;
-    display: table-cell;
+    top: -50px;
+    display: -webkit-inline-box;
+    width: 50%;
 }
 span.field-user:before {
     content: ':';

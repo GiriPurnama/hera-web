@@ -56,10 +56,13 @@
         }
       }
 
-        $noImage = "/img/no-image.jpg";
+        $noImage = "../image/no-image.jpg";
 
         $timestamp = strtotime($post_date);
-        $newDate = date('j-F-Y', $timestamp); 
+        $newDate = date('j-F-Y', $timestamp);
+
+        $timestamp1 = strtotime($tanggal_lahir);
+        $newDate1 = date('j-F-Y', $timestamp1);  
 
         $ndata = preg_replace("/\,/", "<br/>", $pengalaman_kerja);  
   ?>
@@ -99,9 +102,9 @@
                       } else if (preg_match('@\x12\x01\x03\x00\x01\x00\x00\x00(.)\x00\x00\x00@', file_get_contents($foto), $matches)) {
                           $orientation = ord($matches[1]);
                       }
-                        $imageFoto = $orientation ?: $noImage;  
+                        $imageFoto = $foto ?: $noImage;  
                     ?>
-                    <img class="img-user-height" data-val="<?php echo $imageFoto ?>" id="photo" src="<?php echo $foto; ?>">
+                    <img class="img-user-height" data-val="<?php echo $imageFoto ?>" id="photo" src="<?php echo $imageFoto; ?>">
                   </div>
               </div>
               <div class="col-md-12 mg-bottom">
@@ -140,7 +143,7 @@
                 </div>
                 <div class="col-md-6 pad-label">
                     <span class="label-user">Tanggal Lahir</span>
-                    <span class="field-user"><?php echo $tanggal_lahir; ?></span>
+                    <span class="field-user"><?php echo $newDate1; ?></span>
                 </div>
                 <div class="col-md-6 pad-label">
                     <span class="label-user">Agama</span>
@@ -219,9 +222,9 @@
                     } else if (preg_match('@\x12\x01\x03\x00\x01\x00\x00\x00(.)\x00\x00\x00@', file_get_contents($ktp), $matches)) {
                         $orientation2 = ord($matches[1]);
                     }
-                    $imageKtp = $orientation2 ?: $noImage;  
+                    $imageKtp = $ktp ?: $noImage;  
                   ?>
-                  <img class="img-user-width" id="ktp" data-val="<?php echo $imageKtp; ?>" src="<?php echo $ktp; ?>">
+                  <img class="img-user-width" id="ktp" data-val="<?php echo $imageKtp; ?>" src="<?php echo $imageKtp; ?>">
               </div>
               <div class="col-md-6">
                   <?php 
@@ -233,9 +236,9 @@
                     } else if (preg_match('@\x12\x01\x03\x00\x01\x00\x00\x00(.)\x00\x00\x00@', file_get_contents($ijazah), $matches)) {
                         $orientation3 = ord($matches[1]);
                     }
-                    $imageIjazah = $orientation3 ?: $noImage;  
+                    $imageIjazah = $ijazah ?: $noImage;  
                   ?>
-                  <img class="img-user-width" id="ijazah" data-val="<?php echo $imageIjazah; ?>" src="<?php echo $ijazah; ?>">
+                  <img class="img-user-width" id="ijazah" data-val="<?php echo $imageIjazah; ?>" src="<?php echo $imageIjazah; ?>">
               </div>
             </div>
             <!-- /.box-header -->
@@ -289,7 +292,6 @@
                     <input type="file" accept="image/*" class="form-control" id="foto" name="foto">
                 </div>
                 <div class="form-group col-md-12">
-                   <input type="hidden" name="id" value="<?php echo $id; ?>">
                   <input type="submit" class="btn btn-primary btn-submit" name="simpan_foto" id="send" value="Upload Foto">
                 </div>
               </form>
@@ -505,9 +507,6 @@ if (isset($_POST['simpan_ijazah'])) {
 
   }
 }
-
-
-
 
 
 if (isset($_POST['simpan'])) {

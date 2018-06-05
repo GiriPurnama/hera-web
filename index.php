@@ -27,6 +27,7 @@
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <link href="lib/date-picker/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
@@ -200,7 +201,7 @@
 
           <div class="col-lg-12 col-md-12 box wow bounceInUp" data-wow-duration="1.4s">
             <img src="img/flow.png">
-             <a data-toggle="modal" data-target="#modalPelamar" href="javascript:void(0);" class="btn-get-started scrollto">Lihat Lowongan</a>  
+             <a data-toggle="modal" data-target="#modalPelamar" href="javascript:void(0);" class="btn-get-started scrollto">Lamar Pekerjaan</a>  
             <!-- <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p> -->
             <!-- <a href="#featured-services" class="btn-get-started scrollto">Daftar Lowongan</a> -->
           </div>
@@ -730,6 +731,7 @@
   <script src="lib/isotope/isotope.pkgd.min.js"></script>
   <script src="lib/lightbox/js/lightbox.min.js"></script>
   <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+  <script src="lib/date-picker/js/bootstrap-datepicker.min.js"></script>
   <!-- Contact Form JavaScript File -->
   <script src="contactform/contactform.js"></script>
 

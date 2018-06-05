@@ -49,6 +49,7 @@
 		$tinggi_badan = mysqli_real_escape_string($db, trim(strtoupper($_POST['tinggi_badan'])));
 		$berat_badan = mysqli_real_escape_string($db, trim(strtoupper($_POST['berat_badan'])));
 		$kuliah = strtoupper($_POST['kuliah']);
+		$branch = strtoupper($_POST['branch']);
 
 		function correctImageOrientationFoto($foto) {
 		  if (function_exists('exif_read_data')) {
@@ -146,6 +147,7 @@
 															berat_badan,
 															token,
 															copy_cv,
+															branch,
 															post_date)
 															VALUES('$posisi',
 																	'$refrensi',
@@ -179,12 +181,13 @@
 																	'$berat_badan',
 																	'$token',
 																	'$cv_up',
+																	'$branch',
 																	 NOW())");
 		if ($query) {
 			// jika berhasil tampilkan pesan berhasil insert data
 			// header('location: index.php?alert=2');
 			// echo "berhasil";
-			header('location: ../inforegistrasi.php?alert=2');
+			header('location: ../index.php');
 		} else {
 			// jika gagal tampilkan pesan kesalahan
 			// header('location: index.php?alert=1');

@@ -1,3 +1,6 @@
+<?php 
+   include "config/koneksi.php";
+?>
 <!-- Modal User-->
 <div class="modal fade" id="modalVisi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -47,10 +50,26 @@
                 </div>
             </div>
         </div>
-        <form role="form">
+        <form role="form" id="formPelamar" method="post"  enctype="multipart/form-data">
             <div class="row setup-content" id="step-1">
                 <div class="col-md-12">
                   <h3>Data Diri</h3>
+                </div>
+                <div class="form-group col-md-12">
+                <label for="Posisi">Tempat Interview* :</label>
+                  <select id="branch" class='form-control' name='branch' required>
+                      <option value="">-</option>
+                      <?php 
+                          $lamar = mysqli_query($db, "SELECT * FROM kontak");
+                          while ($row = mysqli_fetch_assoc($lamar)) {
+                      ?>
+      
+                      <option value="<?= $row['wilayah'];?>"><?= $row["wilayah"];?></option>
+                      
+                      <?php    
+                          }
+                      ?>
+                  </select>
                 </div>
                 <div class="form-group col-md-6">
                 <label for="Posisi">Posisi yang Dilamar* :</label>
@@ -716,6 +735,7 @@ $(".pass_conf").keyup(function(){
 
 
 $(document).ready(function () {
+  // Jquery Step Wizard
     var navListItems = $('.setup-panel div a'),
             allWells = $('.setup-content'),
             allNextBtn = $('.nextBtn');
@@ -756,5 +776,405 @@ $(document).ready(function () {
     });
 
     $('div.setup-panel div a.btn-primary').trigger('click');
+  // Jquery Step Wizard
+
+   $("#tanggal_lahir").datepicker({ 
+        format: 'yyyy-mm-dd'
+    });
+
+    $(document).on('click', '.btn-success', function(){
+
+      if (CheckValidasiPeserta() == true ) {
+        // $("#loader").show();
+        // $("#labelError").hide();
+        var data = new FormData(this);
+        data.append('branch', $('#branch').val());
+        data.append('posisi', $('#position').val());
+        data.append('refrensi', $('[name="refrensi"]').val());
+        data.append('nama_lengkap', $('#fullName').val());
+        data.append('warga_negara', $('#wargaNegara').val());
+        data.append('tempat_lahir', $('#tempat_lahir').val());
+        data.append('tanggal_lahir', $('#tanggal_lahir').val());
+        data.append('agama', $('#agama').val());
+        data.append('jenis_kelamin', $("input[name='jenis_kelamin']:checked").val());
+        data.append('no_ktp', $('#idCard').val());
+        data.append('no_sim', $('#idSim').val());
+        data.append('status_sipil', $('#status_sipil').val());
+        data.append('alamat_email', $('#alamat_email').val());
+        data.append('berat_badan', $('#berat_badan').val());
+        data.append('tinggi_badan', $('#tinggi_badan').val());
+        data.append('alamat_sekarang', $('#alamat_sekarang').val());
+        data.append('no_handphone', $('#idHandphone').val());
+        data.append('telepon', $('#idTelepon').val());
+        data.append('kemampuan_komputer', $('#skill').val());
+        data.append('pendidikan_terakhir', $('#pendidikan_terakhir').val());
+        // data.append('kuliah', $("input[name='kuliah']:checked").val());
+        data.append('bahasa_asing', $("input[name='bahasa_asing']:checked").val());
+        data.append('riwayat_penyakit', $('#riwayat').val());
+        data.append('pengalaman_kerja', $('#pengalaman_kerja').val());
+        data.append('foto', $('#foto')[0].files[0]);
+        data.append('ktp', $('#ktp')[0].files[0]);
+        data.append('ijazah', $('#ijazah')[0].files[0]);
+        data.append('copy_cv', $('#copy_cv')[0].files[0]);
+        data.append('promosi_diri', $('#promosiDiri').val());
+
+        $.ajax({
+           url : "datafiles/insert.php",  
+           method: 'POST',
+           cache: false,
+           contentType: false,
+           processData: false,
+           data : data,
+
+           success: function(data){
+              // $("#labelSuccess").show();
+              $("#labelSuccess").delay(3000).fadeOut('slow');
+              $('#formPelamar').trigger("reset");
+              $("html, body").animate({ scrollTop: 0 }, "slow");
+              $('#refrensi').attr('name', 'refrensi');
+                $('#myInput').remove();
+                // $("#loader").hide();
+           }
+        });
+      } else {
+        console.log("Error Cuy");
+      }
+
+      });
+
+    $('#refrensi').change(function(){
+        if( $(this).val() == '1'){
+            $('#refrensi').removeAttr('name');
+            $('.ghost').append('<input class="form-control" id="myInput" type="text" name="refrensi" />');
+        }else{
+          $('#refrensi').attr('name', 'refrensi');
+            $('#myInput').remove();
+        }
+    });
+
+
+    function CheckValidasiPeserta(){
+        var status = true;
+        $("#labelError").show();
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+
+          if($("input[name='posisi']").val()===""){
+            $("input[name='posisi']").addClass("error-field");
+              $('#errorCard').append('<li class="li-posisi">Posisi Anda Masih Kosong</li>');
+              status = false;
+          }else{
+            $("input[name='posisi']").removeClass('error-field');
+            $(".li-posisi").remove();
+          }
+          
+          if($("input[name='nama_lengkap']").val()===""){
+            $("input[name='nama_lengkap']").addClass("error-field");
+            $('#errorCard').append('<li class="li-namaLengkap">Nama Anda Masih Kosong</li>');
+              status = false;
+          }else{
+            $("input[name='nama_lengkap']").removeClass('error-field');
+            $(".li-namaLengkap").remove();  
+          }
+
+          if($("input[name='tempat_lahir']").val()===""){
+            $("input[name='tempat_lahir']").addClass("error-field");
+            $('#errorCard').append('<li class="li-tempatLahir">Tempat Lahir Masih Kosong</li>');
+              status = false;
+          }else{
+            $("input[name='tempat_lahir']").removeClass('error-field');
+            $(".li-tempatLahir").remove();
+          }
+
+          if($("input[name='tanggal_lahir']").val()===""){
+            $("input[name='tanggal_lahir']").addClass("error-field");
+            $('#errorCard').append('<li class="li-tanggalLahir">Tanggal lahir Anda Masih Kosong</li>');
+              status = false;
+          }else{
+            $("input[name='tanggal_lahir']").removeClass('error-field');
+            $(".li-tanggalLahir").remove();
+          }
+
+          if($("input[name='no_ktp']").val()===""){
+            $("input[name='no_ktp']").addClass("error-field");
+            $('#errorCard').append('<li class="li-ktp">KTP Anda Masih Kosong</li>');
+              status = false;
+          }else{
+            $("input[name='no_ktp']").removeClass('error-field');
+            $(".li-ktp").remove();
+          }
+
+          if($("input[name='alamat_email']").val()===""){
+            $("input[name='alamat_email']").addClass("error-field");
+              $('#errorCard').append('<li class="li-email">Email Anda Masih Kosong</li>');
+              status = false;
+          }else{
+            $("input[name='alamat_email']").removeClass('error-field');
+            $(".li-email").remove();
+          }
+
+          if($(".textareaSekarang").val()===""){
+            $(".textareaSekarang").addClass("error-field");
+              $('#errorCard').append('<li class="li-alamat">Alamat Anda Masih Kosong</li>');
+              status = false;
+          }else{
+            $(".textareaSekarang").removeClass('error-field');
+            $(".li-alamat").remove();
+          }
+
+          if($("input[name='no_handphone']").val()===""){
+            $("input[name='no_handphone']").addClass("error-field");
+              $('#errorCard').append('<li class="li-hp">No HP Anda Masih Kosong</li>');
+              status = false;
+          }else{
+            $("input[name='no_handphone']").removeClass('error-field');
+            $(".li-hp").remove();
+          }
+
+          if($("input[name='kemampuan_komputer']").val()===""){
+            $("input[name='kemampuan_komputer']").addClass("error-field");
+              $('#errorCard').append('<li class="li-skill">Kemampuan dimiliki Anda Masih Kosong</li>');
+              status = false;
+          }else{
+            $("input[name='kemampuan_komputer']").removeClass('error-field');
+            $(".li-skill").remove();
+          }
+
+          if($("#pengalaman_kerja").val()===""){
+            $("#pengalaman_kerja").addClass("error-field");
+            $('#errorCard').append('<li class="li-pengalaman">Pengalaman Anda Masih Kosong</li>');
+              status = false;
+          }else{
+            $("#pengalaman_kerja").removeClass('error-field');
+            $(".li-pengalaman").remove();
+          }
+
+          if($("#promosiDiri").val()===""){
+            $("#promosiDiri").addClass("error-field");
+            $('#errorCard').append('<li class="li-promosi">Promosi Diri Anda Masih Kosong</li>');
+              status = false;
+          }else{
+            $("#promosiDiri").removeClass('error-field');
+            $(".li-promosi").remove();
+          }
+
+          if($("input[name='tinggi_badan']").val()===""){
+            $("input[name='tinggi_badan']").addClass("error-field");
+              $('#errorCard').append('<li class="li-tinggi">Tinggi Badan Anda Masih Kosong</li>');
+              status = false;
+          }else{
+            $("input[name='tinggi_badan']").removeClass('error-field');
+            $(".li-tinggi").remove();
+          }
+
+          if($("input[name='berat_badan']").val()===""){
+            $("input[name='berat_badan']").addClass("error-field");
+              $('#errorCard').append('<li class="li-berat">Berat Badan Anda Masih Kosong</li>');
+              status = false;
+          }else{
+            $("input[name='berat_badan']").removeClass('error-field');
+            $(".li-berat").remove();
+          }
+
+          if($("input[name='refrensi']").val()===""){
+            $("input[name='refrensi']").addClass("error-field");
+              $('#errorCard').append('<li class="li-refrensi-2">Referensi Anda Masih Kosong</li>');
+              status = false;
+          }else{
+            $("input[name='refrensi']").removeClass('error-field');
+            $(".li-refrensi-2").remove();
+          }
+
+          var ddl = document.getElementById("refrensi");
+      var selectedValue = ddl.options[ddl.selectedIndex].value;
+          if (selectedValue=="") {
+            $("#refrensi").addClass("error-field");
+            $('#errorCard').append('<li class="li-refrensi">Referensi Anda Masih Kosong</li>');
+            status = false;
+          } else {
+            $("#refrensi").removeClass("error-field");
+            $(".li-refrensi").remove();
+          }
+
+          var dd2 = document.getElementById("agama");
+      var selectedValue2 = dd2.options[dd2.selectedIndex].value;
+          if (selectedValue2=="") {
+            $("#agama").addClass("error-field");
+            $('#errorCard').append('<li class="li-agama">Agama Anda Masih Kosong</li>');
+            status = false;
+          } else {
+            $("#agama").removeClass("error-field");
+            $(".li-agama").remove();
+          }
+
+          var dd4 = document.getElementById("status_sipil");
+      var selectedValue4 = dd4.options[dd4.selectedIndex].value;
+          if (selectedValue4=="") {
+            $("#status_sipil").addClass("error-field");
+            $('#errorCard').append('<li class="li-statusSipil">Status Sipil Anda Masih Kosong</li>');
+            status = false;
+          } else {
+            $("#status_sipil").removeClass("error-field");
+            $(".li-statusSipil").remove();
+          }
+
+          var dd5 = document.getElementById("pendidikan_terakhir");
+      var selectedValue5 = dd5.options[dd5.selectedIndex].value;
+          if (selectedValue5=="") {
+            $("#pendidikan_terakhir").addClass("error-field");
+            $('#errorCard').append('<li class="li-pendidikan">Pendidikan Terakhir Anda Masih Kosong</li>');
+            status = false;
+          } else {
+            $("#pendidikan_terakhir").removeClass("error-field");
+            $(".li-pendidikan").remove();
+          }
+
+
+          if($("input[name='jenis_kelamin']").is(':checked')=="") { 
+            $('.radio').addClass("error-field");
+            $('#errorCard').append('<li class="li-gender">Jenis Kelamin Anda Masih Kosong</li>');
+            status = false;
+          } else {
+            $('.radio').removeClass("error-field");
+            $(".li-gender").remove();
+          }
+
+          // if($("input[name='kuliah']").is(':checked')=="") { 
+          //  $('.radio-2').addClass("error-field");
+          //  $('#errorCard').append('<li class="li-kuliah">Kuliah Anda Masih Kosong</li>');
+          //  status = false;
+          // } else {
+          //  $('.radio-2').removeClass("error-field");
+          //  $(".li-kuliah").remove();
+          // }
+
+          ValidateFotoUpload();
+          ValidateKtpUpload();
+          ValidateIjazahUpload();
+
+      
+          return status;
+        
+      }
+
+      function ValidateFotoUpload() {
+
+      var fuData = document.getElementById('foto');
+      var FileUploadPath = fuData.value;
+
+        // $("#foto").removeClass("error-field-file");
+          var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+
+          if (Extension == "gif" || Extension == "png" || Extension == "bmp"
+                      || Extension == "jpeg" || Extension == "jpg") {
+
+                  if (fuData.files && fuData.files[0]) {
+
+                      var size = fuData.files[0].size;
+
+                      // if(size > 5242880){
+                      //     alert("Ukuran FOTO tidak boleh lebih 1 MB");
+                      //     $("#foto").addClass("error-field-file");
+                      //     return;
+                      // }else{
+                      //  $("#foto").removeClass("error-field-file");
+                      //     var reader = new FileReader();
+
+                      //     reader.onload = function(e) {
+                      //         $('#blah').attr('src', e.target.result);
+                      //     }
+
+                      //     reader.readAsDataURL(fuData.files[0]);
+                      // }
+                  }
+
+          } 
+
+      else {
+          // $("#foto").addClass("error-field-file");
+              alert("Format Foto hanya boleh GIF, PNG, JPG, JPEG and BMP. ");
+          }
+      
+    }
+
+    function ValidateKtpUpload() {
+
+      var fuData = document.getElementById('ktp');
+      var FileUploadPath = fuData.value;
+
+        // $("#ktp").removeClass("error-field-file");
+          var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+
+          if (Extension == "gif" || Extension == "png" || Extension == "bmp"
+                      || Extension == "jpeg" || Extension == "jpg") {
+
+                  if (fuData.files && fuData.files[0]) {
+
+                      var size = fuData.files[0].size;
+
+                      // if(size > 5242880){
+                      //     alert("Ukuran KTP tidak boleh lebih 1 MB");
+                      //     $("#ktp").addClass("error-field-file");
+                      //     return;
+                      // }else{
+                      //  $("#ktp").removeClass("error-field-file");
+                      //     var reader = new FileReader();
+
+                      //     reader.onload = function(e) {
+                      //         $('#blah').attr('src', e.target.result);
+                      //     }
+
+                      //     reader.readAsDataURL(fuData.files[0]);
+                      // }
+                  }
+
+          } 
+
+      else {
+          // $("#ktp").addClass("error-field-file");
+              alert("Format ktp hanya boleh GIF, PNG, JPG, JPEG and BMP. ");
+          }
+      
+    }
+
+    function ValidateIjazahUpload() {
+
+      var fuData = document.getElementById('ijazah');
+      var FileUploadPath = fuData.value;
+
+        // $("#ijazah").removeClass("error-field-file");
+          var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+
+          if (Extension == "gif" || Extension == "png" || Extension == "bmp"
+                      || Extension == "jpeg" || Extension == "jpg") {
+
+                  if (fuData.files && fuData.files[0]) {
+
+                      var size = fuData.files[0].size;
+
+                      // if(size > 5242880){
+                      //     alert("Ukuran ijazah tidak boleh lebih 1 MB");
+                      //     $("#ijazah").addClass("error-field-file");
+                      //     return;
+                      // }else{
+                      //  $("#ijazah").removeClass("error-field-file");
+                      //     var reader = new FileReader();
+
+                      //     reader.onload = function(e) {
+                      //         $('#blah').attr('src', e.target.result);
+                      //     }
+
+                      //     reader.readAsDataURL(fuData.files[0]);
+                      // }
+                  }
+
+          } 
+
+      else {
+          // $("#ijazah").addClass("error-field-file");
+              alert("Format ijazah hanya boleh GIF, PNG, JPG, JPEG and BMP. ");
+          }
+      
+    }
+
 });
 </script>

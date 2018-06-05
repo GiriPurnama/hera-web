@@ -386,7 +386,7 @@ if($_POST['rowimage']) {
             
             <div class="form-group">
               <label>Ubah Foto</label>
-              <input type="file" name="img_divisi" id="img_divisi" value="<?php echo $img_divisi; ?>">
+              <input type="file" name="img_divisi" value="<?php echo $img_divisi; ?>">
             </div>
           </div>
             <!-- /.box-body -->

@@ -696,7 +696,10 @@
 	        $type = $_FILES['img_divisi']['type'];
 		    $fileinfo=PATHINFO($_FILES["img_divisi"]["name"]);
 		    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-		    if (!$img_divisi==""){  
+		   	if($_FILES['img_divisi']['name']=='') {
+		    	$location = ""; 
+		    }
+		    elseif (!$img_divisi=="" || $img_divisi=="" ){  
 			    unlink($img_divisi);
 			    move_uploaded_file($_FILES["img_divisi"]["tmp_name"],"../upload/page-team/" . $newFilename);
 			    $location="../upload/page-team/" . $newFilename;
