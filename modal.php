@@ -52,9 +52,11 @@
         </div>
         <form role="form" id="formPelamar" method="post"  enctype="multipart/form-data">
             <div class="row setup-content" id="step-1">
+                
                 <div class="col-md-12">
                   <h3>Data Diri</h3>
                 </div>
+                
                 <div class="form-group col-md-12">
                 <label for="Posisi">Tempat Interview* :</label>
                   <select id="branch" class='form-control' name='branch' required>
@@ -70,11 +72,15 @@
                           }
                       ?>
                   </select>
+                  <div class="display-text">*Harap Isi Tempat Interview</div>
                 </div>
+
                 <div class="form-group col-md-6">
                 <label for="Posisi">Posisi yang Dilamar* :</label>
                   <input type="text" class="form-control" id="position" name="posisi" required>
+                  <div class="display-text">*Harap Isi Posisi yang dilamar</div>
                 </div>
+
                 <div class="form-group col-md-6 ghost">
                   <label for="Refrensi">Referensi* :</label>
                   <select class="form-control opacity0" id="refrensi" name="refrensi" required>
@@ -88,23 +94,32 @@
                     <option value="JANNAH">Jannah</option>
                     <option value="1">Lainnya</option>
                   </select>
+                  <div class="display-text">*Harap Isi Referensi</div>
                 </div>
+                
                 <div class="form-group col-md-6">
                   <label for="Nama">Nama Lengkap* :</label>
-                    <input type="text" class="form-control" id="fullName" autocomplete="off" name="nama_lengkap" required>
+                  <input type="text" class="form-control" id="fullName" autocomplete="off" name="nama_lengkap" required>
+                  <div class="display-text">*Harap Isi Nama Lengkap</div>
                 </div>
+
                 <div class="form-group col-md-6">
                   <label for="wargaNegara">Warga Negara :</label>
-                    <input type="text" class="form-control" id="wargaNegara" name="warga_negara">
+                  <input type="text" class="form-control" id="wargaNegara" name="warga_negara">
                 </div>
+
                 <div class="form-group col-md-6">
                   <label for="tempat_lahir">Tempat Lahir* :</label>
-                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" required>
+                  <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" required>
+                  <div class="display-text">*Harap Isi Tempat Lahir</div>                
                 </div>
+
                 <div class="form-group col-md-6">
                   <label for="tanggal_lahir">Tanggal Lahir* :</label>
-                    <input type="text" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
+                  <input type="text" class="form-control readonly" id="tanggal_lahir" name="tanggal_lahir" required>
+                  <div class="display-text">*Harap Isi Tanggal Lahir</div>
                 </div>
+                
                 <div class="form-group col-md-6">
                   <label for="Agama">Agama* :</label>
                   <select class="form-control opacity0" id="agama" name="agama" required>
@@ -115,7 +130,9 @@
                     <option value="HINDU">Hindu</option>
                     <option value="BUDDHA">Buddha</option>
                   </select>
+                  <div class="display-text">*Harap Isi Agama</div>
                 </div>
+                
                 <div class="form-group col-md-6">
                   <label for="idJk">Jenis Kelamin* :</label>
                   <div class="radio">
@@ -124,15 +141,20 @@
                   <div class="radio">
                     <label><input type="radio" name="jenis_kelamin" value="Perempuan">Perempuan</label>
                   </div>
+                  <div class="display-text">*Harap Isi Jenis Kelamin</div>
                 </div>
+
                 <div class="form-group col-md-6">
                   <label for="idCart">No.KTP* :</label>
-                    <input type="text" class="form-control" id="idCard" autocomplete="off" name="no_ktp" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                  <input type="text" class="form-control" id="idCard" autocomplete="off" name="no_ktp" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                   <div class="display-text">*Harap Isi KTP</div>
                 </div>
+                
                 <div class="form-group col-md-6">
                   <label for="idSim">No.SIM:</label>
-                    <input type="text" class="form-control" name="no_sim" autocomplete="off" id="idSim" onKeyPress="return goodchars(event,'0123456789',this)">
+                  <input type="text" class="form-control" name="no_sim" autocomplete="off" id="idSim" onKeyPress="return goodchars(event,'0123456789',this)">
                 </div>
+
                 <div class="form-group col-md-6">
                   <label for="status_sipil">Status Sipil* :</label>
                   <select class="form-control opacity0" id="status_sipil" name="status_sipil" required>
@@ -141,27 +163,39 @@
                     <option value="Lajang">Lajang</option>
                     <option value="Duda">Cerai</option>
                   </select>
+                  <div class="display-text">*Harap Isi Status Sipil</div>
                 </div>
+
                 <div class="form-group col-md-6">
                   <label for="alamat_email">Alamat Email* :</label>
-                    <input type="email" class="form-control" autocomplete="off" id="alamat_email" name="alamat_email" required>
+                  <input type="email" class="form-control" autocomplete="off" id="alamat_email" name="alamat_email" required>
+                  <div class="display-text">*Harap Isi Email yang valid</div>
                 </div>
+
                 <div class="form-group col-md-6">
-                    <label for="berat_badan">Berat Badan* :</label>
-                    <input type="text" name="berat_badan" id="berat_badan" autocomplete="off" class="form-control" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                  <label for="berat_badan">Berat Badan* :</label>
+                  <input type="text" name="berat_badan" id="berat_badan" autocomplete="off" class="form-control" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                   <div class="display-text">*Harap Isi Berat</div>
                 </div>
+                
                 <div class="form-group col-md-6">
                   <label for="berat_badan">Tinggi Badan* :</label>
                   <input type="text" name="tinggi_badan" id="tinggi_badan" autocomplete="off" class="form-control" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                  <div class="display-text">*Harap Isi Tinggi</div>
                 </div>
+
                 <div class="form-group col-md-6">
                   <label for="alamat_sekarang">Alamat Sekarang* :</label>
                   <textarea name="alamat_sekarang" id="alamat_sekarang" class="form-control textareaSekarang" style="height:110px;" required></textarea>
+                  <div class="display-text">*Harap Isi Alamat</div>
                 </div>
+
                 <div class="form-group col-md-6">
                   <label for="noHandphone">No Handphone* :</label>
-                    <input type="text" class="form-control" id="idHandphone" name="no_handphone" autocomplete="off" maxlength="12" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                  <input type="text" class="form-control" id="idHandphone" name="no_handphone" autocomplete="off" maxlength="12" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                  <div class="display-text">*Harap Isi No Handphone</div>
                 </div>
+
                 <div class="form-group col-md-6">
                   <label for="telepon">Telepon :</label>
                   <input type="text" class="form-control" id="idTelepon" name="telepon" autocomplete="off" maxlength="12" onKeyPress="return goodchars(event,'0123456789',this)">
@@ -170,7 +204,9 @@
                 <div class="form-group col-md-6">
                   <label for="kemampuan">Kemampuan Dimiliki* :</label>
                   <input type="text" class="form-control" autocomplete="off" id="skill" name="kemampuan_komputer" required>
+                   <div class="display-text">*Harap Isi Kemampuan/Skill Anda</div>
                 </div>
+
                 <div class="col-md-12">
                   <button class="btn btn-primary nextBtn" type="button">Next</button>
                 </div>
@@ -202,57 +238,74 @@
                   <option value="S2">S2</option>
                   <option value="S3">S3</option>
                 </select>
+                <div class="display-text">*Harap Isi Pendidikan Terakhir</div>
               </div>
               
               <div class="form-group col-md-6">
                 <label for="riwayat">Riwayat Penyakit :</label>
-                  <input type="text" class="form-control" autocomplete="off" id="riwayat" name="riwayat_penyakit">
+                <input type="text" class="form-control" autocomplete="off" id="riwayat" name="riwayat_penyakit">
               </div>
+
               <div class="form-group col-md-12">
                 <label for="pengalaman">Pengalaman Pekerjaan* :</label>
                 <div style="color:purple;">
                   <label style="width:100%;">Contoh:</label> 
                   <label style="width:100%;">1. Posisi - Perusahaan - Lama Bekerja,</label> 
-                  <label style="width:100%;">2. POSISI - PERUSAHAAN - LAMA BEKERJA, dan seterusnya</label>
+                  <label style="width:100%;">2. POSISI - PERUSAHAAN - LAMA BEKERJA</label>
+                    <label style="width:100%;">dan seterusnya</label>
                 </div>
                 <span>Gunakan <b>Koma(,)</b> Sebagai "<b>Enter</b>" untuk lanjutan pengalaman</span>
                 <div class="noted"><b>Wajib Cantumkan Semua pengalaman kerja anda!!!</b></div>
-                  <textarea name="pengalaman_kerja" id="pengalaman_kerja" class="form-control textareaKerja" required></textarea>
+                <textarea name="pengalaman_kerja" id="pengalaman_kerja" class="form-control textareaKerja" required></textarea>
+                <div class="display-text">*Harap Isi Pengalaman sesuai contoh</div>
               </div>
+
               <div class="form-group col-md-12">
                 <label for="kemampuan">Promosikan Diri Anda* :</label>
-                  <input type="text" class="form-control" autocomplete="off" id="promosiDiri" name="promosi_diri" required>
+                <input type="text" class="form-control" autocomplete="off" id="promosiDiri" name="promosi_diri" required>
+                <div class="display-text">*Harap Promosikan Diri anda</div>
               </div>
 
               <div class="col-md-12">
                 <button class="btn btn-primary nextBtn" type="button" >Next</button>     
               </div>
             </div>
+
             <div class="row setup-content" id="step-3">
                 <div class="col-xs-12">
                     <div class="col-md-12">
+
                         <div class="col-md-12">
                           <h3>Upload Data</h3>
                         </div>
+
                         <div class="form-group col-md-12">
                           <label for="foto">Upload Foto :</label>
                             <input type="file" accept="image/*" class="form-control" id="foto" name="foto" required>
                             <!-- <span class="small-font">Ukuran Foto Maksimal <b>1 MB</b>*</span> -->
+                            <div class="display-text">*Harap Upload Foto</div>
                         </div>
+
                         <div class="form-group col-md-12">
                           <label for="ktp">Upload KTP :</label>
-                            <input type="file" accept="image/*" class="form-control" id="ktp" name="ktp" required>
+                          <input type="file" accept="image/*" class="form-control" id="ktp" name="ktp" required>
                           <!-- <span class="small-font">Ukuran KTP Maksimal <b>1 MB</b>*</span> -->
+                          <div class="display-text">*Harap Upload KTP</div>
                         </div>
+
                         <div class="form-group col-md-12">
                           <label for="ijazah">Upload Ijazah :</label>
-                            <input type="file" accept="image/*" class="form-control" id="ijazah" name="ijazah" required>
+                          <input type="file" accept="image/*" class="form-control" id="ijazah" name="ijazah" required>
                           <!-- <span class="small-font">Ukuran Ijazah Maksimal <b>1 MB</b>*</span> -->
+                          <div class="display-text">*Harap Upload Ijazah</div>
                         </div>
+
                         <div class="form-group col-md-12">
                           <label for="cv">Upload CV :</label>
-                            <input type="file" class="form-control" id="copy_cv" name="copy_cv" required>
+                          <input type="file" class="form-control" id="copy_cv" name="copy_cv" required>
+                          <div class="display-text">*Harap Upload CV</div>
                         </div>
+            
                         <div class="col-md-12">
                           <button class="btn btn-success" type="submit">Finish</button>
                         </div>
@@ -651,8 +704,12 @@
       </div>
       <div class="modal-body">
         <div class="info-success">
-          <i class="fa fa-check-circle"></i>
-          <label>Data Berhasil Diinput</label>
+          <div class="col-md-12">
+            <i class="fa fa-check-circle icon-success"></i>
+          </div>
+          <div class="col-md-12">
+            <label class="label-success">Terimakasih Data Anda Telah Dikirim</label>
+          </div>
         </div>
       </div>
     </div>
@@ -760,14 +817,17 @@ $(document).ready(function () {
         var curStep = $(this).closest(".setup-content"),
             curStepBtn = curStep.attr("id"),
             nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-            curInputs = curStep.find("input[type='text'],input[type='url'],input[type='email'],input[type='radio'],input[type='file'],select,textarea"),
+            curInputs = curStep.find("input[type='text'],input[type='url'],input[type='email'],input[type='radio'],input[name='tanggal_lahir'],input[type='file'],select,textarea"),
             isValid = true;
 
         $(".form-group").removeClass("has-error");
+        $(".form-group").removeClass("display");
         for(var i=0; i<curInputs.length; i++){
             if (!curInputs[i].validity.valid){
                 isValid = false;
                 $(curInputs[i]).closest(".form-group").addClass("has-error");
+                $(curInputs[i]).closest(".form-group").addClass("display");
+              
             }
         }
 
@@ -778,79 +838,90 @@ $(document).ready(function () {
     $('div.setup-panel div a.btn-primary').trigger('click');
   // Jquery Step Wizard
 
-   $("#tanggal_lahir").datepicker({ 
-        format: 'yyyy-mm-dd'
-    });
 
-    $(document).on('click', '.btn-success', function(){
+ $(".readonly").on('keydown paste', function(e){
+    e.preventDefault();
+ });
 
-      if (CheckValidasiPeserta() == true ) {
-        // $("#loader").show();
-        // $("#labelError").hide();
-        var data = new FormData(this);
-        data.append('branch', $('#branch').val());
-        data.append('posisi', $('#position').val());
-        data.append('refrensi', $('[name="refrensi"]').val());
-        data.append('nama_lengkap', $('#fullName').val());
-        data.append('warga_negara', $('#wargaNegara').val());
-        data.append('tempat_lahir', $('#tempat_lahir').val());
-        data.append('tanggal_lahir', $('#tanggal_lahir').val());
-        data.append('agama', $('#agama').val());
-        data.append('jenis_kelamin', $("input[name='jenis_kelamin']:checked").val());
-        data.append('no_ktp', $('#idCard').val());
-        data.append('no_sim', $('#idSim').val());
-        data.append('status_sipil', $('#status_sipil').val());
-        data.append('alamat_email', $('#alamat_email').val());
-        data.append('berat_badan', $('#berat_badan').val());
-        data.append('tinggi_badan', $('#tinggi_badan').val());
-        data.append('alamat_sekarang', $('#alamat_sekarang').val());
-        data.append('no_handphone', $('#idHandphone').val());
-        data.append('telepon', $('#idTelepon').val());
-        data.append('kemampuan_komputer', $('#skill').val());
-        data.append('pendidikan_terakhir', $('#pendidikan_terakhir').val());
-        // data.append('kuliah', $("input[name='kuliah']:checked").val());
-        data.append('bahasa_asing', $("input[name='bahasa_asing']:checked").val());
-        data.append('riwayat_penyakit', $('#riwayat').val());
-        data.append('pengalaman_kerja', $('#pengalaman_kerja').val());
-        data.append('foto', $('#foto')[0].files[0]);
-        data.append('ktp', $('#ktp')[0].files[0]);
-        data.append('ijazah', $('#ijazah')[0].files[0]);
-        data.append('copy_cv', $('#copy_cv')[0].files[0]);
-        data.append('promosi_diri', $('#promosiDiri').val());
+ $('#modalSuccess').on('hidden.bs.modal', function () {
+    location.reload();
+ })
 
-        $.ajax({
-           url : "datafiles/insert.php",  
-           method: 'POST',
-           cache: false,
-           contentType: false,
-           processData: false,
-           data : data,
+ $("#tanggal_lahir").datepicker({ 
+      format: 'yyyy-mm-dd'
+  });
 
-           success: function(data){
-              // $("#labelSuccess").show();
-              $("#labelSuccess").delay(3000).fadeOut('slow');
-              $('#formPelamar').trigger("reset");
-              $("html, body").animate({ scrollTop: 0 }, "slow");
-              $('#refrensi').attr('name', 'refrensi');
-                $('#myInput').remove();
-                // $("#loader").hide();
-           }
-        });
-      } else {
-        console.log("Error Cuy");
-      }
+  $(document).on('submit', '#formPelamar', function(){
 
-      });
+    // if (CheckValidasiPeserta() == true ) {
+      // $("#loader").show();
+      // $("#labelError").hide();
+      var data = new FormData(this);
+      data.append('branch', $('#branch').val());
+      data.append('posisi', $('#position').val());
+      data.append('refrensi', $('[name="refrensi"]').val());
+      data.append('nama_lengkap', $('#fullName').val());
+      data.append('warga_negara', $('#wargaNegara').val());
+      data.append('tempat_lahir', $('#tempat_lahir').val());
+      data.append('tanggal_lahir', $('#tanggal_lahir').val());
+      data.append('agama', $('#agama').val());
+      data.append('jenis_kelamin', $("input[name='jenis_kelamin']:checked").val());
+      data.append('no_ktp', $('#idCard').val());
+      data.append('no_sim', $('#idSim').val());
+      data.append('status_sipil', $('#status_sipil').val());
+      data.append('alamat_email', $('#alamat_email').val());
+      data.append('berat_badan', $('#berat_badan').val());
+      data.append('tinggi_badan', $('#tinggi_badan').val());
+      data.append('alamat_sekarang', $('#alamat_sekarang').val());
+      data.append('no_handphone', $('#idHandphone').val());
+      data.append('telepon', $('#idTelepon').val());
+      data.append('kemampuan_komputer', $('#skill').val());
+      data.append('pendidikan_terakhir', $('#pendidikan_terakhir').val());
+      // data.append('kuliah', $("input[name='kuliah']:checked").val());
+      data.append('bahasa_asing', $("input[name='bahasa_asing']:checked").val());
+      data.append('riwayat_penyakit', $('#riwayat').val());
+      data.append('pengalaman_kerja', $('#pengalaman_kerja').val());
+      data.append('foto', $('#foto')[0].files[0]);
+      data.append('ktp', $('#ktp')[0].files[0]);
+      data.append('ijazah', $('#ijazah')[0].files[0]);
+      data.append('copy_cv', $('#copy_cv')[0].files[0]);
+      data.append('promosi_diri', $('#promosiDiri').val());
 
-    $('#refrensi').change(function(){
-        if( $(this).val() == '1'){
-            $('#refrensi').removeAttr('name');
-            $('.ghost').append('<input class="form-control" id="myInput" type="text" name="refrensi" />');
-        }else{
-          $('#refrensi').attr('name', 'refrensi');
+      $.ajax({
+         url : "datafiles/insert.php",  
+         method: 'POST',
+         cache: false,
+         contentType: false,
+         processData: false,
+         data : data,
+
+         success: function(data){
+            // $("#labelSuccess").show();
+            // $("#labelSuccess").delay(3000).fadeOut('slow');
+            $('#formPelamar').trigger("reset");
+            // $("html, body").animate({ scrollTop: 0 }, "slow");
+            $('#refrensi').attr('name', 'refrensi');
             $('#myInput').remove();
-        }
+            $('#modalSuccess').modal('show');
+            $('#modalPelamar').modal('hide');
+              // $("#loader").hide();
+         }
+      });
+    // } else {
+    //   console.log("Error Cuy");
+    // }
+    return false;
     });
+
+  $('#refrensi').change(function(){
+      if( $(this).val() == '1'){
+          $('#refrensi').removeAttr('name');
+          $('.ghost').append('<input class="form-control" id="myInput" type="text" name="refrensi" required/>');
+      }else{
+        $('#refrensi').attr('name', 'refrensi');
+          $('#myInput').remove();
+      }
+  });
 
 
     function CheckValidasiPeserta(){
@@ -985,7 +1056,7 @@ $(document).ready(function () {
           }
 
           var ddl = document.getElementById("refrensi");
-      var selectedValue = ddl.options[ddl.selectedIndex].value;
+          var selectedValue = ddl.options[ddl.selectedIndex].value;
           if (selectedValue=="") {
             $("#refrensi").addClass("error-field");
             $('#errorCard').append('<li class="li-refrensi">Referensi Anda Masih Kosong</li>');
@@ -996,7 +1067,7 @@ $(document).ready(function () {
           }
 
           var dd2 = document.getElementById("agama");
-      var selectedValue2 = dd2.options[dd2.selectedIndex].value;
+          var selectedValue2 = dd2.options[dd2.selectedIndex].value;
           if (selectedValue2=="") {
             $("#agama").addClass("error-field");
             $('#errorCard').append('<li class="li-agama">Agama Anda Masih Kosong</li>');
@@ -1007,7 +1078,7 @@ $(document).ready(function () {
           }
 
           var dd4 = document.getElementById("status_sipil");
-      var selectedValue4 = dd4.options[dd4.selectedIndex].value;
+          var selectedValue4 = dd4.options[dd4.selectedIndex].value;
           if (selectedValue4=="") {
             $("#status_sipil").addClass("error-field");
             $('#errorCard').append('<li class="li-statusSipil">Status Sipil Anda Masih Kosong</li>');
@@ -1018,7 +1089,7 @@ $(document).ready(function () {
           }
 
           var dd5 = document.getElementById("pendidikan_terakhir");
-      var selectedValue5 = dd5.options[dd5.selectedIndex].value;
+          var selectedValue5 = dd5.options[dd5.selectedIndex].value;
           if (selectedValue5=="") {
             $("#pendidikan_terakhir").addClass("error-field");
             $('#errorCard').append('<li class="li-pendidikan">Pendidikan Terakhir Anda Masih Kosong</li>');
@@ -1054,7 +1125,7 @@ $(document).ready(function () {
       
           return status;
         
-      }
+    }
 
       function ValidateFotoUpload() {
 

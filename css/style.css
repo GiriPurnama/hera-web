@@ -1584,6 +1584,35 @@ label.radio-inline input[type="radio"]{
   margin-right: 5px;
 }
 
+.display-text{
+  display: none;
+  font-size: 14px;
+  color: #a94442;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.display .display-text{
+  display: block !important;
+}
+
+input#myInput {
+  margin-top: 10px;
+}
+
+.icon-success{
+  font-size: 200px;
+  color: #5cb85c;
+  text-align: center;
+  display: block;
+}
+
+.label-success{
+  text-align: center;
+  display: block;
+  font-size: 30px;
+  font-weight: bold;
+}
 /*==================================Step Wizard==============================================================*/
 .stepwizard-step p {
     margin-top: 10px;

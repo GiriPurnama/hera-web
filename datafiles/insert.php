@@ -184,15 +184,13 @@
 																	'$branch',
 																	 NOW())");
 		if ($query) {
-			// jika berhasil tampilkan pesan berhasil insert data
-			// header('location: index.php?alert=2');
-			// echo "berhasil";
-			header('location: ../index.php');
+			// header('location: ../index.php');
+			echo "";
 		} else {
 			// jika gagal tampilkan pesan kesalahan
 			// header('location: index.php?alert=1');
-			// echo "gagal";
-			header('location: ../inforegistrasi.php?alert=1');
+			echo "gagal";
+			// header('location: ../inforegistrasi.php?alert=1');
 		}	
 	//}
 ?>
