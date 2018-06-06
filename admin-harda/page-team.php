@@ -52,6 +52,7 @@
                   <th>Nama Lengkap</th>
                   <th>Divisi</th>
                   <th>Image</th>
+                  <th>Branch</th>
                   <th>Status</th>
                   <th>Aksi</th>
                 </tr>
@@ -69,10 +70,11 @@
                   <td><?php echo $no ?></td>
                   <td><?php echo $row['username']; ?></td>
                   <td><?php echo $row['email_admin']; ?></td>
-                  <td><?php echo $row['nama_lengkap'] ?></td>
-                  <td><?php echo $row['divisi'] ?></td>
-                  <td><img class="img-home" src="<?php echo $img_team ?>"></td>
-                  <td><?php echo $row['status'] ?></td>
+                  <td><?php echo $row['nama_lengkap']; ?></td>
+                  <td><?php echo $row['divisi']; ?></td>
+                  <td><img class="img-home" src="<?php echo $img_team; ?>"></td>
+                  <td><?php echo $row['branch']; ?></td>
+                  <td><?php echo $row['status']; ?></td>
                   <td>
 
                     <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['id_admin']."><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>

@@ -16,6 +16,7 @@
       $_SESSION['status'] = $row['status'];
       $_SESSION['id_admin'] = $row['id_admin'];
       $_SESSION['img_divisi'] = $row['img_divisi'];
+      $_SESSION['branch'] = $row['branch'];
       header('location:dashboard.php');
     }
     else

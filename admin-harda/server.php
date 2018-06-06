@@ -123,7 +123,7 @@
 		  move_uploaded_file($_FILES["img_divisi"]["tmp_name"],"../upload/page-team/" . $newFilename);
 		  $img_divisi="../upload/page-team/" . $newFilename;
 		
-  		  $query = mysqli_query($db, "INSERT INTO login(username, email_admin, password, nama_lengkap, divisi, branch, img_divisi, status) values ('$username','$email_admin','$password','$nama_lengkap','$divisi','$branch',$img_divisi','$status')");
+  		  $query = mysqli_query($db, "INSERT INTO login(username, email_admin, password, nama_lengkap, divisi, branch, img_divisi, status) values ('$username','$email_admin','$password','$nama_lengkap','$divisi','$branch','$img_divisi','$status')");
   		  if ($query) {
   		  		 header('location: page-team.php');
   		  } else {
@@ -170,23 +170,23 @@
 	  		$branch = $_POST['branch'];
 	  		$status = $_POST['status'];
 
-	        $type = $_FILES['img_divisi']['type'];
-		    $fileinfo=PATHINFO($_FILES["img_divisi"]["name"]);
-		    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-		    if (!$img_divisi==""){  
-			    unlink($img_divisi);
-			    move_uploaded_file($_FILES["img_divisi"]["tmp_name"],"../upload/page-team/" . $newFilename);
-			    $location="../upload/page-team/" . $newFilename;
-			}
+	  //       $type = $_FILES['img_divisi']['type'];
+		 //    $fileinfo=PATHINFO($_FILES["img_divisi"]["name"]);
+		 //    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+		 //    if (!$img_divisi==""){  
+			//     unlink($img_divisi);
+			//     move_uploaded_file($_FILES["img_divisi"]["tmp_name"],"../upload/page-team/" . $newFilename);
+			//     $location="../upload/page-team/" . $newFilename;
+			// }
 
 		    // perintah query untuk mengubah data pada tabel is_siswa
 		    $query = mysqli_query($db, "UPDATE login SET username = '$username',
-		                            email_admin  = '$email_admin',
-		                            password = '$password',
+		                            -- email_admin  = '$email_admin',
+		                            -- password = '$password',
 		                            nama_lengkap = '$nama_lengkap',
 		                            divisi = '$divisi',
 		                            branch = '$branch',
-		                            img_divisi = '$location',
+		                            -- img_divisi = '$location',
 		                            status = '$status'
 		                            WHERE id_admin   = '$id_admin'");   
 

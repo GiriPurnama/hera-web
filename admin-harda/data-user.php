@@ -3,6 +3,7 @@
 <html>
   <?php 
     include "library-css.php";
+    $cabang = $_SESSION['branch'];
   ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -67,7 +68,7 @@
               <tbody>
                 <?php
                     $no = 1;
-                    $pelamar = mysqli_query($db, "SELECT * FROM recruitment");
+                    $pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang'");
                     // $hitungDulu = mysqli_num_rows($pelamar);
                     while ($row = mysqli_fetch_assoc($pelamar)) {
 

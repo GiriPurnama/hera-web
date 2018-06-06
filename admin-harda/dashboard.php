@@ -6,6 +6,7 @@
 <html>
   <?php 
     include "library-css.php";
+    $cabang = $_SESSION['branch'];
   ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -34,7 +35,7 @@
         <div class="col-lg-4 col-xs-6">
           <!-- small box -->
           <?php  
-              $pendaftar_baru = mysqli_query($db, "SELECT * FROM recruitment WHERE status_pelamar = ''");
+              $pendaftar_baru = mysqli_query($db, "SELECT * FROM recruitment WHERE status_pelamar = '' AND branch = '$cabang'");
               $jum_pendaftar = mysqli_num_rows($pendaftar_baru);
           ?>
           <div class="small-box bg-aqua">
@@ -52,7 +53,7 @@
         <div class="col-lg-4 col-xs-6">
           <!-- small box -->
           <?php  
-            $pendaftar_interview = mysqli_query($db, "SELECT * FROM recruitment WHERE status_pelamar = 'DISARANKAN'");
+            $pendaftar_interview = mysqli_query($db, "SELECT * FROM recruitment WHERE status_pelamar = 'DISARANKAN' AND branch = '$cabang'");
             $jum_interview = mysqli_num_rows($pendaftar_interview);
           ?>
           <div class="small-box bg-green">
@@ -73,7 +74,7 @@
           <?php
             // $startdate = $jadwal_interview;
             $expire = strtotime('+1 days');  
-            $pendaftar_ditolak = mysqli_query($db, "SELECT * FROM recruitment WHERE status_pelamar = 'REJECTED'");
+            $pendaftar_ditolak = mysqli_query($db, "SELECT * FROM recruitment WHERE status_pelamar = 'REJECTED' AND branch = '$cabang'");
             $jum_ditolak = mysqli_num_rows($pendaftar_ditolak);
           ?>
           <div class="small-box bg-red">
@@ -94,7 +95,7 @@
           <div class="col-md-6 table-report">
             <div class="box-body table-responsive">
               <?php  
-                $refrensiPelamar = mysqli_query($db, "SELECT refrensi, DAYNAME(post_date) AS hari,  COUNT(*) AS jumlah FROM recruitment WHERE date(post_date)=date(now()) Group By refrensi ");  
+                $refrensiPelamar = mysqli_query($db, "SELECT refrensi, DAYNAME(post_date) AS hari,  COUNT(*) AS jumlah FROM recruitment WHERE date(post_date)=date(now()) AND branch = '$cabang' Group By refrensi ");  
               ?>
               <h3>Perolehan Referensi Kandidat </h3>
               <table class="table table-hover">
@@ -124,7 +125,7 @@
           <div class="col-md-6 table-report">
             <div class="box-body table-responsive">
               <?php  
-                $interviewPelamar = mysqli_query($db, "SELECT interview, DAYNAME(post_date) AS hari,  COUNT(*) AS jumlah FROM recruitment WHERE date(post_date)=date(now()) Group By interview ");  
+                $interviewPelamar = mysqli_query($db, "SELECT interview, DAYNAME(post_date) AS hari,  COUNT(*) AS jumlah FROM recruitment WHERE date(post_date)=date(now()) AND branch = '$cabang' Group By interview ");  
               ?>
               <h3>Perolehan Interview Kandidat </h3>
               <table class="table table-hover">
@@ -153,7 +154,7 @@
            <div class="col-md-12 table-report">
             <div class="box-body table-responsive">
               <?php  
-                $interviewPelamar = mysqli_query($db, "SELECT posisi, interview, DAYNAME(post_date) AS hari,  COUNT(*) AS jumlah FROM recruitment WHERE date(post_date)=date(now()) Group By interview, posisi ");  
+                $interviewPelamar = mysqli_query($db, "SELECT posisi, interview, DAYNAME(post_date) AS hari,  COUNT(*) AS jumlah FROM recruitment WHERE date(post_date)=date(now()) AND branch = '$cabang' Group By interview, posisi ");  
               ?>
               <h3>Perolehan Posisi Kandidat</h3>
               <table class="table table-hover">
@@ -185,7 +186,7 @@
               <div class="small-box bg-aqua">
                 <div class="inner">
                   <?php 
-                      $totalDay = mysqli_query($db, "SELECT DAYNAME(post_date) AS hari,  COUNT(*) AS jumlah FROM recruitment WHERE date(post_date)=date(now()) ");
+                      $totalDay = mysqli_query($db, "SELECT DAYNAME(post_date) AS hari,  COUNT(*) AS jumlah FROM recruitment WHERE date(post_date)=date(now()) AND branch = '$cabang' ");
                        while($rowday = mysqli_fetch_assoc($totalDay)){      
                   ?>
                   <h3><?php echo $rowday['jumlah']; ?></h3>
