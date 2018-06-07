@@ -902,7 +902,7 @@ $(document).ready(function () {
             // $("#labelSuccess").show();
             // $("#labelSuccess").delay(3000).fadeOut('slow');
             $('#formPelamar').trigger("reset");
-            // $("html, body").animate({ scrollTop: 0 }, "slow");
+            $("html, body").animate({ scrollTop: 0 }, "slow");
             $('#refrensi').attr('name', 'refrensi');
             $('#myInput').remove();
             $('#modalSuccess').modal('show');

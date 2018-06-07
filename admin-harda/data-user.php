@@ -74,7 +74,7 @@
 
                     $posisi = $row['posisi'];
 
-                    $rekomendasi = $row['posisi_rekomendasi'];
+                    $rekomendasi = $row['posisi_rekomendasi'] ? : "-";
 
                     $rekomendasi_ro =  $rekomendasi ?: $posisi; 
 
@@ -86,7 +86,11 @@
                     $timestamp = strtotime($oldDate);
                     $newDate = date('j-F-Y', $timestamp); 
 
-                    $ndata = preg_replace("/\,/", "<br/>", $pengalaman_kerja);                                
+                    $cek_interview = $row['interview'] ? : "Belum Diinterview";
+
+                    $ndata = preg_replace("/\,/", "<br/>", $pengalaman_kerja);
+
+                    $review = $ndata ? : "-";                                
                 ?>
                 <tr>
                   <td><?php echo $no ?></td>
@@ -101,19 +105,19 @@
                         }
                       ?>
                   </td>
-                  <td><?php echo $newDate ?></td>
-                  <td><?php echo $posisi; ?></td>
-                  <td><?php echo $rekomendasi; ?></td>
-                  <td><?php echo $row['refrensi']; ?></td>
-                  <td><?php echo $row['interview']; ?></td>
-                  <td><?php echo $row['nama_lengkap'];?></td>
-                  <th><?php echo $row['no_handphone']; ?></th>
-                  <td><?php echo $row['tanggal_lahir']; ?></td>
+                  <td><?= $newDate; ?></td>
+                  <td><?= $posisi; ?></td>
+                  <td><?= $rekomendasi; ?></td>
+                  <td><?= $row['refrensi']; ?></td>
+                  <td><?= $cek_interview; ?></td>
+                  <td><?= $row['nama_lengkap'];?></td>
+                  <th><?= $row['no_handphone']; ?></th>
+                  <td><?= $row['tanggal_lahir']; ?></td>
                   <!-- <th><?php echo $row['agama']; ?></th> -->
                   <!-- <th><?php echo $row['jenis_kelamin']; ?></th> -->
-                  <th><?php echo $row['pendidikan_terakhir']; ?></th>
-                  <th><?php echo $row['pengalaman_kerja']; ?></th>
-                  <th><?php echo $ndata; ?></th>
+                  <th><?= $row['pendidikan_terakhir']; ?></th>
+                  <th><?= $row['pengalaman_kerja']; ?></th>
+                  <th><?= $review; ?></th>
                   <td>
                     <?php echo "<a href='edit-user.php?id=$row[id]'><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
                     <a href='server.php?id=<?php echo $row['id']; ?>' onclick="return confirm('Apakah yakin data ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
