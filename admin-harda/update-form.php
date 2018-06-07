@@ -49,7 +49,8 @@ if($_POST['rowteam']) {
         $nama_lengkap = $row['nama_lengkap'];
         $divisi = $row['divisi'];
         $status = $row['status'];
-        $id_admin = $row['id_admin']        
+        $id_admin = $row['id_admin'];
+        $branch   = $row['branch'];        
       ?>
 
       <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
@@ -81,14 +82,19 @@ if($_POST['rowteam']) {
                 </div>
                 <div class="form-group">
                   <label for="Branch">Branch</label>
-                  <?php 
-                    echo "<select class='form-control' name='branch'>";
-                      $branch_wilayah = mysqli_query($db, "SELECT * FROM kontak");
-                      while ($row = mysqli_fetch_assoc($branch_wilayah)) {
-                        echo "<option value=$row[wilayah]>$row[wilayah]</option>";
-                    }
-                    echo "</select>";
-                  ?>
+                   <select class='form-control' name='branch' required>
+                      <option value="<?= $branch; ?>"><?= $branch; ?></option>
+                      <?php 
+                          $lamar = mysqli_query($db, "SELECT * FROM kontak");
+                          while ($row = mysqli_fetch_assoc($lamar)) {
+                      ?>
+      
+                      <option value="<?= $row['wilayah'];?>"><?= $row["wilayah"];?></option>
+                      
+                      <?php    
+                          }
+                      ?>
+                  </select>
                 </div>
                 <!-- <div class="form-group">
                   <label for="upload">Upload Image</label>

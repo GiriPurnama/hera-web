@@ -116,7 +116,7 @@
 
                 <div class="form-group col-md-6">
                   <label for="tanggal_lahir">Tanggal Lahir* :</label>
-                  <input type="text" class="form-control readonly" id="tanggal_lahir" name="tanggal_lahir" required>
+                  <input type="text" class="form-control readonly" autocomplete="off" id="tanggal_lahir" name="tanggal_lahir" required>
                   <div class="display-text">*Harap Isi Tanggal Lahir</div>
                 </div>
                 
@@ -848,7 +848,10 @@ $(document).ready(function () {
  })
 
  $("#tanggal_lahir").datepicker({ 
-      format: 'yyyy-mm-dd'
+      format: 'yyyy-mm-dd',
+      startDate: '-40y',
+      endDate: '-18y',
+      autoclose: true
   });
 
   $(document).on('submit', '#formPelamar', function(){
