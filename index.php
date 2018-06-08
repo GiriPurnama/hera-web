@@ -731,7 +731,8 @@
   <script src="lib/isotope/isotope.pkgd.min.js"></script>
   <script src="lib/lightbox/js/lightbox.min.js"></script>
   <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-  <script src="lib/date-picker/js/bootstrap-datepicker.min.js"></script>
+  <script src="lib/datemask/jquery.date-dropdowns.min.js"></script>
+  <!--<script src="lib/date-picker/js/bootstrap-datepicker.min.js"></script>
   <!-- Contact Form JavaScript File -->
   <script src="contactform/contactform.js"></script>
 

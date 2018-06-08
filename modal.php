@@ -108,14 +108,15 @@
                   <input type="text" class="form-control" id="wargaNegara" name="warga_negara">
                 </div>
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                   <label for="tempat_lahir">Tempat Lahir* :</label>
                   <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" required>
                   <div class="display-text">*Harap Isi Tempat Lahir</div>                
                 </div>
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                   <label for="tanggal_lahir">Tanggal Lahir* :</label>
+                  <!-- <input type="text" class="form-control readonly" name="tanggal_lahir" id="contoh"> -->
                   <input type="text" class="form-control readonly" autocomplete="off" id="tanggal_lahir" name="tanggal_lahir" required>
                   <div class="display-text">*Harap Isi Tanggal Lahir</div>
                 </div>
@@ -817,7 +818,7 @@ $(document).ready(function () {
         var curStep = $(this).closest(".setup-content"),
             curStepBtn = curStep.attr("id"),
             nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-            curInputs = curStep.find("input[type='text'],input[type='url'],input[type='email'],input[type='radio'],input[name='tanggal_lahir'],input[type='file'],select,textarea"),
+            curInputs = curStep.find("input[type='text'],input[type='url'],input[type='email'],input[type='radio'],input[name='tanggal_lahir'],input[type='file'],input[type='hidden'],select,textarea"),
             isValid = true;
 
         $(".form-group").removeClass("has-error");
@@ -847,12 +848,18 @@ $(document).ready(function () {
     location.reload();
  })
 
- $("#tanggal_lahir").datepicker({ 
-      format: 'yyyy-mm-dd',
-      startDate: '-40y',
-      endDate: '-17y',
-      autoclose: true
-  });
+ $("#tanggal_lahir").dateDropdowns({
+    minAge: 18
+ });
+ $('.day, .month, .year').attr('required','').addClass('form-control col-md-3 display-inline');
+ $('.month').addClass('form-control col-md-4 display-inline');
+
+ // $("#tanggal_lahir").datepicker({ 
+ //      format: 'yyyy-mm-dd',
+ //      startDate: '-40y',
+ //      endDate: '-17y',
+ //      autoclose: true
+ //  });
 
   $(document).on('submit', '#formPelamar', function(){
 

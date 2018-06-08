@@ -1613,6 +1613,15 @@ input#myInput {
   font-size: 30px;
   font-weight: bold;
 }
+.display-inline{
+  display: inline !important;
+  margin-right: 10px;
+}
+@media (max-width: 768px) {
+  .display-inline{
+    margin: 10px 0px;
+  }  
+}
 /*==================================Step Wizard==============================================================*/
 .stepwizard-step p {
     margin-top: 10px;
