@@ -571,7 +571,8 @@
 
 //===================== Page Video ================================================
 
-//===================== Page Video ================================================
+
+//===================== Page Branch ================================================
 	// Insert
 	if (isset($_POST['save_branch'])) {
   		  $wilayah = mysqli_real_escape_string($db, trim($_POST['wilayah']));
@@ -640,7 +641,7 @@
 	  }
 	} 
 
-//===================== Page Video ================================================
+//===================== Page Branch ================================================
 
 
 //===================== Edit Profile ================================================
@@ -753,6 +754,67 @@
 	  }
 	}  
 
-
 //===================== Edit Profile ================================================
+
+
+//===================== Page Branch =================================================
+	// Insert
+	if (isset($_POST['save_lowongan'])) {
+  		  $nama_lowongan = mysqli_real_escape_string($db, trim($_POST['nama_lowongan']));
+  		  $desc_lowongan = mysqli_real_escape_string($db, trim($_POST['desc_lowongan']));
+  		  $status = $_POST['status'];
+		
+  		  $query = mysqli_query($db, "INSERT INTO info_lowongan(nama_lowongan, desc_lowongan, tgl_posting, status) values ('$nama_lowongan','$desc_lowongan',NOW(),'$status')");
+  		  if ($query) {
+  		  		 header('location: page-lowongan.php');
+  		  } else {
+  		  		echo "Gagal Simpan";
+  		  }
+  	}
+
+  	// Delete
+  	if (isset($_GET['idlowongan'])) {
+	  	$idlowongan = $_GET['idlowongan'];	
+	  	$query_delete = mysqli_query($db, "DELETE FROM info_lowongan WHERE idlowongan='$idlowongan'");
+	  	if ($query_delete) {
+	  		header('location: page-lowongan.php');
+	  	} else{
+	  		echo "gagal";
+	  	}
+  	}
+
+  	// Update
+  	if (isset($_POST['update_lowongan'])) {
+
+	  if (isset($_POST['idlowongan'])) {
+
+		    $idlowongan = $_POST['idlowongan'];
+
+		    $nama_lowongan = $_POST['nama_lowongan'];
+	  		$desc_lowongan = $_POST['desc_lowongan'];
+	  		$status = $_POST['status'];
+
+
+		    // perintah query untuk mengubah data pada tabel is_siswa
+		    $query = mysqli_query($db, "UPDATE info_lowongan SET nama_lowongan = '$nama_lowongan',
+		                            desc_lowongan  = '$desc_lowongan',
+		                            status = '$status'
+		                            WHERE idlowongan = '$idlowongan'");   
+
+		    // cek query
+		    if ($query) {
+		      // jika berhasil tampilkan pesan berhasil update data
+		      header('location: page-lowongan.php');
+		      // echo "Berhasil";
+		    } else {
+		      // jika gagal tampilkan pesan kesalahan
+		      // header('location: index.php?alert=1');
+		      echo "Gagal";
+		    } 
+
+	  }
+	} 
+
+//===================== Page Branch ================================================
+
 ?>

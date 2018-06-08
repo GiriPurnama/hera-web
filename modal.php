@@ -24,301 +24,302 @@
 
 
 <!--================================= Modal Recruitment ==========================-->
-<div class="modal fade" id="modalPelamar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Recruitment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <div class="stepwizard">
-            <div class="stepwizard-row setup-panel">
-                <div class="stepwizard-step">
-                    <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
-                    <p>Biodata Diri</p>
-                </div>
-                <div class="stepwizard-step">
-                    <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                    <p>Riwayat Hidup</p>
-                </div>
-                <div class="stepwizard-step">
-                    <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-                    <p>Upload Dokumen</p>
-                </div>
-            </div>
+  <div class="modal fade" id="modalPelamar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Recruitment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <form role="form" id="formPelamar" method="post"  enctype="multipart/form-data">
-            <div class="row setup-content" id="step-1">
-                
-                <div class="col-md-12">
-                  <h3>Data Diri</h3>
-                </div>
-                
-                <div class="form-group col-md-12">
-                <label for="Posisi">Tempat Interview* :</label>
-                  <select id="branch" class='form-control' name='branch' required>
+        <div class="modal-body">
+            <div class="stepwizard">
+              <div class="stepwizard-row setup-panel">
+                  <div class="stepwizard-step">
+                      <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+                      <p>Biodata Diri</p>
+                  </div>
+                  <div class="stepwizard-step">
+                      <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                      <p>Riwayat Hidup</p>
+                  </div>
+                  <div class="stepwizard-step">
+                      <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                      <p>Upload Dokumen</p>
+                  </div>
+              </div>
+          </div>
+          <form role="form" id="formPelamar" method="post"  enctype="multipart/form-data">
+              <div class="row setup-content" id="step-1">
+                  
+                  <div class="col-md-12">
+                    <h3>Data Diri</h3>
+                  </div>
+                  
+                  <div class="form-group col-md-12">
+                  <label for="Posisi">Tempat Interview* :</label>
+                    <select id="branch" class='form-control' name='branch' required>
+                        <option value="">-</option>
+                        <?php 
+                            $lamar = mysqli_query($db, "SELECT * FROM kontak");
+                            while ($row = mysqli_fetch_assoc($lamar)) {
+                        ?>
+        
+                        <option value="<?= $row['wilayah'];?>"><?= $row["wilayah"];?></option>
+                        
+                        <?php    
+                            }
+                        ?>
+                    </select>
+                    <div class="display-text">*Harap Isi Tempat Interview</div>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                  <label for="Posisi">Posisi yang Dilamar* :</label>
+                    <input type="text" class="form-control" id="position" name="posisi" required>
+                    <div class="display-text">*Harap Isi Posisi yang dilamar</div>
+                  </div>
+
+                  <div class="form-group col-md-6 ghost">
+                    <label for="Refrensi">Referensi* :</label>
+                    <select class="form-control opacity0" id="refrensi" name="refrensi" required>
                       <option value="">-</option>
-                      <?php 
-                          $lamar = mysqli_query($db, "SELECT * FROM kontak");
-                          while ($row = mysqli_fetch_assoc($lamar)) {
-                      ?>
-      
-                      <option value="<?= $row['wilayah'];?>"><?= $row["wilayah"];?></option>
-                      
-                      <?php    
-                          }
-                      ?>
-                  </select>
-                  <div class="display-text">*Harap Isi Tempat Interview</div>
-                </div>
-
-                <div class="form-group col-md-6">
-                <label for="Posisi">Posisi yang Dilamar* :</label>
-                  <input type="text" class="form-control" id="position" name="posisi" required>
-                  <div class="display-text">*Harap Isi Posisi yang dilamar</div>
-                </div>
-
-                <div class="form-group col-md-6 ghost">
-                  <label for="Refrensi">Referensi* :</label>
-                  <select class="form-control opacity0" id="refrensi" name="refrensi" required>
-                    <option value="">-</option>
-                    <option value="ANGGA">Angga</option>
-                    <option value="ZALORA">Zalora</option>
-                    <option value="CHERYL">Cheryl</option>
-                    <option value="NOVI">Novi</option>
-                    <option value="SRI">Sri</option>
-                    <option value="WIDYA">Widya</option>
-                    <option value="JANNAH">Jannah</option>
-                    <option value="1">Lainnya</option>
-                  </select>
-                  <div class="display-text">*Harap Isi Referensi</div>
-                </div>
-                
-                <div class="form-group col-md-6">
-                  <label for="Nama">Nama Lengkap* :</label>
-                  <input type="text" class="form-control" id="fullName" autocomplete="off" name="nama_lengkap" required>
-                  <div class="display-text">*Harap Isi Nama Lengkap</div>
-                </div>
-
-                <div class="form-group col-md-6">
-                  <label for="wargaNegara">Warga Negara :</label>
-                  <input type="text" class="form-control" id="wargaNegara" name="warga_negara">
-                </div>
-
-                <div class="form-group col-md-12">
-                  <label for="tempat_lahir">Tempat Lahir* :</label>
-                  <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" required>
-                  <div class="display-text">*Harap Isi Tempat Lahir</div>                
-                </div>
-
-                <div class="form-group col-md-12">
-                  <label for="tanggal_lahir">Tanggal Lahir* :</label>
-                  <!-- <input type="text" class="form-control readonly" name="tanggal_lahir" id="contoh"> -->
-                  <input type="text" class="form-control readonly" autocomplete="off" id="tanggal_lahir" name="tanggal_lahir" required>
-                  <div class="display-text">*Harap Isi Tanggal Lahir</div>
-                </div>
-                
-                <div class="form-group col-md-6">
-                  <label for="Agama">Agama* :</label>
-                  <select class="form-control opacity0" id="agama" name="agama" required>
-                    <option value="">-</option>
-                    <option value="ISLAM">Islam</option>
-                    <option value="KRISTEN PROTESTAN">Kristen Protestan</option>
-                    <option value="KRISTEN KATOLIK">Kristen Katolik</option>
-                    <option value="HINDU">Hindu</option>
-                    <option value="BUDDHA">Buddha</option>
-                  </select>
-                  <div class="display-text">*Harap Isi Agama</div>
-                </div>
-                
-                <div class="form-group col-md-6">
-                  <label for="idJk">Jenis Kelamin* :</label>
-                  <div class="radio">
-                    <label><input type="radio" name="jenis_kelamin" value="Laki-laki" required>Laki - Laki</label>
+                      <option value="ANGGA">Angga</option>
+                      <option value="ZALORA">Zalora</option>
+                      <option value="CHERYL">Cheryl</option>
+                      <option value="NOVI">Novi</option>
+                      <option value="SRI">Sri</option>
+                      <option value="WIDYA">Widya</option>
+                      <option value="JANNAH">Jannah</option>
+                      <option value="1">Lainnya</option>
+                    </select>
+                    <div class="display-text">*Harap Isi Referensi</div>
                   </div>
-                  <div class="radio">
-                    <label><input type="radio" name="jenis_kelamin" value="Perempuan">Perempuan</label>
+                  
+                  <div class="form-group col-md-6">
+                    <label for="Nama">Nama Lengkap* :</label>
+                    <input type="text" class="form-control" id="fullName" autocomplete="off" name="nama_lengkap" required>
+                    <div class="display-text">*Harap Isi Nama Lengkap</div>
                   </div>
-                  <div class="display-text">*Harap Isi Jenis Kelamin</div>
-                </div>
 
-                <div class="form-group col-md-6">
-                  <label for="idCart">No.KTP* :</label>
-                  <input type="text" class="form-control" id="idCard" autocomplete="off" name="no_ktp" onKeyPress="return goodchars(event,'0123456789',this)" required>
-                   <div class="display-text">*Harap Isi KTP</div>
-                </div>
-                
-                <div class="form-group col-md-6">
-                  <label for="idSim">No.SIM:</label>
-                  <input type="text" class="form-control" name="no_sim" autocomplete="off" id="idSim" onKeyPress="return goodchars(event,'0123456789',this)">
-                </div>
+                  <div class="form-group col-md-6">
+                    <label for="wargaNegara">Warga Negara :</label>
+                    <input type="text" class="form-control" id="wargaNegara" name="warga_negara">
+                  </div>
 
-                <div class="form-group col-md-6">
-                  <label for="status_sipil">Status Sipil* :</label>
-                  <select class="form-control opacity0" id="status_sipil" name="status_sipil" required>
-                    <option value="">-</option>
-                    <option value="Menikah">Menikah</option>
-                    <option value="Lajang">Lajang</option>
-                    <option value="Duda">Cerai</option>
-                  </select>
-                  <div class="display-text">*Harap Isi Status Sipil</div>
-                </div>
+                  <div class="form-group col-md-12">
+                    <label for="tempat_lahir">Tempat Lahir* :</label>
+                    <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" required>
+                    <div class="display-text">*Harap Isi Tempat Lahir</div>                
+                  </div>
 
-                <div class="form-group col-md-6">
-                  <label for="alamat_email">Alamat Email* :</label>
-                  <input type="email" class="form-control" autocomplete="off" id="alamat_email" name="alamat_email" required>
-                  <div class="display-text">*Harap Isi Email yang valid</div>
-                </div>
+                  <div class="form-group col-md-12">
+                    <label for="tanggal_lahir">Tanggal Lahir* :</label>
+                    <!-- <input type="text" class="form-control readonly" name="tanggal_lahir" id="contoh"> -->
+                    <input type="text" class="form-control readonly" autocomplete="off" id="tanggal_lahir" name="tanggal_lahir" required>
+                    <div class="display-text">*Harap Isi Tanggal Lahir</div>
+                  </div>
+                  
+                  <div class="form-group col-md-6">
+                    <label for="Agama">Agama* :</label>
+                    <select class="form-control opacity0" id="agama" name="agama" required>
+                      <option value="">-</option>
+                      <option value="ISLAM">Islam</option>
+                      <option value="KRISTEN PROTESTAN">Kristen Protestan</option>
+                      <option value="KRISTEN KATOLIK">Kristen Katolik</option>
+                      <option value="HINDU">Hindu</option>
+                      <option value="BUDDHA">Buddha</option>
+                    </select>
+                    <div class="display-text">*Harap Isi Agama</div>
+                  </div>
+                  
+                  <div class="form-group col-md-6">
+                    <label for="idJk">Jenis Kelamin* :</label>
+                    <div class="radio">
+                      <label><input type="radio" name="jenis_kelamin" value="Laki-laki" required>Laki - Laki</label>
+                    </div>
+                    <div class="radio">
+                      <label><input type="radio" name="jenis_kelamin" value="Perempuan">Perempuan</label>
+                    </div>
+                    <div class="display-text">*Harap Isi Jenis Kelamin</div>
+                  </div>
 
-                <div class="form-group col-md-6">
-                  <label for="berat_badan">Berat Badan* :</label>
-                  <input type="text" name="berat_badan" id="berat_badan" autocomplete="off" class="form-control" onKeyPress="return goodchars(event,'0123456789',this)" required>
-                   <div class="display-text">*Harap Isi Berat</div>
-                </div>
-                
-                <div class="form-group col-md-6">
-                  <label for="berat_badan">Tinggi Badan* :</label>
-                  <input type="text" name="tinggi_badan" id="tinggi_badan" autocomplete="off" class="form-control" onKeyPress="return goodchars(event,'0123456789',this)" required>
-                  <div class="display-text">*Harap Isi Tinggi</div>
-                </div>
+                  <div class="form-group col-md-6">
+                    <label for="idCart">No.KTP* :</label>
+                    <input type="text" class="form-control" id="idCard" autocomplete="off" name="no_ktp" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                     <div class="display-text">*Harap Isi KTP</div>
+                  </div>
+                  
+                  <div class="form-group col-md-6">
+                    <label for="idSim">No.SIM:</label>
+                    <input type="text" class="form-control" name="no_sim" autocomplete="off" id="idSim" onKeyPress="return goodchars(event,'0123456789',this)">
+                  </div>
 
-                <div class="form-group col-md-6">
-                  <label for="alamat_sekarang">Alamat Sekarang* :</label>
-                  <textarea name="alamat_sekarang" id="alamat_sekarang" class="form-control textareaSekarang" style="height:110px;" required></textarea>
-                  <div class="display-text">*Harap Isi Alamat</div>
-                </div>
+                  <div class="form-group col-md-6">
+                    <label for="status_sipil">Status Sipil* :</label>
+                    <select class="form-control opacity0" id="status_sipil" name="status_sipil" required>
+                      <option value="">-</option>
+                      <option value="Menikah">Menikah</option>
+                      <option value="Lajang">Lajang</option>
+                      <option value="Duda">Cerai</option>
+                    </select>
+                    <div class="display-text">*Harap Isi Status Sipil</div>
+                  </div>
 
-                <div class="form-group col-md-6">
-                  <label for="noHandphone">No Handphone* :</label>
-                  <input type="text" class="form-control" id="idHandphone" name="no_handphone" autocomplete="off" maxlength="12" onKeyPress="return goodchars(event,'0123456789',this)" required>
-                  <div class="display-text">*Harap Isi No Handphone</div>
-                </div>
+                  <div class="form-group col-md-6">
+                    <label for="alamat_email">Alamat Email* :</label>
+                    <input type="email" class="form-control" autocomplete="off" id="alamat_email" name="alamat_email" required>
+                    <div class="display-text">*Harap Isi Email yang valid</div>
+                  </div>
 
-                <div class="form-group col-md-6">
-                  <label for="telepon">Telepon :</label>
-                  <input type="text" class="form-control" id="idTelepon" name="telepon" autocomplete="off" maxlength="12" onKeyPress="return goodchars(event,'0123456789',this)">
-                </div>
-                
-                <div class="form-group col-md-6">
-                  <label for="kemampuan">Kemampuan Dimiliki* :</label>
-                  <input type="text" class="form-control" autocomplete="off" id="skill" name="kemampuan_komputer" required>
-                   <div class="display-text">*Harap Isi Kemampuan/Skill Anda</div>
-                </div>
+                  <div class="form-group col-md-6">
+                    <label for="berat_badan">Berat Badan* :</label>
+                    <input type="text" name="berat_badan" id="berat_badan" autocomplete="off" class="form-control" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                     <div class="display-text">*Harap Isi Berat</div>
+                  </div>
+                  
+                  <div class="form-group col-md-6">
+                    <label for="berat_badan">Tinggi Badan* :</label>
+                    <input type="text" name="tinggi_badan" id="tinggi_badan" autocomplete="off" class="form-control" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                    <div class="display-text">*Harap Isi Tinggi</div>
+                  </div>
 
+                  <div class="form-group col-md-6">
+                    <label for="alamat_sekarang">Alamat Sekarang* :</label>
+                    <textarea name="alamat_sekarang" id="alamat_sekarang" class="form-control textareaSekarang" style="height:110px;" required></textarea>
+                    <div class="display-text">*Harap Isi Alamat</div>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="noHandphone">No Handphone* :</label>
+                    <input type="text" class="form-control" id="idHandphone" name="no_handphone" autocomplete="off" maxlength="12" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                    <div class="display-text">*Harap Isi No Handphone</div>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="telepon">Telepon :</label>
+                    <input type="text" class="form-control" id="idTelepon" name="telepon" autocomplete="off" maxlength="12" onKeyPress="return goodchars(event,'0123456789',this)">
+                  </div>
+                  
+                  <div class="form-group col-md-6">
+                    <label for="kemampuan">Kemampuan Dimiliki* :</label>
+                    <input type="text" class="form-control" autocomplete="off" id="skill" name="kemampuan_komputer" required>
+                     <div class="display-text">*Harap Isi Kemampuan/Skill Anda</div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <button class="btn btn-primary nextBtn" type="button">Next</button>
+                  </div>
+              </div>
+
+              <div class="row setup-content" id="step-2">
                 <div class="col-md-12">
-                  <button class="btn btn-primary nextBtn" type="button">Next</button>
+                  <h3>Riwayat Hidup</h3>
                 </div>
-            </div>
 
-            <div class="row setup-content" id="step-2">
-              <div class="col-md-12">
-                <h3>Riwayat Hidup</h3>
-              </div>
-
-              <div class="form-group col-md-12">
-                <label for="bahasa" class="wd100">Bahasa Asing :</label>
-                  <div>
-                    <label class="radio-inline"><input type="radio" name="bahasa_asing" value="INGGRIS">INGGRIS</label>
-                  <label class="radio-inline"><input type="radio" name="bahasa_asing" value="MANDARIN">MANDARIN</label>
-                  <label class="radio-inline"><input type="radio" name="bahasa_asing" value="JEPANG">JEPANG</label>
-                  <label class="radio-inline"><input type="radio" name="bahasa_asing" value="JERMAN">JERMAN</label>
-                  <label class="radio-inline" style="display:none;"><input type="radio" name="bahasa_asing" value="-" checked="checked"></label>
-                  </div>
-              </div>
-
-              <div class="form-group col-md-6">
-                <label for="pendidikan_terakhir">Pendidikan Terakhir* :</label>
-                <select class="form-control opacity0" id="pendidikan_terakhir" name="pendidikan_terakhir" required>
-                  <option value="">-</option>
-                  <option value="SMA">SMA</option>
-                  <option value="D3">D3</option>
-                  <option value="S1">S1</option>
-                  <option value="S2">S2</option>
-                  <option value="S3">S3</option>
-                </select>
-                <div class="display-text">*Harap Isi Pendidikan Terakhir</div>
-              </div>
-              
-              <div class="form-group col-md-6">
-                <label for="riwayat">Riwayat Penyakit :</label>
-                <input type="text" class="form-control" autocomplete="off" id="riwayat" name="riwayat_penyakit">
-              </div>
-
-              <div class="form-group col-md-12">
-                <label for="pengalaman">Pengalaman Pekerjaan* :</label>
-                <div style="color:purple;">
-                  <label style="width:100%;">Contoh:</label> 
-                  <label style="width:100%;">1. Posisi - Perusahaan - Lama Bekerja,</label> 
-                  <label style="width:100%;">2. POSISI - PERUSAHAAN - LAMA BEKERJA</label>
-                    <label style="width:100%;">dan seterusnya</label>
-                </div>
-                <span>Gunakan <b>Koma(,)</b> Sebagai "<b>Enter</b>" untuk lanjutan pengalaman</span>
-                <div class="noted"><b>Wajib Cantumkan Semua pengalaman kerja anda!!!</b></div>
-                <textarea name="pengalaman_kerja" id="pengalaman_kerja" class="form-control textareaKerja" required></textarea>
-                <div class="display-text">*Harap Isi Pengalaman sesuai contoh</div>
-              </div>
-
-              <div class="form-group col-md-12">
-                <label for="kemampuan">Promosikan Diri Anda* :</label>
-                <input type="text" class="form-control" autocomplete="off" id="promosiDiri" name="promosi_diri" required>
-                <div class="display-text">*Harap Promosikan Diri anda</div>
-              </div>
-
-              <div class="col-md-12">
-                <button class="btn btn-primary nextBtn" type="button" >Next</button>     
-              </div>
-            </div>
-
-            <div class="row setup-content" id="step-3">
-                <div class="col-xs-12">
-                    <div class="col-md-12">
-
-                        <div class="col-md-12">
-                          <h3>Upload Data</h3>
-                        </div>
-
-                        <div class="form-group col-md-12">
-                          <label for="foto">Upload Foto :</label>
-                            <input type="file" accept="image/*" class="form-control" id="foto" name="foto" required>
-                            <!-- <span class="small-font">Ukuran Foto Maksimal <b>1 MB</b>*</span> -->
-                            <div class="display-text">*Harap Upload Foto</div>
-                        </div>
-
-                        <div class="form-group col-md-12">
-                          <label for="ktp">Upload KTP :</label>
-                          <input type="file" accept="image/*" class="form-control" id="ktp" name="ktp" required>
-                          <!-- <span class="small-font">Ukuran KTP Maksimal <b>1 MB</b>*</span> -->
-                          <div class="display-text">*Harap Upload KTP</div>
-                        </div>
-
-                        <div class="form-group col-md-12">
-                          <label for="ijazah">Upload Ijazah :</label>
-                          <input type="file" accept="image/*" class="form-control" id="ijazah" name="ijazah" required>
-                          <!-- <span class="small-font">Ukuran Ijazah Maksimal <b>1 MB</b>*</span> -->
-                          <div class="display-text">*Harap Upload Ijazah</div>
-                        </div>
-
-                        <div class="form-group col-md-12">
-                          <label for="cv">Upload CV :</label>
-                          <input type="file" class="form-control" id="copy_cv" name="copy_cv" required>
-                          <div class="display-text">*Harap Upload CV</div>
-                        </div>
-            
-                        <div class="col-md-12">
-                          <button class="btn btn-success" type="submit">Finish</button>
-                        </div>
+                <div class="form-group col-md-12">
+                  <label for="bahasa" class="wd100">Bahasa Asing :</label>
+                    <div>
+                      <label class="radio-inline"><input type="radio" name="bahasa_asing" value="INGGRIS">INGGRIS</label>
+                    <label class="radio-inline"><input type="radio" name="bahasa_asing" value="MANDARIN">MANDARIN</label>
+                    <label class="radio-inline"><input type="radio" name="bahasa_asing" value="JEPANG">JEPANG</label>
+                    <label class="radio-inline"><input type="radio" name="bahasa_asing" value="JERMAN">JERMAN</label>
+                    <label class="radio-inline" style="display:none;"><input type="radio" name="bahasa_asing" value="-" checked="checked"></label>
                     </div>
                 </div>
-            </div>
-        </form>
+
+                <div class="form-group col-md-6">
+                  <label for="pendidikan_terakhir">Pendidikan Terakhir* :</label>
+                  <select class="form-control opacity0" id="pendidikan_terakhir" name="pendidikan_terakhir" required>
+                    <option value="">-</option>
+                    <option value="SMA">SMA</option>
+                    <option value="D3">D3</option>
+                    <option value="S1">S1</option>
+                    <option value="S2">S2</option>
+                    <option value="S3">S3</option>
+                  </select>
+                  <div class="display-text">*Harap Isi Pendidikan Terakhir</div>
+                </div>
+                
+                <div class="form-group col-md-6">
+                  <label for="riwayat">Riwayat Penyakit :</label>
+                  <input type="text" class="form-control" autocomplete="off" id="riwayat" name="riwayat_penyakit">
+                </div>
+
+                <div class="form-group col-md-12">
+                  <label for="pengalaman">Pengalaman Pekerjaan* :</label>
+                  <div style="color:purple;">
+                    <label style="width:100%;">Contoh:</label> 
+                    <label style="width:100%;">1. Posisi - Perusahaan - Lama Bekerja,</label> 
+                    <label style="width:100%;">2. POSISI - PERUSAHAAN - LAMA BEKERJA</label>
+                      <label style="width:100%;">dan seterusnya</label>
+                  </div>
+                  <span>Gunakan <b>Koma(,)</b> Sebagai "<b>Enter</b>" untuk lanjutan pengalaman</span>
+                  <div class="noted"><b>Wajib Cantumkan Semua pengalaman kerja anda!!!</b></div>
+                  <textarea name="pengalaman_kerja" id="pengalaman_kerja" class="form-control textareaKerja" required></textarea>
+                  <div class="display-text">*Harap Isi Pengalaman sesuai contoh</div>
+                </div>
+
+                <div class="form-group col-md-12">
+                  <label for="kemampuan">Promosikan Diri Anda* :</label>
+                  <input type="text" class="form-control" autocomplete="off" id="promosiDiri" name="promosi_diri" required>
+                  <div class="display-text">*Harap Promosikan Diri anda</div>
+                </div>
+
+                <div class="col-md-12">
+                  <button class="btn btn-primary nextBtn" type="button" >Next</button>     
+                </div>
+              </div>
+
+              <div class="row setup-content" id="step-3">
+                  <div class="col-xs-12">
+                      <div class="col-md-12">
+
+                          <div class="col-md-12">
+                            <h3>Upload Data</h3>
+                          </div>
+
+                          <div class="form-group col-md-12">
+                            <label for="foto">Upload Foto :</label>
+                              <input type="file" accept="image/*" class="form-control" id="foto" name="foto" required>
+                              <!-- <span class="small-font">Ukuran Foto Maksimal <b>1 MB</b>*</span> -->
+                              <div class="display-text">*Harap Upload Foto</div>
+                          </div>
+
+                          <div class="form-group col-md-12">
+                            <label for="ktp">Upload KTP :</label>
+                            <input type="file" accept="image/*" class="form-control" id="ktp" name="ktp" required>
+                            <!-- <span class="small-font">Ukuran KTP Maksimal <b>1 MB</b>*</span> -->
+                            <div class="display-text">*Harap Upload KTP</div>
+                          </div>
+
+                          <div class="form-group col-md-12">
+                            <label for="ijazah">Upload Ijazah :</label>
+                            <input type="file" accept="image/*" class="form-control" id="ijazah" name="ijazah" required>
+                            <!-- <span class="small-font">Ukuran Ijazah Maksimal <b>1 MB</b>*</span> -->
+                            <div class="display-text">*Harap Upload Ijazah</div>
+                          </div>
+
+                          <div class="form-group col-md-12">
+                            <label for="cv">Upload CV :</label>
+                            <input type="file" class="form-control" id="copy_cv" name="copy_cv" required>
+                            <div class="display-text">*Harap Upload CV</div>
+                          </div>
+              
+                          <div class="col-md-12">
+                            <button class="btn btn-success" type="submit">Finish</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
+<!--================================= Modal Recruitment ==========================-->
 
 <!---================== Modal Admin =================================-->
   <div class="modal fade" id="modalHome" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -653,6 +654,51 @@
                 <!-- /.box-body -->
                 <div class="box-footer">
                   <button type="submit" class="btn btn-primary" name="save_branch" id="branchSave">Simpan</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.box -->
+
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalLowongan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-body">
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Tambah Lowongan Pekerjaan</h3>
+              </div>
+              <!-- /.box-header -->
+              <!-- form start -->
+              <form role="form" method="POST" action="server.php" enctype="multipart/form-data">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="title">Nama Lowongan</label>
+                    <input type="text" class="form-control" name="nama_lowongan"  placeholder="Nama Lowongan" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="deskripsi">Deskripsi Lowongan</label>
+                    <textarea class="form-control" name="desc_lowongan" placeholder="Deskripsi Pekerjaan" required></textarea> 
+                  </div>
+                  <div class="form-group">
+                    <label for="status">Status</label>
+                    <select class="form-control" name="status" required>
+                      <option value="">-</option>
+                      <option value="aktif">Aktif</option>
+                      <option value="non-aktif">Non Aktif</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  <button type="submit" class="btn btn-primary" name="save_lowongan">Simpan</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
                 </div>
               </form>

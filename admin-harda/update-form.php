@@ -437,6 +437,49 @@ if($_POST['rowpass']) {
   }
 ?>
 
+<?php
+    if($_POST['rowlowongan']) {
+      $idlowongan = $_POST['rowlowongan'];
+      $load_data = mysqli_query($db, "SELECT * FROM info_lowongan WHERE idlowongan='$idlowongan'");
+      while ($row = mysqli_fetch_assoc($load_data)) { 
+        
+        $nama_lowongan = $row['nama_lowongan'];
+        $desc_lowongan = $row['desc_lowongan'];
+        $tgl_posting = $row['tgl_posting'];
+        $timestamp = strtotime($tgl_posting);
+        $new_date = date('j-F-Y', $timestamp);
+        $idlowongan = $row['idlowongan'];
+        $status = $row['status']; 
+?>
+
+      <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
+              <div class="box-body">
+                <div class="form-group">
+                  <input type="hidden" name="idlowongan" value="<?= $idlowongan; ?>">
+                  <label for="title">Nama Lowongan</label>
+                  <input type="text" class="form-control" name="nama_lowongan" value="<?= $nama_lowongan; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsi">Deskripsi Lowongan</label>
+                  <textarea class="form-control" name="desc_lowongan" required><?= $desc_lowongan; ?></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="status">Status</label>
+                  <select class="form-control" name="status">
+                      <option <?php if ($status == "aktif" ) echo 'selected' ; ?> value="aktif">Aktif</option>
+                      <option <?php if ($status == "non-aktif" ) echo 'selected' ; ?> value="non-aktif">Non Aktif</option>
+                  </select>
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="update_lowongan">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+              </div>
+      </form>
+<?php }
+  }
+?>
+
 
 <script type="text/javascript">
   function password_match() {

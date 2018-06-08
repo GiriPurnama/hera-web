@@ -5102,3 +5102,6 @@ img.img-home {
   width: 300px;
   height: auto;
 }
+textarea {
+    resize: none;
+}
