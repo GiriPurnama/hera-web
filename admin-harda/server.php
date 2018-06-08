@@ -77,7 +77,7 @@
         $type = $_FILES['image_home']['type'];
 	    $fileinfo=PATHINFO($_FILES["image_home"]["name"]);
 	    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-	    if (!$image_home==""){  
+	    if (!$image_home=="" || $image_home==""){  
 		    unlink($image_home);
 		    move_uploaded_file($_FILES["image_home"]["tmp_name"],"../upload/page-home/" . $newFilename);
 		    $location="../upload/page-home/" . $newFilename;
@@ -295,7 +295,7 @@
 	        $type = $_FILES['img_client']['type'];
 		    $fileinfo=PATHINFO($_FILES["img_client"]["name"]);
 		    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-		    if (!$img_client==""){  
+		    if (!$img_client=="" || $img_client==""){  
 			    unlink($img_client);
 			    move_uploaded_file($_FILES["img_client"]["tmp_name"],"../upload/page-client/" . $newFilename);
 			    $location="../upload/page-client/" . $newFilename;
@@ -386,7 +386,7 @@
 	        $type = $_FILES['image']['type'];
 		    $fileinfo=PATHINFO($_FILES["image"]["name"]);
 		    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-		    if (!$cover_album==""){  
+		    if (!$cover_album=="" || $cover_album==""){  
 			    unlink($cover_album);
 			    move_uploaded_file($_FILES["image"]["tmp_name"],"../upload/page-album/" . $newFilename);
 			    $location="../upload/page-album/" . $newFilename;
@@ -476,7 +476,7 @@
 	        $type = $_FILES['foto']['type'];
 		    $fileinfo=PATHINFO($_FILES["foto"]["name"]);
 		    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-		    if (!$foto==""){  
+		    if (!$foto=="" || $foto==""){  
 			    unlink($foto);
 			    move_uploaded_file($_FILES["foto"]["tmp_name"],"../upload/page-foto/" . $newFilename);
 			    $location="../upload/page-foto/" . $newFilename;
