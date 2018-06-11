@@ -480,6 +480,36 @@ if($_POST['rowpass']) {
   }
 ?>
 
+<?php
+    if($_POST['rowgaleri']) {
+       $rowgaleri = $_POST['rowgaleri'];
+       $fotogaleri = mysqli_query($db, "SELECT * FROM galeri_foto WHERE albumid='$rowgaleri'");
+       while ($row = mysqli_fetch_assoc($fotogaleri)) {
+       $album = $row['nama_album'];
+       $nama_foto = $row['nama_foto'];
+       $desc_foto = $row['desc_foto'];
+       $foto = $row['foto'];
+       $foto_str = str_replace("../", "", $foto);   
+        
+?>
+
+ <div class="row">
+   <div class="col-md-4">
+      <div class="box-gallery">  
+        <img src="<?= $foto_str; ?>"> 
+        <div class="title-gallery"><h3><?= $nama_foto; ?></h3></div>
+        <div class="desc-gallery"><?= $desc_foto; ?></div>
+      </div>
+    </div>
+ </div>
+
+<?php 
+    }
+  }
+?>
+
+
+
 
 <script type="text/javascript">
   function password_match() {

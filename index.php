@@ -806,6 +806,20 @@
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
+  <script>
+     $('#modalFoto').on('show.bs.modal', function (e) {
+      var rowgaleri = $(e.relatedTarget).data('id');
+      //menggunakan fungsi ajax untuk pengambilan data
+      $.ajax({
+          type : 'post',
+          url : 'admin-harda/update-form.php',
+          data :  'rowgaleri='+ rowgaleri,
+          success : function(data){
+          $('.fetched-data').html(data);//menampilkan data ke dalam modal
+          }
+      });
+  });
+  </script>
 
 </body>
 </html>
