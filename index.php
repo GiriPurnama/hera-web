@@ -56,12 +56,13 @@
           <li><a href="#portfolio">Client</a></li>
           <li><a href="#team">Team</a></li>
           <li><a href="#service">Service</a></li>
-          <li class="menu-has-children"><a href="">Gallery</a>
+          <li><a href="#gallery">Gallery</a></li>
+          <!-- <li class="menu-has-children"><a href="">Gallery</a>
             <ul>
               <li><a href="#">Foto</a></li>
               <li><a href="#">Video</a></li>
             </ul>
-          </li>
+          </li> -->
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
@@ -79,24 +80,41 @@
 
         <div class="carousel-inner" role="listbox">
 
-          <div class="carousel-item active">
+          <?php
+            $no = 1;
+            $mini_id = mysqli_query($db, "SELECT min(idhome) as idkecil FROM menu_home");
+            while ($rowmenu = mysqli_fetch_assoc($mini_id)) {
+              $min_id = $rowmenu['idkecil'];
+            }
+
+            $home = mysqli_query($db, "SELECT * FROM menu_home");
+            // $home = mysqli_query($db, "SELECT min(idhome) as idkecil FROM menu_home");
+            while ($row = mysqli_fetch_assoc($home)) {
+            // $idhome = $row['idhome'];
+            $title_image = $row['title_img'];
+            $deksripsi_image = $row['desc_img'];
+            $image_home = $row['image_home'];
+            $item_class = ($no == 1) ? 'active' : '';
+          ?>
+          <div class="carousel-item <?= $item_class; ?> ">
             <div class="carousel-background"><img src="img/intro-carousel/1.jpg" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
-                <h2>Terpercaya Sejak 2007</h2>
-                <p>Mulai dari tahun 2007 hingga saat ini. PT. Harda Esa Raksa dipercaya dalam pengelolaan SDM, baik itu di perusahaan perbankan maupun non perbankan.</p>
+                <h2><?= $title_image; ?></h2>
+                <p><?= $deksripsi_image; ?></p>
                 <!-- <a href="#featured-services" class="btn-get-started scrollto">Get Started</a> -->
               </div>
             </div>
           </div>
+          <?php $no++; } ?>        
 
-          <div class="carousel-item">
+          <!--   <div class="carousel-item">
             <div class="carousel-background"><img src="img/intro-carousel/2.jpg" alt=""></div>
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2>Good Service</h2>
                 <p>Dengan memberikan yang prima dan sesuai dengan motto kami “Bekerja Dengan Sepenuh Hati”. Kami adalah solusi terbaik dalam penyedia tenaga kerja bagi perusahaan anda.</p>
-                <!-- <a href="#featured-services" class="btn-get-started scrollto">Get Started</a> -->
+         
               </div>
             </div>
           </div>
@@ -107,10 +125,10 @@
               <div class="carousel-content">
                 <h2>Management Fee Kompetitif</h2>
                 <p>Kami menawarkan management fee yang sesuai dengan kualitas yang kami berikan.</p>
-                <!-- <a href="#featured-services" class="btn-get-started scrollto">Get Started</a> -->
+             
               </div>
             </div>
-          </div>
+          </div> -->
 
         </div>
 
@@ -488,7 +506,7 @@
     </section><!-- #services -->
 
 
-     <section class="gallery" id="Gallery">
+     <section class="gallery" id="gallery">
       <div class="container">
 
         <header class="section-header wow fadeInUp">
@@ -498,10 +516,60 @@
 
         <div class="row">
 
-         <!--  <div class="col-lg-12 col-md-12 box wow bounceInUp" data-wow-duration="1.4s">
-         
-          </div> -->
+        <div class="col-md-12 text-center">
+          <h4>Foto</h4>
+        </div>
+
+        <?php 
+           $album = mysqli_query($db, "SELECT * FROM album");
+           while ($row = mysqli_fetch_assoc($album)) {
+              $albumid = $row['albumid'];
+              $nama_album = $row['nama_album'];
+              $album_deskripsi = $row['album_deskripsi'];
+              $album_date = $row['album_date'];
+              $cover_album = $row['image'];
+              $timestamp = strtotime($album_date);
+              $newDate = date('j-F-Y', $timestamp);
+              $ndata = str_replace("../", "", $cover_album);   
+        ?>
+
+        <div class="col-md-4 box wow bounceInUp" data-wow-duration="1.4s">
+          <div class="box-gallery">  
+            <a href='#modalFoto' data-toggle='modal' data-id="<?= $albumid; ?>">
+              <img src="<?= $ndata; ?>"> 
+              <div class="title-gallery"><h3><?= $nama_album; ?></h3></div>
+              <div class="desc-gallery"><?= $album_deskripsi; ?></div>
+            </a>
+          </div>
+        </div>
+
+        <?php } ?>
           
+          <div class="col-md-12 text-center">
+            <h4>Video</h4>
+          </div>
+
+          <?php 
+            $video_link = mysqli_query($db, "SELECT * FROM galeri_video");
+            while ($row = mysqli_fetch_assoc($video_link)) {
+              $nama_video = $row['nama_video'];
+              $video_deskripsi = $row['video_deskripsi'];
+              $video_date = $row['date_video'];
+              $video = $row['video'];
+              $timestamp = strtotime($video_date);
+              $newDate = date('j-F-Y', $timestamp);  
+          ?>
+          <div class="col-md-4 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="box-gallery">  
+              <a href="javascript:void(0);">
+                <div class="gallery-video"><iframe src="<?= $video; ?>"></iframe></div> 
+                <div class="title-gallery"><h3><?= $nama_video; ?></h3></div>
+                <div class="desc-gallery"><?= $video_deskripsi; ?></div>
+              </a>
+            </div>
+          </div>
+
+          <?php } ?>
 
         </div>
 
