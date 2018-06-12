@@ -660,11 +660,23 @@
 		    $email_admin = $_POST['email_admin'];
 	  		$nama_lengkap = $_POST['nama_lengkap'];
 	  		$divisi = $_POST['divisi'];
+	  		$facebook = $_POST['facebook'];
+            $twitter = $_POST['twitter'];
+            $linkedin = $_POST['linkedin'];
+            $motto =$_POST['motto'];
+            $no_emergency = $_POST['no_emergency'];
+            $hubungan = $_POST['hubungan'];
 
 		    // perintah query untuk mengubah data pada tabel is_siswa
 		    $query = mysqli_query($db, "UPDATE login SET email_admin = '$email_admin',
 		                            nama_lengkap  = '$nama_lengkap',
-		                            divisi = '$divisi'
+		                            divisi = '$divisi',
+		                            facebook = '$facebook',
+		                            twitter = '$twitter',
+		                            linkedin = '$linkedin',
+		                            motto = '$motto',
+		                            no_emergency = '$no_emergency',
+		                            hubungan = '$hubungan'
 		                            WHERE id_admin = '$id_admin'");   
 
 		    // cek query

@@ -187,6 +187,15 @@ $('#service-carousel').owlCarousel({
     dotsData: true
 })
 
+$('#team-carousel').owlCarousel({
+    loop:true,
+    items: 4,
+    nav:false,
+    dotsData: false,
+    responsive: { 0: { items: 1 }, 768: { items: 1 }, 900: { items: 4 }
+  }
+})
+
 $( '#service-carousel .owl-dot' ).on( 'click', function() {
   // owl.trigger('to.owl.carousel', [$(this).index(), 300]);
   $( '#service-carousel .owl-dot' ).removeClass( 'active' );

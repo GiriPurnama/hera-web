@@ -53,6 +53,8 @@
                   <th>Divisi</th>
                   <th>Image</th>
                   <th>Branch</th>
+                  <th>No Emergency</th>
+                  <th>Hubungan</th>
                   <th>Status</th>
                   <th>Aksi</th>
                 </tr>
@@ -74,6 +76,8 @@
                   <td><?php echo $row['divisi']; ?></td>
                   <td><img class="img-home" src="<?php echo $img_team; ?>"></td>
                   <td><?php echo $row['branch']; ?></td>
+                  <td><?php echo $row['no_emergency']; ?></td>
+                  <td><?php echo $row['hubungan']; ?></td>
                   <td><?php echo $row['status']; ?></td>
                   <td>
 

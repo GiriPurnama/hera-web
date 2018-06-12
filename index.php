@@ -53,7 +53,7 @@
           <li class="menu-active"><a href="#intro">Home</a></li>
           <li><a href="#about">About Us</a></li>
           <li><a href="#career">Career</a></li>
-          <li><a href="#portfolio">Client</a></li>
+          <li><a href="#client">Client</a></li>
           <li><a href="#team">Team</a></li>
           <li><a href="#service">Service</a></li>
           <li><a href="#gallery">Gallery</a></li>
@@ -348,7 +348,32 @@
       </div>
     </section><!-- #portfolio -->
 
-  
+    <section id="client" class="wow fadeInUp">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>Client Kami</h3>
+        </header>
+
+        <div class="owl-carousel clients-carousel">
+          <?php 
+              $client = mysqli_query($db, "SELECT * FROM menu_client");
+              while ($row = mysqli_fetch_assoc($client)) {
+                $nama_client = $row['title_client'];
+                $img_client = $row['img_client'];
+                $str_client = str_replace("../", "", $img_client);   
+          ?>
+          <div class="item text-center pad-10">
+            <img src="<?= $str_client; ?>" alt="">
+            <div class="title-client"><h5><?= $nama_client; ?></h5></div>
+          </div>
+
+          <?php } ?>
+        </div>
+
+      </div>
+    </section><!-- #clients -->
+
 
     <!--==========================
       Team Section
@@ -361,77 +386,37 @@
         </div>
 
         <div class="row">
-
-          <div class="col-lg-3 col-md-6 wow fadeInUp">
-            <div class="member">
-              <img src="img/team/yusuf.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Muhammad Yusuf Handopo</h4>
-                  <span>Direktur</span>
-                  <div class="social">
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
+          <div id="team-carousel" class="owl-carousel owl-theme">
+            <?php 
+               $team = mysqli_query($db, "SELECT * FROM login");
+               while ($row = mysqli_fetch_assoc($team)) {
+               $img_divisi = $row['img_divisi'];
+               $nama_lengkap = $row['nama_lengkap'];
+               $divisi = $row['divisi'];
+               $url_facebook = $row['facebook'];
+               $url_linkedin = $row['linkedin'];
+               $url_twitter = $row['twitter'];
+               $str_divisi = str_replace("../", "", $img_divisi);   
+               
+            ?>
+            <div class="item wow fadeInUp" data-wow-delay="0.1s">
+              <div class="member">
+                <img src="<?= $str_divisi; ?>" class="img-fluid" alt="">
+                <div class="member-info">
+                  <div class="member-info-content">
+                    <h4><?= $nama_lengkap; ?></h4>
+                    <span><?= $divisi; ?></span>
+                    <div class="social">
+                      <a href="<?= $url_twitter; ?>" target="_blank"><i class="fa fa-twitter"></i></a>
+                      <a href="<?= $url_facebook; ?>" target="_blank"><i class="fa fa-facebook"></i></a>
+                      <a href="<?= $url_linkedin; ?>" target="_blank"><i class="fa fa-linkedin"></i></a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+            <?php } ?>
 
-          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="member">
-              <img src="img/team/novi.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Novi Amalia</h4>
-                  <span>HRD</span>
-                  <div class="social">
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-            <div class="member">
-              <img src="img/team/angga.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Angga</h4>
-                  <span>Recruitment Officer</span>
-                  <div class="social">
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="member">
-              <img src="img/team/sri.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Sri Nengsih</h4>
-                  <span>Finance</span>
-                  <div class="social">
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
         </div>
@@ -588,9 +573,17 @@
         </div>
 
         <div id="info-contact" class="row contact-info owl-carousel owl-theme">
-            
-            <div class="item" data-dot="<div class='btn-owl'>Jakarta</div>">
-              <h3 class="title">Jakarta</h3>
+            <?php 
+              $branch = mysqli_query($db, "SELECT * FROM kontak");
+              while ($row = mysqli_fetch_assoc($branch)) {
+                $wilayah = $row['wilayah'];
+                $alamat = $row['alamat'];
+                $telepon = $row['telepon'];
+                $email = $row['email'];
+            ?>
+
+            <div class="item" data-dot="<div class='btn-owl'><?= $wilayah; ?></div>">
+              <h3 class="title"><?= $wilayah; ?></h3>
              
               <div class="text-contact">
                 
@@ -598,7 +591,7 @@
                   <div class="contact-address">
                     <i class="ion-ios-location-outline"></i>
                     <h3>Alamat</h3>
-                    <address>Jalan Raya Pasar Minggu No 39 Gedung ILP Pancoran Lantai 3 No 15</address>
+                    <address><?= $alamat; ?></address>
                   </div>
                 </div>
 
@@ -606,7 +599,7 @@
                   <div class="contact-phone">
                     <i class="ion-ios-telephone-outline"></i>
                     <h3>Telepon</h3>
-                    <p><a href="tel:08811740722">08811740722</a></p>
+                    <p><a href="tel:<?= $telepon; ?>"><?= $telepon; ?></a></p>
                   </div>
                 </div>
 
@@ -614,7 +607,7 @@
                   <div class="contact-email">
                     <i class="ion-ios-email-outline"></i>
                     <h3>Email</h3>
-                    <p><a href="mailto:info@example.com">hera.harda@gmail.com</a></p>
+                    <p><a href="mailto:<?= $email; ?>"><?= $email; ?></a></p>
                   </div>
                 </div>
 
@@ -622,70 +615,7 @@
             
             </div>
 
-            <div class="item" data-dot="<div class='btn-owl'>Bandung</div>">
-              <h3 class="title">Bandung</h3>
-              
-              <div class="text-contact">
-                <div class="col-md-4">
-                  <div class="contact-address">
-                    <i class="ion-ios-location-outline"></i>
-                    <h3>Alamat</h3>
-                    <address>Jl. Lodaya No.32 Bandung, Jawa Barat 40264</address>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="contact-phone">
-                    <i class="ion-ios-telephone-outline"></i>
-                    <h3>Telepon</h3>
-                    <p><a href="tel:087823927464">0878-2392-7464</a></p>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="contact-email">
-                    <i class="ion-ios-email-outline"></i>
-                    <h3>Email</h3>
-                    <p><a href="mailto:info@example.com">anni.jayanti@pthardaesaraksa.com</a></p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-             <div class="item" data-dot="<div class='btn-owl'>Surabaya</div>">
-              <h3 class="title">Surabaya</h3>
-              
-              <div class="text-contact">
-        
-                <div class="col-md-4">
-                  <div class="contact-address">
-                    <i class="ion-ios-location-outline"></i>
-                    <h3>Alamat</h3>
-                    <address>Ruko 21 Klampis, Jalan Arif Rahman Hakim Blok E9 No. 51, Klampis Ngasem, Sukolilo,  Kota Surabaya, Jawa Timur, Indonesia</address>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="contact-phone">
-                    <i class="ion-ios-telephone-outline"></i>
-                    <h3>Telepon</h3>
-                    <p><a href="tel:08123595048">0812-3595-048</a></p>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="contact-email">
-                    <i class="ion-ios-email-outline"></i>
-                    <h3>Email</h3>
-                    <p><a href="mailto:anita.rahmah@pthardaesaraksa.com">anita.rahmah@pthardaesaraksa.com</a></p>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
+            <?php } ?>
         </div>
 
         <div class="form">
@@ -710,7 +640,7 @@
               <textarea class="form-control" name="isi_pesan" rows="5" data-rule="required" data-msg="Tolong tuliskan isi pesan anda" placeholder="Message"></textarea>
               <div class="validation"></div>
             </div>
-            <div class="text-center"><button type="submit" name="contact">Send Message</button></div>
+            <div class="text-center"><button type="submit" name="contact">Kirim Pesan</button></div>
           </form>
         </div>
 

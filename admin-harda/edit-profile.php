@@ -26,6 +26,12 @@
           $divisi = $data['divisi'];
           $branch = $data['branch'];
           $img_divisi = $data['img_divisi'];
+          $facebook = $data['facebook'];
+          $twitter = $data['twitter'];
+          $linkedin = $data['linkedin'];
+          $motto =$data['motto'];
+          $no_emergency = $data['no_emergency'];
+          $hubungan = $data['hubungan'];
         }
       }
 
@@ -90,7 +96,48 @@
                    </div>
                  </div>
 
-                  <div class="col-md-6">
+                <div class="col-md-6">
+                   <div class="form-group">
+                      <label>Facebook</label>
+                      <input type="text" class="form-control" name="facebook" value="<?= $facebook; ?>">
+                   </div>
+                 </div>
+
+                 <div class="col-md-6">
+                   <div class="form-group">
+                      <label>Linkedin</label>
+                      <input type="text" class="form-control" name="linkedin" value="<?= $linkedin; ?>">
+                   </div>
+                 </div>
+
+                 <div class="col-md-6">
+                   <div class="form-group">
+                      <label>Twitter</label>
+                      <input type="text" class="form-control" name="twitter" value="<?= $twitter; ?>">
+                   </div>
+                 </div>
+
+                <div class="col-md-6">
+                   <div class="form-group">
+                      <label>Motto Hidup</label>
+                      <input type="text" class="form-control" name="motto" value="<?= $motto; ?>">
+                   </div>
+                 </div>
+
+                 <div class="col-md-6">
+                   <div class="form-group">
+                      <div class="col-md-6">
+                        <label>No Emergency</label>
+                        <input type="text" class="form-control" name="no_emergency" value="<?= $no_emergency; ?>">
+                      </div>
+                      <div class="col-md-6">
+                        <label>Hubungan</label>
+                        <input type="text" class="form-control" name="hubungan" value="<?= $hubungan; ?>">
+                      </div>
+                   </div>
+                 </div>
+
+                  <div class="col-md-12">
                     <div class="form-group">
                       <a href='#modalHomeEdit' class="btn btn-warning" id="imageProfile" data-toggle='modal' data-id="<?= $id_admin; ?>"><i class="fa fa-file-image-o"></i> Ubah Foto </a>
                       <a href='#modalEdit2' class="btn btn-warning" id="passwordProfile" data-toggle='modal' data-id="<?= $id_admin; ?>"><i class="fa fa-lock"></i> Ubah Password</a>
