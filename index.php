@@ -749,6 +749,13 @@
           }
       });
   });
+
+ $("#tanggal_lahir").dateDropdowns({
+    minAge: 18
+ });
+ 
+ $('.day, .month, .year').attr('required','').addClass('form-control col-md-3 display-inline');
+ $('.month').addClass('form-control col-md-4 display-inline');
   </script>
 
 </body>

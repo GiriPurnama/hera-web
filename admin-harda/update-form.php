@@ -414,22 +414,22 @@ if($_POST['rowpass']) {
         $img_divisi = $row['img_divisi'];        
       ?>
 
-      <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
+      <form role="form" id="ubahPass" action="server.php" method="POST" enctype="multipart/form-data">
          <div class="box-body">
             <div class="form-group">
               <input type="hidden" name="id_admin" value="<?php echo $id_admin; ?>">
               <label>Password</label>
-              <input type="password" class="form-control pass_primary" name="password" \>
+              <input type="password" class="form-control" id="passPrimary" name="password" \>
             </div>
             
             <div class="form-group">
               <label>Ulangi Password</label>
-              <input type="password" class="form-control pass_conf" name="password_conf" \>
+              <input type="password" class="form-control" id="passConf" name="password_conf" \>
             </div>
           </div>
             <!-- /.box-body -->
           <div class="box-footer">
-            <button type="submit" class="btn btn-primary savePass" name="ubah_pass">Simpan</button>
+            <button type="submit" class="btn btn-primary" id="savePass" name="ubah_pass">Simpan</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
           </div>
       </form>
@@ -485,12 +485,11 @@ if($_POST['rowpass']) {
        $rowgaleri = $_POST['rowgaleri'];
        $fotogaleri = mysqli_query($db, "SELECT * FROM galeri_foto WHERE albumid='$rowgaleri'");
        while ($row = mysqli_fetch_assoc($fotogaleri)) {
-       $album = $row['nama_album'];
-       $nama_foto = $row['nama_foto'];
-       $desc_foto = $row['desc_foto'];
-       $foto = $row['foto'];
-       $foto_str = str_replace("../", "", $foto);   
-        
+         $album = $row['nama_album'];
+         $nama_foto = $row['nama_foto'];
+         $desc_foto = $row['desc_foto'];
+         $foto = $row['foto'];
+         $foto_str = str_replace("../", "", $foto);    
 ?>
 
  <div class="row">
@@ -509,8 +508,6 @@ if($_POST['rowpass']) {
 ?>
 
 
-
-
 <script type="text/javascript">
   function password_match() {
     var password = $("#password_title").val();
@@ -525,10 +522,25 @@ if($_POST['rowpass']) {
     } 
   }
 
+jQuery("#confpass_title").keyup(password_match);
 
 $('.loadPage').click(function() {
     location.reload();
 });
 
-jQuery("#confpass_title").keyup(password_match);
+function password_match1() {
+    var password1 = $("#passPrimary").val();
+    var confirmPassword1 = $("#passConf").val();
+
+    if (password1 != confirmPassword1) {
+        $("#savePass").prop('disabled', true);
+        $("#passConf").css("border", "1px solid red");
+    } else {
+        $("#savePass").prop('disabled', false);
+        $("#passConf").css("border", "1px solid #d2d6de");
+    } 
+}
+
+jQuery("#passConf").keyup(password_match1);
+
 </script>

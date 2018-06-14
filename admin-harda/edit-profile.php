@@ -201,16 +201,23 @@
   $('#modalEdit2').on('show.bs.modal', function (e) {
       var rowpass = $("#passwordProfile").data('id');
       //menggunakan fungsi ajax untuk pengambilan data
+
+      // =============== Cara POST kedua =======================
+        // $.post("update-form.php","rowpass="+rowpass,
+        // function(data){
+        //   $('.fetchedData').html(data);
+        // });
+      // =============== Cara POST kedua =======================
+      
       $.ajax({
           type : 'post',
           url : 'update-form.php',
           data :  'rowpass='+ rowpass,
           success : function(data){
-          $('.fetched-data').html(data);//menampilkan data ke dalam modal
+          $('.fetchedData').html(data);//menampilkan data ke dalam modal
           }
       });
   });
-
 
 </script>
 <?php

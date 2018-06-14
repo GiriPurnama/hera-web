@@ -734,7 +734,7 @@
                 <h4 class="modal-title">Update Information</h4>
             </div>
             <div class="modal-body">
-                <div class="fetched-data"></div>
+                <div class="fetchedData"></div>
             </div>
         </div>
     </div>
@@ -908,11 +908,6 @@ $(document).ready(function () {
     location.reload();
  })
 
- $("#tanggal_lahir").dateDropdowns({
-    minAge: 18
- });
- $('.day, .month, .year').attr('required','').addClass('form-control col-md-3 display-inline');
- $('.month').addClass('form-control col-md-4 display-inline');
 
  // $("#tanggal_lahir").datepicker({ 
  //      format: 'yyyy-mm-dd',
