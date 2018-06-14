@@ -745,7 +745,7 @@
           url : 'admin-harda/update-form.php',
           data :  'rowgaleri='+ rowgaleri,
           success : function(data){
-          $('.fetched-data').html(data);//menampilkan data ke dalam modal
+          $('.fetched-data-gallery').html(data);//menampilkan data ke dalam modal
           }
       });
   });
