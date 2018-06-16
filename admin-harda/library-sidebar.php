@@ -43,6 +43,14 @@
             </span>
           </a>
         </li>
+         <li class="">
+          <a href="page-lowongan.php">
+            <i class="fa fa-clipboard"></i><span>Info Lowongan</span>
+            <span class="pull-right-container">
+              <!-- <i class="fa fa-angle-left pull-right"></i> -->
+            </span>
+          </a>
+        </li>
 
         <?php } if ($status == "ADMIN") { ?>
         

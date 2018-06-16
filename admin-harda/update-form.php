@@ -461,7 +461,7 @@ if($_POST['rowpass']) {
                 </div>
                 <div class="form-group">
                   <label for="deskripsi">Deskripsi Lowongan</label>
-                  <textarea class="form-control" name="desc_lowongan" required><?= $desc_lowongan; ?></textarea>
+                  <textarea id="ck_editorEdit" class="form-control" name="desc_lowongan" required><?= $desc_lowongan; ?></textarea>
                 </div>
                 <div class="form-group">
                   <label for="status">Status</label>
@@ -527,6 +527,14 @@ jQuery("#confpass_title").keyup(password_match);
 $('.loadPage').click(function() {
     location.reload();
 });
+
+$(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('ck_editorEdit');
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5()
+  })
 
 function password_match1() {
     var password1 = $("#passPrimary").val();

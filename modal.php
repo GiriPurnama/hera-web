@@ -77,15 +77,16 @@
 
                   <div class="form-group col-md-6">
                   <label for="Posisi">Posisi yang Dilamar* :</label>
-                    <select class="form-control" name="posisi" required>
+                    <select class="form-control" id="posisiPelamar" name="posisi" required>
                         <option value="">-</option>
                         <?php 
-                            $lowongan = mysqli_query($db, "SELECT * FROM info_lowongan");
+                            $lowongan = mysqli_query($db, "SELECT * FROM info_lowongan where status='aktif'");
                             while ($row = mysqli_fetch_assoc($lowongan)) {
                             $nama_lowongan = $row['nama_lowongan'];
+                            $desc_lowongan = $row['desc_lowongan'];
                         ?>
 
-                        <option value="<?= $nama_lowongan; ?>"> <?= $nama_lowongan; ?> </option>
+                        <option value="<?= $nama_lowongan; ?>" data-val="<?= $desc_lowongan; ?>"> <?= $nama_lowongan; ?> </option>
 
                         <?php } ?>
                     </select>
@@ -116,6 +117,10 @@
                       <option value="1">Lainnya</option>
                     </select>
                     <div class="display-text">*Harap Isi Referensi</div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="deskripsi-lowongan"></div>
                   </div>
                   
                   <div class="form-group col-md-6">
@@ -705,7 +710,7 @@
                   </div>
                   <div class="form-group">
                     <label for="deskripsi">Deskripsi Lowongan</label>
-                    <textarea class="form-control" name="desc_lowongan" placeholder="Deskripsi Pekerjaan" required></textarea> 
+                    <textarea id="ck_editor" class="form-control" name="desc_lowongan" placeholder="Deskripsi Pekerjaan" required></textarea> 
                   </div>
                   <div class="form-group">
                     <label for="status">Status</label>
@@ -874,6 +879,19 @@ $(".pass_conf").keyup(function(){
 
 
 $(document).ready(function () {
+
+  $(".deskripsi-lowongan").hide();
+  $('#posisiPelamar').on('change', function() {
+    var deskripsiLowongan = $("#posisiPelamar").find(':selected').attr('data-val');
+    
+    if (deskripsiLowongan != null) {
+      $(".deskripsi-lowongan").show();
+      $(".deskripsi-lowongan").html("<b>KUALIFIKASI</b><br><br>" + deskripsiLowongan);
+    } else {
+      console.log("Hello");
+      $(".deskripsi-lowongan").hide();
+    };
+  });
   // Jquery Step Wizard
     var navListItems = $('.setup-panel div a'),
             allWells = $('.setup-content'),

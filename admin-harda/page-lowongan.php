@@ -122,6 +122,13 @@
 <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('ck_editor');
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5()
+  })
   $.widget.bridge('uibutton', $.ui.button);
    $(function () {
    $('#table-user').DataTable({
