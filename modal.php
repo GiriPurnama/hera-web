@@ -77,7 +77,19 @@
 
                   <div class="form-group col-md-6">
                   <label for="Posisi">Posisi yang Dilamar* :</label>
-                    <input type="text" class="form-control" id="position" name="posisi" required>
+                    <select class="form-control" name="posisi" required>
+                        <option value="">-</option>
+                        <?php 
+                            $lowongan = mysqli_query($db, "SELECT * FROM info_lowongan");
+                            while ($row = mysqli_fetch_assoc($lowongan)) {
+                            $nama_lowongan = $row['nama_lowongan'];
+                        ?>
+
+                        <option value="<?= $nama_lowongan; ?>"> <?= $nama_lowongan; ?> </option>
+
+                        <?php } ?>
+                    </select>
+                    <!-- <input type="text" class="form-control" id="position" name="posisi" required> -->
                     <div class="display-text">*Harap Isi Posisi yang dilamar</div>
                   </div>
 
@@ -85,13 +97,22 @@
                     <label for="Refrensi">Referensi* :</label>
                     <select class="form-control opacity0" id="refrensi" name="refrensi" required>
                       <option value="">-</option>
-                      <option value="ANGGA">Angga</option>
+                      <?php 
+                        $refrensi = mysqli_query($db, "SELECT * FROM login");
+                        while ($row = mysqli_fetch_assoc($refrensi)) {
+                        $nama_lengkap = $row['nama_lengkap'];
+                      ?> 
+                      
+                      <option value="<?= $nama_lengkap; ?>"><?= $nama_lengkap; ?></option>                     
+                      
+                      <?php } ?>
+                      <!-- <option value="ANGGA">Angga</option>
                       <option value="ZALORA">Zalora</option>
                       <option value="CHERYL">Cheryl</option>
                       <option value="NOVI">Novi</option>
                       <option value="SRI">Sri</option>
                       <option value="WIDYA">Widya</option>
-                      <option value="JANNAH">Jannah</option>
+                      <option value="JANNAH">Jannah</option> -->
                       <option value="1">Lainnya</option>
                     </select>
                     <div class="display-text">*Harap Isi Referensi</div>
