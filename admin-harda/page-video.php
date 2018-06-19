@@ -53,6 +53,7 @@
                   <th>No</th>
                   <th>Judul Video</th>
                   <th>Deskripsi Video</th>
+                  <th>Image Video</th>
                   <th>Video</th>
                   <th>Tanggal Video</th>
                   <th>Aksi</th>
@@ -67,15 +68,17 @@
                       $nama_video = $row['nama_video'];
                       $video_deskripsi = $row['video_deskripsi'];
                       $video_date = $row['date_video'];
+                      $img_video = $row['img_video'];
                       $video = $row['video'];
                       $timestamp = strtotime($video_date);
                       $newDate = date('j-F-Y', $timestamp);  
                 ?>
 
                 <tr>
-                  <td><?php echo $no; ?></td>
-                  <td><?php echo $nama_video; ?></td>
-                  <td><?php echo $video_deskripsi; ?></td>
+                  <td><?= $no; ?></td>
+                  <td><?= $nama_video; ?></td>
+                  <td><?= $video_deskripsi; ?></td>
+                  <td><img class="img-home" src="<?= $img_video; ?>"></td>
                   <td><iframe height="auto" width="200px" src="<?= $video; ?>"></iframe></td>
                   <td><?= $newDate; ?></td>
                   <td>

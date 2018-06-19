@@ -623,8 +623,12 @@
                     <input type="text" class="form-control" name="video_deskripsi"  placeholder="Deskripsi Image" required>
                   </div>
                   <div class="form-group">
+                    <label for="upload">Image Video</label>
+                    <input type="file" name="img_video" id="imgVideo" required>
+                  </div>
+                  <div class="form-group">
                     <label for="upload">Link Video</label>
-                    <input type="text" class="form-control" name="video" placeholder="Link Video" required>
+                    <input type="text" class="form-control" autocomplete="off" name="video" placeholder="Link Video" required>
                   </div>
                 </div>
 
@@ -775,6 +779,20 @@
             </div>
             <div class="modal-body">
                 <div class="fetched-data-gallery"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="full-modal modal fade" id="modalVideoGaleri" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Gallery Video</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="fetched-data-video"></div>
             </div>
         </div>
     </div>
@@ -945,6 +963,10 @@ $(document).ready(function () {
 
  $('#modalSuccess').on('hidden.bs.modal', function () {
     location.reload();
+ })
+
+  $('#modalVideoGaleri').on('hidden.bs.modal', function () {
+    document.getElementById( 'player' ).setAttribute( 'src', '' );
  })
 
 

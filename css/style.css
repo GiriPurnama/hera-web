@@ -1692,6 +1692,8 @@ input#myInput {
     padding: 10px;
     background: #6598d9;
     border: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
   .full-modal .modal-title {
     font-weight: 300;

@@ -542,12 +542,15 @@
               $video_date = $row['date_video'];
               $video = $row['video'];
               $timestamp = strtotime($video_date);
-              $newDate = date('j-F-Y', $timestamp);  
+              $newDate = date('j-F-Y', $timestamp); 
+              $videoid = $row['videoid'];
+              $img_video = $row['img_video'];
+              $str_video = str_replace("../", "", $img_video);    
           ?>
           <div class="col-md-4 box wow bounceInUp" data-wow-duration="1.4s">
             <div class="box-gallery">  
-              <a href="javascript:void(0);">
-                <div class="gallery-video"><iframe src="<?= $video; ?>"></iframe></div> 
+              <a href='#modalVideoGaleri' data-toggle='modal' data-id="<?= $videoid; ?>">
+                <div class="gallery-video"><img src="<?= $str_video; ?>"></div> 
                 <div class="title-gallery"><h3><?= $nama_video; ?></h3></div>
                 <div class="desc-gallery"><?= $video_deskripsi; ?></div>
               </a>
@@ -737,7 +740,7 @@
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
   <script>
-     $('#modalFoto').on('show.bs.modal', function (e) {
+    $('#modalFoto').on('show.bs.modal', function (e) {
       var rowgaleri = $(e.relatedTarget).data('id');
       //menggunakan fungsi ajax untuk pengambilan data
       $.ajax({
@@ -748,14 +751,27 @@
           $('.fetched-data-gallery').html(data);//menampilkan data ke dalam modal
           }
       });
-  });
+    });
 
- $("#tanggal_lahir").dateDropdowns({
-    minAge: 18
- });
- 
- $('.day, .month, .year').attr('required','').addClass('form-control col-md-3 display-inline');
- $('.month').addClass('form-control col-md-4 display-inline');
+    $('#modalVideoGaleri').on('show.bs.modal', function (e) {
+      var videogaleri = $(e.relatedTarget).data('id');
+      //menggunakan fungsi ajax untuk pengambilan data
+      $.ajax({
+          type : 'post',
+          url : 'admin-harda/update-form.php',
+          data :  'videogaleri='+ videogaleri,
+          success : function(data){
+          $('.fetched-data-video').html(data);//menampilkan data ke dalam modal
+          }
+      });
+    });
+
+   $("#tanggal_lahir").dateDropdowns({
+      minAge: 18
+   });
+   
+   $('.day, .month, .year').attr('required','').addClass('form-control col-md-3 display-inline');
+   $('.month').addClass('form-control col-md-4 display-inline');
   </script>
 
 </body>

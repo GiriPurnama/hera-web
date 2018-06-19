@@ -300,6 +300,7 @@ if($_POST['rowpesan']) {
         $video_deskripsi = $row['video_deskripsi'];
         $video = $row['video'];
         $videoid = $row['videoid'];
+        $img_video = $row['img_video'];
       
 ?>
 
@@ -315,8 +316,12 @@ if($_POST['rowpesan']) {
                   <input type="text" class="form-control" name="video_deskripsi" value="<?php echo $video_deskripsi; ?>" required>
                 </div>
                 <div class="form-group">
+                  <label for="upload">Image Video</label>
+                  <input type="file" name="img_video" id="imgVideo" value="<?= $img_video; ?>" required>
+                </div>
+                <div class="form-group">
                   <label for="upload">Link Video</label>
-                  <input type="text" class="form-control" name="video" value="<?php echo $video; ?>">
+                  <input type="text" class="form-control" autocomplete="off" name="video" value="<?php echo $video; ?>">
                 </div>
               </div>
               <div class="box-footer">
@@ -507,6 +512,31 @@ if($_POST['rowpass']) {
   }
 ?>
 
+<?php
+    if($_POST['videogaleri']) {
+       $videogaleri = $_POST['videogaleri'];
+       $videogaleri = mysqli_query($db, "SELECT * FROM galeri_video WHERE videoid='$videogaleri'");
+       while ($row = mysqli_fetch_assoc($videogaleri)) {
+         $link_video = $row['video'];
+         $nama_video = $row['nama_video'];
+         $desc_video = $row['video_deskripsi'];    
+?>
+
+
+ <div class="row">
+   <div class="col-md-12">
+      <div class="box-gallery">  
+        <iframe id="player" width="560" height="315" src="<?= $link_video; ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> 
+        <div class="title-gallery"><h3><?= $nama_video; ?></h3></div>
+        <div class="desc-gallery"><?= $desc_video; ?></div>
+      </div>
+    </div>
+ </div>
+
+<?php 
+    }
+  }
+?>
 
 <script type="text/javascript">
   function password_match() {
