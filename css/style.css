@@ -1657,6 +1657,31 @@ input#myInput {
   color: #FFF;
   padding: 10px 10px 5px;
 }
+.img-responsive{
+  max-width: 100%;
+  height: auto;
+}
+.text-bio{
+  text-align: justify;
+  margin-top: 35px;
+  padding: 0px 75px;
+}
+
+.text-bio h3{
+  font-weight: bold;
+}
+
+@media (max-width: 991px) {
+  .text-bio{
+    padding: 0px 10px;
+  }  
+}
+
+.modal-header {
+  background: #6598d9;
+  color: #FFF;
+  text-transform: uppercase;
+}
 /*==================================Full Modal===============================================================*/
   .full-modal.modal {
     position: fixed;
@@ -1696,7 +1721,7 @@ input#myInput {
     border-top-right-radius: 0;
   }
   .full-modal .modal-title {
-    font-weight: 300;
+    font-weight: bold;
     font-size: 2em;
     color: #fff;
     line-height: 30px;
