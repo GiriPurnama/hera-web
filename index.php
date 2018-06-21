@@ -1,6 +1,6 @@
 <?php 
-  include "modal.php";
-?>  
+   include "config/koneksi.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +11,7 @@
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="img/black.png" rel="icon">
+  <link href="img/black.png" rel="shortcut icon">
   <link href="img/black.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -642,3 +642,6 @@
 
 </body>
 </html>
+<?php 
+  include "modal.php";
+?>  

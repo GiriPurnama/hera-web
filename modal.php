@@ -1,6 +1,3 @@
-<?php 
-   include "config/koneksi.php";
-?>
 <!-- Modal User-->
 <div class="modal fade" id="modalVisi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
