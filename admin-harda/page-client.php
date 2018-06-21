@@ -143,6 +143,11 @@
       });
   });
 
+  $( function() {
+    $( ".tgl_join" ).datepicker({
+      format: 'yyyy-mm-dd'
+    });
+  });
 </script>
 <?php
   include "library-js.php";

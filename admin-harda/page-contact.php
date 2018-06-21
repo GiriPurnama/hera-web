@@ -165,7 +165,9 @@
       });
   });
 
-
+$('#modalHomeEdit').on('hidden.bs.modal', function () {
+    location.reload();
+ })
 </script>
 <?php
   include "library-js.php";

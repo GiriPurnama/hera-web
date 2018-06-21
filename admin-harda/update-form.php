@@ -175,7 +175,7 @@ if($_POST['rowpesan']) {
             </div>
             <div class="form-group">
               <label for="tgl_join">Tanggal Join</label>
-              <input type="text" class="form-control" name="tgl_join" id="tgl_join" value="<?php echo $tgl_join; ?>" required>
+              <input type="text" class="form-control tgl_join" name="tgl_join" value="<?php echo $tgl_join; ?>" required>
             </div>
           </div>
           <div class="box-footer">
@@ -549,7 +549,7 @@ $(function () {
     //bootstrap WYSIHTML5 - text editor
     $('.textarea').wysihtml5()
   })
-
+  
 function password_match1() {
     var password1 = $("#passPrimary").val();
     var confirmPassword1 = $("#passConf").val();

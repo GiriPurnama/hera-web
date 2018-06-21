@@ -166,13 +166,7 @@
                       <option value="<?= $nama_lengkap; ?>"><?= $nama_lengkap; ?></option>                     
                       
                       <?php } ?>
-                      <!-- <option value="ANGGA">Angga</option>
-                      <option value="ZALORA">Zalora</option>
-                      <option value="CHERYL">Cheryl</option>
-                      <option value="NOVI">Novi</option>
-                      <option value="SRI">Sri</option>
-                      <option value="WIDYA">Widya</option>
-                      <option value="JANNAH">Jannah</option> -->
+
                       <option value="1">Lainnya</option>
                     </select>
                     <div class="display-text">*Harap Isi Referensi</div>
@@ -550,7 +544,7 @@
                   </div>
                   <div class="form-group">
                     <label for="deskripsi">Tanggal Join</label>
-                    <input type="text" class="form-control" name="tgl_join" id="tgl_join" placeholder="Tanggal Join" required>
+                    <input type="text" class="form-control tgl_join" readonly="readonly" name="tgl_join" placeholder="Tanggal Join" required>
                   </div>
                 </div>
                 <!-- /.box-body -->

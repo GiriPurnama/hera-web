@@ -746,7 +746,7 @@
 		      // jika berhasil tampilkan pesan berhasil update data
 		      header('location: edit-profile.php?id_admin='.$id_profile);
 		    } else {
-		      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='edit-profile.php?id_admin='".$id_profile"</script>");
+		      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='dashboard.php'</script>");
 		    } 
 
 	  }
@@ -787,7 +787,7 @@
 		      // jika berhasil tampilkan pesan berhasil update data
 		      header('location: edit-profile.php?id_admin='.$id_admin);
 		    } else {
-		      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='edit-profile.php?id_admin='".$id_profile"</script>");
+		      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='dashboard.php'</script>");
 		    } 
 
 	  }
@@ -813,7 +813,7 @@
 		      // jika berhasil tampilkan pesan berhasil update data
 		      header('location: edit-profile.php?id_admin='.$id_admin);
 		    } else {
-		      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='edit-profile.php?id_admin='".$id_profile"</script>");
+		      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='dashboard.php'</script>");
 		    } 
 
 	  }
