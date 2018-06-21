@@ -11,6 +11,7 @@
   <?php 
     include "library-header.php";
     include "library-sidebar.php";
+    $session_name = $_SESSION['nama_lengkap']
   ?>
 
    <?php
@@ -272,7 +273,7 @@
                     </div>
                     <div class="col-md-6 form-group mg20">
                       <label>Interviewer</label>
-                      <input type="text" class="form-control" name="interview" value="<?php echo $interview; ?>">
+                      <input type="text" class="form-control" name="interview" value="<?= $session_name; ?>" readonly>
                     </div>
                 <div class="form-group col-md-12">
                   <input type="submit" class="btn btn-primary btn-submit" name="simpan" id="send" value="Simpan">
