@@ -60,18 +60,6 @@ if($_POST['rowteam']) {
                   <label for="username">Username</label>
                   <input type="text" class="form-control" name="username" id="username_title" value="<?php echo $username ?>" required>
                 </div>
-                <!-- <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" class="form-control" name="email_admin" id="email_title" value="<?php echo $email_admin ?>" required>
-                </div> -->
-               <!--  <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" name="password" id="password_title" placeholder="Password" required>
-                </div>
-                <div class="form-group">
-                  <label for="deskripsi">Konfirmasi Password</label>
-                  <input type="password" class="form-control" id="confpass_title" placeholder="Konfirmasi Password">
-                </div> -->
                  <div class="form-group">
                   <label for="nama_lengkap">Nama Lengkap</label>
                   <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" value="<?php echo $nama_lengkap; ?>" required>
@@ -96,10 +84,6 @@ if($_POST['rowteam']) {
                       ?>
                   </select>
                 </div>
-                <!-- <div class="form-group">
-                  <label for="upload">Upload Image</label>
-                  <input type="file" name="img_divisi" id="img_divisi" value="<?php echo $img_team; ?>">
-                </div> -->
                 <div class="form-group">
                   <label for="status">Status</label>
                   <select class="form-control" name="status" id="status_title">
@@ -317,7 +301,7 @@ if($_POST['rowpesan']) {
                 </div>
                 <div class="form-group">
                   <label for="upload">Image Video</label>
-                  <input type="file" name="img_video" id="imgVideo" value="<?= $img_video; ?>" required>
+                  <input type="file" name="img_video" id="imgVideo" value="<?= $img_video; ?>">
                 </div>
                 <div class="form-group">
                   <label for="upload">Link Video</label>

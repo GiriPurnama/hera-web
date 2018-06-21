@@ -13,7 +13,7 @@
 			  	if ($query_delete) {
 			  		header('location: data-user.php');
 			  	} else{
-			  		echo "gagal";
+			  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data Gagal Dihapus'); window.location.href='data-user.php'</script>");
 			  	}
 	  		}
 	  	}
@@ -35,7 +35,7 @@
   		  if ($query) {
   		  		header('location: page-home.php');
   		  } else {
-  		  		echo "Gagal Simpan";
+  		  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data Gagal Diinsert'); window.location.href='page-home.php'</script>");
   		  }
   	}
 
@@ -51,10 +51,11 @@
 			  	if ($query_delete) {
 			  		header('location: page-home.php');
 			  	} else{
-			  		echo "gagal";
+			  		 echo ("<script LANGUAGE='JavaScript'>window.alert('Data Gagal Dihapus'); window.location.href='page-home.php'</script>");
 			  	}
 	  		} else { 
-	  			echo "File Tidak Ditemukan";
+	  			 echo ("<script LANGUAGE='JavaScript'>window.alert('File tidak ditemukan'); window.location.href='page-home.php'</script>");
+	  			 $query_delete = mysqli_query($db, "DELETE FROM menu_home WHERE idhome='$idhome'");
 	  		}
 	  	}
   	}
@@ -74,31 +75,40 @@
 	    $title_image = $_POST['title_img'];
         $deksripsi_image = $_POST['desc_img'];
 
-        $type = $_FILES['image_home']['type'];
-	    $fileinfo=PATHINFO($_FILES["image_home"]["name"]);
-	    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-	    if (!$image_home=="" || $image_home==""){  
-		    unlink($image_home);
-		    move_uploaded_file($_FILES["image_home"]["tmp_name"],"../upload/page-home/" . $newFilename);
-		    $location="../upload/page-home/" . $newFilename;
-		} 
+        if($_FILES["image_home"]["error"] == 4) {
+        	$query = mysqli_query($db, "UPDATE menu_home SET title_img = '$title_image',
+	                            desc_img  = '$deksripsi_image'
+	                            WHERE idhome   = '$idhome'");
+	        if ($query) {
+		      header('location: page-home.php');
+		    } else {
+		      echo ("<script LANGUAGE='JavaScript'>window.alert('Data Gagal Diupdate'); window.location.href='page-home.php'</script>");
+		    }
 
-	    // perintah query untuk mengubah data pada tabel is_siswa
-	    $query = mysqli_query($db, "UPDATE menu_home SET title_img = '$title_image',
-	                            desc_img  = '$deksripsi_image',
-	                            image_home = '$location'
-	                            WHERE idhome   = '$idhome'");   
+		} else {
 
-	    // cek query
-	    if ($query) {
-	      // jika berhasil tampilkan pesan berhasil update data
-	      header('location: page-home.php');
-	      // echo "Berhasil";
-	    } else {
-	      // jika gagal tampilkan pesan kesalahan
-	      // header('location: index.php?alert=1');
-	      echo "Gagal";
-	    } 
+	        $type = $_FILES['image_home']['type'];
+		    $fileinfo=PATHINFO($_FILES["image_home"]["name"]);
+		    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+		    if (!$image_home=="" || $image_home==""){  
+			    unlink($image_home);
+			    move_uploaded_file($_FILES["image_home"]["tmp_name"],"../upload/page-home/" . $newFilename);
+			    $location="../upload/page-home/" . $newFilename;
+			} 
+
+		    // perintah query untuk mengubah data pada tabel is_siswa
+		    $query = mysqli_query($db, "UPDATE menu_home SET title_img = '$title_image',
+		                            desc_img  = '$deksripsi_image',
+		                            image_home = '$location'
+		                            WHERE idhome   = '$idhome'");   
+
+		    // cek query
+		    if ($query) {
+		      header('location: page-home.php');
+		    } else {
+		      echo ("<script LANGUAGE='JavaScript'>window.alert('Data Gagal Diupdate'); window.location.href='page-home.php'</script>");
+		    } 
+		}
 
 	  }
 	} 
@@ -125,9 +135,9 @@
 		
   		  $query = mysqli_query($db, "INSERT INTO login(username, email_admin, password, nama_lengkap, divisi, branch, img_divisi, status) values ('$username','$email_admin','$password','$nama_lengkap','$divisi','$branch','$img_divisi','$status')");
   		  if ($query) {
-  		  		 header('location: page-team.php');
+  		  		header('location: page-team.php');
   		  } else {
-  		  		echo "Gagal Simpan";
+  		  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data Gagal Diinsert'); window.location.href='page-team.php'</script>");
   		  }
   	}
 
@@ -142,10 +152,11 @@
 			  	if ($query_delete) {
 			  		header('location: page-team.php');
 			  	} else{
-			  		echo "gagal";
+			  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data Gagal Dihapus'); window.location.href='page-team.php'</script>");
 			  	}
 	  		} else { 
-	  			echo "File Tidak Ditemukan";
+	  			echo ("<script LANGUAGE='JavaScript'>window.alert('File Tidak Ditemukan'); window.location.href='page-team.php'</script>");
+	  			$query_delete = mysqli_query($db, "DELETE FROM login WHERE id_admin='$id_admin'");
 	  		}
 	  	}
   	}
@@ -170,23 +181,12 @@
 	  		$branch = $_POST['branch'];
 	  		$status = $_POST['status'];
 
-	  //       $type = $_FILES['img_divisi']['type'];
-		 //    $fileinfo=PATHINFO($_FILES["img_divisi"]["name"]);
-		 //    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-		 //    if (!$img_divisi==""){  
-			//     unlink($img_divisi);
-			//     move_uploaded_file($_FILES["img_divisi"]["tmp_name"],"../upload/page-team/" . $newFilename);
-			//     $location="../upload/page-team/" . $newFilename;
-			// }
 
 		    // perintah query untuk mengubah data pada tabel is_siswa
 		    $query = mysqli_query($db, "UPDATE login SET username = '$username',
-		                            -- email_admin  = '$email_admin',
-		                            -- password = '$password',
 		                            nama_lengkap = '$nama_lengkap',
 		                            divisi = '$divisi',
 		                            branch = '$branch',
-		                            -- img_divisi = '$location',
 		                            status = '$status'
 		                            WHERE id_admin   = '$id_admin'");   
 
@@ -194,11 +194,8 @@
 		    if ($query) {
 		      // jika berhasil tampilkan pesan berhasil update data
 		      header('location: page-team.php');
-		      // echo "Berhasil";
 		    } else {
-		      // jika gagal tampilkan pesan kesalahan
-		      // header('location: index.php?alert=1');
-		      echo "Gagal";
+		     echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-team.php'</script>");
 		    } 
 
 	  }
@@ -213,7 +210,7 @@
 	  	if ($query_delete) {
 	  		header('location: page-contact.php');
 	  	} else{
-	  		echo "gagal";
+	  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal didelete'); window.location.href='page-contact.php'</script>");
 	  	}
   	}
 
@@ -251,9 +248,9 @@
 		
   		  $query = mysqli_query($db, "INSERT INTO menu_client(title_client, desc_client, img_client, tgl_join) values ('$nama_client','$desc_client','$img_client','$tgl_join')");
   		  if ($query) {
-  		  		 header('location: page-client.php');
+  		  		header('location: page-client.php');
   		  } else {
-  		  		echo "Gagal Simpan";
+  		  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data Gagal Diinsert'); window.location.href='page-client.php'</script>");
   		  }
   	}
 
@@ -268,10 +265,11 @@
 			  	if ($query_delete) {
 			  		header('location: page-client.php');
 			  	} else{
-			  		echo "gagal";
+			  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal didelete'); window.location.href='page-client.php'</script>");
 			  	}
 	  		} else { 
-	  			echo "File Tidak Ditemukan";
+	  			echo ("<script LANGUAGE='JavaScript'>window.alert('File Tidak Ditemukan'); window.location.href='page-client.php'</script>");
+	  			$query_delete = mysqli_query($db, "DELETE FROM menu_client WHERE idclient='$idclient'");
 	  		}
 	  	}
   	}
@@ -292,32 +290,41 @@
 	  		$desc_client = $_POST['desc_client'];
 	  		$tgl_join = $_POST['tgl_join'];
 
-	        $type = $_FILES['img_client']['type'];
-		    $fileinfo=PATHINFO($_FILES["img_client"]["name"]);
-		    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-		    if (!$img_client=="" || $img_client==""){  
-			    unlink($img_client);
-			    move_uploaded_file($_FILES["img_client"]["tmp_name"],"../upload/page-client/" . $newFilename);
-			    $location="../upload/page-client/" . $newFilename;
-			}
-
-		    // perintah query untuk mengubah data pada tabel is_siswa
-		    $query = mysqli_query($db, "UPDATE menu_client SET title_client = '$nama_client',
+	  		if($_FILES["img_client"]["error"] == 4) {
+	  			$query = mysqli_query($db, "UPDATE menu_client SET title_client = '$nama_client',
 		                            desc_client  = '$desc_client',
-		                            img_client = '$location',
 		                            tgl_join = '$tgl_join'
-		                            WHERE idclient   = '$idclient'");   
+		                            WHERE idclient   = '$idclient'");
+		        if ($query) {
+			      // jika berhasil tampilkan pesan berhasil update data
+			      header('location: page-client.php');
+			    } else {
+			      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-client.php'</script>");
+			    } 
+	  		} else {
+		        $type = $_FILES['img_client']['type'];
+			    $fileinfo=PATHINFO($_FILES["img_client"]["name"]);
+			    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+			    if (!$img_client=="" || $img_client==""){  
+				    unlink($img_client);
+				    move_uploaded_file($_FILES["img_client"]["tmp_name"],"../upload/page-client/" . $newFilename);
+				    $location="../upload/page-client/" . $newFilename;
+				}
 
-		    // cek query
-		    if ($query) {
-		      // jika berhasil tampilkan pesan berhasil update data
-		      header('location: page-client.php');
-		      // echo "Berhasil";
-		    } else {
-		      // jika gagal tampilkan pesan kesalahan
-		      // header('location: index.php?alert=1');
-		      echo "Gagal";
-		    } 
+			    // perintah query untuk mengubah data pada tabel is_siswa
+			    $query = mysqli_query($db, "UPDATE menu_client SET title_client = '$nama_client',
+			                            desc_client  = '$desc_client',
+			                            img_client = '$location',
+			                            tgl_join = '$tgl_join'
+			                            WHERE idclient   = '$idclient'");   
+
+			    // cek query
+			    if ($query) {
+			      header('location: page-client.php');
+			    } else {
+			      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-client.php'</script>");
+			    } 
+	  		}
 
 	  }
 	} 
@@ -337,9 +344,9 @@
 		
   		  $query = mysqli_query($db, "INSERT INTO album(nama_album, album_deskripsi, image, album_date) values ('$nama_album','$desc_album','$img_album',NOW())");
   		  if ($query) {
-  		  		 header('location: page-album.php');
+  		  		header('location: page-album.php');
   		  } else {
-  		  		echo "Gagal Simpan";
+  		  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diinsert); window.location.href='page-album.php'</script>");
   		  }
   	}
 
@@ -359,10 +366,12 @@
 			  	if ($query_delete) {
 			  		header('location: page-album.php');
 			  	} else{
-			  		echo "gagal";
+			  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal didelete'); window.location.href='page-album.php'</script>");
 			  	}
 	  		} else { 
-	  			echo "File Tidak Ditemukan";
+	  			 echo ("<script LANGUAGE='JavaScript'>window.alert('File Tidak Ditemukan'); window.location.href='page-album.php'</script>");
+	  			 $query_delete = mysqli_query($db, "DELETE FROM album WHERE albumid='$albumid'");
+			  	 $query_foto = mysqli_query($db, "DELETE FROM galeri_foto WHERE gid='$gid'");
 	  		}
 	  	}
   	}
@@ -383,31 +392,40 @@
 		    $nama_album = $_POST['nama_album'];
 	  		$album_deskripsi = $_POST['album_deskripsi'];
 
-	        $type = $_FILES['image']['type'];
-		    $fileinfo=PATHINFO($_FILES["image"]["name"]);
-		    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-		    if (!$cover_album=="" || $cover_album==""){  
-			    unlink($cover_album);
-			    move_uploaded_file($_FILES["image"]["tmp_name"],"../upload/page-album/" . $newFilename);
-			    $location="../upload/page-album/" . $newFilename;
-			}
-
-		    // perintah query untuk mengubah data pada tabel is_siswa
-		    $query = mysqli_query($db, "UPDATE album SET nama_album = '$nama_album',
-		                            album_deskripsi  = '$album_deskripsi',
-		                            image = '$location'
+	  		if($_FILES["image"]["error"] == 4) {
+	  			$query = mysqli_query($db, "UPDATE album SET nama_album = '$nama_album',
+		                            album_deskripsi  = '$album_deskripsi'
 		                            WHERE albumid   = '$albumid'");   
+			    // cek query
+			    if ($query) {
+			      header('location: page-album.php');
+			    } else {
+			      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-album.php'</script>");
+			    }
+	  		
+	  		} else {
+		        $type = $_FILES['image']['type'];
+			    $fileinfo=PATHINFO($_FILES["image"]["name"]);
+			    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+			    if (!$cover_album=="" || $cover_album==""){  
+				    unlink($cover_album);
+				    move_uploaded_file($_FILES["image"]["tmp_name"],"../upload/page-album/" . $newFilename);
+				    $location="../upload/page-album/" . $newFilename;
+				}
 
-		    // cek query
-		    if ($query) {
-		      // jika berhasil tampilkan pesan berhasil update data
-		      header('location: page-album.php');
-		      // echo "Berhasil";
-		    } else {
-		      // jika gagal tampilkan pesan kesalahan
-		      // header('location: index.php?alert=1');
-		      echo "Gagal";
-		    } 
+			    // perintah query untuk mengubah data pada tabel is_siswa
+			    $query = mysqli_query($db, "UPDATE album SET nama_album = '$nama_album',
+			                            album_deskripsi  = '$album_deskripsi',
+			                            image = '$location'
+			                            WHERE albumid   = '$albumid'");   
+
+			    // cek query
+			    if ($query) {
+			      header('location: page-album.php');
+			    } else {
+			      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-album.php'</script>");
+			    } 
+	  		}
 
 	  }
 	} 
@@ -432,9 +450,9 @@
 		
   		  $query = mysqli_query($db, "INSERT INTO galeri_foto(albumid, nama_foto, desc_foto, foto, date_foto) values ('$albumid','$nama_foto','$desc_foto','$img_foto',NOW())");
   		  if ($query) {
-  		  		 header('location: page-foto.php');
+  		  		header('location: page-foto.php');
   		  } else {
-  		  		echo "Gagal Simpan";
+  		  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal disimpan'); window.location.href='page-foto.php'</script>");
   		  }
   	}
 
@@ -449,10 +467,11 @@
 			  	if ($query_delete) {
 			  		header('location: page-foto.php');
 			  	} else{
-			  		echo "gagal";
+			  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal dihapus'); window.location.href='page-foto.php'</script>");
 			  	}
 	  		} else { 
-	  			echo "File Tidak Ditemukan";
+	  			echo ("<script LANGUAGE='JavaScript'>window.alert('File Tidak ditemukan'); window.location.href='page-foto.php'</script>");
+	  			$query_delete = mysqli_query($db, "DELETE FROM galeri_foto WHERE gid='$gid'");
 	  		}
 	  	}
   	}
@@ -473,32 +492,42 @@
 		    $nama_foto = $_POST['nama_foto'];
 	  		$desc_foto = $_POST['desc_foto'];
 
-	        $type = $_FILES['foto']['type'];
-		    $fileinfo=PATHINFO($_FILES["foto"]["name"]);
-		    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-		    if (!$foto=="" || $foto==""){  
-			    unlink($foto);
-			    move_uploaded_file($_FILES["foto"]["tmp_name"],"../upload/page-foto/" . $newFilename);
-			    $location="../upload/page-foto/" . $newFilename;
-			}
-
-		    // perintah query untuk mengubah data pada tabel is_siswa
-		    $query = mysqli_query($db, "UPDATE galeri_foto SET nama_foto = '$nama_foto',
-		                            desc_foto  = '$desc_foto',
-		                            foto = '$location'
+	  		if($_FILES["foto"]["error"] == 4) {
+	  			$query = mysqli_query($db, "UPDATE galeri_foto SET nama_foto = '$nama_foto',
+		                            desc_foto  = '$desc_foto'
 		                            WHERE gid = '$gid'");   
 
-		    // cek query
-		    if ($query) {
-		      // jika berhasil tampilkan pesan berhasil update data
-		      header('location: page-foto.php');
-		      // echo "Berhasil";
-		    } else {
-		      // jika gagal tampilkan pesan kesalahan
-		      // header('location: index.php?alert=1');
-		      echo "Gagal";
-		    } 
+			    // cek query
+			    if ($query) {
+			      // jika berhasil tampilkan pesan berhasil update data
+			      header('location: page-foto.php');
+			    } else {
+			   	  echo ("<script LANGUAGE='JavaScript'>window.alert('Data Gagal Diupdate'); window.location.href='page-foto.php'</script>");
+			    }
+	  		} else {
+		        $type = $_FILES['foto']['type'];
+			    $fileinfo=PATHINFO($_FILES["foto"]["name"]);
+			    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+			    if (!$foto=="" || $foto==""){  
+				    unlink($foto);
+				    move_uploaded_file($_FILES["foto"]["tmp_name"],"../upload/page-foto/" . $newFilename);
+				    $location="../upload/page-foto/" . $newFilename;
+				}
 
+			    // perintah query untuk mengubah data pada tabel is_siswa
+			    $query = mysqli_query($db, "UPDATE galeri_foto SET nama_foto = '$nama_foto',
+			                            desc_foto  = '$desc_foto',
+			                            foto = '$location'
+			                            WHERE gid = '$gid'");   
+
+			    // cek query
+			    if ($query) {
+			      // jika berhasil tampilkan pesan berhasil update data
+			      header('location: page-foto.php');
+			    } else {
+			   	  echo ("<script LANGUAGE='JavaScript'>window.alert('Data Gagal Diupdate'); window.location.href='page-foto.php'</script>");
+			    } 
+	  		}
 	  }
 	} 
 
@@ -523,9 +552,9 @@
 		
   		  $query = mysqli_query($db, "INSERT INTO galeri_video(nama_video, video_deskripsi, img_video, video, date_video) values ('$nama_video','$video_deskripsi','$img_video','$video',NOW())");
   		  if ($query) {
-  		  		 header('location: page-video.php');
+  		  		header('location: page-video.php');
   		  } else {
-  		  		echo "Gagal Simpan";
+  		  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data Gagal Disimpan'); window.location.href='page-video.php'</script>");
   		  }
   	}
 
@@ -541,11 +570,11 @@
 			  	if ($query_delete) {
 			  		header('location: page-video.php');
 			  	} else{
-			  		echo "gagal";
+			  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data Gagal Dihapus'); window.location.href='page-video.php'</script>");
 			  	}
 	  		} else { 
 	  			$query_delete = mysqli_query($db, "DELETE FROM galeri_video WHERE videoid='$videoid'");
-	  			header('location: page-video.php');
+	  			echo ("<script LANGUAGE='JavaScript'>window.alert('File tidak ditemukan'); window.location.href='page-video.php'</script>");
 	  		}
 	  	}
   	}
@@ -567,33 +596,42 @@
 	  		$video_deskripsi = $_POST['video_deskripsi'];
 	  		$video = $_POST['video'];
 
-	  		$type = $_FILES['img_video']['type'];
-		    $fileinfo=PATHINFO($_FILES["img_video"]["name"]);
-		    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-		    if (!$img_video=="" || $img_video==""){  
-			    unlink($img_video);
-			    move_uploaded_file($_FILES["img_video"]["tmp_name"],"../upload/page-video/" . $newFilename);
-			    $location_video="../upload/page-video/" . $newFilename;
-			}
-
-		    // perintah query untuk mengubah data pada tabel is_siswa
-		    $query = mysqli_query($db, "UPDATE galeri_video SET nama_video = '$nama_video',
+	  		if($_FILES["img_video"]["error"] == 4) {
+	  			$query = mysqli_query($db, "UPDATE galeri_video SET nama_video = '$nama_video',
 		                            video_deskripsi  = '$video_deskripsi',
-		                            img_video = '$location_video',
 		                            video = '$video'
 		                            WHERE videoid   = '$videoid'");   
 
-		    // cek query
-		    if ($query) {
-		      // jika berhasil tampilkan pesan berhasil update data
-		      header('location: page-video.php');
-		      // echo "Berhasil";
-		    } else {
-		      // jika gagal tampilkan pesan kesalahan
-		      // header('location: index.php?alert=1');
-		      echo "Gagal";
-		    } 
+			    // cek query
+			    if ($query) {
+			      header('location: page-video.php');
+			    } else {
+			      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-video.php'</script>");
+			    } 
+	  		} else {
+		  		$type = $_FILES['img_video']['type'];
+			    $fileinfo=PATHINFO($_FILES["img_video"]["name"]);
+			    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+			    if (!$img_video=="" || $img_video==""){  
+				    unlink($img_video);
+				    move_uploaded_file($_FILES["img_video"]["tmp_name"],"../upload/page-video/" . $newFilename);
+				    $location_video="../upload/page-video/" . $newFilename;
+				}
 
+			    // perintah query untuk mengubah data pada tabel is_siswa
+			    $query = mysqli_query($db, "UPDATE galeri_video SET nama_video = '$nama_video',
+			                            video_deskripsi  = '$video_deskripsi',
+			                            img_video = '$location_video',
+			                            video = '$video'
+			                            WHERE videoid   = '$videoid'");   
+
+			    // cek query
+			    if ($query) {
+			      header('location: page-video.php');
+			    } else {
+			      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-video.php'</script>");
+			    } 
+	  		}
 	  }
 	} 
 
@@ -611,9 +649,9 @@
 		
   		  $query = mysqli_query($db, "INSERT INTO kontak(wilayah, alamat, telepon, email, maps) values ('$wilayah','$alamat','$telepon','$email','$maps')");
   		  if ($query) {
-  		  		 header('location: page-branch.php');
+  		  		header('location: page-branch.php');
   		  } else {
-  		  		echo "Gagal Simpan";
+  		  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal disimpan'); window.location.href='page-branch.php'</script>");
   		  }
   	}
 
@@ -624,7 +662,7 @@
 	  	if ($query_delete) {
 	  		header('location: page-branch.php');
 	  	} else{
-	  		echo "gagal";
+	  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal dihapus'); window.location.href='page-video.php'</script>");
 	  	}
   	}
 
@@ -657,13 +695,9 @@
 
 		    // cek query
 		    if ($query) {
-		      // jika berhasil tampilkan pesan berhasil update data
 		      header('location: page-branch.php');
-		      // echo "Berhasil";
 		    } else {
-		      // jika gagal tampilkan pesan kesalahan
-		      // header('location: index.php?alert=1');
-		      echo "Gagal";
+		      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-branch.php'</script>");
 		    } 
 
 	  }
@@ -711,11 +745,8 @@
 		    if ($query) {
 		      // jika berhasil tampilkan pesan berhasil update data
 		      header('location: edit-profile.php?id_admin='.$id_profile);
-		      // echo "Berhasil";
 		    } else {
-		      // jika gagal tampilkan pesan kesalahan
-		      // header('location: index.php?alert=1');
-		      echo "Gagal";
+		      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='edit-profile.php?id_admin='".$id_profile"</script>");
 		    } 
 
 	  }
@@ -755,11 +786,8 @@
 		    if ($query) {
 		      // jika berhasil tampilkan pesan berhasil update data
 		      header('location: edit-profile.php?id_admin='.$id_admin);
-		      // echo "Berhasil";
 		    } else {
-		      // jika gagal tampilkan pesan kesalahan
-		      // header('location: index.php?alert=1');
-		      echo "Gagal";
+		      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='edit-profile.php?id_admin='".$id_profile"</script>");
 		    } 
 
 	  }
@@ -784,11 +812,8 @@
 		    if ($query) {
 		      // jika berhasil tampilkan pesan berhasil update data
 		      header('location: edit-profile.php?id_admin='.$id_admin);
-		      // echo "Berhasil";
 		    } else {
-		      // jika gagal tampilkan pesan kesalahan
-		      // header('location: index.php?alert=1');
-		      echo "Gagal";
+		      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='edit-profile.php?id_admin='".$id_profile"</script>");
 		    } 
 
 	  }
@@ -808,7 +833,7 @@
   		  if ($query) {
   		  		 header('location: page-lowongan.php');
   		  } else {
-  		  		echo "Gagal Simpan";
+  		  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal disimpan'); window.location.href='page-lowongan.php'</script>");
   		  }
   	}
 
@@ -819,7 +844,7 @@
 	  	if ($query_delete) {
 	  		header('location: page-lowongan.php');
 	  	} else{
-	  		echo "gagal";
+	  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal dihapus'); window.location.href='page-lowongan.php'</script>");
 	  	}
   	}
 
@@ -845,13 +870,9 @@
 		    if ($query) {
 		      // jika berhasil tampilkan pesan berhasil update data
 		      header('location: page-lowongan.php');
-		      // echo "Berhasil";
 		    } else {
-		      // jika gagal tampilkan pesan kesalahan
-		      // header('location: index.php?alert=1');
-		      echo "Gagal";
+		      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-lowongan.php'</script>");
 		    } 
-
 	  }
 	} 
 
