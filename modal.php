@@ -205,7 +205,7 @@
                       <option value="KRISTEN PROTESTAN">Kristen Protestan</option>
                       <option value="KRISTEN KATOLIK">Kristen Katolik</option>
                       <option value="HINDU">Hindu</option>
-                      <option value="BUDDHA">Buddha</option>
+                      <option value="BUDHA">Budha</option>
                     </select>
                     <div class="display-text">*Harap Isi Agama</div>
                   </div>
@@ -328,7 +328,7 @@
                   <div style="color:purple;">
                     <label style="width:100%;">Contoh:</label> 
                     <label style="width:100%;">1. Posisi - Perusahaan - Lama Bekerja,</label> 
-                    <label style="width:100%;">2. POSISI - PERUSAHAAN - LAMA BEKERJA</label>
+                    <label style="width:100%;">2. Posisi - Perushaan - Lama Bekerja</label>
                       <label style="width:100%;">dan seterusnya</label>
                   </div>
                   <span>Gunakan <b>Koma(,)</b> Sebagai "<b>Enter</b>" untuk lanjutan pengalaman</span>
@@ -359,27 +359,28 @@
                           <div class="form-group col-md-12">
                             <label for="foto">Upload Foto :</label>
                               <input type="file" accept="image/*" class="form-control" id="foto" name="foto" required>
-                              <!-- <span class="small-font">Ukuran Foto Maksimal <b>1 MB</b>*</span> -->
+                              <span class="small-font">Format Image(JPG/PNG)*</span>
                               <div class="display-text">*Harap Upload Foto</div>
                           </div>
 
                           <div class="form-group col-md-12">
                             <label for="ktp">Upload KTP :</label>
                             <input type="file" accept="image/*" class="form-control" id="ktp" name="ktp" required>
-                            <!-- <span class="small-font">Ukuran KTP Maksimal <b>1 MB</b>*</span> -->
+                            <span class="small-font">Format Image(JPG/PNG)*</span>
                             <div class="display-text">*Harap Upload KTP</div>
                           </div>
 
                           <div class="form-group col-md-12">
                             <label for="ijazah">Upload Ijazah :</label>
                             <input type="file" accept="image/*" class="form-control" id="ijazah" name="ijazah" required>
-                            <!-- <span class="small-font">Ukuran Ijazah Maksimal <b>1 MB</b>*</span> -->
+                            <span class="small-font">Format Image(JPG/PNG)*</span>
                             <div class="display-text">*Harap Upload Ijazah</div>
                           </div>
 
                           <div class="form-group col-md-12">
                             <label for="cv">Upload CV :</label>
                             <input type="file" class="form-control" id="copy_cv" name="copy_cv" required>
+                            <span class="small-font">Semua jenis format dokumen atau image*</span>
                             <div class="display-text">*Harap Upload CV</div>
                           </div>
               
@@ -1027,14 +1028,18 @@ $(document).ready(function () {
  //      autoclose: true
  //  });
 
+  $("#formPelamar").submit(function(e) {
+    e.preventDefault();
+  });
+
   $(document).on('submit', '#formPelamar', function(){
 
-    // if (CheckValidasiPeserta() == true ) {
-      // $("#loader").show();
+    if (CheckValidasiPeserta() == true ) {
+      $("#loader").show();
       // $("#labelError").hide();
       var data = new FormData(this);
       data.append('branch', $('#branch').val());
-      data.append('posisi', $('#position').val());
+      data.append('posisi', $('#posisiPelamar').val());
       data.append('refrensi', $('[name="refrensi"]').val());
       data.append('nama_lengkap', $('#fullName').val());
       data.append('warga_negara', $('#wargaNegara').val());
@@ -1080,13 +1085,16 @@ $(document).ready(function () {
             $('#myInput').remove();
             $('#modalSuccess').modal('show');
             $('#modalPelamar').modal('hide');
-              // $("#loader").hide();
+            $("#loader").hide();
          }
       });
-    // } else {
-    //   console.log("Error Cuy");
-    // }
+    } else {
+
+      console.log("Error Cuy");
+    }
+
     return false;
+
     });
 
   $('#refrensi').change(function(){
@@ -1339,6 +1347,7 @@ $(document).ready(function () {
       else {
           // $("#foto").addClass("error-field-file");
               alert("Format Foto hanya boleh GIF, PNG, JPG, JPEG and BMP. ");
+              return false;
           }
       
     }
@@ -1379,6 +1388,7 @@ $(document).ready(function () {
       else {
           // $("#ktp").addClass("error-field-file");
               alert("Format ktp hanya boleh GIF, PNG, JPG, JPEG and BMP. ");
+              return false;
           }
       
     }
@@ -1419,6 +1429,7 @@ $(document).ready(function () {
       else {
           // $("#ijazah").addClass("error-field-file");
               alert("Format ijazah hanya boleh GIF, PNG, JPG, JPEG and BMP. ");
+              return false;
           }
       
     }

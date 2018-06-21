@@ -35,6 +35,9 @@
 </head>
 
 <body>
+  <div id="loader">
+    <img class="img-responsive" src="image/loading.gif">
+  </div>
 
   <!--==========================
     Header
@@ -199,8 +202,6 @@
           <div class="col-lg-12 col-md-12 box wow bounceInUp" data-wow-duration="1.4s">
             <img class="img-responsive" src="img/flow.png">
              <a data-toggle="modal" data-target="#modalPelamar" href="javascript:void(0);" class="btn-get-started scrollto">Lamar Pekerjaan</a>  
-            <!-- <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p> -->
-            <!-- <a href="#featured-services" class="btn-get-started scrollto">Daftar Lowongan</a> -->
           </div>
           
 
@@ -531,17 +532,6 @@
             <p>Harda Esa Raksa berdiri sejak tahun 1987 dimulai dari usaha perdagangan alat-alat telekomunikasi dan barang cetak, hingga berawal pada tahun 2007, Harda Esa Raksa mengembangkan bisnis dalam hal penyaluran dan penempatan tenaga kerja.</p>
           </div>
 
-         <!--  <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div> -->
-
           <div class="col-lg-4 col-md-6 footer-contact">
             <h4>Contact Us</h4>
             <p>
@@ -635,6 +625,7 @@
       });
     });
 
+   $("#loader").hide();
    $("#tanggal_lahir").dateDropdowns({
       minAge: 18
    });
