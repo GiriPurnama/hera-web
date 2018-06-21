@@ -584,6 +584,9 @@
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
+  <?php 
+    include "modal.php";
+  ?>  
   <!-- JavaScript Libraries -->
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/jquery/jquery-migrate.min.js"></script>
@@ -642,6 +645,3 @@
 
 </body>
 </html>
-<?php 
-  include "modal.php";
-?>  
