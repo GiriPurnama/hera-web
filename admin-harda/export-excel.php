@@ -65,7 +65,7 @@ header("Content-Disposition: attachment; filename=pelamar-exportxls-".date("d-m-
         $posisi_rekomendasi = $posisi_rekomendasi ?: $posisi;
         $pengalaman = $rowshow['pengalaman_kerja'];
         $komentar = strip_tags($rowshow['komentar'], '<p><a>');
-        $ndata = preg_replace("/\,/", "<br/>", $pengalaman);    
+        $pengalaman_kerja = preg_replace("/\,/", "<br/>", $pengalaman);    
 
           echo '<tr>';
             echo '<td>'.$nomor.'</td>';
@@ -89,7 +89,7 @@ header("Content-Disposition: attachment; filename=pelamar-exportxls-".date("d-m-
             echo '<td>'.$rowshow['kemampuan_komputer'].'</td>';
             echo '<td>'.$rowshow['bahasa_asing'].'</td>';
             echo '<td>'.$rowshow['riwayat_penyakit'].'</td>';
-            echo '<td>'.$ndata.'</td>';
+            echo '<td>'.$pengalaman_kerja.'</td>';
             // echo '<td>'.$rowshow['lama_pengalaman'].'</td>';
             //echo '<td>'.$komentar.'</td>';
             echo '<td>'.$rowshow['status_pelamar'].'</td>';

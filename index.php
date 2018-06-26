@@ -151,7 +151,7 @@
           <div class="col-md-4 wow fadeInUp">
             <div class="about-col">
               <div class="img">
-                <img src="img/about-mission.jpg" alt="" class="img-fluid">
+                <img src="img/tangan.jpg" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
               </div>
               <h2 class="title"><a href="#" data-toggle="modal" data-target="#modalVisi">Visi Misi</a></h2>
@@ -162,7 +162,7 @@
           <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
             <div class="about-col">
               <div class="img">
-                <img src="img/about-plan.jpg" alt="" class="img-fluid">
+                <img src="img/biografi.jpg" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-list-outline"></i></div>
               </div>
               <h2 class="title"><a href="#" data-toggle="modal" data-target="#modalBiografi">Biografi</a></h2>
@@ -173,7 +173,7 @@
           <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s">
             <div class="about-col">
               <div class="img">
-                <img src="img/about-vision.jpg" alt="" class="img-fluid">
+                <img src="img/landscape.jpg" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-eye-outline"></i></div>
               </div>
               <h2 class="title"><a href="#" data-toggle="modal" data-target="#modalStruktur">Struktur Organisasi</a></h2>
@@ -322,7 +322,7 @@
                     </ol>
                   </div>
                   <div class="col-md-6 float-right mg-top">
-                    <img src="img/hands.jpg">
+                    <img src="img/jabat.jpg">
                   </div>
                 </div>
 
