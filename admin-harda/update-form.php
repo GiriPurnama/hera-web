@@ -522,6 +522,90 @@ if($_POST['rowpass']) {
   }
 ?>
 
+<?php
+    if($_POST['rowartikel']) {
+      $idartikel = $_POST['rowartikel'];
+      $load_data = mysqli_query($db, "SELECT * FROM artikel WHERE idartikel='$idartikel'");
+      while ($row = mysqli_fetch_assoc($load_data)) { 
+        
+        $judul_artikel = $row['judul_artikel'];
+        $isi_artikel = $row['isi_artikel'];
+        $foto_artikel = $row['foto_artikel'];
+        $idartikel = $row['idartikel'];
+      
+?>
+
+      <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
+         <div class="box-body">
+                <div class="form-group">
+                  <input type="hidden" name="idartikel" value="<?= $idartikel; ?>">
+                  <label for="title">Judul Artikel</label>
+                  <input type="text" class="form-control" name="judul_artikel" id="title_artikel" value="<?= $judul_artikel; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsi">Deskripsi Artikel</label>
+                <textarea id="ck_editorEdit" class="form-control" name="isi_artikel" required><?= $isi_artikel; ?></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="upload">Foto Artikel</label>
+                  <input type="file" name="foto_artikel" id="upload_artikel" value="<?= $foto_artikel; ?>">
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="update_artikel" id="fotoUpdate">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+              </div>
+      </form>
+<?php }
+  }
+?>
+
+<?php
+    if($_POST['rowtestimonial']) {
+      $idtestimonial = $_POST['rowtestimonial'];
+      $load_data = mysqli_query($db, "SELECT * FROM testimonial WHERE idtestimonial='$idtestimonial'");
+      while ($row = mysqli_fetch_assoc($load_data)) { 
+        
+        $nama_testimonial = $row['nama_testimonial'];
+        $isi_testimonial = $row['isi_testimonial'];
+        $foto_testimonial = $row['foto_testimonial'];
+        $idtestimonial = $row['idtestimonial'];
+        $status = $row['status'];
+      
+?>
+
+      <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
+         <div class="box-body">
+                <div class="form-group">
+                  <input type="hidden" name="idtestimonial" value="<?= $idtestimonial; ?>">
+                  <label for="title">Nama Testimonial</label>
+                  <input type="text" class="form-control" name="nama_testimonial" id="title_testimonial" value="<?= $nama_testimonial; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsi">Deskripsi Testimonial</label>
+                  <textarea class="form-control" name="isi_testimonial" required><?= $isi_testimonial; ?></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="upload">Foto Testimonial</label>
+                  <input type="file" name="foto_testimonial" id="upload_testimonial" value="<?= $foto_testimonial; ?>">
+                </div>
+                <div class="form-group">
+                  <label for="status">Status</label>
+                  <select class="form-control" name="status">
+                      <option <?php if ($status == "pelamar" ) echo 'selected' ; ?> value="pelamar">Pelamar</option>
+                      <option <?php if ($status == "client" ) echo 'selected' ; ?> value="client">Client</option>
+                  </select>
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="update_testimonial" id="fotoUpdate">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+              </div>
+      </form>
+<?php }
+  }
+?>
+
 <script type="text/javascript">
   function password_match() {
     var password = $("#password_title").val();

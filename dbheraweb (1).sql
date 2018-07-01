@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2018 at 06:05 AM
+-- Generation Time: Jul 01, 2018 at 03:36 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -40,8 +40,21 @@ CREATE TABLE `album` (
 --
 
 INSERT INTO `album` (`albumid`, `nama_album`, `album_deskripsi`, `image`, `album_date`, `status`) VALUES
-(2, 'Test', 'Album tentang jalan', '../upload/page-album/png-lebah_1527232029.png', '2018-05-25', ''),
-(3, 'vv', 'vv', '../upload/page-album/triangle-3213782_1920_1528268948.jpg', '2018-06-06', '');
+(8, 'sdv', 'sdv', '../upload/page-album/DSCF3819_1530013577.JPG', '2018-06-26', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `artikel`
+--
+
+CREATE TABLE `artikel` (
+  `idartikel` int(11) NOT NULL,
+  `judul_artikel` varchar(200) NOT NULL,
+  `isi_artikel` text NOT NULL,
+  `foto_artikel` varchar(200) NOT NULL,
+  `post_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -59,13 +72,6 @@ CREATE TABLE `galeri_foto` (
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `galeri_foto`
---
-
-INSERT INTO `galeri_foto` (`gid`, `albumid`, `nama_foto`, `desc_foto`, `foto`, `date_foto`, `status`) VALUES
-(11, 2, 'Skip', 'ccc', '../upload/page-foto/AJFC_1527233279.png', '2018-05-25', '');
-
 -- --------------------------------------------------------
 
 --
@@ -77,6 +83,7 @@ CREATE TABLE `galeri_video` (
   `nama_video` varchar(200) NOT NULL,
   `video_deskripsi` varchar(200) NOT NULL,
   `video` varchar(200) NOT NULL,
+  `img_video` varchar(200) NOT NULL,
   `date_video` date NOT NULL,
   `status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -85,9 +92,9 @@ CREATE TABLE `galeri_video` (
 -- Dumping data for table `galeri_video`
 --
 
-INSERT INTO `galeri_video` (`videoid`, `nama_video`, `video_deskripsi`, `video`, `date_video`, `status`) VALUES
-(2, 'asdasdaa', 'dsf', 'https://www.youtube.com/embed/Bkcz__8r0l4', '2018-05-30', ''),
-(3, 'vv', 'dd', 'https://www.youtube.com/embed/HAIDqt2aUek', '2018-06-06', '');
+INSERT INTO `galeri_video` (`videoid`, `nama_video`, `video_deskripsi`, `video`, `img_video`, `date_video`, `status`) VALUES
+(2, 'asdasdaa', 'dsf', 'https://www.youtube.com/embed/Bkcz__8r0l4', '../upload/page-video/arata_1529381386.jpg', '2018-05-30', ''),
+(4, 'Video Baru', 'hello', 'https://www.youtube.com/embed/fV4DiAyExN0', '../upload/page-video/test_1529382483.jpg', '2018-06-19', '');
 
 -- --------------------------------------------------------
 
@@ -108,7 +115,7 @@ CREATE TABLE `info_lowongan` (
 --
 
 INSERT INTO `info_lowongan` (`idlowongan`, `nama_lowongan`, `desc_lowongan`, `tgl_posting`, `status`) VALUES
-(2, 'IT Programmer', '1. IT\r\n2. Supprot', '2018-06-08', 'aktif');
+(2, 'IT Programmer', '<p>1. IT</p>\r\n\r\n<p>2. Supprot</p>\r\n', '2018-06-08', 'aktif');
 
 -- --------------------------------------------------------
 
@@ -177,9 +184,10 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`id_admin`, `username`, `email_admin`, `password`, `nama_lengkap`, `divisi`, `branch`, `img_divisi`, `status`, `no_emergency`, `hubungan`, `facebook`, `linkedin`, `twitter`, `motto`) VALUES
-(1, 'giri', 'giri.purnama78@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Giri Purnama', 'IT Support', 'Jakarta', '../upload/page-team/mario-taferner-339576-unsplash_1528269171.jpg', 'ADMIN', '08567909767', 'Aku Sendiri', 'https://www.linkedin.com/in/giri-purnama-060818123/', 'https://www.linkedin.com/in/giri-purnama-060818123/', 'https://www.linkedin.com/in/giri-purnama-060818123/', 'No Game No Life'),
-(6, 'angga', 'angga.dwicahya@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Angga', 'HRD IT', 'Bandung', '../upload/page-team/fa984ece3b8e71a622f81f4c849764f2_1528269702.jpg', 'RECRUITMENT', '', '', '', '', '', ''),
-(7, 'zalora', 'zalora@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'zalora', 'Recruitment', 'Surabaya', '../upload/page-team/IMG-20180420-WA0032_1528269777.jpg', 'RECRUITMENT', '', '', '', '', '', '');
+(1, 'giri', 'giri.purnama78@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Giri Purnama', 'IT Support', 'Jakarta', '../upload/page-team/DSC_1667_1530003990.JPG', 'ADMIN', '08567909767', 'Aku Sendiri', 'https://www.linkedin.com/in/giri-purnama-060818123/', 'https://www.linkedin.com/in/giri-purnama-060818123/', 'https://www.linkedin.com/in/giri-purnama-060818123/', 'No Game No Life'),
+(6, 'angga', 'angga.dwicahya@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Angga', 'Recruitment Officer', 'Bandung', '../upload/page-team/DSCF4680_1530004443.JPG', 'RECRUITMENT', '', '', '', '', '', ''),
+(7, 'zalora', 'zaloras.hardaesaraksa@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Zalora Sanchenia', 'Recruitment Officer', 'Surabaya', '../upload/page-team/20171231_135229_1529567798.jpg', 'ADMIN', '08112330051', 'CALON SUAMI. AAMIIN', 'https://www.facebook.com/Ola.Cecu', 'https://www.linkedin.com/in/zaloras/', 'https://twitter.com/zaloras', 'SETIAP KEINGINAN & MIMPI AKAN MENJADI NYATA APABILA HATIMU MEYAKINI. GAPAILAH KESUKSESAN DUNIA & AKHIRAT'),
+(8, 'novi', 'novi.amalia@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Novi Amalia', 'HRD', 'Jakarta', '../upload/page-team/DSCF4698_1530004371.JPG', 'ADMIN', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -200,8 +208,7 @@ CREATE TABLE `menu_client` (
 --
 
 INSERT INTO `menu_client` (`idclient`, `title_client`, `desc_client`, `img_client`, `tgl_join`) VALUES
-(1, 'HArda', 'tessss', '../upload/page-client/hera-black2_1527661230.png', '2016-12-12'),
-(2, 'dd', 'ddff', '../upload/page-client/astronomy-evening-exploration-962095_1528268922.jpg', '0000-00-00');
+(2, 'dd', 'ddff', '../upload/page-client/astronomy-evening-exploration-962095_1528268922.jpg', '2018-07-09');
 
 -- --------------------------------------------------------
 
@@ -221,9 +228,9 @@ CREATE TABLE `menu_home` (
 --
 
 INSERT INTO `menu_home` (`idhome`, `title_img`, `desc_img`, `image_home`) VALUES
-(14, 'cccwwwfff', 'zzzvvvsss', '../upload/page-home/sc onepage_1526628659.png'),
-(15, 'cccsss', 'cccccww', '../upload/page-home/mountain_panorama_312395_1526969032.jpg'),
-(16, 'hw', 'sd', '../upload/page-home/mario-taferner-339576-unsplash_1528268904.jpg');
+(14, 'Terpercaya Sejak 2007', 'Mulai dari tahun 2007 hingga saat ini. PT. Harda Esa Raksa dipercaya dalam pengelolaan SDM, baik itu di perusahaan perbankan maupun non perbankan.', '../upload/page-home/IMG-20180626-WA0000_1530000240.jpg'),
+(15, 'Good Service', 'Dengan memberikan yang prima dan sesuai dengan motto kami â€œBekerja Dengan Sepenuh Hatiâ€. Kami adalah solusi terbaik dalam penyedia tenaga kerja bagi perusahaan anda.', '../upload/page-home/IMG-20180626-WA0007_1530000320.jpg'),
+(16, 'Management Fee Kompetitif', 'Kami menawarkan management fee yang sesuai dengan kualitas yang kami berikan.', '../upload/page-home/IMG-20180626-WA0006_1530000366.jpg');
 
 -- --------------------------------------------------------
 
@@ -313,16 +320,19 @@ CREATE TABLE `recruitment` (
   `branch` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `recruitment`
+-- Table structure for table `testimonial`
 --
 
-INSERT INTO `recruitment` (`id`, `posisi`, `refrensi`, `nama_lengkap`, `warga_negara`, `tempat_lahir`, `tanggal_lahir`, `agama`, `jenis_kelamin`, `no_ktp`, `no_sim`, `status_sipil`, `alamat_email`, `alamat_sekarang`, `berat_badan`, `tinggi_badan`, `no_handphone`, `telepon`, `pendidikan_terakhir`, `kuliah`, `kemampuan_komputer`, `bahasa_asing`, `riwayat_penyakit`, `pengalaman_kerja`, `perusahaan_kerja`, `tahun_kerja`, `lama_pengalaman`, `foto`, `ktp`, `ijazah`, `jadwal_interview`, `promosi_diri`, `post_date`, `status_pelamar`, `komentar`, `posisi_rekomendasi`, `token`, `interview`, `copy_cv`, `branch`) VALUES
-(9, 'SS', 'ZALORA', 'SS', 'SS', 'SS', '1985-10-17', 'ISLAM', 'PEREMPUAN', '11', '11', 'DUDA', 'AS@MAIL.COM', '11', '11', '11', '11', '11', 'SMA', '', '11', 'JEPANG', '11', '11', '', '', '', '../upload/mario-taferner-339576-unsplash_1528258781.jpg', '../upload/astronomy-evening-exploration-962095_1528258781.jpg', '../upload/triangle-3213782_1920_1528258781.jpg', '0000-00-00', '11', '2018-06-06', '', '', '', 'ZA-38U', '', '../cv/pelamar-exportxls-04-06-2018_1528258781.xls', 'BANDUNG'),
-(10, 'SD', 'DD', 'EE', 'EE', 'EE', '2018-06-19', 'ISLAM', 'LAKI-LAKI', '11', '22', 'MENIKAH', 'EEE@GAMIL.COM', 'EE', '11', '11', '11', '11', 'SMA', '', 'EE', 'JEPANG', 'EE', 'EE', '', '', '', '../upload/mario-taferner-339576-unsplash_1528260088.jpg', '../upload/astronomy-evening-exploration-962095_1528260088.jpg', '../upload/background-2730506_1920_1528260088.jpg', '0000-00-00', 'EE', '2018-06-06', '', '', '', 'DD-zNO', '', '../cv/DATA ID CARD SALES_1528260088.xlsx', 'JAKARTA'),
-(11, 'XXX', 'ZALORA', 'XXX', 'XX', 'XX', '2018-06-13', 'ISLAM', 'LAKI-LAKI', '111', '11', 'MENIKAH', 'XXX@GMAIL.COM', 'XX', '12', '34', '11', '11', 'D3', '', 'XX', 'MANDARIN', 'XX', 'XX', '', '', '', '../upload/mario-taferner-339576-unsplash_1528266907.jpg', '../upload/astronomy-evening-exploration-962095_1528266907.jpg', '../upload/IMG-20180521-WA0000_1528266907.jpg', '0000-00-00', 'XX', '2018-06-06', '', '', '', 'ZA-IOV', '', '../cv/PT HARDA ESA RAKSA_1528266907.docx', 'SURABAYA'),
-(12, 'TEST', 'ZALORA', 'SSF', 'FF', 'FF', '1978-11-15', 'ISLAM', 'LAKI-LAKI', '222', '222', 'MENIKAH', 'FF@GMAIL.COM', 'SS', '12', '32', '11', '11', 'D3', '', 'SSS', 'JERMAN', 'SS', 'SSS', '', '', '', '../upload/IMG-20180418-WA0064_1528352144.jpg', '../upload/turkey-3251638_1528352144.jpg', '../upload/coollogo_com-81561601_1528352144.png', '0000-00-00', '11', '2018-06-07', 'DISARANKAN', '', 'APA AJA', 'ZA-5Gr', 'HELLO', '../cv/CV ORI_1528352144.pdf', 'JAKARTA'),
-(13, 'CCC', 'ANGGA', 'CCC', 'CC', 'CC', '1994-07-13', 'ISLAM', 'LAKI-LAKI', '122', '2131', 'MENIKAH', 'ASD@MAIL.COM', 'SDAS', '12', '12', '1231', '213', 'SMA', '', '123', 'JEPANG', 'SAD', 'ASSA', '', '', '', '../upload/astronomy-evening-exploration-962095_1528425796.jpg', '../upload/Ijazah-min_1528425796.jpg', '../upload/image019_1528425796.jpg', '0000-00-00', 'ASA', '2018-06-08', '', '', '', 'AN-Ntq', '', '../cv/Invoice_1528425796.pdf', 'JAKARTA');
+CREATE TABLE `testimonial` (
+  `idtestimonial` int(11) NOT NULL,
+  `nama_testimonial` varchar(200) NOT NULL,
+  `isi_testimonial` text NOT NULL,
+  `foto_testimonial` varchar(200) NOT NULL,
+  `status` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -333,6 +343,12 @@ INSERT INTO `recruitment` (`id`, `posisi`, `refrensi`, `nama_lengkap`, `warga_ne
 --
 ALTER TABLE `album`
   ADD PRIMARY KEY (`albumid`);
+
+--
+-- Indexes for table `artikel`
+--
+ALTER TABLE `artikel`
+  ADD PRIMARY KEY (`idartikel`);
 
 --
 -- Indexes for table `galeri_foto`
@@ -401,6 +417,12 @@ ALTER TABLE `recruitment`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `testimonial`
+--
+ALTER TABLE `testimonial`
+  ADD PRIMARY KEY (`idtestimonial`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -408,17 +430,22 @@ ALTER TABLE `recruitment`
 -- AUTO_INCREMENT for table `album`
 --
 ALTER TABLE `album`
-  MODIFY `albumid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `albumid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `artikel`
+--
+ALTER TABLE `artikel`
+  MODIFY `idartikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `galeri_foto`
 --
 ALTER TABLE `galeri_foto`
-  MODIFY `gid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `gid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `galeri_video`
 --
 ALTER TABLE `galeri_video`
-  MODIFY `videoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `videoid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `info_lowongan`
 --
@@ -438,7 +465,7 @@ ALTER TABLE `kotak_surat`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `menu_client`
 --
@@ -463,7 +490,12 @@ ALTER TABLE `pesan`
 -- AUTO_INCREMENT for table `recruitment`
 --
 ALTER TABLE `recruitment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `testimonial`
+--
+ALTER TABLE `testimonial`
+  MODIFY `idtestimonial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

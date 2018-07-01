@@ -1,83 +1,83 @@
-<!-- Modal User-->
-<div class="modal fade" id="modalVisi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Visi dan Misi</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h3>Visi</h3>
-        <P>“Menjadi perusahaan terkemuka di Indonesia dalam sektor penyediaan jasa tenaga kerja dan jasa pelatihan terutama tenaga pemasaran.”</P>
-        <h3>Misi</h3>
-        <p>“Mewujudkan kepuasan client dengan memberikan layanan yang profesional dan menciptakan hubungan kerja yang harmonis.”</p>
-      </div> 
-    </div>
-  </div>
-</div>
-
-<div class="full-modal modal fade" id="modalBiografi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Biografi</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="col-md-12 text-center">
-          <img class="img-responsive" src="img/biografi.png">
+<!--========================= Modal User =======================================================================-->
+  <div class="modal fade" id="modalVisi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Visi dan Misi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="text-bio">
-          <h3>Biografi PT Harda Esa Raksa</h3>
-          <p>Harda Esa Raksa berdiri sejak tahun 1987 dimulai dari usaha perdagangan alat-alat telekomunikasi dan barang cetak, hingga berawal pada tahun 2007, Harda Esa Raksa mengembangkan bisnis dalam hal penyaluran dan penempatan tenaga kerja.
-  PT Harda Esa Raksa Adalah Perusahaan swasta yang bergerak di bidang sales, recruitment, jasa penyedia dan penempatan tenaga kerja. Dimulai pada tahun 2007 mengembangkan bisnis dalam hal penyediaan dan pengolahan tenaga sales pada salah satu perbankan di indonesia yaitu pemasaran produk kartu kredit. pada tahun 2010 PT Harda Esa Raksa mengembangkan jasa yang diberikan kepada klien yang akan dan telah menggunakan jasa PT Harda Esa Raksa yaitu recruitment service, jasa penyediaan dan penempatan tenaga kerja mulai dari level staff hingga managerial.</p>
-        </div>
-      </div> 
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="modalVisi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Visi dan Misi</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <div class="modal-body">
+          <h3>Visi</h3>
+          <P>“Menjadi perusahaan terkemuka di Indonesia dalam sektor penyediaan jasa tenaga kerja dan jasa pelatihan terutama tenaga pemasaran.”</P>
+          <h3>Misi</h3>
+          <p>“Mewujudkan kepuasan client dengan memberikan layanan yang profesional dan menciptakan hubungan kerja yang harmonis.”</p>
+        </div> 
       </div>
-      <div class="modal-body">
-        <h3>Visi</h3>
-        <P>“Menjadi perusahaan terkemuka di Indonesia dalam sektor penyediaan jasa tenaga kerja dan jasa pelatihan terutama tenaga pemasaran.”</P>
-        <h3>Misi</h3>
-        <p>“Mewujudkan kepuasan client dengan memberikan layanan yang profesional dan menciptakan hubungan kerja yang harmonis.”</p>
-      </div> 
     </div>
   </div>
-</div>
 
-<div class="full-modal modal fade" id="modalStruktur" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Struktur Organisasi</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="col-md-12 text-center">
-          <img class="img-responsive" src="img/struktur-hera.png">
+  <div class="full-modal modal fade" id="modalBiografi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Biografi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-      </div> 
+        <div class="modal-body">
+          <div class="col-md-12 text-center">
+            <img class="img-responsive" src="img/biografi.png">
+          </div>
+          <div class="text-bio">
+            <h3>Biografi PT Harda Esa Raksa</h3>
+            <p>Harda Esa Raksa berdiri sejak tahun 1987 dimulai dari usaha perdagangan alat-alat telekomunikasi dan barang cetak, hingga berawal pada tahun 2007, Harda Esa Raksa mengembangkan bisnis dalam hal penyaluran dan penempatan tenaga kerja.
+    PT Harda Esa Raksa Adalah Perusahaan swasta yang bergerak di bidang sales, recruitment, jasa penyedia dan penempatan tenaga kerja. Dimulai pada tahun 2007 mengembangkan bisnis dalam hal penyediaan dan pengolahan tenaga sales pada salah satu perbankan di indonesia yaitu pemasaran produk kartu kredit. pada tahun 2010 PT Harda Esa Raksa mengembangkan jasa yang diberikan kepada klien yang akan dan telah menggunakan jasa PT Harda Esa Raksa yaitu recruitment service, jasa penyediaan dan penempatan tenaga kerja mulai dari level staff hingga managerial.</p>
+          </div>
+        </div> 
+      </div>
     </div>
   </div>
-</div>
 
+  <div class="modal fade" id="modalVisi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Visi dan Misi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3>Visi</h3>
+          <P>“Menjadi perusahaan terkemuka di Indonesia dalam sektor penyediaan jasa tenaga kerja dan jasa pelatihan terutama tenaga pemasaran.”</P>
+          <h3>Misi</h3>
+          <p>“Mewujudkan kepuasan client dengan memberikan layanan yang profesional dan menciptakan hubungan kerja yang harmonis.”</p>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+  <div class="full-modal modal fade" id="modalStruktur" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Struktur Organisasi</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="col-md-12 text-center">
+            <img class="img-responsive" src="img/struktur-hera.png">
+          </div>
+        </div> 
+      </div>
+    </div>
+  </div>
+<!--========================= Modal User =======================================================================-->
 
 <!--================================= Modal Recruitment ==========================-->
   <div class="full-modal modal fade" id="modalPelamar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -780,6 +780,95 @@
                 <!-- /.box-body -->
                 <div class="box-footer">
                   <button type="submit" class="btn btn-primary" name="save_lowongan">Simpan</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.box -->
+
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalArtikel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-body">
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Tambah Data Artikel</h3>
+              </div>
+              <!-- /.box-header -->
+              <!-- form start -->
+              <form role="form" id="formTestimonial" method="POST" action="server.php" enctype="multipart/form-data">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="title">Judul Artikel</label>
+                    <input type="text" class="form-control" name="judul_artikel" id="judul_artikel" placeholder="Judul Artikel" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="deskripsi">Isi Artikel</label>
+                   <textarea id="ck_editor_artikel" class="form-control" name="isi_artikel" placeholder="Isi Arikel" required></textarea> 
+                  </div>
+                  <div class="form-group">
+                    <label for="upload">Image Artikel</label>
+                    <input type="file" name="foto_artikel" id="foto_artikel" required>
+                  </div>
+                </div>
+
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  <button type="submit" class="btn btn-primary" name="artikel_save" id="artikelSave">Simpan</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.box -->
+
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalTestimonial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-body">
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Tambah Data Testimonial</h3>
+              </div>
+              <!-- /.box-header -->
+              <!-- form start -->
+              <form role="form" id="formArtikel" method="POST" action="server.php" enctype="multipart/form-data">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="title">Nama Testimonial</label>
+                    <input type="text" class="form-control" name="nama_testimonial" id="judul_testimonial" placeholder="Nama Testimonial" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="deskripsi">Isi Testimonnial</label>
+                   <textarea class="form-control" name="isi_testimonial" placeholder="Isi Testimonial" required></textarea> 
+                  </div>
+                  <div class="form-group">
+                    <label for="upload">Image Testmonial</label>
+                    <input type="file" name="foto_testimonial" id="foto_testimonial" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="status">Status</label>
+                    <select class="form-control" name="status" required>
+                      <option value="">-</option>
+                      <option value="pelamar">Pelamar</option>
+                      <option value="client">Client</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  <button type="submit" class="btn btn-primary" name="testimonial_save">Simpan</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
                 </div>
               </form>

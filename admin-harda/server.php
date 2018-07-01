@@ -353,10 +353,26 @@
   	// Delete
   	if (isset($_GET['albumid'])) {
 	  	$albumid = $_GET['albumid'];
-	  	$load_data = mysqli_query($db, "SELECT album.albumid, galeri_foto.albumid, image, foto, gid FROM album INNER JOIN galeri_foto ON album.albumid = galeri_foto.albumid WHERE album.albumid='$albumid'");
+	  	$load_data = mysqli_query($db, "SELECT * FROM album WHERE albumid='$albumid'");
+	  	// $load_data = mysqli_query($db, "SELECT album.albumid, galeri_foto.albumid, image, foto, gid FROM album INNER JOIN galeri_foto ON album.albumid = galeri_foto.albumid WHERE album.albumid='$albumid'");
 	  	while ($row = mysqli_fetch_assoc($load_data)) {
 	  		
-	  		$gid=$row['gid'];
+	  		// $gid=$row['gid'];
+	  		$foto=$row['foto'];
+	  		if ($foto == '') {
+		 		if (is_file($row['image'])) {
+		  			unlink($row['image']);
+				  	$query_delete = mysqli_query($db, "DELETE FROM album WHERE albumid='$albumid'");
+				  	if ($query_delete) {
+				  		header('location: page-album.php');
+				  	} else{
+				  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal didelete'); window.location.href='page-album.php'</script>");
+				  	}
+		  		} else { 
+		  			 echo ("<script LANGUAGE='JavaScript'>window.alert('File Tidak Ditemukan'); window.location.href='page-album.php'</script>");
+		  			 $query_delete = mysqli_query($db, "DELETE FROM album WHERE albumid='$albumid'");
+		  		} 			
+	  		}
 
 	  		if (is_file($row['image']) && is_file($row['foto'])) {
 	  			unlink($row['image']);
@@ -877,5 +893,202 @@
 	} 
 
 //===================== Page Lowongan ================================================
+
+
+//===================== Page Testimonial ================================================
+	if (isset($_POST['testimonial_save'])) {
+  		  $nama_testimonial = mysqli_real_escape_string($db, trim($_POST['nama_testimonial']));
+  		  $isi_testimonial = mysqli_real_escape_string($db, trim($_POST['isi_testimonial']));
+  		  $status = $_POST['status'];
+
+  		  $type = $_FILES['foto_testimonial']['type'];
+		  $fileinfo=PATHINFO($_FILES["foto_testimonial"]["name"]);
+		  $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+		  move_uploaded_file($_FILES["foto_testimonial"]["tmp_name"],"../upload/page-testimonial/" . $newFilename);
+		  $img_testimonial="../upload/page-testimonial/" . $newFilename;
+		
+  		  $query = mysqli_query($db, "INSERT INTO testimonial(nama_testimonial, isi_testimonial, foto_testimonial, status) values ('$nama_testimonial','$isi_testimonial','$img_testimonial','$status')");
+  		  if ($query) {
+  		  		header('location: page-testimonial.php');
+  		  } else {
+  		  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diinsert); window.location.href='page-testimonial.php'</script>");
+  		  }
+  	}
+
+  	// Delete
+  	if (isset($_GET['idtestimonial'])) {
+	  	$idtestimonial = $_GET['idtestimonial'];
+	  	$load_data = mysqli_query($db, "SELECT * FROM testimonial WHERE idtestimonial='$idtestimonial'");
+	  	while ($row = mysqli_fetch_assoc($load_data)) {
+	  		if (is_file($row['foto_testimonial'])) {
+	  			unlink($row['foto_testimonial']);
+			  	$query_delete = mysqli_query($db, "DELETE FROM testimonial WHERE idtestimonial='$idtestimonial'");
+			  	if ($query_delete) {
+			  		header('location: page-testimonial.php');
+			  	} else{
+			  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal dihapus'); window.location.href='page-testimonial.php'</script>");
+			  	}
+	  		} else { 
+	  			echo ("<script LANGUAGE='JavaScript'>window.alert('File Tidak ditemukan'); window.location.href='page-testimonial.php'</script>");
+	  			$query_delete = mysqli_query($db, "DELETE FROM testimonial WHERE idtestimonial='$idtestimonial'");
+	  		}
+	  	}
+  	}
+
+  	
+
+  	// Update
+  	if (isset($_POST['update_testimonial'])) {
+
+	  if (isset($_POST['idtestimonial'])) {
+
+		    $idtestimonial = $_POST['idtestimonial'];
+
+		  	$query = mysqli_query($db, "SELECT * FROM testimonial WHERE idtestimonial='$idtestimonial'") or die('Query Error : '.mysqli_error($db));
+	        while ($data  = mysqli_fetch_assoc($query)) {
+	        	$foto_testimonial = $data['foto_testimonial'];
+	        }
+
+		    $nama_testimonial = $_POST['nama_testimonial'];
+	  		$isi_testimonial = $_POST['isi_testimonial'];
+	  		$status = $_POST['status'];
+
+	  		if($_FILES["foto_testimonial"]["error"] == 4) {
+	  			$query = mysqli_query($db, "UPDATE testimonial SET nama_testimonial = '$nama_testimonial',
+		                            isi_testimonial  = '$isi_testimonial',
+		                            status = '$status'
+		                            WHERE idtestimonial   = '$idtestimonial'");   
+			    // cek query
+			    if ($query) {
+			      header('location: page-testimonial.php');
+			    } else {
+			      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-testimonial.php'</script>");
+			    }
+	  		
+	  		} else {
+		        $type = $_FILES['foto_testimonial']['type'];
+			    $fileinfo=PATHINFO($_FILES["foto_testimonial"]["name"]);
+			    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+			    if (!$foto_testimonial=="" || $foto_testimonial==""){  
+				    unlink($foto_testimonial);
+				    move_uploaded_file($_FILES["foto_testimonial"]["tmp_name"],"../upload/page-testimonial/" . $newFilename);
+				    $location_testimonial="../upload/page-testimonial/" . $newFilename;
+				}
+
+			    // perintah query untuk mengubah data pada tabel is_siswa
+			    $query = mysqli_query($db, "UPDATE testimonial SET nama_testimonial = '$nama_testimonial',
+			                            isi_testimonial  = '$isi_testimonial',
+			                            foto_testimonial = '$location_testimonial',
+			                            status = '$status'
+			                            WHERE idtestimonial   = '$idtestimonial'");   
+
+			    // cek query
+			    if ($query) {
+			      header('location: page-testimonial.php');
+			    } else {
+			      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-testimonial.php'</script>");
+			    } 
+	  		}
+	  }
+	} 
+
+//===================== Page Testimonial ================================================
+
+
+//===================== Page Artikel ================================================
+	if (isset($_POST['artikel_save'])) {
+  		  $judul_artikel = mysqli_real_escape_string($db, trim($_POST['judul_artikel']));
+  		  $isi_artikel = mysqli_real_escape_string($db, trim($_POST['isi_artikel']));
+
+  		  $type = $_FILES['foto_artikel']['type'];
+		  $fileinfo=PATHINFO($_FILES["foto_artikel"]["name"]);
+		  $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+		  move_uploaded_file($_FILES["foto_artikel"]["tmp_name"],"../upload/page-artikel/" . $newFilename);
+		  $img_artikel="../upload/page-artikel/" . $newFilename;
+		
+  		  $query = mysqli_query($db, "INSERT INTO artikel(judul_artikel, isi_artikel, foto_artikel, post_date) values ('$judul_artikel','$isi_artikel','$img_artikel',NOW())");
+  		  if ($query) {
+  		  		header('location: page-artikel.php');
+  		  } else {
+  		  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diinsert); window.location.href='page-artikel.php'</script>");
+  		  }
+  	}
+
+  	// Delete
+  	if (isset($_GET['idartikel'])) {
+	  	$idartikel = $_GET['idartikel'];
+	  	$load_data = mysqli_query($db, "SELECT * FROM artikel WHERE idartikel='$idartikel'");
+	  	while ($row = mysqli_fetch_assoc($load_data)) {
+	  		if (is_file($row['foto_artikel'])) {
+	  			unlink($row['foto_artikel']);
+			  	$query_delete = mysqli_query($db, "DELETE FROM artikel WHERE idartikel='$idartikel'");
+			  	if ($query_delete) {
+			  		header('location: page-artikel.php');
+			  	} else{
+			  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal dihapus'); window.location.href='page-artikel.php'</script>");
+			  	}
+	  		} else { 
+	  			echo ("<script LANGUAGE='JavaScript'>window.alert('File Tidak ditemukan'); window.location.href='page-artikel.php'</script>");
+	  			$query_delete = mysqli_query($db, "DELETE FROM artikel WHERE idartikel='$idartikel'");
+	  		}
+	  	}
+  	}
+
+  	
+
+  	// Update
+  	if (isset($_POST['update_artikel'])) {
+
+	  if (isset($_POST['idartikel'])) {
+
+		    $idartikel = $_POST['idartikel'];
+
+		  	$query = mysqli_query($db, "SELECT * FROM artikel WHERE idartikel='$idartikel'") or die('Query Error : '.mysqli_error($db));
+	        while ($data  = mysqli_fetch_assoc($query)) {
+	        	$foto_artikel = $data['foto_artikel'];
+	        }
+
+		    $judul_artikel = $_POST['judul_artikel'];
+	  		$isi_artikel = $_POST['isi_artikel'];
+
+	  		if($_FILES["foto_artikel"]["error"] == 4) {
+	  			$query = mysqli_query($db, "UPDATE artikel SET judul_artikel = '$judul_artikel',
+		                            isi_artikel  = '$isi_artikel'
+		                            WHERE idartikel  = '$idartikel'");   
+			    // cek query
+			    if ($query) {
+			      header('location: page-artikel.php');
+			    } else {
+			      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-artikel.php'</script>");
+			    }
+	  		
+	  		} else {
+		        $type = $_FILES['foto_artikel']['type'];
+			    $fileinfo=PATHINFO($_FILES["foto_artikel"]["name"]);
+			    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+			    if (!$foto_artikel=="" || $foto_artikel==""){  
+				    unlink($foto_artikel);
+				    move_uploaded_file($_FILES["foto_artikel"]["tmp_name"],"../upload/page-artikel/" . $newFilename);
+				    $location_artikel="../upload/page-artikel/" . $newFilename;
+				}
+
+			    // perintah query untuk mengubah data pada tabel is_siswa
+			    $query = mysqli_query($db, "UPDATE artikel SET judul_artikel = '$judul_artikel',
+			                            isi_artikel  = '$isi_artikel',
+			                            foto_artikel = '$location_artikel'
+			                            WHERE idartikel   = '$idartikel'");   
+
+			    // cek query
+			    if ($query) {
+			      header('location: page-artikel.php');
+			    } else {
+			      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-artikel.php'</script>");
+			    } 
+	  		}
+	  }
+	} 
+
+//===================== Page Artikel ================================================
+
 
 ?>
