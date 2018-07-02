@@ -78,7 +78,7 @@
                   <td><?php echo $alamat; ?></td>
                   <td><?= $telepon; ?></td>
                   <td><?= $email; ?></td>
-                  <td><iframe height="auto" width="200px" src="<?= $maps; ?>"></iframe></td>
+                  <td><iframe height="auto" width="200px" src="<?= $maps; ?>" style="border:0;" allowfullscreen></iframe></td>
                   <td>
 
                     <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['idkontak']."><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>

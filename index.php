@@ -57,6 +57,7 @@
           <li><a href="#about">About Us</a></li>
           <li><a href="#career">Career</a></li>
           <li><a href="#client">Client</a></li>
+          <li><a href="#testimonial">Testimonials</a></li>
           <li><a href="#team">Team</a></li>
           <li><a href="#service">Service</a></li>
           <li><a href="#gallery">Gallery</a></li>
@@ -148,10 +149,10 @@
 
         <div class="row about-cols">
 
-          <div class="col-md-4 wow fadeInUp">
+          <div class="col-md-3 wow fadeInUp">
             <div class="about-col">
               <div class="img">
-                <img src="img/tangan.jpg" alt="" class="img-fluid">
+                <img src="img/tangan.jpg" alt="" class="img-fluid size-box-img">
                 <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
               </div>
               <h2 class="title"><a href="#" data-toggle="modal" data-target="#modalVisi">Visi Misi</a></h2>
@@ -159,10 +160,10 @@
             </div>
           </div>
 
-          <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
+          <div class="col-md-3 wow fadeInUp" data-wow-delay="0.1s">
             <div class="about-col">
               <div class="img">
-                <img src="img/biografi.jpg" alt="" class="img-fluid">
+                <img src="img/biografi.jpg" alt="" class="img-fluid size-box-img">
                 <div class="icon"><i class="ion-ios-list-outline"></i></div>
               </div>
               <h2 class="title"><a href="#" data-toggle="modal" data-target="#modalBiografi">Biografi</a></h2>
@@ -170,13 +171,24 @@
             </div>
           </div>
 
-          <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s">
+          <div class="col-md-3 wow fadeInUp" data-wow-delay="0.2s">
             <div class="about-col">
               <div class="img">
-                <img src="img/landscape.jpg" alt="" class="img-fluid">
+                <img src="img/landscape.jpg" alt="" class="img-fluid size-box-img">
                 <div class="icon"><i class="ion-ios-eye-outline"></i></div>
               </div>
               <h2 class="title"><a href="#" data-toggle="modal" data-target="#modalStruktur">Struktur Organisasi</a></h2>
+              <br>
+            </div>
+          </div>
+
+          <div class="col-md-3 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="about-col">
+              <div class="img">
+                <img src="img/sambutan.jpg" alt="" class="img-fluid size-box-img">
+                <div class="icon"><i class="ion-ios-bookmarks"></i></div>
+              </div>
+              <h2 class="title"><a href="#" data-toggle="modal" data-target="#modalSambutan">Sambutan Direktur</a></h2>
               <br>
             </div>
           </div>
@@ -208,7 +220,8 @@
         </div>
 
       </div>
-    </section><!-- #services -->
+    </section>
+    <!-- #services -->
 
     <!--==========================
       Portfolio Section
@@ -232,14 +245,51 @@
           ?>
           <div class="item text-center pad-10">
             <img src="<?= $str_client; ?>" alt="">
-            <div class="title-client"><h5><?= $nama_client; ?></h5></div>
+            <!-- <div class="title-client"><h5><?= $nama_client; ?></h5></div> -->
           </div>
 
           <?php } ?>
         </div>
 
       </div>
-    </section><!-- #clients -->
+    </section>
+
+    <!-- #clients -->
+
+     <!--==========================
+      Portfolio Section
+      ============================-->
+    <!-- #portfolio -->
+
+    <section id="testimonial" class="wow fadeInUp">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>Testimonial</h3>
+        </header>
+
+        <div id="testimonial-service" class="owl-carousel owl-theme">
+          <?php 
+              $testimonial = mysqli_query($db, "SELECT * FROM testimonial");
+              while ($row = mysqli_fetch_assoc($testimonial)) {
+                $nama_testimonial = $row['nama_testimonial'];
+                $isi_testimonial = $row['isi_testimonial'];
+                $status = $row['status'];
+                $foto_testimonial = $row['foto_testimonial'];
+                $str_testimonial = str_replace("../", "", $foto_testimonial);   
+          ?>
+              <div class="item text-center pad-10">
+                <img class="size-img" src="<?= $str_testimonial; ?>" alt="">
+                <div class="title-text"><h4><?= $nama_testimonial; ?></h4></div>
+                <div class="status-text"><h5><?= $status; ?></h5></div>
+                <div class="content-text"><p>"<?= $isi_testimonial; ?>"</p></div>
+              </div>
+
+          <?php } ?>
+        </div>
+
+      </div>
+    </section> <!-- #clients -->
 
 
     <!--==========================
@@ -255,7 +305,7 @@
         <div class="row">
           <div id="team-carousel" class="owl-carousel owl-theme">
             <?php 
-               $team = mysqli_query($db, "SELECT * FROM login");
+               $team = mysqli_query($db, "SELECT * FROM login ORDER BY id_admin ASC");
                while ($row = mysqli_fetch_assoc($team)) {
                $img_divisi = $row['img_divisi'];
                $nama_lengkap = $row['nama_lengkap'];
@@ -274,9 +324,18 @@
                     <h4><?= $nama_lengkap; ?></h4>
                     <span><?= $divisi; ?></span>
                     <div class="social">
-                      <a href="<?= $url_twitter; ?>" target="_blank"><i class="fa fa-twitter"></i></a>
-                      <a href="<?= $url_facebook; ?>" target="_blank"><i class="fa fa-facebook"></i></a>
-                      <a href="<?= $url_linkedin; ?>" target="_blank"><i class="fa fa-linkedin"></i></a>
+                      <?php
+                        if ($url_twitter != "") { ?>  
+                            <a href="<?= $url_twitter; ?>" target="_blank"><i class="fa fa-twitter"></i></a>
+                        <?php } ?>
+                        
+                        <?php if ($url_facebook != "") { ?> 
+                            <a href="<?= $url_facebook; ?>" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <?php } ?>
+
+                        <?php if ($url_linkedin != "") { ?>
+                          <a href="<?= $url_linkedin; ?>" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        <?php } ?>
                     </div>
                   </div>
                 </div>
@@ -450,6 +509,7 @@
                 $alamat = $row['alamat'];
                 $telepon = $row['telepon'];
                 $email = $row['email'];
+                $maps = $row['maps'];
             ?>
 
             <div class="item" data-dot="<div class='btn-owl'><?= $wilayah; ?></div>">
@@ -462,6 +522,7 @@
                     <i class="ion-ios-location-outline"></i>
                     <h3>Alamat</h3>
                     <address><?= $alamat; ?></address>
+                   <iframe src="<?= $maps; ?>" width="100%" height="200" frameborder="0" style="border:0; margin-top:20px;" allowfullscreen></iframe>
                   </div>
                 </div>
 
@@ -554,11 +615,8 @@
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Maps</h4>
-            <!-- <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit"  value="Subscribe">
-            </form>
- -->          </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0731007715567!2d106.84034821419388!3d-6.254099562973233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3b5914d1e3d%3A0xb8229d2ba8dca54c!2sPT+HARDA+ESA+RAKSA!5e0!3m2!1sid!2sid!4v1530517907589" width="100%" height="200" frameborder="0" style="border:0;" allowfullscreen></iframe>
+          </div>
 
           </div>
         </div>

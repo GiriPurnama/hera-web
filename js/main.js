@@ -188,13 +188,22 @@ $('#service-carousel').owlCarousel({
 })
 
 $('#team-carousel').owlCarousel({
-    loop:true,
+    loop:false,
     items: 4,
     nav:false,
     dotsData: false,
     responsive: { 0: { items: 1 }, 768: { items: 1 }, 900: { items: 4 }
   }
 })
+
+$("#testimonial-service").owlCarousel({
+    dots: true,
+    loop: false,
+    items: 4,
+    nav:false,
+    dotsData: false,
+    responsive: { 0: { items: 1 }, 768: { items: 1 }, 900: { items: 4 }}
+  });
 
 $( '#service-carousel .owl-dot' ).on( 'click', function() {
   // owl.trigger('to.owl.carousel', [$(this).index(), 300]);

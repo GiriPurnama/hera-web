@@ -592,8 +592,8 @@ if($_POST['rowpass']) {
                 <div class="form-group">
                   <label for="status">Status</label>
                   <select class="form-control" name="status">
-                      <option <?php if ($status == "pelamar" ) echo 'selected' ; ?> value="pelamar">Pelamar</option>
-                      <option <?php if ($status == "client" ) echo 'selected' ; ?> value="client">Client</option>
+                      <option <?php if ($status == "Pelamar" ) echo 'selected' ; ?> value="Pelamar">Pelamar</option>
+                      <option <?php if ($status == "Client" ) echo 'selected' ; ?> value="Client">Client</option>
                   </select>
                 </div>
               </div>

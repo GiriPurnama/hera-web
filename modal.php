@@ -77,6 +77,28 @@
       </div>
     </div>
   </div>
+
+   <div class="full-modal modal fade" id="modalSambutan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Sambutan Direktur</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="col-md-12 text-center">
+            <img class="img-responsive" style="height:255px" src="img/sambutan.jpg">
+          </div>
+          <div class="col-md-12"><br>
+            <h3>Sambutan Direktur</h3>          
+            <p>Selamat datang diwebsite PT Harda Esa Raksa kami adalah perusahaan penyedia dan penempatan tenaga kerja. Bagi kami menjadi penghubung antara perusahaan yang membutuhkan tenaga kerja dengan para pencari kerja adalah pekerjaan yang mulia. Kami berharap dengan adanya perusahaan kami ini dapat memberi manfaat bagi perusahaan - perusahaan yang membutuhkan tenaga kerja yang profesional, kompeten, dan kompetitif. Dan bagi teman - teman yang saat melihat website ini sedang ingin mencari pekerjaan semoga bisa mendapatakan pekerjaan yang sesuai dengan karakter dan panggilan jiwa anda masing - masing. Terimakasih<br><br><b style="font-weight: bold;">Salam, M Yusuf Handopo</b></p>
+          </div>
+        </div> 
+      </div>
+    </div>
+  </div>
 <!--========================= Modal User =======================================================================-->
 
 <!--================================= Modal Recruitment ==========================-->
@@ -861,8 +883,8 @@
                     <label for="status">Status</label>
                     <select class="form-control" name="status" required>
                       <option value="">-</option>
-                      <option value="pelamar">Pelamar</option>
-                      <option value="client">Client</option>
+                      <option value="Pelamar">Pelamar</option>
+                      <option value="Client">Client</option>
                     </select>
                   </div>
                 </div>
