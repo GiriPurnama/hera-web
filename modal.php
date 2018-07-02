@@ -93,7 +93,7 @@
           </div>
           <div class="col-md-12"><br>
             <h3>Sambutan Direktur</h3>          
-            <p>Selamat datang diwebsite PT Harda Esa Raksa kami adalah perusahaan penyedia dan penempatan tenaga kerja. Bagi kami menjadi penghubung antara perusahaan yang membutuhkan tenaga kerja dengan para pencari kerja adalah pekerjaan yang mulia. Kami berharap dengan adanya perusahaan kami ini dapat memberi manfaat bagi perusahaan - perusahaan yang membutuhkan tenaga kerja yang profesional, kompeten, dan kompetitif. Dan bagi teman - teman yang saat melihat website ini sedang ingin mencari pekerjaan semoga bisa mendapatakan pekerjaan yang sesuai dengan karakter dan panggilan jiwa anda masing - masing. Terimakasih<br><br><b style="font-weight: bold;">Salam, M Yusuf Handopo</b></p>
+            <p>Selamat datang diwebsite PT Harda Esa Raksa, kami adalah perusahaan penyedia dan penempatan tenaga kerja. Bagi kami menjadi penghubung antara perusahaan yang membutuhkan tenaga kerja dengan para pencari kerja adalah pekerjaan yang mulia. Kami berharap dengan adanya perusahaan kami ini dapat memberi manfaat bagi perusahaan - perusahaan yang membutuhkan tenaga kerja yang profesional, kompeten, dan kompetitif. Dan bagi teman - teman yang saat melihat website ini sedang ingin mencari pekerjaan semoga bisa mendapatakan pekerjaan yang sesuai dengan karakter dan panggilan jiwa anda masing - masing. Terimakasih<br><br><b style="font-weight: bold;">Salam, <br>M Yusuf Handopo</b></p>
           </div>
         </div> 
       </div>
