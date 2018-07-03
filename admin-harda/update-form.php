@@ -246,6 +246,7 @@ if($_POST['rowpesan']) {
         $album_deskripsi = $row['album_deskripsi'];
         $cover_album = $row['image'];
         $albumid = $row['albumid'];
+        $status = $row['status'];
       
 ?>
 
@@ -263,6 +264,14 @@ if($_POST['rowpesan']) {
                 <div class="form-group">
                   <label for="upload">Upload Cover</label>
                   <input type="file" name="image" id="upload_image" value="<?php echo $cover_album; ?>">
+                </div>
+                <div class="form-group">
+                  <label for="status">Status</label>
+                  <select class="form-control" name="status">
+                      <option value="">-</option>
+                      <option <?php if ($status == "Aktif" ) echo 'selected' ; ?> value="Aktif">Aktif</option>
+                      <option <?php if ($status == "Nonaktif" ) echo 'selected' ; ?> value="Nonaktif">Nonaktif</option>
+                  </select>
                 </div>
               </div>
               <div class="box-footer">
@@ -470,7 +479,9 @@ if($_POST['rowpass']) {
 ?>
 
 <?php
-    if($_POST['rowgaleri']) {
+    if($_POST['rowgaleri']) { ?>
+      <div class="row">
+      <?php 
        $rowgaleri = $_POST['rowgaleri'];
        $fotogaleri = mysqli_query($db, "SELECT * FROM galeri_foto WHERE albumid='$rowgaleri'");
        while ($row = mysqli_fetch_assoc($fotogaleri)) {
@@ -481,7 +492,7 @@ if($_POST['rowpass']) {
          $foto_str = str_replace("../", "", $foto);    
 ?>
 
- <div class="row">
+ 
    <div class="col-md-4">
       <div class="box-gallery">  
         <img src="<?= $foto_str; ?>"> 
@@ -489,15 +500,16 @@ if($_POST['rowpass']) {
         <div class="desc-gallery"><?= $desc_foto; ?></div>
       </div>
     </div>
- </div>
+ 
 
-<?php 
-    }
-  }
-?>
+<?php } ?>
+  </div>
+  <?php } ?>
 
 <?php
-    if($_POST['videogaleri']) {
+    if($_POST['videogaleri']) { ?>
+      <div class="row">
+      <?php
        $videogaleri = $_POST['videogaleri'];
        $videogaleri = mysqli_query($db, "SELECT * FROM galeri_video WHERE videoid='$videogaleri'");
        while ($row = mysqli_fetch_assoc($videogaleri)) {
@@ -506,8 +518,6 @@ if($_POST['rowpass']) {
          $desc_video = $row['video_deskripsi'];    
 ?>
 
-
- <div class="row">
    <div class="col-md-12">
       <div class="box-gallery">  
         <iframe id="player" width="560" height="315" src="<?= $link_video; ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> 
@@ -515,12 +525,10 @@ if($_POST['rowpass']) {
         <div class="desc-gallery"><?= $desc_video; ?></div>
       </div>
     </div>
- </div>
-
-<?php 
-    }
-  }
-?>
+ 
+<?php } ?>
+  </div>
+  <?php } ?>
 
 <?php
     if($_POST['rowartikel']) {

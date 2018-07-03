@@ -79,7 +79,7 @@
                   <td><?= $nama_video; ?></td>
                   <td><?= $video_deskripsi; ?></td>
                   <td><img class="img-home" src="<?= $img_video; ?>"></td>
-                  <td><iframe height="auto" width="200px" src="<?= $video; ?>"></iframe></td>
+                  <td><iframe height="auto" width="200px" src="<?= $video; ?>" style="border:0;"></iframe></td>
                   <td><?= $newDate; ?></td>
                   <td>
 

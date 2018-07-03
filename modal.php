@@ -606,6 +606,14 @@
                     <label for="upload">Cover Album</label>
                     <input type="file" name="image" id="cover" required>
                   </div>
+                   <div class="form-group">
+                    <label for="status">Status</label>
+                    <select class="form-control" name="status" required>
+                        <option value="">-</option>
+                        <option value="Aktif">Aktif</option>
+                        <option value="Nonaktif">Nonaktif</option>
+                    </select>
+                  </div>
                 </div>
 
                 <!-- /.box-body -->

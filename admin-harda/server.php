@@ -335,6 +335,7 @@
 	if (isset($_POST['album_save'])) {
   		  $nama_album = mysqli_real_escape_string($db, trim($_POST['nama_album']));
   		  $desc_album = mysqli_real_escape_string($db, trim($_POST['album_deskripsi']));
+  		  $status = $_POST['status'];
 
   		  $type = $_FILES['image']['type'];
 		  $fileinfo=PATHINFO($_FILES["image"]["name"]);
@@ -342,7 +343,7 @@
 		  move_uploaded_file($_FILES["image"]["tmp_name"],"../upload/page-album/" . $newFilename);
 		  $img_album="../upload/page-album/" . $newFilename;
 		
-  		  $query = mysqli_query($db, "INSERT INTO album(nama_album, album_deskripsi, image, album_date) values ('$nama_album','$desc_album','$img_album',NOW())");
+  		  $query = mysqli_query($db, "INSERT INTO album(nama_album, album_deskripsi, image, status, album_date) values ('$nama_album','$desc_album','$img_album','$status',NOW())");
   		  if ($query) {
   		  		header('location: page-album.php');
   		  } else {
@@ -407,10 +408,12 @@
 
 		    $nama_album = $_POST['nama_album'];
 	  		$album_deskripsi = $_POST['album_deskripsi'];
+	  		$status = $_POST['status'];
 
 	  		if($_FILES["image"]["error"] == 4) {
 	  			$query = mysqli_query($db, "UPDATE album SET nama_album = '$nama_album',
-		                            album_deskripsi  = '$album_deskripsi'
+		                            album_deskripsi  = '$album_deskripsi',
+		                            status = '$status'
 		                            WHERE albumid   = '$albumid'");   
 			    // cek query
 			    if ($query) {
@@ -432,7 +435,8 @@
 			    // perintah query untuk mengubah data pada tabel is_siswa
 			    $query = mysqli_query($db, "UPDATE album SET nama_album = '$nama_album',
 			                            album_deskripsi  = '$album_deskripsi',
-			                            image = '$location'
+			                            image = '$location',
+			                            status = '$status'
 			                            WHERE albumid   = '$albumid'");   
 
 			    // cek query

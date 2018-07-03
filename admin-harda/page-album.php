@@ -54,6 +54,7 @@
                   <th>Judul Album</th>
                   <th>Deskripsi Album</th>
                   <th>Cover Album</th>
+                  <th>Status</th>
                   <th>Tanggal Album</th>
                   <th>Aksi</th>
                 </tr>
@@ -69,7 +70,8 @@
                     $album_date = $row['album_date'];
                     $cover_album = $row['image'];
                     $timestamp = strtotime($album_date);
-                    $newDate = date('j-F-Y', $timestamp); 
+                    $newDate = date('j-F-Y', $timestamp);
+                    $status = $row['status']; 
                 ?>
 
                 <tr>
@@ -77,12 +79,13 @@
                   <td><?php echo $nama_album; ?></td>
                   <td><?php echo $album_deskripsi; ?></td>
                   <td><img class="img-home" src="<?php echo $cover_album; ?>"></td>
+                  <td><?= $status; ?></td>
                   <td><?php echo $newDate; ?></td>
                   <td>
 
                     <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['albumid']."><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
                     
-                    <a href='server.php?albumid=<?php echo $row['albumid']; ?>' onclick="return confirm('Apakah yakin album ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
+                  <!--   <a href='server.php?albumid=<?php echo $row['albumid']; ?>' onclick="return confirm('Apakah yakin album ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a> -->
                  
                   </td>
                 </tr>
