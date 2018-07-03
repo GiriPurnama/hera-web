@@ -1738,6 +1738,10 @@ span.small-font {
   margin-top: 94px;
 }
 
+h1.title-article{
+  font-weight: bold;
+}
+
 /*==================================Full Modal===============================================================*/
   .full-modal.modal {
     position: fixed;

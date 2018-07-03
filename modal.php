@@ -71,7 +71,7 @@
         </div>
         <div class="modal-body">
           <div class="col-md-12 text-center">
-            <img class="img-responsive" src="img/struktur-hera.png">
+            <img class="img-responsive" src="img/hera-struktur.png">
           </div>
         </div> 
       </div>

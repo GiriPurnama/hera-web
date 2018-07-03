@@ -259,7 +259,7 @@
           <h3>Client Kami</h3>
         </header>
 
-        <div class="owl-carousel clients-carousel">
+        <div class="owl-carousel  owl-theme clients-carousel">
           <?php 
               $client = mysqli_query($db, "SELECT * FROM menu_client");
               while ($row = mysqli_fetch_assoc($client)) {
