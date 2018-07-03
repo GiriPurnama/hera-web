@@ -1553,6 +1553,10 @@ section.contact .text-contact{
   margin-top: 100px;
 }
 
+.mg-top20{
+  margin-top: 20px;
+}
+
 .btn-owl{
  background: #f65f13;
  width: 120px;
@@ -1722,6 +1726,16 @@ span.small-font {
 
 .status-text h5{
   margin-bottom: 0px;
+}
+
+.img-article {
+  text-align: center;
+}
+
+.img-article img{
+  height: 300px;
+  width: 100%;
+  margin-top: 94px;
 }
 
 /*==================================Full Modal===============================================================*/

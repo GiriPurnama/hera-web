@@ -133,9 +133,10 @@
       <div class="container">
         <div class="row">
           <?php 
-            $artikel_row = mysqli_query($db, "SELECT * FROM artikel");
+            $artikel_row = mysqli_query($db, "SELECT * FROM artikel ORDER BY idartikel DESC");
              while ($row = mysqli_fetch_assoc($artikel_row)) {
                 $judul_artikel = $row['judul_artikel'];
+                $idartikel = $row['idartikel'];
                 $isi_artikel = $row['isi_artikel'];
                 $foto_artikel = $row['foto_artikel'];
                 $str_artikel = str_replace("../", "", $foto_artikel);
@@ -143,7 +144,7 @@
              ?>
               <div class="col-lg-4 box">
                 <i class="ion-ios-bookmarks-outline"></i>
-                <h4 class="title"><a href=""><?= $judul_artikel; ?></a></h4>
+                <h4 class="title"><a href='artikel.php?idartikel=<?php echo $row['idartikel']; ?>' target="_blank"><?= $judul_artikel; ?></a></h4>
                 <p class="description"><?= $cut_str; ?></p>
               </div>
              <?php } ?>

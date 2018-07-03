@@ -11,7 +11,8 @@ header("Content-Disposition: attachment; filename=pelamar-exportxls-".date("d-m-
 // memanggil query dari database
 // $refrensi = $_GET['refrensi'];                     
   $sqlshow = mysqli_query($db, "SELECT * FROM recruitment");
-  $nameSql = mysqli_query($db, "SELECT refrensi, MONTHNAME(post_date) AS month, YEARWEEK(post_date) AS tahun_minggu, COUNT(*) AS jumlah FROM recruitment GROUP BY refrensi");
+  $nameSql = mysqli_query($db, "SELECT refrensi, MONTHNAME(post_date) AS month, MONTH(post_date) AS tahun_minggu, COUNT(*) AS jumlah FROM recruitment GROUP BY tahun_minggu, refrensi");
+  // $nameSql = mysqli_query($db, "SELECT refrensi, MONTHNAME(post_date) AS month, YEARWEEK(post_date) AS tahun_minggu, COUNT(*) AS jumlah FROM recruitment GROUP BY refrensi");
   // $nameSql = mysqli_query($db, "SELECT refrensi, COUNT(*) as jumlah FROM recruitment GROUP BY refrensi");
   $jum_pendaftar = mysqli_num_rows($sqlshow);
   $jum_individu  = mysqli_num_rows($nameSql); 
