@@ -98,7 +98,7 @@
               Gedung ILP Pancoran Lantai 3 No 15 <br>
               Jalan Raya Pasar Minggu No 39 A<br>
               Pancoran, Jakarta Selatan <br>
-              <strong>Phone:</strong> 08811740722<br>
+              <strong>Phone:</strong>021-7988154<br>
               <strong>Email:</strong> hera.harda@gmail.com<br>
             </p>
 

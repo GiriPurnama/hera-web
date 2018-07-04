@@ -58,6 +58,9 @@
             <a href="#">
               <i class="fa fa-files-o"></i>
               <span>Page Web Hera</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
             </a>
             <?php  
               $jum_pesan = mysqli_query($db, "SELECT * FROM pesan WHERE status = ''");
@@ -77,6 +80,9 @@
             <a href="#">
               <i class="fa fa-folder"></i>
               <span>Gallery</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
             <ul class="treeview-menu">
               <li><a href="page-album.php"><i class="fa fa-archive"></i>Album</a></li>
               <li><a href="page-foto.php"><i class="fa fa-file-image-o"></i>Foto</a></li>
