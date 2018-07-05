@@ -132,22 +132,24 @@
   <section id="featured-services">
       <div class="container">
         <div class="row">
-          <?php 
-            $artikel_row = mysqli_query($db, "SELECT * FROM artikel ORDER BY idartikel DESC");
-             while ($row = mysqli_fetch_assoc($artikel_row)) {
-                $judul_artikel = $row['judul_artikel'];
-                $idartikel = $row['idartikel'];
-                $isi_artikel = $row['isi_artikel'];
-                $foto_artikel = $row['foto_artikel'];
-                $str_artikel = str_replace("../", "", $foto_artikel);
-                $cut_str = substr($isi_artikel,0,300). '...';   
-             ?>
-              <div class="col-lg-4 box">
-                <i class="ion-ios-bookmarks-outline"></i>
-                <h4 class="title"><a href='artikel-<?php echo $row['idartikel']; ?>-<?php echo $row['permalink_artikel']; ?>.html' data-val="<?php echo $row['idartikel']; ?>" target="_blank"><?= $judul_artikel; ?></a></h4>
-                <p class="description"><?= $cut_str; ?></p>
-              </div>
-             <?php } ?>
+          <div id="artikel" class="owl-carousel owl-theme artikel">
+            <?php 
+              $artikel_row = mysqli_query($db, "SELECT * FROM artikel ORDER BY idartikel DESC");
+               while ($row = mysqli_fetch_assoc($artikel_row)) {
+                  $judul_artikel = $row['judul_artikel'];
+                  $idartikel = $row['idartikel'];
+                  $isi_artikel = $row['isi_artikel'];
+                  $foto_artikel = $row['foto_artikel'];
+                  $str_artikel = str_replace("../", "", $foto_artikel);
+                  $cut_str = substr($isi_artikel,0,300). '...';   
+               ?>
+                <div class="box">
+                  <i class="ion-ios-bookmarks-outline"></i>
+                  <h4 class="title"><a href='artikel-<?php echo $row['idartikel']; ?>-<?php echo $row['permalink_artikel']; ?>.html' data-val="<?php echo $row['idartikel']; ?>" target="_blank"><?= $judul_artikel; ?></a></h4>
+                  <p class="description"><?= $cut_str; ?></p>
+                </div>
+               <?php } ?>
+          </div>
 
         </div>
       </div>

@@ -180,6 +180,14 @@ $("#info-contact").owlCarousel({
     dotsData: true
   });
 
+$(".artikel").owlCarousel({
+    dots: true,
+    loop: false,
+    items: 3,
+    nav:true,
+    responsive: { 0: { items: 1 }, 768: { items: 1 }, 900: { items: 3 }}
+  })
+
 $('#service-carousel').owlCarousel({
     loop:false,
     items: 1,
