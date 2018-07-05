@@ -1742,6 +1742,23 @@ h1.title-article{
   font-weight: bold;
 }
 
+.media-social{
+  margin-top: 30px;
+}
+.media-social h5{
+  font-weight: bold;
+  margin: 0 0 0px 0; 
+}
+.media-social .icon-medsos a{
+  color: #007bff;
+  font-size: 30px;
+}
+
+.media-social .icon-medsos a:hover{
+  color: #000;
+  font-size: 30px;
+}
+
 /*==================================Full Modal===============================================================*/
   .full-modal.modal {
     position: fixed;

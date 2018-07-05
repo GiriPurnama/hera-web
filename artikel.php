@@ -16,17 +16,22 @@
 
         $artikel_date = $row['post_date'];
         $timestamp = strtotime($artikel_date);
-        $newDate = date('j-F-Y', $timestamp);    
+        $newDate = date('j-F-Y', $timestamp);
+        $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";    
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html prefix="og: http://ogp.me/ns#">
 <head>
   <meta charset="utf-8">
   <title>PT Harda Esa Raksa</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
+  <meta property="og:title" content="<?= $judul_artikel; ?>" />
+  <meta property="og:description" content="Artikel Hera" />
+  <meta property="og:url" content="<?= $actual_link; ?>" />
+  <meta property="og:image" content="<?= $str_artikel; ?>" />
 
   <!-- Favicons -->
   <link href="img/black.png" rel="shortcut icon">
@@ -76,6 +81,17 @@
           <span class="time-article pull-right"><?= $newDate; ?></span>
           <h1 class="title-article"><?= $judul_artikel; ?></h1>
           <p class="description-article"><?= $isi_artikel; ?></p>
+        </div>
+
+        <div class="col-md-12">
+          <div class="media-social">
+            <h5>Share Artikel</h5>
+            <div class="icon-medsos">
+              <a href="javascript:void(0);"><span class="twitter-share"  data-js="twitter-share"><i class="fa fa-twitter-square"></i></span></a>
+              <a href="javascript:void(0);"><span class="facebook-share" data-js="facebook-share"><i class="fa fa-facebook-square"></i></span></a>
+              <a href="javascript:void(0);"><span class="linkedin-share" data-js="linkedin-share"><i class="fa fa-linkedin-square"></i></span></a>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -151,6 +167,38 @@
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
+  <script type="text/javascript">
+    
+    var url = document.URL;
+
+    var twitterShare = document.querySelector('[data-js="twitter-share"]');
+
+    twitterShare.onclick = function(e) {
+      e.preventDefault();
+      var twitterWindow = window.open('https://twitter.com/share?url=' + document.URL, 'twitter-popup', 'height=350,width=600');
+      if(twitterWindow.focus) { twitterWindow.focus(); }
+        return false;
+      }
+
+    var facebookShare = document.querySelector('[data-js="facebook-share"]');
+
+    facebookShare.onclick = function(e) {
+      e.preventDefault();
+      var facebookWindow = window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.URL, 'facebook-popup', 'height=350,width=600');
+      if(facebookWindow.focus) { facebookWindow.focus(); }
+        return false;
+    }
+
+    var linkedinkShare = document.querySelector('[data-js="linkedin-share"]');
+    
+    linkedinkShare.onclick = function(e) {
+      e.preventDefault();
+      var linkedinWindow = window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent(url), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+      if(linkedinWindow.focus) { linkedinWindow.focus(); }
+        return false;
+    }
+
+  </script>
   <?php 
     }
   ?>
