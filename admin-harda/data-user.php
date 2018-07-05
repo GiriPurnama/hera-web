@@ -68,7 +68,7 @@
               <tbody>
                 <?php
                     $no = 1;
-                    $pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang'");
+                    $pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' ORDER BY id DESC");
                     // $hitungDulu = mysqli_num_rows($pelamar);
                     while ($row = mysqli_fetch_assoc($pelamar)) {
 
