@@ -1007,6 +1007,7 @@
 	if (isset($_POST['artikel_save'])) {
   		  $judul_artikel = mysqli_real_escape_string($db, trim($_POST['judul_artikel']));
   		  $isi_artikel = mysqli_real_escape_string($db, trim($_POST['isi_artikel']));
+  		  $permalink_artikel = strtolower(str_replace(" ", "-", $judul_artikel));
 
   		  $type = $_FILES['foto_artikel']['type'];
 		  $fileinfo=PATHINFO($_FILES["foto_artikel"]["name"]);
@@ -1014,7 +1015,7 @@
 		  move_uploaded_file($_FILES["foto_artikel"]["tmp_name"],"../upload/page-artikel/" . $newFilename);
 		  $img_artikel="../upload/page-artikel/" . $newFilename;
 		
-  		  $query = mysqli_query($db, "INSERT INTO artikel(judul_artikel, isi_artikel, foto_artikel, post_date) values ('$judul_artikel','$isi_artikel','$img_artikel',NOW())");
+  		  $query = mysqli_query($db, "INSERT INTO artikel(judul_artikel, isi_artikel, permalink_artikel, foto_artikel, post_date) values ('$judul_artikel','$isi_artikel','$permalink_artikel','$img_artikel',NOW())");
   		  if ($query) {
   		  		header('location: page-artikel.php');
   		  } else {
@@ -1058,10 +1059,12 @@
 
 		    $judul_artikel = $_POST['judul_artikel'];
 	  		$isi_artikel = $_POST['isi_artikel'];
+	  		$permalink_artikel = strtolower(str_replace(" ", "-", $judul_artikel));
 
 	  		if($_FILES["foto_artikel"]["error"] == 4) {
 	  			$query = mysqli_query($db, "UPDATE artikel SET judul_artikel = '$judul_artikel',
-		                            isi_artikel  = '$isi_artikel'
+		                            isi_artikel  = '$isi_artikel',
+		                            permalink_artikel = '$permalink_artikel'
 		                            WHERE idartikel  = '$idartikel'");   
 			    // cek query
 			    if ($query) {
@@ -1083,6 +1086,7 @@
 			    // perintah query untuk mengubah data pada tabel is_siswa
 			    $query = mysqli_query($db, "UPDATE artikel SET judul_artikel = '$judul_artikel',
 			                            isi_artikel  = '$isi_artikel',
+			                            permalink_artikel = '$permalink_artikel',
 			                            foto_artikel = '$location_artikel'
 			                            WHERE idartikel   = '$idartikel'");   
 

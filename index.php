@@ -144,7 +144,7 @@
              ?>
               <div class="col-lg-4 box">
                 <i class="ion-ios-bookmarks-outline"></i>
-                <h4 class="title"><a href='artikel.php?idartikel=<?php echo $row['idartikel']; ?>' target="_blank"><?= $judul_artikel; ?></a></h4>
+                <h4 class="title"><a href='artikel-<?php echo $row['idartikel']; ?>-<?php echo $row['permalink_artikel']; ?>.html' data-val="<?php echo $row['idartikel']; ?>" target="_blank"><?= $judul_artikel; ?></a></h4>
                 <p class="description"><?= $cut_str; ?></p>
               </div>
              <?php } ?>

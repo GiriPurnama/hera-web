@@ -87,9 +87,9 @@
           <div class="media-social">
             <h5>Share Artikel</h5>
             <div class="icon-medsos">
-              <a href="javascript:void(0);"><span class="twitter-share"  data-js="twitter-share"><i class="fa fa-twitter-square"></i></span></a>
-              <a href="javascript:void(0);"><span class="facebook-share" data-js="facebook-share"><i class="fa fa-facebook-square"></i></span></a>
-              <a href="javascript:void(0);"><span class="linkedin-share" data-js="linkedin-share"><i class="fa fa-linkedin-square"></i></span></a>
+              <a href="javascript:void(0);"><span class="twitter-share" title="twitter"  data-js="twitter-share"><i class="fa fa-twitter-square"></i></span></a>
+              <a href="javascript:void(0);"><span class="facebook-share" title="facebook" data-js="facebook-share"><i class="fa fa-facebook-square"></i></span></a>
+              <a href="javascript:void(0);"><span class="linkedin-share" title="linkedin" data-js="linkedin-share"><i class="fa fa-linkedin-square"></i></span></a>
             </div>
           </div>
         </div>

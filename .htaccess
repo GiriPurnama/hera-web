@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^artikel-([a-zA-Z0-9_-]+)\.html$ artikel.php?idartikel=$1
