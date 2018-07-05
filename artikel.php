@@ -1,5 +1,6 @@
 <?php 
-   include "config/koneksi.php";
+    include "config/koneksi.php";
+    include "config/indo_tgl.php";
     if (isset($_GET['idartikel'])) {
       $idartikel = $_GET['idartikel'];
       
@@ -16,7 +17,7 @@
 
         $artikel_date = $row['post_date'];
         $timestamp = strtotime($artikel_date);
-        $newDate = date('j-F-Y', $timestamp);
+        $newDate = tgl_indo(date('Y-m-d', $timestamp));   
         $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";    
     }
 ?>

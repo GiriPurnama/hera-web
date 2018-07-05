@@ -185,6 +185,7 @@ $(".artikel").owlCarousel({
     loop: false,
     items: 3,
     nav:true,
+    navText:["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'>"],
     responsive: { 0: { items: 1 }, 768: { items: 1 }, 900: { items: 3 }}
   })
 

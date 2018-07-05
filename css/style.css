@@ -577,7 +577,10 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #featured-services .box {
-  padding: 30px 20px;
+  padding: 10px 20px 20px;
+  background: #FFF;
+  margin: 10px;
+  border-radius: 10px;
 }
 
 #featured-services .box-bg {
@@ -595,21 +598,23 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-weight: 400;
   margin: 15px 0;
   font-size: 18px;
+  text-align: center;
 }
 
 #featured-services h4 a {
-  color: #fff;
+  color: #f65f13;
 }
 
 #featured-services h4 a:hover {
-  color: #f65f13;
+  color: #000;
 }
 
 #featured-services p {
   font-size: 14px;
   line-height: 24px;
-  color: #fff;
+  color: #000;
   margin-bottom: 0;
+  text-align: justify;
 }
 
 /* About Us Section
@@ -1758,7 +1763,31 @@ h1.title-article{
   color: #000;
   font-size: 30px;
 }
-
+.owl-theme .owl-nav [class*=owl-]{
+  background: transparent !important;
+}
+.owl-prev i.fa.fa-chevron-left {
+    position: absolute;
+    left: -30px;
+    top: 45%;
+}
+.owl-next i.fa.fa-chevron-right {
+    position: absolute;
+    right: -30px;
+    top: 45%;
+}
+@media (max-width: 768px) {
+  .owl-prev i.fa.fa-chevron-left {
+    position: inherit;
+  }
+  .owl-next i.fa.fa-chevron-right {
+    position: inherit;
+  }
+}
+span.date-text {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
 /*==================================Full Modal===============================================================*/
   .full-modal.modal {
     position: fixed;

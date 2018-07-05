@@ -1,5 +1,6 @@
 <?php 
    include "config/koneksi.php";
+   include "config/indo_tgl.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -131,6 +132,9 @@
 
   <section id="featured-services">
       <div class="container">
+       <header class="section-header">
+         <h3 style="color:#FFF;padding-top:20px;">Artikel</h3>
+       </header>
         <div class="row">
           <div id="artikel" class="owl-carousel owl-theme artikel">
             <?php 
@@ -141,10 +145,16 @@
                   $isi_artikel = $row['isi_artikel'];
                   $foto_artikel = $row['foto_artikel'];
                   $str_artikel = str_replace("../", "", $foto_artikel);
-                  $cut_str = substr($isi_artikel,0,300). '...';   
+                  $cut_str = substr($isi_artikel,0,300). '...';
+                  $artikel_date = $row['post_date'];
+                  $timestamp = strtotime($artikel_date);
+                  $newDate = tgl_indo(date('Y-m-d', $timestamp));   
                ?>
                 <div class="box">
-                  <i class="ion-ios-bookmarks-outline"></i>
+                  <span class="date-text pull-right"><?= $newDate; ?></span>
+                  <div class="box-img">
+                    <img class="size-box-img" src="<?= $str_artikel; ?>">
+                  </div>
                   <h4 class="title"><a href='artikel-<?php echo $row['idartikel']; ?>-<?php echo $row['permalink_artikel']; ?>.html' data-val="<?php echo $row['idartikel']; ?>" target="_blank"><?= $judul_artikel; ?></a></h4>
                   <p class="description"><?= $cut_str; ?></p>
                 </div>
