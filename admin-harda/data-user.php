@@ -90,7 +90,12 @@
 
                     $ndata = preg_replace("/\,/", "<br/>", $pengalaman_kerja);
 
-                    $review = $ndata ? : "-";                                
+                    $review = $ndata ? : "-";
+
+                    $tgl_lahir = $row['tanggal_lahir'];
+                    $timestamplahir = strtotime($tgl_lahir);
+                    $newDateLahir = date('j F Y', $timestamplahir); 
+
                 ?>
                 <tr>
                   <td><?php echo $no ?></td>
@@ -112,7 +117,7 @@
                   <td><?= $cek_interview; ?></td>
                   <td><?= $row['nama_lengkap'];?></td>
                   <th><?= $row['no_handphone']; ?></th>
-                  <td><?= $row['tanggal_lahir']; ?></td>
+                  <td><?= $newDateLahir; ?></td>
                   <!-- <th><?php echo $row['agama']; ?></th> -->
                   <!-- <th><?php echo $row['jenis_kelamin']; ?></th> -->
                   <th><?= $row['pendidikan_terakhir']; ?></th>
