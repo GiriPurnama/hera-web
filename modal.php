@@ -954,6 +954,20 @@
     </div>
 </div>
 
+<div class="full-modal modal fade" id="modalBiografiDiri" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Biografi</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="fetched-data-bio"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="full-modal modal fade" id="modalVideoGaleri" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

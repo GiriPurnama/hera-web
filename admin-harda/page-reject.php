@@ -41,9 +41,6 @@
             <!-- /.box-header -->
 
             <div class="box-body table-responsive no-padding">
-              <a class="btn-export-excel" href="export-excel.php" target="_BLANK">
-                <button class="btn btn-warning btn-submit">Export Excel<i class="far fa-file-excel"></i></button>
-              </a>
               <table class="table table-bordered table-hover" id="table-user">
               <thead>
                 <tr>
@@ -68,7 +65,7 @@
               <tbody>
                 <?php
                     $no = 1;
-                    $pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = 'DISARANKAN' OR status_pelamar = '' ORDER BY id DESC");
+                    $pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = 'REJECTED' ORDER BY id DESC");
                     // $hitungDulu = mysqli_num_rows($pelamar);
                     while ($row = mysqli_fetch_assoc($pelamar)) {
 
@@ -84,7 +81,7 @@
 
                     $oldDate = $row['post_date'];
                     $timestamp = strtotime($oldDate);
-                    $newDate = date('j F Y', $timestamp); 
+                    $newDate = date('j-F-Y', $timestamp); 
 
                     $cek_interview = $row['interview'] ? : "Belum Diinterview";
 
@@ -170,14 +167,7 @@
       'searching'   : true,
       'ordering'    : true,
       'info'        : true,
-      'autoWidth'   : false,
-      'columnDefs': [
-          { "searchable": false, "targets": 9 },
-          { "searchable": false, "targets": 8 },
-          { "searchable": false, "targets": 9 },
-          { "searchable": false, "targets": 11 },
-          { "searchable": false, "targets": 12 }
-        ]
+      'autoWidth'   : false
     })
     // $('#example1').DataTable()
    

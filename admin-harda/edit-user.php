@@ -269,7 +269,26 @@
                     </div>
                     <div class="col-md-6 form-group mg20">
                       <label>Posisi Disarankan</label>
-                      <input type="text" class="form-control" name="posisi_rekomendasi" value="<?php echo $posisi_rekomendasi; ?>">
+                      <select class="form-control" name="posisi_rekomendasi" required>
+                        <option <?php if ($posisi_rekomendasi == "" ) echo 'selected' ; ?> value="">-</option>
+
+                        <?PHP 
+                          if ($posisi_rekomendasi != "") { ?>
+                           
+                            <option selected value="<?= $posisi_rekomendasi; ?>"><?= $posisi_rekomendasi; ?></option>
+                         
+                          <?php } ?>
+
+                        <?php 
+                            $lowongan = mysqli_query($db, "SELECT * FROM info_lowongan where status='aktif'");
+                            while ($row = mysqli_fetch_assoc($lowongan)) {
+                            $nama_lowongan = $row['nama_lowongan'];
+                        ?>
+                        
+                        <option value="<?= $nama_lowongan; ?>" > <?= $nama_lowongan; ?> </option>
+
+                        <?php } ?>
+                    </select>
                     </div>
                     <div class="col-md-6 form-group mg20">
                       <label>Interviewer</label>
@@ -286,38 +305,49 @@
                 </div>
               </form>
 
-              <form method="POST" action="" enctype="multipart/form-data">
-                <div class="form-group col-md-6 mg20">
-                  <label for="foto">Upload Foto</label>
-                    <input type="hidden" name="id" value="<?php echo $id; ?>">
-                    <input type="file" accept="image/*" class="form-control" id="foto" name="foto">
+              <div class="box-upload">
+                <h3>UPLOAD DOKUMEN</h3>
+                <span class="noted">*<b>CATATAN ISI</b> Jika pelamar salah upload atau belum upload image silahkan upload disni</span>
+                <div class="col-md-6">
+                  <form method="POST" action="" enctype="multipart/form-data">
+                    <div class="form-group mg20">
+                      <label for="foto">Upload Foto</label>
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+                        <input type="file" accept="image/*" class="form-control" id="foto" name="foto" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                      <input type="submit" class="btn btn-primary btn-submit" name="simpan_foto" id="send" value="Upload Foto">
+                    </div>
+                  </form>
                 </div>
-                <div class="form-group col-md-12">
-                  <input type="submit" class="btn btn-primary btn-submit" name="simpan_foto" id="send" value="Upload Foto">
-                </div>
-              </form>
 
-               <form method="POST" action="" enctype="multipart/form-data">
-                <div class="form-group col-md-6 mg20">
-                  <label for="ktp">Upload KTP</label>
-                     <input type="hidden" name="id" value="<?php echo $id; ?>">
-                    <input type="file" accept="image/*" class="form-control" id="ktp" name="ktp" >
+                <div class="col-md-6">
+                   <form method="POST" action="" enctype="multipart/form-data">
+                    <div class="form-group mg20">
+                      <label for="ktp">Upload KTP</label>
+                         <input type="hidden" name="id" value="<?php echo $id; ?>">
+                        <input type="file" accept="image/*" class="form-control" id="ktp" name="ktp" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                      <input type="submit" class="btn btn-primary btn-submit" name="simpan_ktp" id="send" value="Upload KTP">
+                    </div>
+                  </form>
                 </div>
-                <div class="form-group col-md-12">
-                  <input type="submit" class="btn btn-primary btn-submit" name="simpan_ktp" id="send" value="Upload KTP">
-                </div>
-              </form>
 
-              <form method="POST" action="" enctype="multipart/form-data">
-                <div class="form-group col-md-6 mg20">
-                  <label for="ijazah">Upload Ijazah</label>
-                    <input type="hidden" name="id" value="<?php echo $id; ?>">
-                    <input type="file" accept="image/*" class="form-control" id="ijazah" name="ijazah">
+                <div class="col-md-6">
+                  <form method="POST" action="" enctype="multipart/form-data">
+                    <div class="form-group mg20">
+                      <label for="ijazah">Upload Ijazah</label>
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+                        <input type="file" accept="image/*" class="form-control" id="ijazah" name="ijazah" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                      <input type="submit" class="btn btn-primary btn-submit" name="simpan_ijazah" id="send" value="Upload Ijazah">
+                    </div>
+                  </form>
                 </div>
-                <div class="form-group col-md-12">
-                  <input type="submit" class="btn btn-primary btn-submit" name="simpan_ijazah" id="send" value="Upload Ijazah">
-                </div>
-              </form> 
+              </div>
+
             </div>
             <!-- /.box-body -->
           </div>

@@ -5105,3 +5105,16 @@ img.img-home {
 textarea {
     resize: none;
 }
+.box-upload{
+  display: inline-block;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+.box-upload h3{
+  margin-left: 12px;
+  font-weight: bold;
+}
+.box-upload .noted{
+  display: block;
+  margin-left: 12px;
+}

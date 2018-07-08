@@ -614,6 +614,73 @@ if($_POST['rowpass']) {
   }
 ?>
 
+
+<?php
+    if($_POST['rowbio']) {
+      $idbio = $_POST['rowbio'];
+      $load_data = mysqli_query($db, "SELECT * FROM login WHERE id_admin='$idbio'");
+      while ($row = mysqli_fetch_assoc($load_data)) { 
+       $img_divisi = $row['img_divisi'];
+       $nama_lengkap = $row['nama_lengkap'];
+       $divisi = $row['divisi'];
+       $motto = $row['motto'];
+       $url_facebook = $row['facebook'];
+       $url_linkedin = $row['linkedin'];
+       $url_twitter = $row['twitter'];
+       $biografi = $row['biografi'];
+       $izin_bio = $row['izin_bio'];
+       $id_admin = $row['id_admin'];
+       $str_divisi = str_replace("../", "", $img_divisi);   
+?>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1 class="title-bio"><?= $nama_lengkap; ?></h1>
+    </div>
+    <div class="col-md-12">
+      <div class="box-img-bio">
+        <img class="img-bio" src="<?= $str_divisi; ?>">
+      </div>
+      
+      <div class="box-bio">
+        <div class="desc-bio">
+          <h2 class="title-bio">Biografi</h2>
+          <p><?= $biografi; ?></p>
+        </div>
+
+        <div class="motto-bio">
+          <h2 class="title-bio">Motto</h2>
+          <p>"<?= $motto; ?>"</p>
+        </div>
+      </div>
+
+    </div>
+
+     <div class="col-md-3 text-center">
+        <h2 class="title-bio">Divisi</h2>
+        <span><?= $divisi; ?></span>
+        <h2 class="title-bio">Media Sosial</h2>
+        <div class="box-medsos">
+           <?php 
+            if ($url_twitter != "") { ?>  
+                <a href="<?= $url_twitter; ?>" target="_blank"><i class="fa fa-twitter"></i></a>
+            <?php } ?>
+            
+            <?php if ($url_facebook != "") { ?> 
+                <a href="<?= $url_facebook; ?>" target="_blank"><i class="fa fa-facebook"></i></a>
+            <?php } ?>
+
+            <?php if ($url_linkedin != "") { ?>
+              <a href="<?= $url_linkedin; ?>" target="_blank"><i class="fa fa-linkedin"></i></a>
+            <?php } ?>
+        </div>
+     </div>
+
+  </div> 
+<?php }
+  }
+?>
+
+
 <script type="text/javascript">
   function password_match() {
     var password = $("#password_title").val();

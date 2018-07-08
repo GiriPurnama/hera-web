@@ -752,6 +752,8 @@
             $motto =$_POST['motto'];
             $no_emergency = $_POST['no_emergency'];
             $hubungan = $_POST['hubungan'];
+            $biografi = $_POST['biografi'];
+            $izin_bio = $_POST['izin_bio'];
 
 		    // perintah query untuk mengubah data pada tabel is_siswa
 		    $query = mysqli_query($db, "UPDATE login SET email_admin = '$email_admin',
@@ -762,7 +764,9 @@
 		                            linkedin = '$linkedin',
 		                            motto = '$motto',
 		                            no_emergency = '$no_emergency',
-		                            hubungan = '$hubungan'
+		                            hubungan = '$hubungan',
+		                            biografi = '$biografi',
+		                            izin_bio = '$izin_bio'
 		                            WHERE id_admin = '$id_admin'");   
 
 		    // cek query

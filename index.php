@@ -349,6 +349,9 @@
                $url_facebook = $row['facebook'];
                $url_linkedin = $row['linkedin'];
                $url_twitter = $row['twitter'];
+               $biografi = $row['biografi'];
+               $izin_bio = $row['izin_bio'];
+               $id_admin = $row['id_admin'];
                $str_divisi = str_replace("../", "", $img_divisi);   
                
             ?>
@@ -360,7 +363,12 @@
                     <h4><?= $nama_lengkap; ?></h4>
                     <span><?= $divisi; ?></span>
                     <div class="social">
-                      <?php
+                       <?php
+                        if ($biografi != "" && $izin_bio == "Ya" ) { ?>  
+                            <a href='#modalBiografiDiri' data-toggle='modal' data-id="<?= $id_admin; ?>"><i class="fa fa-eye"></i></a>
+                        <?php } ?>
+
+                        <?php 
                         if ($url_twitter != "") { ?>  
                             <a href="<?= $url_twitter; ?>" target="_blank"><i class="fa fa-twitter"></i></a>
                         <?php } ?>
@@ -705,6 +713,20 @@
           }
       });
     });
+
+     $('#modalBiografiDiri').on('show.bs.modal', function (e) {
+      var rowbio = $(e.relatedTarget).data('id');
+      //menggunakan fungsi ajax untuk pengambilan data
+      $.ajax({
+          type : 'post',
+          url : 'admin-harda/update-form.php',
+          data :  'rowbio='+ rowbio,
+          success : function(data){
+          $('.fetched-data-bio').html(data);//menampilkan data ke dalam modal
+          }
+      });
+    });
+
 
     $('#modalVideoGaleri').on('show.bs.modal', function (e) {
       var videogaleri = $(e.relatedTarget).data('id');

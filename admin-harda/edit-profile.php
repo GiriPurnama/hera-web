@@ -30,6 +30,8 @@
           $twitter = $data['twitter'];
           $linkedin = $data['linkedin'];
           $motto =$data['motto'];
+          $biografi = $data['biografi'];
+          $izin_bio = $data['izin_bio'];
           $no_emergency = $data['no_emergency'];
           $hubungan = $data['hubungan'];
         }
@@ -138,6 +140,25 @@
                  </div>
 
                   <div class="col-md-12">
+                     <div class="form-group">
+                      <label>Biografi</label>
+                      <textarea id="bio" class="form-control" name="biografi"><?= $biografi; ?></textarea>
+                     </div>
+                  </div>
+
+                  <div class="col-md-6">
+                     <div class="form-group">
+                      <label>Tampilkan Biografi</label>
+                      <select class="form-control" name="izin_bio">
+                        <option value="">-</option>
+                        <option <?php if ($izin_bio == "Ya" ) echo 'selected' ; ?> value="Ya">Ya</option>
+                        <option <?php if ($izin_bio == "Tidak" ) echo 'selected' ; ?> value="Tidak">Tidak</option>
+                      </select>
+                     </div>
+                  </div>
+
+
+                  <div class="col-md-12">
                     <div class="form-group">
                       <a href='#modalHomeEdit' class="btn btn-warning" id="imageProfile" data-toggle='modal' data-id="<?= $id_admin; ?>"><i class="fa fa-file-image-o"></i> Ubah Foto </a>
                       <a href='#modalEdit2' class="btn btn-warning" id="passwordProfile" data-toggle='modal' data-id="<?= $id_admin; ?>"><i class="fa fa-lock"></i> Ubah Password</a>
@@ -218,6 +239,14 @@
           }
       });
   });
+
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('bio')
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5()
+  })
 
 </script>
 <?php

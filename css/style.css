@@ -1698,7 +1698,7 @@ input#myInput {
 }
 
 .modal-header {
-  background: #f65f13;
+  background: #6598d9;
   color: #FFF;
   text-transform: uppercase;
 }
@@ -1799,6 +1799,26 @@ span.date-text {
     font-size: 14px;
     margin-bottom: 10px;
 }
+.img-bio{
+    width: 255px;
+    height: 255px;
+    margin-left: 30px;
+}
+.box-bio {
+    display: inline-block;
+    margin-left: 19%;
+    width: 50%;
+}
+.title-bio{
+  margin-bottom: 0px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+.box-img-bio {
+  float: left;
+  margin-top: 30px;
+}
+
 /*==================================Full Modal===============================================================*/
   .full-modal.modal {
     position: fixed;
@@ -1821,7 +1841,7 @@ span.date-text {
     right: 0;
     bottom: 0;
     left: 0;
-    border: 2px solid #f65f13;
+    border: 2px solid #6598d9;
     border-radius: 0;
     box-shadow: none;
   }
@@ -1832,7 +1852,7 @@ span.date-text {
     left: 0;
     height: 50px;
     padding: 10px;
-    background: #f65f13;
+    background: #6598d9;
     border: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -1907,8 +1927,8 @@ span.date-text {
     border-radius: 15px;
   }
   .btn.btn-circle.btn-default.btn-primary{
-    background-color: #f65f13;
-    border-color: #f65f13;
+    background-color: #6598d9;
+    border-color: #6598d9;
   }
   .disabled{
      pointer-events: none;
