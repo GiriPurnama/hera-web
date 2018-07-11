@@ -5118,3 +5118,19 @@ textarea {
   display: block;
   margin-left: 12px;
 }
+.box-distribution{
+ margin-top: 20px;
+ display: inline-block;
+ border: 1px solid #ccc;
+ width: 100%;
+ padding: 15px;
+}
+.wrapper-input{
+  display: contents;
+}
+.wrapper-input .form-control{
+  margin-bottom: 15px;
+}
+.btn-pelamar {
+    margin-top: 25px;
+}

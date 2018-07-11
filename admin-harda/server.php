@@ -1107,4 +1107,39 @@
 //===================== Page Artikel ================================================
 
 
+//===================== Kirim Pelamar ================================================
+
+	// Update
+  	if (isset($_POST['kirim_pelamar'])) {
+
+	  if (isset($_POST['id'])) {
+
+		    $idpelamar = $_POST['id'];
+
+		    $nama_pelamar = implode(',', $_POST['nama_pelamar']);
+		    $nama_lowongan_pelamar = implode(',', $_POST['nama_lowongan']);
+		    $client_distributor = implode(',', $_POST['client_distributor']);
+		    $status_join = implode(',', $_POST['status_join']);
+
+		   // $query = mysqli_query($db, "INSERT INTO recruitment(id, nama_pelamar, nama_lowongan, client_distributor, status_join) values ('$idpelamar','$nama_pelamar','$nama_lowongan_pelamar','$client_distributor','$status_join')");
+	
+		    $query = mysqli_query($db, "UPDATE recruitment SET nama_pelamar =  concat(nama_pelamar, '$nama_pelamar,'),
+		                            nama_lowongan  = concat(nama_lowongan, '$nama_lowongan_pelamar,'),
+		                            client_distributor = concat(client_distributor, '$client_distributor,'),
+		                            status_join = concat(status_join, '$status_join,')
+		                            WHERE id = '$idpelamar'");   
+
+		    // cek query
+		    if ($query) {
+		      // jika berhasil tampilkan pesan berhasil update data
+		      header('location: edit-user.php?id='.$idpelamar.'');
+		    } else {
+		      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='edit-user.php?id=".$idpelamar."'</script>");
+		    } 
+	  }
+	} 
+
+//===================== Kirim Pelamar ================================================
+
+
 ?>
