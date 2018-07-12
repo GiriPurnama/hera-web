@@ -1,6 +1,5 @@
 <?php 
   include "../config/koneksi.php"; 
-  include "auth.php";
 ?>
 <head>
   <meta charset="utf-8">
