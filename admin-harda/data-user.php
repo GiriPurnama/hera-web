@@ -128,8 +128,12 @@
                   <th><?= $review; ?></th>
                   <td>
                     <?php echo "<a href='edit-user.php?id=$row[id]'><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
-                    <a href='server.php?id=<?php echo $row['id']; ?>' onclick="return confirm('Apakah yakin data ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
-                    <!-- <a href=""><span class="action-icon"><i class="fa fa-eye"></i></span></a> -->
+                    
+                    <?php if ($status == "RO" || $status == "InternalHRD" || $status == "Chief" || $status == "Master") { ?>
+                    
+                      <a href='server.php?id=<?php echo $row['id']; ?>' onclick="return confirm('Apakah yakin data ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
+                    
+                    <?php } ?>
                   </td>
                 </tr>
 

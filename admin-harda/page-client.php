@@ -43,9 +43,11 @@
             <!-- /.box-header -->
 
             <div class="box-body table-responsive no-padding">
+            <?php if ($status == "RO" || $status == "InternalHRD" || $status == "Chief" || $status == "Master" || $status = "RnD" || $status = "EksternalHRD") { ?>
               <a class="btn-export-excel" href="javascript:void(0);" target="_BLANK">
                 <button class="btn btn-warning btn-submit" data-toggle="modal" data-target="#modalClient">Tambah Baru <i class="fa fa-plus-square"></i></button>
               </a>
+            <?php } ?>
               <table class="table table-bordered table-hover" id="table-user">
               <thead>
                 <tr>
@@ -73,11 +75,10 @@
                   <td><img class="img-home" src="<?php echo $img_client; ?>"></td>
                   <td><?php echo $row['tgl_join']; ?></td>
                   <td>
-
-                    <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['idclient']."><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
-                    
-                    <a href='server.php?idclient=<?php echo $row['idclient']; ?>' onclick="return confirm('Apakah yakin data ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
-                 
+                    <?php if ($status == "RO" || $status == "InternalHRD" || $status == "Chief" || $status == "Master" || $status == "RnD" || $status == "EksternalHRD") { ?>
+                      <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['idclient']."><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
+                      <a href='server.php?idclient=<?php echo $row['idclient']; ?>' onclick="return confirm('Apakah yakin data ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
+                    <?php } ?>
                   </td>
                 </tr>
 

@@ -1,3 +1,4 @@
+<?php $status = $_SESSION['status']; ?>
 <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -18,12 +19,7 @@
         </div>
       </div>
       
-      <?php
-        }
-        $status = $_SESSION['status'];
-
-        if ($status == "RECRUITMENT" || $status == "ADMIN") {
-      ?>
+      <?php } ?>
 
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Navigasi</li>
@@ -60,7 +56,6 @@
           </a>
         </li>
 
-        <?php } if ($status == "ADMIN") { ?>
         
         <li class="treeview">
             <a href="#">
@@ -108,7 +103,7 @@
         </li>
 
 
-        <?php } ?>
+       
         <!-- 
           <li class="treeview">
             <a href="#">

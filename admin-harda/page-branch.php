@@ -43,9 +43,11 @@
             <!-- /.box-header -->
 
             <div class="box-body table-responsive no-padding">
+              <?php if ($status == "InternalHRD" || $status == "Master") { ?>
               <a class="btn-export-excel" href="javascript:void(0);" target="_BLANK">
                 <button class="btn btn-warning btn-submit" data-toggle="modal" data-target="#modalBranch">Tambah Branch<i class="fa fa-users"></i></button>
               </a>
+              <?php } ?>
                <!-- <a class="btn-export-excel" href="javascript:void(0);" target="_BLANK">
                 <button class="btn btn-warning btn-submit" data-toggle="modal" data-target="#modalGaleri">Tambah Foto<i class="fa fa-file-image-o"></i></button>
               </a> -->
@@ -82,11 +84,10 @@
                   <td><?= $email; ?></td>
                   <td><iframe height="auto" width="200px" src="<?= $maps; ?>" style="border:0;" allowfullscreen></iframe></td>
                   <td>
-
-                    <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['idkontak']."><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
-                    
-                    <a href='server.php?idkontak=<?php echo $row['idkontak']; ?>' onclick="return confirm('Apakah yakin data ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
-                 
+                    <?php if ($status == "InternalHRD" || $status == "Master") { ?>
+                      <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['idkontak']."><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
+                      <a href='server.php?idkontak=<?php echo $row['idkontak']; ?>' onclick="return confirm('Apakah yakin data ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
+                    <?php } ?>
                   </td>
                 </tr>
 

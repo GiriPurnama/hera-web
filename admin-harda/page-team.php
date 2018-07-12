@@ -42,9 +42,15 @@
             <!-- /.box-header -->
 
             <div class="box-body table-responsive no-padding">
+            
+            <?php if ($status == "InternalHRD" || $status == "Master") { ?>
+              
               <a class="btn-export-excel" href="javascript:void(0);" target="_BLANK">
                 <button class="btn btn-warning btn-submit" data-toggle="modal" data-target="#modalTeam">Tambah Baru <i class="fa fa-plus-square"></i></button>
               </a>
+
+            <?php } ?>
+              
               <table class="table table-bordered table-hover" id="table-user">
               <thead>
                 <tr>
@@ -83,10 +89,10 @@
                   <td><?php echo $row['status']; ?></td>
                   <td>
 
-                    <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['id_admin']."><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
-                    
-                    <a href='server.php?id_admin=<?php echo $row['id_admin']; ?>' onclick="return confirm('Apakah yakin data ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
-                 
+                    <?php if ($status == "InternalHRD" || $status == "Master") { ?>
+                      <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['id_admin']."><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?> 
+                      <a href='server.php?id_admin=<?php echo $row['id_admin']; ?>' onclick="return confirm('Apakah yakin data ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
+                    <?php } ?>
                   </td>
                 </tr>
 
