@@ -33,7 +33,7 @@
         <div class="col-xs-12">
           <div class="box pad10">
             <div class="box-header">
-              <h3 class="box-title">Tabel Pelamar</h3>
+              <h3 class="box-title">Page <?= $cabang; ?></h3>
               <div class="box-tools">
                 
               </div>

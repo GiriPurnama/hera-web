@@ -33,7 +33,7 @@
         <div class="col-xs-12">
           <div class="box pad10">
             <div class="box-header">
-              <h3 class="box-title">Tabel Pelamar</h3>
+              <h3 class="box-title">Page <?= $cabang; ?></h3>
               <div class="box-tools">
                 
               </div>
@@ -68,7 +68,7 @@
               <tbody>
                 <?php
                     $no = 1;
-                    $pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = 'DISARANKAN' OR status_pelamar = '' ORDER BY id DESC");
+                    $pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND (status_pelamar = 'DISARANKAN' OR status_pelamar = '') ORDER BY id DESC");
                     // $hitungDulu = mysqli_num_rows($pelamar);
                     while ($row = mysqli_fetch_assoc($pelamar)) {
 
@@ -105,6 +105,7 @@
                             echo '<span class="label label-success">Disarankan</span>';
                         } elseif ($status_pelamar == "REJECTED"){
                             echo '<span class="label label-danger">Rejected</span>';
+
                         } else {
                             echo '<span class="label label-info">Belum Interview</span>';
                         }
