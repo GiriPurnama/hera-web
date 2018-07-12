@@ -431,25 +431,60 @@
                     $data_status = preg_replace("/\,/", "<br/>", $status_join);
                   ?>
                   
-                  <div class="display-data">
-                    
-                    <div class="col-md-3">
-                      <span><?= $data_nama; ?></span>
-                    </div>
+                  <?php
+                    if ($nama_pelamar != "" && $nama_lowongan_pelamar != "" && $client_distributor != "" && $status_join != "") { ?>
+                      
+                      <div class="display-data">
+                        
+                        <div class="col-md-3">
+                          <?php
+                           $array_nama = explode(",",$nama_pelamar);     
+                           foreach ($array_nama as $key_nama => $value_nama) { ?>
 
-                    <div class="col-md-3">
-                      <span><?= $data_lowongan; ?></span>
-                    </div>
+                            <div><?= $value_nama; ?></div>
 
-                    <div class="col-md-3">
-                      <span><?= $data_client; ?></span>
-                    </div>
+                          <?php } ?>
+                        </div>
 
-                    <div class="col-md-3">
-                      <span><?= $data_status; ?></span>
-                    </div>
-                  
-                  </div>
+
+                        <div class="col-md-3">
+                          <?php
+                           $array_lowongan = explode(",",$nama_lowongan_pelamar);     
+                           foreach ($array_lowongan as $key_lowongan => $value_lowongan) { ?>
+
+                            <div><?= $value_lowongan; ?></div>
+
+                          <?php } ?>
+                        </div>
+                       
+
+                        <div class="col-md-3">
+                          <?php
+                           $array_client = explode(",",$client_distributor);     
+                           foreach ($array_client as $key_client => $value_client) { ?>
+
+                            <div><?= $value_client; ?></div>
+
+                          <?php } ?>
+                        </div>
+                        
+
+                        <?php
+                         $array_status = explode(",",$status_join);
+                         foreach ($array_status as $key => $value) { ?>
+
+                          <div class="col-md-3">
+                            <select class="add-status" name="status_join[]">
+                              <option value="<?= $value; ?>"><?= $value; ?></option>
+                              <option value="Dikirim">Dikirim</option>
+                              <option value="Ditolak">Ditolak</option>
+                              <option value="Diterima">Diterima</option>
+                            </select>
+                          </div>
+
+                         <?php } ?>
+                      </div>
+                    <?php } ?>
 
                 </div>
               </div>
