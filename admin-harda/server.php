@@ -1123,10 +1123,10 @@
 
 		   // $query = mysqli_query($db, "INSERT INTO recruitment(id, nama_pelamar, nama_lowongan, client_distributor, status_join) values ('$idpelamar','$nama_pelamar','$nama_lowongan_pelamar','$client_distributor','$status_join')");
 	
-		    $query = mysqli_query($db, "UPDATE recruitment SET nama_pelamar =  concat(nama_pelamar, '$nama_pelamar'),
-		                            nama_lowongan  = concat(nama_lowongan, '$nama_lowongan_pelamar'),
-		                            client_distributor = concat(client_distributor, '$client_distributor'),
-		                            status_join = concat(status_join, '$status_join')
+		    $query = mysqli_query($db, "UPDATE recruitment SET nama_pelamar =  concat(nama_pelamar, '$nama_pelamar,'),
+		                            nama_lowongan  = concat(nama_lowongan, '$nama_lowongan_pelamar,'),
+		                            client_distributor = concat(client_distributor, '$client_distributor,'),
+		                            status_join = concat(status_join, '$status_join,')
 		                            WHERE id = '$idpelamar'");   
 
 		    // cek query
@@ -1137,9 +1137,35 @@
 		      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='edit-user.php?id=".$idpelamar."'</script>");
 		    } 
 	  }
-	} 
+	}
+
+	// Update Pelamar
+
+	if (isset($_POST['update_pelamar'])) {
+
+	  if (isset($_POST['id'])) {
+
+		    $idpelamar = $_POST['id'];
+
+		    $status_join = implode(',', $_POST['status_join']);
+
+		   // $query = mysqli_query($db, "INSERT INTO recruitment(id, nama_pelamar, nama_lowongan, client_distributor, status_join) values ('$idpelamar','$nama_pelamar','$nama_lowongan_pelamar','$client_distributor','$status_join')");
+	
+		    $query = mysqli_query($db, "UPDATE recruitment SET status_join = '$status_join' WHERE id = '$idpelamar'");   
+
+		    // cek query
+		    if ($query) {
+		      // jika berhasil tampilkan pesan berhasil update data
+		      header('location: edit-user.php?id='.$idpelamar.'');
+		    } else {
+		      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='edit-user.php?id=".$idpelamar."'</script>");
+		    } 
+	  }
+	}  
 
 //===================== Kirim Pelamar ================================================
+
+
 
 
 ?>

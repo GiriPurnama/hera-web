@@ -394,12 +394,7 @@
                       <div class="col-md-2">
                         <div class="form-group">
                           <label>Status Pelamar</label>
-                          <select class="form-control add-status" name="status_join[]">
-                            <option value="">-</option>
-                            <option value="Dikirim">Dikirim</option>
-                            <option value="Ditolak">Ditolak</option>
-                            <option value="Diterima">Diterima</option>
-                          </select>
+                          <input type="text" value="Dikirim" class="form-control add-status" name="status_join[]" readonly>
                         </div>
                       </div>
 
@@ -432,12 +427,16 @@
                     $data_client = preg_replace("/\,/", "<br/>", $client_distributor);
                     $data_status = preg_replace("/\,/", "<br/>", $status_join);
                   ?>
-                  
+
+              <!-- ============= Khusus RO ===============================================================================-->
+
                   <?php
+                  if ($status == "RO" || $status == "InternalHRD" || $status == "Chief" || $status == "Master") {
+                  
                     if ($nama_pelamar != "" && $nama_lowongan_pelamar != "" && $client_distributor != "" && $status_join != "") { ?>
-                      
-                      <div class="display-data">
-                        
+                    
+                  <div class="display-data">
+                      <h3 class="font-bold" style="width: 100%; display: -webkit-box; padding: 10px 15px;">Data Terkirim</h3>
                         <div class="col-md-3">
                           <?php
                            $array_nama = explode(",",$nama_pelamar);     
@@ -476,20 +475,97 @@
                          foreach ($array_status as $key => $value) { ?>
 
                           <div class="col-md-3">
-                            <select class="add-status" name="status_join[]">
-                              <option value="<?= $value; ?>"><?= $value; ?></option>
-                              <option value="Dikirim">Dikirim</option>
-                              <option value="Ditolak">Ditolak</option>
-                              <option value="Diterima">Diterima</option>
-                            </select>
+                              <div><?= $value; ?></div>
                           </div>
 
                          <?php } ?>
-                      </div>
-                    <?php } ?>
+                  </div>
+
+                    <?php }} ?>
+              <!-- ============= Khusus RO ===============================================================================-->
 
                 </div>
               </div>
+
+          <!--======================= Khusus RND ============================================================-->
+
+             <?php if ($status == "RnD" || $status == "EksternalHRD" || $status == "Chief" || $status == "Master") { 
+                      if ($nama_pelamar != "" && $nama_lowongan_pelamar != "" && $client_distributor != "" && $status_join != "") { 
+              ?>
+             
+              <div class="box-reference">
+                <h3 class="font-bold">Data Pelamar Referensi</h3>
+                 <div class="col-md-3">
+
+                    <?php
+                     $array_nama = explode(",",$nama_pelamar);     
+                     foreach ($array_nama as $key_nama => $value_nama) { ?>
+
+                      <div><?= $value_nama; ?></div>
+
+                    <?php } ?>
+                  </div>
+
+
+                  <div class="col-md-3">
+                    <?php
+                     $array_lowongan = explode(",",$nama_lowongan_pelamar);     
+                     foreach ($array_lowongan as $key_lowongan => $value_lowongan) { ?>
+
+                      <div><?= $value_lowongan; ?></div>
+
+                    <?php } ?>
+                  </div>
+                 
+
+                  <div class="col-md-3">
+                    <?php
+                     $array_client = explode(",",$client_distributor);     
+                     foreach ($array_client as $key_client => $value_client) { ?>
+
+                      <div><?= $value_client; ?></div>
+
+                    <?php } ?>
+                  </div>
+                  
+                  <form method="POST" action="server.php" enctype="multipart/form-data">
+                  <?php
+                   $array_status = explode(",",$status_join);
+                   $numItems =  count($array_status);
+                   $i = 0;
+
+                   foreach ($array_status as $key => $value) { 
+                      if(++$i === $numItems) {
+                   ?>
+
+                    <div class="col-md-3 end-select">
+                        <select class="hide" data-val="<?= $key; ?>" name="status_join[]">
+                          <option value="<?= $value; ?>"><?= $value; ?></option>
+                        </select>
+                    </div>
+                   
+                    <?php } else { ?>
+                    
+                    <div class="col-md-3 end-select">
+                        <input type="hidden" name="id" value="<?= $id; ?>">
+                        <select   data-val="<?= $key; ?>" name="status_join[]">
+                          <option value="<?= $value; ?>"><?= $value; ?></option>
+                          <option value="Ditolak">Ditolak</option>
+                          <option value="Diterima">Diterima</option>
+                        </select>
+                      
+                    </div>
+
+                   <?php  }} ?>
+
+                   <div class="col-md-12">
+                      <input type="submit" class="btn btn-primary" name="update_pelamar" value="Kirim Data">
+                   </div>
+
+                  </form>
+              </div>
+             <?php }} ?>
+          <!--======================= Khusus RND ============================================================-->
 
             </div>
             <!-- /.box-body -->

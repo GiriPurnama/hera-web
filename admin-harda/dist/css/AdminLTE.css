@@ -5118,7 +5118,7 @@ textarea {
   display: block;
   margin-left: 12px;
 }
-.box-distribution{
+.box-distribution, .box-reference{
  margin-top: 20px;
  display: inline-block;
  border: 1px solid #ccc;
