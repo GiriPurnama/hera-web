@@ -30,7 +30,7 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
   <meta property="og:title" content="<?= $judul_artikel; ?>" />
-  <meta property="og:description" content="Artikel Hera" />
+  <meta property="og:description" content="<?= $isi_artikel; ?>" />
   <meta property="og:url" content="<?= $actual_link; ?>" />
   <meta property="og:image" content="<?= $str_artikel; ?>" />
 
