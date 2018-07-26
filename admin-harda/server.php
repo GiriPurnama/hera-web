@@ -1166,6 +1166,21 @@
 //===================== Kirim Pelamar ================================================
 
 
+//===================== Kirim Voting ================================================
+	if (isset($_POST['simpan_voting'])) {
+		$nama_kandidat = $_POST['nama_kandidat'];
+		$komentar_voting = $_POST['komentar'];
+
+		$query = mysqli_query($db, "INSERT INTO voting(nama_kandidat, komentar) VALUES ('$nama_kandidat','$komentar_voting')");
+
+		if ($query) {
+			header('location: page-voting.php');
+		} else {
+			echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-voting.php'</script>");
+		}
+	}
+//===================== Kirim Voting ================================================
+
 
 
 ?>
