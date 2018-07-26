@@ -128,7 +128,7 @@
                   </div>
               </div>
           </div>
-          <form role="form" id="formPelamar" method="post"  enctype="multipart/form-data">
+          <form role="form" id="formPelamar" method="post" action="datafiles/insert.php"  enctype="multipart/form-data">
               <div class="row setup-content" id="step-1">
                   
                   <div class="col-md-12">
@@ -419,7 +419,7 @@
                           </div>
               
                           <div class="col-md-12">
-                            <button class="btn btn-success" id="finish" type="submit">Finish</button>
+                            <button class="btn btn-success" name="simpan" id="finish" type="submit">Finish</button>
                           </div>
                       </div>
                   </div>
@@ -1174,129 +1174,130 @@ $(document).ready(function () {
  //  });
 
   $("#formPelamar").submit(function(e) {
-    e.preventDefault();
+    $("#loader").show();
+    // e.preventDefault();
   });
 
-  $(document).on('submit', '#formPelamar', function(){
+  // $(document).on('submit', '#formPelamar', function(){
 
-    // if (CheckValidasiPeserta() == true ) {
-      $("#loader").show();
-      // $("#labelError").hide();
-      var data = new FormData(this);
-      data.append('branch', $('#branch').val());
-      data.append('posisi', $('#posisiPelamar').val());
-      data.append('refrensi', $('[name="refrensi"]').val());
-      data.append('nama_lengkap', $('#fullName').val());
-      data.append('warga_negara', $('#wargaNegara').val());
-      data.append('tempat_lahir', $('#tempat_lahir').val());
-      data.append('tanggal_lahir', $('#tanggal_lahir').val());
-      data.append('agama', $('#agama').val());
-      data.append('jenis_kelamin', $("input[name='jenis_kelamin']:checked").val());
-      data.append('no_ktp', $('#idCard').val());
-      data.append('no_sim', $('#idSim').val());
-      data.append('status_sipil', $('#status_sipil').val());
-      data.append('alamat_email', $('#alamat_email').val());
-      data.append('berat_badan', $('#berat_badan').val());
-      data.append('tinggi_badan', $('#tinggi_badan').val());
-      data.append('alamat_sekarang', $('#alamat_sekarang').val());
-      data.append('alamat_ktp', $('#alamat_ktp').val());
-      data.append('no_handphone', $('#idHandphone').val());
-      data.append('no_wa', $('#idHandphoneWa').val());
-      data.append('telepon', $('#idTelepon').val());
-      data.append('kemampuan_komputer', $('#skill').val());
-      data.append('pendidikan_terakhir', $('#pendidikan_terakhir').val());
-      // data.append('kuliah', $("input[name='kuliah']:checked").val());
-      data.append('bahasa_asing', $("input[name='bahasa_asing']:checked").val());
-      data.append('riwayat_penyakit', $('#riwayat').val());
-      data.append('pengalaman_kerja', $('#pengalaman_kerja').val());
-      data.append('foto', $('#fotoUpload')[0].files[0]);
-      data.append('ktp', $('#ktpUpload')[0].files[0]);
-      data.append('ijazah', $('#ijazahUpload')[0].files[0]);
-      data.append('copy_cv', $('#copy_cv')[0].files[0]);
-      data.append('promosi_diri', $('#promosiDiri').val());
+  //   // if (CheckValidasiPeserta() == true ) {
+  //     $("#loader").show();
+  //     // $("#labelError").hide();
+  //     var data = new FormData(this);
+  //     data.append('branch', $('#branch').val());
+  //     data.append('posisi', $('#posisiPelamar').val());
+  //     data.append('refrensi', $('[name="refrensi"]').val());
+  //     data.append('nama_lengkap', $('#fullName').val());
+  //     data.append('warga_negara', $('#wargaNegara').val());
+  //     data.append('tempat_lahir', $('#tempat_lahir').val());
+  //     data.append('tanggal_lahir', $('#tanggal_lahir').val());
+  //     data.append('agama', $('#agama').val());
+  //     data.append('jenis_kelamin', $("input[name='jenis_kelamin']:checked").val());
+  //     data.append('no_ktp', $('#idCard').val());
+  //     data.append('no_sim', $('#idSim').val());
+  //     data.append('status_sipil', $('#status_sipil').val());
+  //     data.append('alamat_email', $('#alamat_email').val());
+  //     data.append('berat_badan', $('#berat_badan').val());
+  //     data.append('tinggi_badan', $('#tinggi_badan').val());
+  //     data.append('alamat_sekarang', $('#alamat_sekarang').val());
+  //     data.append('alamat_ktp', $('#alamat_ktp').val());
+  //     data.append('no_handphone', $('#idHandphone').val());
+  //     data.append('no_wa', $('#idHandphoneWa').val());
+  //     data.append('telepon', $('#idTelepon').val());
+  //     data.append('kemampuan_komputer', $('#skill').val());
+  //     data.append('pendidikan_terakhir', $('#pendidikan_terakhir').val());
+  //     // data.append('kuliah', $("input[name='kuliah']:checked").val());
+  //     data.append('bahasa_asing', $("input[name='bahasa_asing']:checked").val());
+  //     data.append('riwayat_penyakit', $('#riwayat').val());
+  //     data.append('pengalaman_kerja', $('#pengalaman_kerja').val());
+  //     data.append('foto', $('#fotoUpload')[0].files[0]);
+  //     data.append('ktp', $('#ktpUpload')[0].files[0]);
+  //     data.append('ijazah', $('#ijazahUpload')[0].files[0]);
+  //     data.append('copy_cv', $('#copy_cv')[0].files[0]);
+  //     data.append('promosi_diri', $('#promosiDiri').val());
 
-      $.ajax({
-         url : "datafiles/insert.php",  
-         method: 'POST',
-         cache: false,
-         contentType: false,
-         processData: false,
-         data : data,
+  //     $.ajax({
+  //        url : "datafiles/insert.php",  
+  //        method: 'POST',
+  //        cache: false,
+  //        contentType: false,
+  //        processData: false,
+  //        data : data,
 
-         success: function(data){
-            // $("#labelSuccess").show();
-            // $("#labelSuccess").delay(3000).fadeOut('slow');
-            $('#formPelamar').trigger("reset");
-            $("html, body").animate({ scrollTop: 0 }, "slow");
-            $('#refrensi').attr('name', 'refrensi');
-            $('#myInput').remove();
-            $('#modalSuccess').modal('show');
-            $('#modalPelamar').modal('hide');
-            $("#loader").hide();
-         }
-      });
-    // } else {
+  //        success: function(data){
+  //           // $("#labelSuccess").show();
+  //           // $("#labelSuccess").delay(3000).fadeOut('slow');
+  //           $('#formPelamar').trigger("reset");
+  //           $("html, body").animate({ scrollTop: 0 }, "slow");
+  //           $('#refrensi').attr('name', 'refrensi');
+  //           $('#myInput').remove();
+  //           $('#modalSuccess').modal('show');
+  //           $('#modalPelamar').modal('hide');
+  //           $("#loader").hide();
+  //        }
+  //     });
+  //   // } else {
 
-    //   console.log("Error Cuy");
-    // }
+  //   //   console.log("Error Cuy");
+  //   // }
 
-    return false;
+  //   return false;
 
-    });
+  //   });
 
-    $('#fotoUpload').change(function(){
-       var fuData = document.getElementById('fotoUpload');
-       var FileUploadPath = fuData.value;
-
-      
-       var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
-
-       if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
-          $("#finish").removeClass("disabled");
-          $(".error-notif-foto").removeClass("has-error");
-          $(".error-notif-foto").removeClass("display");
-       } else {
-          $('#finish').addClass('disabled');
-          $(".error-notif-foto").addClass("has-error");
-          $(".error-notif-foto").addClass("display");
-       }
-    })
-
-     $('#ijazahUpload').change(function(){
-       var fuData = document.getElementById('ijazahUpload');
-       var FileUploadPath = fuData.value;
+  //   $('#fotoUpload').change(function(){
+  //      var fuData = document.getElementById('fotoUpload');
+  //      var FileUploadPath = fuData.value;
 
       
-       var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+  //      var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
 
-       if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
-          $("#finish").removeClass("disabled");
-          $(".error-notif-ijazah").removeClass("has-error");
-          $(".error-notif-ijazah").removeClass("display");
-       } else {
-          $('#finish').addClass('disabled');
-          $(".error-notif-ijazah").addClass("has-error");
-          $(".error-notif-ijazah").addClass("display");
-       }
-    })
+  //      if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
+  //         $("#finish").removeClass("disabled");
+  //         $(".error-notif-foto").removeClass("has-error");
+  //         $(".error-notif-foto").removeClass("display");
+  //      } else {
+  //         $('#finish').addClass('disabled');
+  //         $(".error-notif-foto").addClass("has-error");
+  //         $(".error-notif-foto").addClass("display");
+  //      }
+  //   })
 
-     $('#ktpUpload').change(function(){
-       var fuData = document.getElementById('ktpUpload');
-       var FileUploadPath = fuData.value;
+  //    $('#ijazahUpload').change(function(){
+  //      var fuData = document.getElementById('ijazahUpload');
+  //      var FileUploadPath = fuData.value;
 
       
-       var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+  //      var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
 
-       if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
-          $("#finish").removeClass("disabled");
-          $(".error-notif-ktp").removeClass("has-error");
-          $(".error-notif-ktp").removeClass("display");
-       } else {
-          $('#finish').addClass('disabled');
-          $(".error-notif-ktp").addClass("has-error");
-          $(".error-notif-ktp").addClass("display");
-       }
-    })
+  //      if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
+  //         $("#finish").removeClass("disabled");
+  //         $(".error-notif-ijazah").removeClass("has-error");
+  //         $(".error-notif-ijazah").removeClass("display");
+  //      } else {
+  //         $('#finish').addClass('disabled');
+  //         $(".error-notif-ijazah").addClass("has-error");
+  //         $(".error-notif-ijazah").addClass("display");
+  //      }
+  //   })
+
+  //    $('#ktpUpload').change(function(){
+  //      var fuData = document.getElementById('ktpUpload');
+  //      var FileUploadPath = fuData.value;
+
+      
+  //      var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+
+  //      if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
+  //         $("#finish").removeClass("disabled");
+  //         $(".error-notif-ktp").removeClass("has-error");
+  //         $(".error-notif-ktp").removeClass("display");
+  //      } else {
+  //         $('#finish').addClass('disabled');
+  //         $(".error-notif-ktp").addClass("has-error");
+  //         $(".error-notif-ktp").addClass("display");
+  //      }
+  //   })
  
   $('#refrensi').change(function(){
       if( $(this).val() == '1'){

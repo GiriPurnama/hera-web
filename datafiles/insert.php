@@ -13,7 +13,7 @@
 	    return implode('', $pieces);
 	}
 
-	//if (isset($_POST['simpan'])) {
+	if (isset($_POST['simpan'])) {
 		$posisi = mysqli_real_escape_string($db, trim(strtoupper($_POST['posisi'])));
 		$refrensi = strtoupper($_POST['refrensi']);
 		$nama_lengkap = mysqli_real_escape_string($db, trim(strtoupper($_POST['nama_lengkap'])));
@@ -191,12 +191,12 @@
 																	 NOW())");
 		if ($query) {
 			// header('location: ../index.php');
-			echo "";
+			echo ("<script LANGUAGE='JavaScript'>window.alert('Terimakasih Telah, Data anda telah disimpan'); window.location.href='/index.php'</script>");
 		} else {
 			// jika gagal tampilkan pesan kesalahan
 			// header('location: index.php?alert=1');
-			echo "gagal";
+		echo ("<script LANGUAGE='JavaScript'>window.alert('Maaf data gagal diinput'); window.location.href='index.php'</script>");
 			// header('location: ../inforegistrasi.php?alert=1');
 		}	
-	//}
+	}
 ?>
