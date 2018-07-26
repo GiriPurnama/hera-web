@@ -63,7 +63,7 @@
                   <!-- <th>Jenis Kelamin</th> -->
                   <th>Pendidikan Terakhir</th>
                   <th>Pengalaman Kerja</th>
-                  <th>Review</th>
+                 <!--  <th>Review</th> -->
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -125,7 +125,7 @@
                   <!-- <th><?php echo $row['jenis_kelamin']; ?></th> -->
                   <th><?= $row['pendidikan_terakhir']; ?></th>
                   <th><?= $row['pengalaman_kerja']; ?></th>
-                  <th><?= $review; ?></th>
+                  <!-- <th><?= $review; ?></th> -->
                   <td>
                     <?php echo "<a href='edit-user.php?id=$row[id]'><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
                     

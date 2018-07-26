@@ -5134,3 +5134,9 @@ textarea {
 .btn-pelamar {
     margin-top: 25px;
 }
+.box-dl-img {
+    border: 1px solid #ccc;
+    display: -webkit-box;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}

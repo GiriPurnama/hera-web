@@ -61,6 +61,8 @@
           $nama_lowongan_pelamar = $data['nama_lowongan'];
           $client_distributor = $data['client_distributor'];
           $status_join = $data['status_join'];
+          $alamat_ktp = $data['alamat_ktp'];
+          $no_wa = $data['no_wa'];
         }
       }
 
@@ -71,6 +73,8 @@
 
         $timestamp1 = strtotime($tanggal_lahir);
         $newDate1 = date('j-F-Y', $timestamp1);  
+
+        $no_wa = $no_wa ?: "-";
 
         $ndata = preg_replace("/\,/", "<br/>", $pengalaman_kerja);  
   ?>
@@ -182,12 +186,20 @@
                     <span class="field-user"><?php echo $alamat_sekarang; ?></span>
                 </div>
                 <div class="col-md-6 pad-label">
+                    <span class="label-user">Alamat KTP</span>
+                    <span class="field-user"><?php echo $alamat_ktp; ?></span>
+                </div>
+                <div class="col-md-6 pad-label">
                     <span class="label-user">Tinggi/Berat</span>
                     <span class="field-user"><?php echo $tinggi_badan; ?>/<?php echo $berat_badan; ?></span>
                 </div>
                 <div class="col-md-6">
                     <span class="label-user">No Handphone</span>
                     <span class="field-user"><?php echo $no_handphone; ?></span>
+                </div>
+                <div class="col-md-6">
+                    <span class="label-user">No Wa</span>
+                    <span class="field-user"><?php echo $no_wa; ?></span>
                 </div>
                 <div class="col-md-6 pad-label">
                     <span class="label-user">No Telepon</span>
@@ -303,13 +315,22 @@
                     </div>
                 <div class="form-group col-md-12">
                   <input type="submit" class="btn btn-primary btn-submit" name="simpan" id="send" value="Simpan">
-                  <input type="submit" class="btn btn-warning btn-submit" name="export-pdf" id="pdf" value="Export PDF" href="javascript:void(0);" onclick="window.open('export-pdf.php?id=<?php echo $id; ?>')">
+                  <input type="submit" class="btn btn-warning btn-submit" name="export-pdf" id="pdf" value="Export PDF HERA" href="javascript:void(0);" onclick="window.open('export-pdf.php?id=<?php echo $id; ?>')">
                   <?PHP if ($copy_cv != "") 
                         {  
                   ?>
-                    <a href="<?= $copy_cv; ?>" class="btn btn-success">Download</a>
+                    <a href="<?= $copy_cv; ?>" class="btn btn-success">Download CV Pelamar</a>
                   <?PHP } ?>
                 </div>
+
+                 <div class="box-dl-img">
+                   <div class="form-group col-md-12">
+                       <h3 class="font-bold">DOWNLOAD IMAGE</h3>
+                       <a href="<?= $foto; ?>" target="_blank" class="btn btn-primary">Foto</a>
+                       <a href="<?= $ktp; ?>" target="_blank" class="btn btn-primary">KTP</a>
+                       <a href="<?= $ijazah; ?>" target="_blank" class="btn btn-primary">Ijazah</a>
+                   </div>
+                 </div>
               </form>
 
               <div class="box-upload">

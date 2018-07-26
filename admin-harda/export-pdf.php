@@ -39,6 +39,8 @@ include "../config/koneksi.php";
           $berat_badan = $data['berat_badan'];
           $posisi_rekomendasi = $data['posisi_rekomendasi'];
           $promosi_diri = $data['promosi_diri'];
+          $alamat_ktp = $data['alamat_ktp'];
+          $no_wa = $data['no_wa'];
         }
       }
 
@@ -49,14 +51,12 @@ include "../config/koneksi.php";
       $telepon = $telepon ?: '-';
       $bahasa_asing = $bahasa_asing ?: '-';
       $riwayat_penyakit = $riwayat_penyakit ?: '-';
-      $posisi_rekomendasi = $posisi_rekomendasi ?: $posisi;  
+      $posisi_rekomendasi = $posisi_rekomendasi ?: $posisi; 
+      $no_wa = $no_wa ?: "-"; 
 
 $html = '
 <div style="background-image:url(img/hera-black-op5.png); background-image-resize: 15; background-position: center center; background-repeat: no-repeat;">
-	<div>
-		<img width="100" height="130" style="margin-left:80%;padding-top:100px" src="'.$foto.'">
-	</div>
-	<table width="60%" style="padding-top:-130px;" cellspacing="0">
+	<table width="60%" style="padding-top:150px;" cellspacing="0">
 		<tbody>
 			<tr>
 	    		<td style="width:50%";>Posisi</td>
@@ -112,7 +112,7 @@ $html = '
 	    		<td></td>
 	    	</tr>
 	    	<tr>
-	    		<td style="width:50%";>Tinggi/Berat</td>
+	    		<td style="width:50%";>Tinggis/Berat</td>
 	    		<td style="width:5%";>:</td>
 	    		<td style="width:100%";>'.$tinggi_badan.'/'.$berat_badan.'</td>
 	    	</tr>
@@ -160,9 +160,25 @@ $html = '
 	    		<td></td>
 	    	</tr>
 	    	<tr>
+	    		<td style="width:50%";>Alamat KTP</td>
+	    		<td style="width:5%";>:</td>
+	    		<td style="width:100%";>'.$alamat_ktp.'</td>
+	    	</tr>
+	    	<tr>
+	    		<td></td>
+	    	</tr>
+	    	<tr>
 	    		<td style="width:50%";>No Handphone</td>
 	    		<td style="width:5%";>:</td>
 	    		<td style="width:100%";>'.$no_handphone.'</td>
+	    	</tr>
+	    	<tr>
+	    		<td></td>
+	    	</tr>
+	    	<tr>
+	    		<td style="width:50%";>No Wa</td>
+	    		<td style="width:5%";>:</td>
+	    		<td style="width:100%";>'.$no_wa.'</td>
 	    	</tr>
 	    	<tr>
 	    		<td></td>
@@ -230,13 +246,7 @@ $html = '
 	    	
 		</tbody>
 	</table>
-	<div style="padding-top:100px;">
-		<img width="300" height="150" src="'.$ktp.'">
-	</div>
-	
-</div>
-<img style="padding-top:100px;" src="'.$ijazah.'">      
-';
+</div>';
 
 $header = '<img src="../image/logoPng_harda.png" style="height:120px; margin-right:50%;" >';
 $footer = '<div>

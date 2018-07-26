@@ -32,7 +32,9 @@
 		$status_sipil = strtoupper($_POST['status_sipil']);
 		$alamat_email = mysqli_real_escape_string($db, trim(strtoupper($_POST['alamat_email'])));
 		$alamat_sekarang = mysqli_real_escape_string($db, trim(strtoupper($_POST['alamat_sekarang'])));
+		$alamat_ktp = mysqli_real_escape_string($db, trim(strtoupper($_POST['alamat_ktp'])));
 		$no_handphone = strtoupper($_POST['no_handphone']);
+		$no_wa = strtoupper($_POST['no_wa']);
 		$telepon = strtoupper($_POST['telepon']);
 		$pendidikan_terakhir = strtoupper($_POST['pendidikan_terakhir']);
 		$kemampuan_komputer  = mysqli_real_escape_string($db, trim(strtoupper($_POST['kemampuan_komputer'])));
@@ -128,7 +130,9 @@
 															status_sipil,
 															alamat_email,
 															alamat_sekarang,
+															alamat_ktp,
 															no_handphone,
+															no_wa,
 															telepon,
 															pendidikan_terakhir,
 															kemampuan_komputer,
@@ -162,7 +166,9 @@
 																	'$status_sipil',
 																	'$alamat_email',
 																	'$alamat_sekarang',
+																	'$alamat_ktp',
 																	'$no_handphone',
+																	'$no_wa',
 																	'$telepon',
 																	'$pendidikan_terakhir',
 																	'$kemampuan_komputer',

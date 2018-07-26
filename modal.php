@@ -284,15 +284,27 @@
                   </div>
 
                   <div class="form-group col-md-6">
-                    <label for="alamat_sekarang">Alamat Sekarang* :</label>
+                    <label for="alamat_sekarang">Alamat Tinggal Sekarang* :</label>
                     <textarea name="alamat_sekarang" id="alamat_sekarang" class="form-control textareaSekarang" style="height:110px;" required></textarea>
-                    <div class="display-text">*Harap Isi Alamat</div>
+                    <div class="display-text">*Harap Isi Alamat Tinggal Sekarang</div>
+                  </div>
+
+                   <div class="form-group col-md-6">
+                    <label for="alamat_ktp">Alamat KTP* :</label>
+                    <textarea name="alamat_ktp" id="alamat_ktp" class="form-control textareaSekarang" style="height:110px;" required></textarea>
+                    <div class="display-text">*Harap Isi Alamat KTP</div>
                   </div>
 
                   <div class="form-group col-md-6">
                     <label for="noHandphone">No Handphone* :</label>
-                    <input type="text" class="form-control" id="idHandphone" name="no_handphone" autocomplete="off" maxlength="12" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                    <input type="text" class="form-control" id="idHandphone" name="no_handphone" autocomplete="off" maxlength="13" onKeyPress="return goodchars(event,'0123456789',this)" required>
                     <div class="display-text">*Harap Isi No Handphone</div>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="noHandphone">No WA :</label>
+                    <input type="text" class="form-control" id="idHandphoneWa" name="no_wa" autocomplete="off" maxlength="12" onKeyPress="return goodchars(event,'0123456789',this)">
+                    <div class="display-text">*Harap Isi No WA</div>
                   </div>
 
                   <div class="form-group col-md-6">
@@ -1187,7 +1199,9 @@ $(document).ready(function () {
       data.append('berat_badan', $('#berat_badan').val());
       data.append('tinggi_badan', $('#tinggi_badan').val());
       data.append('alamat_sekarang', $('#alamat_sekarang').val());
+      data.append('alamat_ktp', $('#alamat_ktp').val());
       data.append('no_handphone', $('#idHandphone').val());
+      data.append('no_wa', $('#idHandphoneWa').val());
       data.append('telepon', $('#idTelepon').val());
       data.append('kemampuan_komputer', $('#skill').val());
       data.append('pendidikan_terakhir', $('#pendidikan_terakhir').val());
