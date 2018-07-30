@@ -1,4 +1,7 @@
-<?php $status = $_SESSION['status']; ?>
+<?php $status = $_SESSION['status']; 
+      $cabang = $_SESSION['branch'];
+?>
+
 <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -101,6 +104,22 @@
             </span>
           </a>
         </li>
+
+        <?php if ($status == "RnD" || $status == "EksternalHRD" || $status == "Chief" || $status == "Master") { ?>
+         <?php  
+            $jum_pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = 'DISARANKAN' AND feedback = 'pending-rnd'");
+            $jum_hasil_pelamar = mysqli_num_rows($jum_pelamar);
+          ?>
+          <li class="">
+            <a href="page-rnd.php">
+              <i class="fa fa-expand"></i> <span>RND</span>
+              <span class="pull-right-container">
+                <!-- <i class="fa fa-angle-left pull-right"></i> -->
+              </span>
+            <span class="label label-primary pull-right"><?= $jum_hasil_pelamar; ?></span>
+            </a>
+          </li>
+        <?php } ?>
 
 
        

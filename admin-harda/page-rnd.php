@@ -63,7 +63,7 @@
               <tbody>
                 <?php
                     $no = 1;
-                    $pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = 'DISARANKAN' AND nama_pelamar IS NOT NULL ORDER BY id DESC");
+                    $pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = 'DISARANKAN' AND feedback = 'pending-rnd' AND nama_pelamar IS NOT NULL ORDER BY id DESC");
 
                     while ($row = mysqli_fetch_assoc($pelamar)) {
 

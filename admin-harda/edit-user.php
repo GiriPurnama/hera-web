@@ -63,6 +63,7 @@
           $status_join = $data['status_join'];
           $alamat_ktp = $data['alamat_ktp'];
           $no_wa = $data['no_wa'];
+          $feedback = $data['feedback'];
         }
       }
 
@@ -325,7 +326,7 @@
 
                  <div class="box-dl-img">
                    <div class="form-group col-md-12">
-                       <h3 class="font-bold">DOWNLOAD IMAGE</h3>
+                       <h3 class="font-bold">DOWNLOAD DOKUMEN</h3>
                        <a href="<?= $foto; ?>" target="_blank" class="btn btn-primary">Foto</a>
                        <a href="<?= $ktp; ?>" target="_blank" class="btn btn-primary">KTP</a>
                        <a href="<?= $ijazah; ?>" target="_blank" class="btn btn-primary">Ijazah</a>
@@ -419,13 +420,13 @@
                         </div>
                       </div>
 
-                     <div class="col-md-2">
+                     <!-- <div class="col-md-2">
                         <div class="btn-pelamar">
                           <div class="form-group">
                            <button class="btn btn-default add-btn"><i class="fa fa-plus"></i> Tambah</button>    
                           </div>
                         </div>
-                     </div>
+                     </div> -->
 
                     <div class="wrapper-input">
                       <div class="col-md-2 form-group append-nama"></div>
@@ -436,6 +437,7 @@
                     
                     <div class="col-md-12">
                       <div class="form-group">
+                        <input type="hidden" name="feedback" value="pending-rnd">
                         <input type="submit" class="btn btn-primary" value="Kirim Pelamar" name="kirim_pelamar">    
                       </div>
                     </div>
@@ -496,10 +498,17 @@
                          foreach ($array_status as $key => $value) { ?>
 
                           <div class="col-md-3">
-                              <div><?= $value; ?></div>
+                              <?php if ($value == "Ditolak") { ?>
+                                  <span class="label label-danger">Pelamar Ditolak</span>
+                              <?php } else if ($value == "Dikirim") { ?>
+                                  <span class="label label-info">Masih Menunggu</span>
+                              <?PHP } else if($value == "Diterima") { ?>
+                                  <span class="label label-success">Pelamar Diterima</span>
+                              <?php } ?>
                           </div>
 
                          <?php } ?>
+
                   </div>
 
                     <?php }} ?>
@@ -515,7 +524,7 @@
               ?>
              
               <div class="box-reference">
-                <h3 class="font-bold">Data Pelamar Referensi</h3>
+                <h3 class="font-bold">Data Pelamar</h3>
                  <div class="col-md-3">
 
                     <?php
@@ -574,12 +583,22 @@
                           <option value="Ditolak">Ditolak</option>
                           <option value="Diterima">Diterima</option>
                         </select>
-                      
+                        
+                        <?php if ($value == "Ditolak") { ?>
+                            <span class="label label-danger">Pelamar Ditolak</span>
+                        <?php } else if ($value == "Dikirim") { ?>
+                            <span class="label label-info">Masih Menunggu</span>
+                        <?PHP } else if($value == "Diterima") { ?>
+                            <span class="label label-success">Pelamar Diterima</span>
+                        <?php } ?>
                     </div>
+
 
                    <?php  }} ?>
 
+
                    <div class="col-md-12">
+                      <input type="hidden" name="feedback" value="clear-rnd">
                       <input type="submit" class="btn btn-primary" name="update_pelamar" value="Kirim Data">
                    </div>
 
