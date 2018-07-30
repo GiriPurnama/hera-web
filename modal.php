@@ -1141,7 +1141,8 @@ $(document).ready(function () {
                 isValid = false;
                 $(curInputs[i]).closest(".form-group").addClass("has-error");
                 $(curInputs[i]).closest(".form-group").addClass("display");
-                $("#modalPelamar").animate({ scrollTop: 0 }, "slow");
+                // $(curInputs[i]).closest(".form-group").scrollTop(0);
+
               
             }
         }

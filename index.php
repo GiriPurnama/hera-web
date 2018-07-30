@@ -159,7 +159,7 @@
                   <div class="box-img">
                     <img class="size-box-img" src="<?= $str_artikel; ?>">
                   </div>
-                  <h4 class="title"><a href='artikel-<?php echo $row['idartikel']; ?>-<?php echo $row['permalink_artikel']; ?>.html' data-val="<?php echo $row['idartikel']; ?>" target="_blank"><?= $judul_artikel; ?></a></h4>
+                  <h4 class="title"><a href='artikel-<?php echo $row['idartikel']; ?>-<?php echo $row['permalink_artikel']; ?>.html' data-val="<?php echo $row['idartikel']; ?>" ><?= $judul_artikel; ?></a></h4>
                   <p class="description"><?= $cut_str; ?></p>
                 </div>
                <?php } ?>

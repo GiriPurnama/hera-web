@@ -30,7 +30,7 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
   <meta property="og:title" content="<?= $judul_artikel; ?>" />
-  <meta property="og:description" content="<?= $isi_artikel; ?>" />
+  <meta property="og:description" content="<?= strip_tags($cut_str, '<p><a>'); ?>" />
   <meta property="og:url" content="<?= $actual_link; ?>" />
   <meta property="og:image" content="<?= $str_artikel; ?>" />
 
@@ -62,7 +62,7 @@
     <div class="container-fluid">
 
       <div id="logo" class="pull-left">
-        <h1><a href="index.php">PT Harda Esa Raksa</a></h1>
+        <h1><a href="../">PT Harda Esa Raksa</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
       </div>
