@@ -253,7 +253,7 @@
 
           <div class="col-lg-12 col-md-12 box wow bounceInUp" data-wow-duration="1.4s">
             <img class="img-responsive" src="img/flow.png">
-             <a data-toggle="modal" data-target="#modalPelamar" href="javascript:void(0);" class="btn-get-started scrollto">Lamar Pekerjaan</a>  
+             <a href="recruitment.hera" class="btn-get-started scrollto">Lamar Pekerjaan</a>  
           </div>
           
 

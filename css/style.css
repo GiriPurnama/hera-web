@@ -1948,3 +1948,6 @@ span.date-text {
      cursor: default;
   }
 /*==================================Step Wizard==============================================================*/
+form#formPelamar {
+    margin-bottom: 20px;
+}

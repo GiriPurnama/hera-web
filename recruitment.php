@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <title>PT Harda Esa Raksa</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta property="og:title" content="PT Harda Esa Raksa" />
+  <meta property="og:title" content="PT Harda Esa Raksa Recruitment" />
   <meta property="og:description" content="Harda Esa Raksa berdiri sejak tahun 1987 dimulai dari usaha perdagangan alat-alat telekomunikasi dan barang cetak, hingga berawal pada tahun 2007, Harda Esa Raksa mengembangkan bisnis dalam hal penyaluran dan penempatan tenaga kerja." />
   <meta property="og:url" content="http://pthardaesaraksa.com/" />
   <meta property="og:image" content="img/black.png" />
