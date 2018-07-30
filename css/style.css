@@ -1606,7 +1606,7 @@ label.radio-inline input[type="radio"]{
   display: block !important;
 }
 
-input#myInput {
+input#myInput, input#pLamar {
   margin-top: 10px;
 }
 

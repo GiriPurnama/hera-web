@@ -153,7 +153,7 @@
                     <div class="display-text">*Harap Isi Tempat Interview</div>
                   </div>
 
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-6 field-position">
                   <label for="Posisi">Posisi yang Dilamar* :</label>
                     <select class="form-control" id="posisiPelamar" name="posisi" required>
                         <option value="">-</option>
@@ -167,6 +167,7 @@
                         <option value="<?= $nama_lowongan; ?>" data-val="<?= $desc_lowongan; ?>"> <?= $nama_lowongan; ?> </option>
 
                         <?php } ?>
+                        <option value="1">Lainnya</option>
                     </select>
                     <!-- <input type="text" class="form-control" id="position" name="posisi" required> -->
                     <div class="display-text">*Harap Isi Posisi yang dilamar</div>
@@ -185,7 +186,6 @@
                       <option value="<?= $nama_lengkap; ?>"><?= $nama_lengkap; ?></option>                     
                       
                       <?php } ?>
-
                       <option value="1">Lainnya</option>
                     </select>
                     <div class="display-text">*Harap Isi Referensi</div>
@@ -392,22 +392,22 @@
 
                           <div class="form-group col-md-12 error-notif-foto">
                             <label for="foto">Upload Foto :</label>
-                              <input type="file" accept="image/*" class="form-control" id="fotoUpload" name="foto" required>
-                              <span class="small-font">Format Image(JPG/PNG)*</span>
+                              <input type="file" class="form-control" id="fotoUpload" name="foto" required>
+                              <span class="small-font">Semua jenis format dokumen atau image*</span>
                               <div class="display-text">*Harap Upload Foto</div>
                           </div>
 
                           <div class="form-group col-md-12 error-notif-ktp">
                             <label for="ktp">Upload KTP :</label>
-                            <input type="file" accept="image/*" class="form-control" id="ktpUpload" name="ktp" required>
-                            <span class="small-font">Format Image(JPG/PNG)*</span>
+                            <input type="file" class="form-control" id="ktpUpload" name="ktp" required>
+                            <span class="small-font">Semua jenis format dokumen atau image*</span>
                             <div class="display-text">*Harap Upload KTP</div>
                           </div>
 
                           <div class="form-group col-md-12 error-notif-ijazah">
                             <label for="ijazah">Upload Ijazah :</label>
-                            <input type="file" accept="image/*" class="form-control" id="ijazahUpload" name="ijazah" required>
-                            <span class="small-font">Format Image(JPG/PNG)*</span>
+                            <input type="file" class="form-control" id="ijazahUpload" name="ijazah" required>
+                            <span class="small-font">Semua jenis format dokumen atau image*</span>
                             <div class="display-text">*Harap Upload Ijazah</div>
                           </div>
 
@@ -1141,6 +1141,7 @@ $(document).ready(function () {
                 isValid = false;
                 $(curInputs[i]).closest(".form-group").addClass("has-error");
                 $(curInputs[i]).closest(".form-group").addClass("display");
+                $("#modalPelamar").animate({ scrollTop: 0 }, "slow");
               
             }
         }
@@ -1177,7 +1178,8 @@ $(document).ready(function () {
     $("#loader").show();
     // e.preventDefault();
   });
-
+ 
+// AJAX
   // $(document).on('submit', '#formPelamar', function(){
 
   //   // if (CheckValidasiPeserta() == true ) {
@@ -1244,61 +1246,65 @@ $(document).ready(function () {
   //   return false;
 
   //   });
+// AJAX
 
-  //   $('#fotoUpload').change(function(){
-  //      var fuData = document.getElementById('fotoUpload');
-  //      var FileUploadPath = fuData.value;
 
-      
-  //      var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
-
-  //      if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
-  //         $("#finish").removeClass("disabled");
-  //         $(".error-notif-foto").removeClass("has-error");
-  //         $(".error-notif-foto").removeClass("display");
-  //      } else {
-  //         $('#finish').addClass('disabled');
-  //         $(".error-notif-foto").addClass("has-error");
-  //         $(".error-notif-foto").addClass("display");
-  //      }
-  //   })
-
-  //    $('#ijazahUpload').change(function(){
-  //      var fuData = document.getElementById('ijazahUpload');
-  //      var FileUploadPath = fuData.value;
+// Validation Image
+    // $('#fotoUpload').change(function(){
+    //    var fuData = document.getElementById('fotoUpload');
+    //    var FileUploadPath = fuData.value;
 
       
-  //      var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+    //    var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
 
-  //      if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
-  //         $("#finish").removeClass("disabled");
-  //         $(".error-notif-ijazah").removeClass("has-error");
-  //         $(".error-notif-ijazah").removeClass("display");
-  //      } else {
-  //         $('#finish').addClass('disabled');
-  //         $(".error-notif-ijazah").addClass("has-error");
-  //         $(".error-notif-ijazah").addClass("display");
-  //      }
-  //   })
+    //    if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
+    //       $("#finish").removeClass("disabled");
+    //       $(".error-notif-foto").removeClass("has-error");
+    //       $(".error-notif-foto").removeClass("display");
+    //    } else {
+    //       $('#finish').addClass('disabled');
+    //       $(".error-notif-foto").addClass("has-error");
+    //       $(".error-notif-foto").addClass("display");
+    //    }
+    // })
 
-  //    $('#ktpUpload').change(function(){
-  //      var fuData = document.getElementById('ktpUpload');
-  //      var FileUploadPath = fuData.value;
+    //  $('#ijazahUpload').change(function(){
+    //    var fuData = document.getElementById('ijazahUpload');
+    //    var FileUploadPath = fuData.value;
 
       
-  //      var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+    //    var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
 
-  //      if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
-  //         $("#finish").removeClass("disabled");
-  //         $(".error-notif-ktp").removeClass("has-error");
-  //         $(".error-notif-ktp").removeClass("display");
-  //      } else {
-  //         $('#finish').addClass('disabled');
-  //         $(".error-notif-ktp").addClass("has-error");
-  //         $(".error-notif-ktp").addClass("display");
-  //      }
-  //   })
- 
+    //    if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
+    //       $("#finish").removeClass("disabled");
+    //       $(".error-notif-ijazah").removeClass("has-error");
+    //       $(".error-notif-ijazah").removeClass("display");
+    //    } else {
+    //       $('#finish').addClass('disabled');
+    //       $(".error-notif-ijazah").addClass("has-error");
+    //       $(".error-notif-ijazah").addClass("display");
+    //    }
+    // })
+
+    //  $('#ktpUpload').change(function(){
+    //    var fuData = document.getElementById('ktpUpload');
+    //    var FileUploadPath = fuData.value;
+
+      
+    //    var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+
+    //    if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
+    //       $("#finish").removeClass("disabled");
+    //       $(".error-notif-ktp").removeClass("has-error");
+    //       $(".error-notif-ktp").removeClass("display");
+    //    } else {
+    //       $('#finish').addClass('disabled');
+    //       $(".error-notif-ktp").addClass("has-error");
+    //       $(".error-notif-ktp").addClass("display");
+    //    }
+    // })
+ // Validation Image
+
   $('#refrensi').change(function(){
       if( $(this).val() == '1'){
           $('#refrensi').removeAttr('name');
@@ -1306,6 +1312,16 @@ $(document).ready(function () {
       }else{
         $('#refrensi').attr('name', 'refrensi');
           $('#myInput').remove();
+      }
+  });
+
+   $('#posisiPelamar').change(function(){
+      if( $(this).val() == '1'){
+          $('#posisiPelamar').removeAttr('name');
+          $('.field-position').append('<input class="form-control" id="pLamar" type="text" name="posisi" required/>');
+      }else{
+        $('#posisiPelamar').attr('name', 'posisi');
+          $('#pLamar').remove();
       }
   });
 
