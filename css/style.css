@@ -1442,6 +1442,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #footer .footer-top .footer-contact p {
   line-height: 26px;
+  padding-left: 15px;
 }
 
 #footer .footer-top .footer-newsletter {
@@ -1478,6 +1479,10 @@ body.mobile-nav-active #mobile-nav-toggle {
   text-align: center;
   font-size: 13px;
   color: #ddd;
+}
+
+.social-links {
+  text-align: center;
 }
 
 #custom_carousel .item {
@@ -1950,4 +1955,11 @@ span.date-text {
 /*==================================Step Wizard==============================================================*/
 form#formPelamar {
     margin-bottom: 20px;
+}
+.title-footer{
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
 }

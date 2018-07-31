@@ -180,6 +180,22 @@ $("#info-contact").owlCarousel({
     dotsData: true
   });
 
+
+$("#info-contact-footer").owlCarousel({
+    dots: true,
+    loop: false,
+    items: 1,
+    nav:false
+  });
+
+$("#info-contact-maps").owlCarousel({
+    dots: true,
+    loop: false,
+    items: 1,
+    nav:false
+  });
+
+
 $(".artikel").owlCarousel({
     dots: true,
     loop: false,

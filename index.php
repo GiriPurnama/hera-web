@@ -643,27 +643,61 @@
 
           <div class="col-lg-4 col-md-6 footer-contact">
             <h4>Contact Us</h4>
-            <p>
-              Gedung ILP Pancoran Lantai 3 No 15 <br>
-              Jalan Raya Pasar Minggu No 39 A<br>
-              Pancoran, Jakarta Selatan <br>
-              <strong>Phone:</strong>021-7988154<br>
-              <strong>Email:</strong> hera.harda@gmail.com<br>
-            </p>
+            <div id="info-contact-footer" class="row contact-info owl-carousel owl-theme">
 
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+              <?php 
+                $branch_footer = mysqli_query($db, "SELECT * FROM kontak");
+                while ($row = mysqli_fetch_assoc($branch_footer)) {
+                  $wilayah = $row['wilayah'];
+                  $alamat = $row['alamat'];
+                  $telepon = $row['telepon'];
+                  $email = $row['email'];
+                  $maps = $row['maps'];
+              ?>
+                <div class="item">
+                  <div class="title-footer"><?= $wilayah; ?></div>
+                  <p>
+                    <?= $alamat; ?><br><br>
+                    <strong>Phone:</strong> <?= $telepon; ?><br>
+                    <strong>Email:</strong> <?= $email; ?><br>
+                  </p>
+
+                  <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=100011113153945" class="facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/loker_jkt/" class="instagram"><i class="fa fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/pt-harda-esa-raksa/" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+
+              <?php } ?>
             </div>
 
           </div>
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Maps</h4>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0731007715567!2d106.84034821419388!3d-6.254099562973233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3b5914d1e3d%3A0xb8229d2ba8dca54c!2sPT+HARDA+ESA+RAKSA!5e0!3m2!1sid!2sid!4v1530517907589" width="100%" height="200" frameborder="0" style="border:0;" allowfullscreen></iframe>
+             
+
+            <div id="info-contact-maps" class="row contact-info owl-carousel owl-theme">
+            <?php 
+                $branch_footer = mysqli_query($db, "SELECT * FROM kontak");
+                while ($row = mysqli_fetch_assoc($branch_footer)) {
+                  $wilayah = $row['wilayah'];
+                  $alamat = $row['alamat'];
+                  $telepon = $row['telepon'];
+                  $email = $row['email'];
+                  $maps = $row['maps'];
+              ?>
+
+              <div class="item">
+                <div class="title-footer"><?= $wilayah; ?></div>
+                <iframe src="<?= $maps; ?>" width="100%" height="200" frameborder="0" style="border:0;" allowfullscreen></iframe>
+              </div>
+
+                 <?php } ?>
+            </div>
+            
+         
           </div>
 
           </div>

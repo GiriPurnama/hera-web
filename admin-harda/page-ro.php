@@ -35,7 +35,7 @@
         <div class="col-xs-12">
           <div class="box pad10">
             <div class="box-header">
-              <h3 class="box-title">Relationship And Development</h3>
+              <h3 class="box-title">Recruitment Officer</h3>
               <div class="box-tools">
                 
               </div>
@@ -59,7 +59,7 @@
               <tbody>
                 <?php
                     $no = 1;
-                    $pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = 'DISARANKAN' AND feedback = 'pending-rnd' AND nama_pelamar IS NOT NULL ORDER BY id DESC");
+                    $pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = 'DISARANKAN' AND feedback = 'clear-rnd' AND nama_pelamar IS NOT NULL ORDER BY id DESC");
 
                     while ($row = mysqli_fetch_assoc($pelamar)) {
 
@@ -98,8 +98,8 @@
                   <td><?php echo $no ?></td>
                   <td>
                       <?php 
-                        if ($feedback == "pending-rnd") {
-                            echo '<span class="label label-info wd-100">Menunggu Konfirmasi RND</span>';
+                        if ($feedback == "clear-rnd") {
+                            echo '<span class="label label-success wd-100">Konfirmasi RND</span>';
                         }
                       ?>
                   </td>

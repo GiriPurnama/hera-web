@@ -324,9 +324,9 @@
                         <option <?php if ($status_pelamar == "REJECTED" ) echo 'selected' ; ?> value="REJECTED">Rejected</option>
                       </select>
                     </div>
-                    <div class="col-md-6 form-group mg20">
+                    <div class="col-md-6 form-group mg20 ghost-pelamar">
                       <label>Posisi Disarankan</label>
-                      <select class="form-control" name="posisi_rekomendasi" required>
+                      <select class="form-control" id="posisiRekomendasi" name="posisi_rekomendasi" required>
                         <option <?php if ($posisi_rekomendasi == "" ) echo 'selected' ; ?> value="">-</option>
 
                         <?PHP 
@@ -345,6 +345,7 @@
                         <option value="<?= $nama_lowongan; ?>" > <?= $nama_lowongan; ?> </option>
 
                         <?php } ?>
+                         <option value="1">Lainnya</option>
                     </select>
                     </div>
                     <div class="col-md-6 form-group mg20">
@@ -475,7 +476,16 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <input type="hidden" name="feedback" value="pending-rnd">
-                        <input type="submit" class="btn btn-primary" value="Kirim Pelamar" name="kirim_pelamar">    
+
+                        <?php if ($feedback == "pending-rnd") { ?>
+                        
+                        <input type="submit" class="btn btn-primary" value="Menunggu Konfirmasi RND" name="kirim_pelamar" disabled>    
+                        
+                        <?php } else { ?>
+                        
+                        <input type="submit" class="btn btn-primary" value="Kirim Pelamar" name="kirim_pelamar">
+
+                        <?php } ?>
                       </div>
                     </div>
 
@@ -734,6 +744,16 @@
   } else if ($("#ijazah").attr('data-val') == 6) {
     $('#ijazah').css({'transform': 'rotate(-180deg)'});
   }
+
+   $('#posisiRekomendasi').change(function(){
+      if( $(this).val() == '1'){
+          $('#posisiRekomendasi').removeAttr('name');
+          $('.ghost-pelamar').append('<input class="form-control" id="rkPelamar" type="text" name="posisi_rekomendasi" required/>');
+      }else{
+        $('#posisiRekomendasi').attr('name', 'posisi_rekomendasi');
+        $('#rkPelamar').remove();
+      }
+  });
 
 </script>
 

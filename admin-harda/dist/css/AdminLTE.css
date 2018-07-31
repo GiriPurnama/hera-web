@@ -5146,3 +5146,11 @@ textarea {
     top: 75px;
     left: 102px;
 }
+input#rkPelamar {
+    margin-top: 20px;
+}
+.wd-100{
+  width: 100%;
+  display: block;
+  margin-bottom: 8px;
+}
