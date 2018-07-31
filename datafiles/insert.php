@@ -191,7 +191,7 @@
 																	 NOW())");
 		if ($query) {
 			// header('location: ../index.php');
-			echo ("<script LANGUAGE='JavaScript'>window.alert('Terimakasih Telah, Data anda telah disimpan'); window.location.href='recruitment.hera'</script>");
+			echo ("<script LANGUAGE='JavaScript'>window.alert('Terimakasih Telah, Data anda telah disimpan'); window.location.href='../recruitment.hera'</script>");
 		} else {
 			// jika gagal tampilkan pesan kesalahan
 			// header('location: index.php?alert=1');

@@ -40,6 +40,9 @@
 </head>
 
 <body>
+ <div id="loader">
+    <img class="img-responsive" src="image/loading.gif">
+  </div>
 	<div class="full-modal recruitment">
 		<div class="modal-header">
 			<a href="/"><h5 class="modal-title">Recruitment</h5></a>
@@ -427,7 +430,7 @@
         return false;
     }
 </script>
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<!-- <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script> -->
 <script type="text/javascript">
 
 function password_match() {
@@ -689,7 +692,12 @@ $(document).ready(function () {
           $('#pLamar').remove();
       }
   });
+$("#loader").hide();
+$("#tanggal_lahir").dateDropdowns({
+  minAge: 18
+});
 
-
+$('.day, .month, .year').attr('required','').addClass('form-control col-md-3 display-inline');
+$('.month').addClass('form-control col-md-4 display-inline');
 });
 </script>
