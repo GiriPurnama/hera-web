@@ -5140,3 +5140,9 @@ textarea {
     margin-bottom: 20px;
     margin-top: 20px;
 }
+.caption-img{
+  float: right;
+    position: relative;
+    top: 75px;
+    left: 102px;
+}

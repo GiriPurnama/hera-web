@@ -77,7 +77,9 @@
 
         $no_wa = $no_wa ?: "-";
 
-        $ndata = preg_replace("/\,/", "<br/>", $pengalaman_kerja);  
+        $ndata = preg_replace("/\,/", "<br/>", $pengalaman_kerja); 
+
+        $supported_image = array('gif','jpg','jpeg','png'); 
   ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -116,8 +118,19 @@
                           $orientation = ord($matches[1]);
                       }
                         $imageFoto = $foto ?: $noImage;  
+                    
+                        $ext = strtolower(pathinfo($foto, PATHINFO_EXTENSION));
+                        if (in_array($ext, $supported_image)){
                     ?>
-                    <img class="img-user-height" data-val="<?php echo $imageFoto ?>" id="photo" src="<?php echo $imageFoto; ?>">
+                      <img class="img-user-height" data-val="<?php echo $imageFoto ?>" id="photo" src="<?php echo $imageFoto; ?>">
+                    
+                    <?php } else { ?>
+                      
+                      <img class="img-user-height" data-val="<?php echo $noImage ?>" id="photo" src="<?php echo $noImage; ?>">
+                      <div class="caption-img font-bold">File Bukan Image</div>
+                    
+                    <?php } ?>
+
                   </div>
               </div>
               <div class="col-md-12 mg-bottom">
@@ -243,9 +256,22 @@
                     } else if (preg_match('@\x12\x01\x03\x00\x01\x00\x00\x00(.)\x00\x00\x00@', file_get_contents($ktp), $matches)) {
                         $orientation2 = ord($matches[1]);
                     }
-                    $imageKtp = $ktp ?: $noImage;  
+                    $imageKtp = $ktp ?: $noImage;
+
+                    // $supported_image = array('gif','jpg','jpeg','png');
+                    $extKtp = strtolower(pathinfo($ktp, PATHINFO_EXTENSION));
+                    if (in_array($extKtp, $supported_image)){  
+                  
                   ?>
+                  
                   <img class="img-user-width" id="ktp" data-val="<?php echo $imageKtp; ?>" src="<?php echo $imageKtp; ?>">
+                  
+                  <?php } else { ?>
+
+                  <img class="img-user-width" id="ktp" data-val="<?php echo $noImage; ?>" src="<?php echo $noImage; ?>">
+                  <div class="font-bold">File Bukan Image</div>
+                  
+                  <?php } ?>
               </div>
               <div class="col-md-6">
                   <?php 
@@ -257,9 +283,20 @@
                     } else if (preg_match('@\x12\x01\x03\x00\x01\x00\x00\x00(.)\x00\x00\x00@', file_get_contents($ijazah), $matches)) {
                         $orientation3 = ord($matches[1]);
                     }
-                    $imageIjazah = $ijazah ?: $noImage;  
+                    $imageIjazah = $ijazah ?: $noImage;
+
+                    $extIjazah = strtolower(pathinfo($ijazah, PATHINFO_EXTENSION));
+                    if (in_array($extIjazah, $supported_image)){ 
                   ?>
+
                   <img class="img-user-width" id="ijazah" data-val="<?php echo $imageIjazah; ?>" src="<?php echo $imageIjazah; ?>">
+                  
+                  <?php } else { ?>
+
+                  <img class="img-user-width" id="ijazah" data-val="<?php echo $noImage; ?>" src="<?php echo $noImage; ?>">
+                  <div class="font-bold">File Bukan Image</div>
+
+                  <?php } ?>
               </div>
             </div>
             <!-- /.box-header -->
