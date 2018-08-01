@@ -110,7 +110,7 @@
 	                    <div class="display-text">*Harap Isi Posisi yang dilamar</div>
 	                  </div>
 
-	                  <div class="form-group col-md-6 ghost">
+	                  <div class="form-group col-md-6 ghost-ref">
 	                    <label for="Refrensi">Referensi* :</label>
 	                    <select class="form-control opacity0" id="refrensi" name="refrensi" required>
 	                      <option value="">-</option>
@@ -677,7 +677,7 @@ $(document).ready(function () {
   $('#refrensi').change(function(){
       if( $(this).val() == '1'){
           $('#refrensi').removeAttr('name');
-          $('.ghost').append('<input class="form-control" id="myInput" type="text" name="refrensi" required/>');
+          $('.ghost-ref').append('<input class="form-control" id="myInput" type="text" name="refrensi" required/>');
       }else{
         $('#refrensi').attr('name', 'refrensi');
           $('#myInput').remove();
