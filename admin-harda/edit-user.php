@@ -358,7 +358,7 @@
                     <?PHP 
                       
                       $dateNow = date('Y-m-d');
-                      if ($post_date != $dateNow) { 
+                      if ($post_date != $dateNow && $status_pelamar == "") { 
                     
                     ?>
                       
