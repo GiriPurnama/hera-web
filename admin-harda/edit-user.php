@@ -326,7 +326,7 @@
                     </div>
                     <div class="col-md-6 form-group mg20 ghost-pelamar">
                       <label>Posisi Disarankan</label>
-                      <select class="form-control" id="posisiRekomendasi" name="posisi_rekomendasi" required>
+                      <select class="form-control" id="posisiRekomendasi" name="posisi_rekomendasi">
                         <option <?php if ($posisi_rekomendasi == "" ) echo 'selected' ; ?> value="">-</option>
 
                         <?PHP 
@@ -352,26 +352,46 @@
                       <label>Interviewer</label>
                       <input type="text" class="form-control" name="interview" value="<?= $session_name; ?>" readonly>
                     </div>
-                <div class="form-group col-md-12">
-                  <input type="submit" class="btn btn-primary btn-submit" name="simpan" id="send" value="Simpan">
-                  <input type="submit" class="btn btn-warning btn-submit" name="export-pdf" id="pdf" value="Export PDF HERA" href="javascript:void(0);" onclick="window.open('export-pdf.php?id=<?php echo $id; ?>')">
-                  <?PHP if ($copy_cv != "") 
-                        {  
-                  ?>
-                    <a href="<?= $copy_cv; ?>" class="btn btn-success">Download CV Pelamar</a>
-                  <?PHP } ?>
-                </div>
 
-                 <div class="box-dl-img">
-                   <div class="form-group col-md-12">
-                       <h3 class="font-bold">DOWNLOAD DOKUMEN</h3>
-                       <a href="<?= $foto; ?>" target="_blank" class="btn btn-primary">Foto</a>
-                       <a href="<?= $ktp; ?>" target="_blank" class="btn btn-primary">KTP</a>
-                       <a href="<?= $ijazah; ?>" target="_blank" class="btn btn-primary">Ijazah</a>
+                <!-- Button Simpan Data Pelamar -->
+                  <div class="form-group col-md-12">
+                    <input type="submit" class="btn btn-primary btn-submit" name="simpan" id="send" value="Simpan">
+                    <input type="submit" class="btn btn-warning btn-submit" name="export-pdf" id="pdf" value="Export PDF HERA" href="javascript:void(0);" onclick="window.open('export-pdf.php?id=<?php echo $id; ?>')">
+                    <?PHP if ($copy_cv != "") 
+                          {  
+                    ?>
+                      <a href="<?= $copy_cv; ?>" class="btn btn-success">Download CV Pelamar</a>
+                    <?PHP } ?>
+                    
+                    <?PHP 
+                      
+                      $dateNow = date('Y-m-d');
+                      if ($post_date != $dateNow) { 
+                    
+                    ?>
+                      
+                      <input type="submit" class="btn btn-danger btn-submit" name="update_tgl" value="Update Tanggal">
+                    
+                    <?php } ?>
+                  
+                  </div>
+                <!-- Button Simpan Data Pelamar -->
+
+                
+                <!-- Download Dokumen Pelamar -->
+                   <div class="box-dl-img">
+                     <div class="form-group col-md-12">
+                         <h3 class="font-bold">DOWNLOAD DOKUMEN</h3>
+                         <a href="<?= $foto; ?>" target="_blank" class="btn btn-primary">Foto</a>
+                         <a href="<?= $ktp; ?>" target="_blank" class="btn btn-primary">KTP</a>
+                         <a href="<?= $ijazah; ?>" target="_blank" class="btn btn-primary">Ijazah</a>
+                     </div>
                    </div>
-                 </div>
+                <!-- Download Dokumen Pelamar -->
+
               </form>
 
+          <!-- Upload Dokumen Pelamar -->
               <div class="box-upload">
                 <h3>UPLOAD DOKUMEN</h3>
                 <span class="noted">*<b>CATATAN ISI</b> Jika pelamar salah upload atau belum upload image silahkan upload disni</span>
@@ -414,7 +434,10 @@
                   </form>
                 </div>
               </div>
+          <!-- Upload Dokumen Pelamar -->
 
+
+      <!-- Format Distribusikan Pelamar -->
               <div class="box-distribution">
                 <h3 class="font-bold">DISTRIBUSIKAN PELAMAR</h3>
                 <div class="row">
@@ -654,6 +677,8 @@
               </div>
              <?php }} ?>
           <!--======================= Khusus RND ============================================================-->
+
+      <!-- Format Distribusikan Pelamar -->
 
             </div>
             <!-- /.box-body -->
@@ -896,12 +921,33 @@ if (isset($_POST['simpan'])) {
     $posisi_rekomendasi = strtoupper($_POST['posisi_rekomendasi']);
     $interview = strtoupper($_POST['interview']);
 
-    // perintah query untuk mengubah data pada tabel is_siswa
+    // perintah query untuk mengubah data 
     $query = mysqli_query($db, "UPDATE recruitment SET komentar = '$komentar',
                             status_pelamar  = '$status_pelamar',
                             posisi_rekomendasi = '$posisi_rekomendasi',
                             interview = '$interview'
                             WHERE id        = '$id'");   
+
+    // cek query
+    if ($query) {
+      // jika berhasil tampilkan pesan berhasil update data
+      header('Location: '.$_SERVER['REQUEST_URI']);
+      // echo "Berhasil";
+    } else {
+      // jika gagal tampilkan pesan kesalahan
+      // header('location: index.php?alert=1');
+      echo "Gagal";
+    } 
+  }
+} 
+
+
+if (isset($_POST['update_tgl'])) {
+  if (isset($_POST['id'])) {
+    $id             = $_POST['id'];
+
+    // perintah query untuk mengubah data
+    $query = mysqli_query($db, "UPDATE recruitment SET post_date = NOW() WHERE id = '$id'");   
 
     // cek query
     if ($query) {

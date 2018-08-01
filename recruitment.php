@@ -545,7 +545,6 @@ $(document).ready(function () {
 
   $("#formPelamar").submit(function(e) {
     $("#loader").show();
-    $("#modalSuccess").modal();
     // e.preventDefault();
   });
  
