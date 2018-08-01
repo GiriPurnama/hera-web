@@ -102,7 +102,7 @@
               <table class="table table-hover">
                 <tbody>
                   <tr>
-                    <th>Refrensi</th>
+                    <th>Referensi</th>
                     <th>Total</th>
                   </tr>
                   <?php  
