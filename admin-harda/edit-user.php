@@ -355,14 +355,6 @@
 
                 <!-- Button Simpan Data Pelamar -->
                   <div class="form-group col-md-12">
-                    <input type="submit" class="btn btn-primary btn-submit" name="simpan" id="send" value="Simpan">
-                    <input type="submit" class="btn btn-warning btn-submit" name="export-pdf" id="pdf" value="Export PDF HERA" href="javascript:void(0);" onclick="window.open('export-pdf.php?id=<?php echo $id; ?>')">
-                    <?PHP if ($copy_cv != "") 
-                          {  
-                    ?>
-                      <a href="<?= $copy_cv; ?>" class="btn btn-success">Download CV Pelamar</a>
-                    <?PHP } ?>
-                    
                     <?PHP 
                       
                       $dateNow = date('Y-m-d');
@@ -370,9 +362,22 @@
                     
                     ?>
                       
-                      <input type="submit" class="btn btn-danger btn-submit" name="update_tgl" value="Update Tanggal">
+                      <input type="submit" class="btn btn-primary btn-submit" name="update_tgl" value="Simpan">
                     
+                    <?php } else { ?>
+
+                      <input type="submit" class="btn btn-primary btn-submit" name="simpan" id="send" value="Simpan">
+
                     <?php } ?>
+
+                    <input type="submit" class="btn btn-warning btn-submit" name="export-pdf" id="pdf" value="Export PDF HERA" href="javascript:void(0);" onclick="window.open('export-pdf.php?id=<?php echo $id; ?>')">
+                    <?PHP if ($copy_cv != "") 
+                          {  
+                    ?>
+                      <a href="<?= $copy_cv; ?>" class="btn btn-success">Download CV Pelamar</a>
+                    <?PHP } ?>
+                    
+                   
                   
                   </div>
                 <!-- Button Simpan Data Pelamar -->
@@ -943,11 +948,20 @@ if (isset($_POST['simpan'])) {
 
 
 if (isset($_POST['update_tgl'])) {
-  if (isset($_POST['id'])) {
+   if (isset($_POST['id'])) {
     $id             = $_POST['id'];
+    $komentar       = $_POST['komentar'];
+    $status_pelamar = $_POST['status_pelamar'];
+    $posisi_rekomendasi = strtoupper($_POST['posisi_rekomendasi']);
+    $interview = strtoupper($_POST['interview']);
 
-    // perintah query untuk mengubah data
-    $query = mysqli_query($db, "UPDATE recruitment SET post_date = NOW() WHERE id = '$id'");   
+    // perintah query untuk mengubah data 
+    $query = mysqli_query($db, "UPDATE recruitment SET komentar = '$komentar',
+                            status_pelamar  = '$status_pelamar',
+                            posisi_rekomendasi = '$posisi_rekomendasi',
+                            interview = '$interview',
+                            post_date = NOW()
+                            WHERE id        = '$id'");   
 
     // cek query
     if ($query) {
