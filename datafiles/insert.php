@@ -190,12 +190,12 @@
 																	'$branch',
 																	 NOW())");
 		if ($query) {
-			// header('location: ../index.php');
-			echo ("<script LANGUAGE='JavaScript'>window.alert('Terimakasih Telah, Data anda telah disimpan'); window.location.href='../recruitment.hera'</script>");
+			header('location: ../info.hera');
+			// echo ("<script LANGUAGE='JavaScript'>w window.location.href='../info.hera'</script>");
 		} else {
 			// jika gagal tampilkan pesan kesalahan
 			// header('location: index.php?alert=1');
-		echo ("<script LANGUAGE='JavaScript'>window.alert('Maaf data gagal diinput'); window.location.href='index.php'</script>");
+		echo ("<script LANGUAGE='JavaScript'>window.alert('Maaf data gagal diinput'); window.location.href='../recruitment.hera'</script>");
 			// header('location: ../inforegistrasi.php?alert=1');
 		}	
 	}

@@ -1009,7 +1009,13 @@
             <i class="fa fa-check-circle icon-success"></i>
           </div>
           <div class="col-md-12">
-            <label class="label-success">Terimakasih Data Anda Telah Dikirim</label>
+            <p>
+              <b>Dear Pelamar</b>, Terima Kasih telah melamar pekerjaan di  PT Harda Esa Raksa.
+              Silahkan datang ke kantor PT Harda Esa Raksa untuk <b>Walk in Interview.</b>
+              Jadwal Walk in Interview: <b>Senin sampai Jum'at pukul 09.00 - 15.00 WIB.</b>
+              Di mohon untuk menggunakan pakaian Formal dan Rapi.<br> <br>
+              <b>Terima kasih</b>
+            </p>
           </div>
         </div>
       </div>
@@ -1160,7 +1166,7 @@ $(document).ready(function () {
  });
 
  $('#modalSuccess').on('hidden.bs.modal', function () {
-    location.reload();
+    window.location.href='recruitment.hera';
  })
 
   $('#modalVideoGaleri').on('hidden.bs.modal', function () {

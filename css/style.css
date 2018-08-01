@@ -1442,7 +1442,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #footer .footer-top .footer-contact p {
   line-height: 26px;
-  padding-left: 15px;
+  padding-left: 30px;
 }
 
 #footer .footer-top .footer-newsletter {
@@ -1962,4 +1962,8 @@ form#formPelamar {
   font-weight: bold;
   margin-bottom: 10px;
   text-transform: uppercase;
+}
+.margin-service-center{
+  text-align: left;
+  margin-bottom: 10%;
 }

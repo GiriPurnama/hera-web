@@ -410,8 +410,8 @@
         <div class="row">
 
           <div class="col-lg-12 col-md-12 box wow bounceInUp" data-wow-duration="1.4s">
-            <div id="service-carousel" class="owl-carousel owl-theme">
-                <div class="item" data-dot="<div class='btn-owl'>Jenis Kerjasama</div>">
+            <!-- <div id="service-carousel" class="owl-carousel owl-theme"> -->
+                <!-- <div class="item" data-dot="<div class='btn-owl'>Jenis Kerjasama</div>">
                   <div class="col-md-6 inline-block mg-top">
                     <ol type="A">
                       <li>Recruitment Office</li>
@@ -431,9 +431,9 @@
                   <div class="col-md-6 float-right mg-top">
                     <img src="img/jabat.jpg">
                   </div>
-                </div>
+                </div> -->
 
-                <div class="item" data-dot="<div class='btn-owl'>Konsep Kerja Sama</div>">
+                <div class="margin-service-center">
                   <div class="col-md-12 webkit-center">
                     <img src="img/pat.jpg" class="img-size">
                   </div>
@@ -442,23 +442,24 @@
                       <li>Jenis Jasa</li>
                       <ul type="square">
                         <li>
-                          <b>Paying Agent</b> adalah pelayanan service kepada setiap karyawan kontrak yang bekerja di perusahaan anda. Pelayanan yang kami berikan mulai dari pembuatan rekening, pembuatan BPJS ketenagakerjaan dan kesehatan, perhitungan gaji (absen, insentif, lembur, bonus, pph 21), pendistribusian gaji dan pembuatan slip gaji.
+                          <b>Paying Agent</b> Pelayanan service kepada setiap karyawan kontrak yang bekerja di perusahaan anda.
+
                         </li>
                         <li>
-                          <b>Recruitment Service</b> adalah pelayanan jasa perekrutan karyawan yang dilakukan oleh kami. Mulai dari proses screaning, test hingga wawancara kerja menjadi tanggung jawab kami sebagai penyedia jasa. Segala hal yang berkaitan dengan kegiatan administrasi, baik itu penandatanganan kontrak kerja, payroll dan lainnya menjadi tanggung jawab perusahaan anda.
+                          <b>Recruitment Service</b> Pelayanan jasa perekrutan karyawan yang dilakukan oleh kami. 
+
+
                         </li>
                         <li>
-                          <b>Jasa Penyediaan dan Penempatan Tenaga Kerja</b> adalah layanan jasa yang menjadi unggulan kami. Kami menyediakan dan menempatkan tenaga kerja yang sesuai dengan kebutuhan dan kualifikasi penyedia dan penempatan tenaga kerja yang sesuai dengan kualifikasi dari perusahaan anda. Jasa yang kami berikan mulai dari proses rekrutment, interview, test serta penandatanganan kontrak kerja dan payroll service
+                          <b>Head Hunter</b> Pelayanan jasa yang hanya melalui proses perekrutan saja
+
                         </li>
                       </ul>
-                      <li>Recruitment</li>
-                        <ul type="square">
-                          <li>Proses seleksi pencarian kandidat kami lakukan melalui metode yang efektif disertai dengan database yang akurat.</li>
-                        </ul>
+                     
                     </ol>
                   </div>
                 </div>
-            </div>
+            <!-- </div> -->
           </div>
         </div>
       </div>

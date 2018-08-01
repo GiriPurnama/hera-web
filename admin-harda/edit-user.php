@@ -438,6 +438,7 @@
                         <div class="form-group">
                           <label>Client</label>
                           <select id="template-client" class="form-control add-client" name="client_distributor[]" required>
+                            <option value="">-</option>
                             <?php 
                                  $info_client = mysqli_query($db, "SELECT * FROM menu_client");
                                   while ($row = mysqli_fetch_assoc($info_client)) {

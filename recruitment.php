@@ -367,7 +367,8 @@
 	</div>
 </body>
 </html>
-
+  <?php include "modal.php"; ?>
+  
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/jquery/jquery-migrate.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -544,6 +545,7 @@ $(document).ready(function () {
 
   $("#formPelamar").submit(function(e) {
     $("#loader").show();
+    $("#modalSuccess").modal();
     // e.preventDefault();
   });
  
