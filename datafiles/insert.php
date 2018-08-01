@@ -191,6 +191,21 @@
 																	 NOW())");
 		if ($query) {
 			header('location: ../info.hera');
+			 $to = "recruiment@pthardaesaraksa.com"; // this is your Email address
+		     $from = $_POST['alamat_email']; // this is the sender's Email address
+		  
+		     $subject = "Undangan Interview";
+		     $subject2 = "Undangan Interview PT Harda Esa Raksa";
+		     $message = "Dear, " .$nama_lengkap. "\n\n" ."Terimakasih telah mengirim data diri. Untuk proses lebih lanjut silahkan Walk in Interview Ke Kantor PT Harda Esa Raksa " .$branch."\n\n"."Jadwal Walk in Interview: Senin sampai Jum'at pukul 09.00 - 15.00 WIB"."\n\n"."Nomor Token ID Anda " .$token."\n\n"."Dimohon untuk kedatangannya"."\n\n"."Terimakasih";
+		     $message2 = "Dear, " .$nama_lengkap. "\n\n" ."Terimakasih telah mengirim data diri. Untuk proses lebih lanjut silahkan Walk in Interview Ke Kantor PT Harda Esa Raksa " .$branch."\n\n"."Jadwal Walk in Interview: Senin sampai Jum'at pukul 09.00 - 15.00 WIB"."\n\n"."Nomor Token ID Anda " .$token."\n\n"."Dimohon untuk kedatangannya"."\n\n"."Terimakasih";
+
+		     $headers = "From:" . $from;
+		     $headers2 = "From:" . $to;
+		     mail($to,$subject,$message,$headers);
+		     mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+		     
+		    // You can also use header('Location: thank_you.php'); to redirect to another page.
+		    // You cannot use header and echo together. It's one or the other.
 			// echo ("<script LANGUAGE='JavaScript'>w window.location.href='../info.hera'</script>");
 		} else {
 			// jika gagal tampilkan pesan kesalahan
