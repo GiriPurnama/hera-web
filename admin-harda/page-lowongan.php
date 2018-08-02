@@ -57,6 +57,7 @@
                   <th>No</th>
                   <th>Nama Lowongan</th>
                   <th>Deskripsi Lowongan</th>
+                  <th>Wilayah</th>
                   <th>Tanggal Posting</th>
                   <th>Status</th>
                   <th>Aksi</th>
@@ -77,6 +78,7 @@
                   <td><?= $no; ?></td>
                   <td><?= $row['nama_lowongan']; ?></td>
                   <td><?= $row['desc_lowongan']; ?></td>
+                  <td><?= $row['wilayah']; ?></td>
                   <td><?= $new_date; ?></td>
                   <td><?= $row['status']; ?></td>
                   <td>

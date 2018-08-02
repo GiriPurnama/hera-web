@@ -855,9 +855,10 @@
 	if (isset($_POST['save_lowongan'])) {
   		  $nama_lowongan = mysqli_real_escape_string($db, trim($_POST['nama_lowongan']));
   		  $desc_lowongan = mysqli_real_escape_string($db, trim($_POST['desc_lowongan']));
+  		  $wilayah = $_POST['wilayah'];
   		  $status = $_POST['status'];
 		
-  		  $query = mysqli_query($db, "INSERT INTO info_lowongan(nama_lowongan, desc_lowongan, tgl_posting, status) values ('$nama_lowongan','$desc_lowongan',NOW(),'$status')");
+  		  $query = mysqli_query($db, "INSERT INTO info_lowongan(nama_lowongan, desc_lowongan, wilayah, tgl_posting, status) values ('$nama_lowongan','$desc_lowongan','$wilayah',NOW(),'$status')");
   		  if ($query) {
   		  		 header('location: page-lowongan.php');
   		  } else {
@@ -885,12 +886,14 @@
 
 		    $nama_lowongan = $_POST['nama_lowongan'];
 	  		$desc_lowongan = $_POST['desc_lowongan'];
+	  		$wilayah = $_POST['wilayah'];
 	  		$status = $_POST['status'];
 
 
 		    // perintah query untuk mengubah data pada tabel is_siswa
 		    $query = mysqli_query($db, "UPDATE info_lowongan SET nama_lowongan = '$nama_lowongan',
 		                            desc_lowongan  = '$desc_lowongan',
+		                            wilayah = '$wilayah',
 		                            status = '$status'
 		                            WHERE idlowongan = '$idlowongan'");   
 
@@ -1011,7 +1014,7 @@
 	if (isset($_POST['artikel_save'])) {
   		  $judul_artikel = mysqli_real_escape_string($db, trim($_POST['judul_artikel']));
   		  $isi_artikel = mysqli_real_escape_string($db, trim($_POST['isi_artikel']));
-  		  $permalink_artikel = strtolower(str_replace(" ", "-", $judul_artikel));
+  		  $permalink_artikel = strtolower(str_replace([" " , "," , "!" , "." , "&", "/", "."], "-", $judul_artikel));
 
   		  $type = $_FILES['foto_artikel']['type'];
 		  $fileinfo=PATHINFO($_FILES["foto_artikel"]["name"]);
@@ -1063,7 +1066,7 @@
 
 		    $judul_artikel = $_POST['judul_artikel'];
 	  		$isi_artikel = $_POST['isi_artikel'];
-	  		$permalink_artikel = strtolower(str_replace(" ", "-", $judul_artikel));
+	  	    $permalink_artikel = strtolower(str_replace([" " , "," , "!" , "." , "&", "/", "."], "-", $judul_artikel));
 
 	  		if($_FILES["foto_artikel"]["error"] == 4) {
 	  			$query = mysqli_query($db, "UPDATE artikel SET judul_artikel = '$judul_artikel',

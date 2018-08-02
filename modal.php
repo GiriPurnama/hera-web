@@ -809,6 +809,23 @@
                     <label for="deskripsi">Deskripsi Lowongan</label>
                     <textarea id="ck_editor" class="form-control" name="desc_lowongan" placeholder="Deskripsi Pekerjaan" required></textarea> 
                   </div>
+
+                  <div class="form-group">
+                    <label for="wilayah">Lowongan</label>
+                    <select class="form-control opacity0" name="wilayah" required>
+                      <option value="">-</option>
+                      <?php 
+                        $wilayah_row = mysqli_query($db, "SELECT * FROM kontak");
+                        while ($row = mysqli_fetch_assoc($wilayah_row)) {
+                        $wilayah = $row['wilayah'];
+                      ?> 
+                      
+                      <option value="<?= $wilayah; ?>"><?= $wilayah; ?></option>                     
+                      
+                      <?php } ?>
+                    </select>
+                  </div>
+                  
                   <div class="form-group">
                     <label for="status">Status</label>
                     <select class="form-control" name="status" required>

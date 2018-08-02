@@ -448,6 +448,7 @@ if($_POST['rowpass']) {
         $new_date = date('j-F-Y', $timestamp);
         $idlowongan = $row['idlowongan'];
         $status = $row['status']; 
+        $wilayah = $row['wilayah'];
 ?>
 
       <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
@@ -468,6 +469,20 @@ if($_POST['rowpass']) {
                       <option <?php if ($status == "non-aktif" ) echo 'selected' ; ?> value="non-aktif">Non Aktif</option>
                   </select>
                 </div>
+                <div class="form-group">
+                    <label for="wilayah">Lowongan</label>
+                    <select class="form-control opacity0" id="refrensi" name="wilayah" required>
+                      <option value="<?= $wilayah; ?>"><?= $wilayah; ?></option>
+                      <?php 
+                        $wilayah_row = mysqli_query($db, "SELECT * FROM kontak");
+                        while ($row = mysqli_fetch_assoc($wilayah_row)) {
+                        $wilayah = $row['wilayah'];
+                      ?> 
+                      <option value="<?= $wilayah; ?>"><?= $wilayah; ?></option>                     
+                      
+                      <?php } ?>
+                    </select>
+                  </div>
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary" name="update_lowongan">Simpan</button>

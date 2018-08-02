@@ -58,21 +58,21 @@
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="#intro">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#career">Career</a></li>
-          <li><a href="#client">Client</a></li>
-          <li><a href="#testimonial">Testimonials</a></li>
-          <li><a href="#team">Team</a></li>
-          <li><a href="#service">Service</a></li>
-          <li><a href="#gallery">Gallery</a></li>
+          <li class="menu-active"><a href="#intro">Beranda</a></li>
+          <li><a href="#about">Tentang Kami</a></li>
+          <li><a href="#career">Karir</a></li>
+          <li><a href="#client">Klien</a></li>
+          <li><a href="#testimonial">Testimoni</a></li>
+          <li><a href="#team">Tim</a></li>
+          <li><a href="#service">Servis</a></li>
+          <li><a href="#gallery">Galeri</a></li>
           <!-- <li class="menu-has-children"><a href="">Gallery</a>
             <ul>
               <li><a href="#">Foto</a></li>
               <li><a href="#">Video</a></li>
             </ul>
           </li> -->
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">Kontak</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
@@ -183,7 +183,7 @@
       <div class="container">
 
         <header class="section-header">
-          <h3>About Us</h3>
+          <h3>Tentang Kami</h3>
           <p>Harda Esa Raksa berdiri sejak tahun 1987 dimulai dari usaha perdagangan alat-alat telekomunikasi dan barang cetak, hingga berawal pada tahun 2007, Harda Esa Raksa mengembangkan bisnis dalam hal penyaluran dan penempatan tenaga kerja.</p>
         </header>
 
@@ -245,8 +245,8 @@
       <div class="container">
 
         <header class="section-header wow fadeInUp">
-          <h3>Career</h3>
-          <p>Pilih Career sesuai dengan minat dan keterampilan anda.</p>
+          <h3>Karir</h3>
+          <p>Pilih Karir sesuai dengan minat dan keterampilan anda.</p>
         </header>
 
         <div class="row">
@@ -272,7 +272,7 @@
       <div class="container">
 
         <header class="section-header">
-          <h3>Client Kami</h3>
+          <h3>Klien Kami</h3>
         </header>
 
         <div class="owl-carousel  owl-theme clients-carousel">
@@ -305,7 +305,7 @@
       <div class="container">
 
         <header class="section-header">
-          <h3>Testimonial</h3>
+          <h3>Testimoni</h3>
         </header>
 
         <div id="testimonial-service" class="owl-carousel owl-theme">
@@ -338,7 +338,7 @@
     <section id="team">
       <div class="container">
         <div class="section-header wow fadeInUp">
-          <h3>Team</h3>
+          <h3>TIM</h3>
           <p>PT Harda Esa Raksa</p>
         </div>
 
@@ -403,8 +403,7 @@
       <div class="container">
 
         <header class="section-header wow fadeInUp">
-          <h3>Service</h3>
-          <p>Pilih Career sesuai dengan minat dan keterampilan anda.</p>
+          <h3>Konsep Kerja Sama</h3>
         </header>
 
         <div class="row">
@@ -434,29 +433,41 @@
                 </div> -->
 
                 <div class="margin-service-center">
-                  <div class="col-md-12 webkit-center">
+                  <div class="col-md-12 text-center">
                     <img src="img/pat.jpg" class="img-size">
                   </div>
-                  <div class="col-md-12">
-                    <ol type="A">
-                      <li>Jenis Jasa</li>
-                      <ul type="square">
-                        <li>
-                          <b>Paying Agent</b> Pelayanan service kepada setiap karyawan kontrak yang bekerja di perusahaan anda.
+                  <div class="col-md-12 text-center">
+                    <ul class="inline-ul">
+                      <li>
+                        <h3>Paying Agent</h3>
+                        <div><label>(Jasa Payroll)</label></div> 
+                      </li>
+                      <li>
+                        <h3>Recruitment Service</h3>  
+                      </li>
+                      <li>
+                        <h3>Head Hunter</h3> 
+                        <div><label>(Jasa Rekrut)</label></div>
+                      </li>
+                    </ul>
+                  </div>
 
-                        </li>
-                        <li>
-                          <b>Recruitment Service</b> Pelayanan jasa perekrutan karyawan yang dilakukan oleh kami. 
-
-
-                        </li>
-                        <li>
-                          <b>Head Hunter</b> Pelayanan jasa yang hanya melalui proses perekrutan saja
-
-                        </li>
-                      </ul>
-                     
-                    </ol>
+                  <div class="col-md-12 text-center mg-top20">
+                      <h4>Prinsip Kami</h4>
+                    <ul class="inline-ul">
+                      <li>
+                        <b>Bekerja Sepenuh Hati</b> 
+                      </li>
+                      <li>
+                        <b>Pelayanan Terbaik</b>  
+                      </li>
+                      <li>
+                        <b>Perekrutan Maksimal</b> 
+                      </li>
+                      <li>
+                        <b>SDM Berkualitas</b> 
+                      </li>
+                    </ul>
                   </div>
                 </div>
             <!-- </div> -->
@@ -470,7 +481,7 @@
       <div class="container">
 
         <header class="section-header wow fadeInUp">
-          <h3>Gallery</h3>
+          <h3>Galeri</h3>
           <p>Kumpulan Foto dan Video PT Harda Esa Raksa</p>
         </header>
 
@@ -546,8 +557,7 @@
       <div class="container">
 
         <div class="section-header">
-          <h3>Contact Us</h3>
-          <p>Kontak kami</p>
+          <h3>Kontak Kami</h3>
         </div>
 
         <div id="info-contact" class="row contact-info owl-carousel owl-theme">
@@ -599,16 +609,16 @@
         </div>
 
         <div class="form">
-          <div id="sendmessage">Your message has been sent. Thank you!</div>
+          <div id="sendmessage">Pesan anda telah terikirim. Terimakasih</div>
           <div id="errormessage"></div>
           <form action="" method="post" role="form" class="contactForm">
             <div class="form-row">
               <div class="form-group col-md-6">
-                <input type="text" name="nama" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:3" data-msg="Tolong Masukan nama minimal 3 karakter" />
+                <input type="text" name="nama" class="form-control" id="name" placeholder="Nama Anda" data-rule="minlen:3" data-msg="Tolong Masukan nama minimal 3 karakter" />
                 <div class="validation"></div>
               </div>
               <div class="form-group col-md-6">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Tolong Masukan email yang valid" />
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email Anda" data-rule="email" data-msg="Tolong Masukan email yang valid" />
                 <div class="validation"></div>
               </div>
             </div>
@@ -617,7 +627,7 @@
               <div class="validation"></div>
             </div>
             <div class="form-group">
-              <textarea class="form-control" name="isi_pesan" rows="5" data-rule="required" data-msg="Tolong tuliskan isi pesan anda" placeholder="Message"></textarea>
+              <textarea class="form-control" name="isi_pesan" rows="5" data-rule="required" data-msg="Tolong tuliskan isi pesan anda" placeholder="Pesan"></textarea>
               <div class="validation"></div>
             </div>
             <div class="text-center"><button type="submit" name="contact">Kirim Pesan</button></div>
@@ -640,66 +650,51 @@
           <div class="col-lg-4 col-md-6 footer-info">
             <h3>PT Harda Esa Raksa</h3>
             <p>Harda Esa Raksa berdiri sejak tahun 1987 dimulai dari usaha perdagangan alat-alat telekomunikasi dan barang cetak, hingga berawal pada tahun 2007, Harda Esa Raksa mengembangkan bisnis dalam hal penyaluran dan penempatan tenaga kerja.</p>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-contact">
-            <h4>Contact Us</h4>
-            <div id="info-contact-footer" class="row contact-info owl-carousel owl-theme">
-
-              <?php 
-                $branch_footer = mysqli_query($db, "SELECT * FROM kontak");
-                while ($row = mysqli_fetch_assoc($branch_footer)) {
-                  $wilayah = $row['wilayah'];
-                  $alamat = $row['alamat'];
-                  $telepon = $row['telepon'];
-                  $email = $row['email'];
-                  $maps = $row['maps'];
-              ?>
-                <div class="item">
-                  <div class="title-footer"><?= $wilayah; ?></div>
-                  <p>
-                    <?= $alamat; ?><br><br>
-                    <strong>Phone:</strong> <?= $telepon; ?><br>
-                    <strong>Email:</strong> <?= $email; ?><br>
-                  </p>
-
-                  <div class="social-links">
-                    <a href="https://www.facebook.com/profile.php?id=100011113153945" class="facebook"><i class="fa fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/loker_jkt/" class="instagram"><i class="fa fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/company/pt-harda-esa-raksa/" class="linkedin"><i class="fa fa-linkedin"></i></a>
-                  </div>
-                </div>
-
-              <?php } ?>
-            </div>
-
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Maps</h4>
-             
-
-            <div id="info-contact-maps" class="row contact-info owl-carousel owl-theme">
-            <?php 
-                $branch_footer = mysqli_query($db, "SELECT * FROM kontak");
-                while ($row = mysqli_fetch_assoc($branch_footer)) {
-                  $wilayah = $row['wilayah'];
-                  $alamat = $row['alamat'];
-                  $telepon = $row['telepon'];
-                  $email = $row['email'];
-                  $maps = $row['maps'];
-              ?>
-
-              <div class="item">
-                <div class="title-footer"><?= $wilayah; ?></div>
-                <iframe src="<?= $maps; ?>" width="100%" height="200" frameborder="0" style="border:0;" allowfullscreen></iframe>
+             <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=100011113153945" class="facebook"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.instagram.com/loker_jkt/" class="instagram"><i class="fa fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/pt-harda-esa-raksa/" class="linkedin"><i class="fa fa-linkedin"></i></a>
               </div>
-
-                 <?php } ?>
-            </div>
-            
-         
           </div>
+
+            <div class="col-lg-8 col-md-6 footer-contact">
+              <h4>Contact Us & Maps</h4>
+              <!-- <div id="info-contact-footer" class="row contact-info owl-carousel owl-theme"> -->
+
+                <?php 
+                  $branch_footer = mysqli_query($db, "SELECT * FROM kontak");
+                  while ($row = mysqli_fetch_assoc($branch_footer)) {
+                    $wilayah = $row['wilayah'];
+                    $alamat = $row['alamat'];
+                    $telepon = $row['telepon'];
+                    $email = $row['email'];
+                    $maps = $row['maps'];
+                ?>
+                  <div class="row"> 
+                    <div class="col-md-6 desc-contact">
+                      <div class="title-footer"><?= $wilayah; ?></div>
+                      <p>
+                        <?= $alamat; ?><br>
+                        <strong>Phone:</strong> <?= $telepon; ?><br>
+                        <strong>Email:</strong> <?= $email; ?><br>
+                      </p>
+
+                    </div>
+
+                    <div class="col-md-6 maps-contact">
+                        <div class="title-footer"><?= $wilayah; ?></div>
+                        <iframe src="<?= $maps; ?>" width="100%" height="200" frameborder="0" style="border:0;" allowfullscreen></iframe>
+                    </div>
+                  </div>
+
+                  <br><br>
+                 
+                <?php } ?>
+
+              <!-- </div> -->
+
+            </div>
+
 
           </div>
         </div>
