@@ -345,7 +345,7 @@
         <div class="row">
           <div id="team-carousel" class="owl-carousel owl-theme">
             <?php 
-               $team = mysqli_query($db, "SELECT * FROM login ORDER BY id_admin ASC");
+               $team = mysqli_query($db, "SELECT * FROM login ORDER BY tanggal_join ASC");
                while ($row = mysqli_fetch_assoc($team)) {
                $img_divisi = $row['img_divisi'];
                $nama_lengkap = $row['nama_lengkap'];
