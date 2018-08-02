@@ -51,6 +51,7 @@ if($_POST['rowteam']) {
         $status = $row['status'];
         $id_admin = $row['id_admin'];
         $branch   = $row['branch'];        
+        $tanggal_join = $row['tanggal_join'];
       ?>
 
       <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
@@ -85,11 +86,15 @@ if($_POST['rowteam']) {
                   </select>
                 </div>
                 <div class="form-group">
+                  <label for="Tanggal Join">Tanggal Join</label>
+                  <input type="text" class="form-control" name="tanggal_join" id="tglJoinEdit" value="<?= $tanggal_join; ?>" placeholder="Tanggal Join" required>
+                </div>
+                <div class="form-group">
                   <label for="status">Status</label>
                   <select class="form-control" name="status" id="status_title">
-                      <option value="">-</option>
-                      <option <?php if ($status == "ADMIN" ) echo 'selected' ; ?> value="ADMIN">Admin</option>
-                      <option <?php if ($status == "RECRUITMENT" ) echo 'selected' ; ?> value="RECRUITMENT">Recruitment</option>
+                      <option value="<?= $status; ?>"><?= $status; ?></option>
+                     <!--  <option <?php if ($status == "ADMIN" ) echo 'selected' ; ?> value="ADMIN">Admin</option>
+                      <option <?php if ($status == "RECRUITMENT" ) echo 'selected' ; ?> value="RECRUITMENT">Recruitment</option> -->
                   </select>
                 </div>
               </div>
@@ -715,6 +720,11 @@ jQuery("#confpass_title").keyup(password_match);
 $('.loadPage').click(function() {
     location.reload();
 });
+
+$("#tglJoinEdit").dateDropdowns();
+
+$('.day, .month, .year').attr('required','').addClass('form-control col-md-3 display-inline');
+$('.month').addClass('form-control col-md-4 display-inline');
 
 $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor

@@ -526,6 +526,10 @@
                     <label for="upload">Upload Image</label>
                     <input type="file" name="img_divisi" id="img_divisi" required>
                   </div>
+                   <div class="form-group">
+                    <label for="Tanggal Join">Tanggal Join</label>
+                    <input type="text" class="form-control" name="tanggal_join" id="tglJoin" placeholder="Tanggal Join" required>
+                  </div>
                   <div class="form-group">
                     <label for="status">Status</label>
                     <select class="form-control" name="status" id="status_title">
@@ -1191,12 +1195,15 @@ $(document).ready(function () {
  })
 
 
- // $("#tanggal_lahir").datepicker({ 
+ // $("#tglJoin").datepicker({ 
  //      format: 'yyyy-mm-dd',
- //      startDate: '-40y',
- //      endDate: '-17y',
  //      autoclose: true
  //  });
+
+   $("#tglJoin").dateDropdowns();
+
+   $('.day, .month, .year').attr('required','').addClass('form-control col-md-3 display-inline');
+   $('.month').addClass('form-control col-md-4 display-inline');
 
   $("#formPelamar").submit(function(e) {
     $("#loader").show();

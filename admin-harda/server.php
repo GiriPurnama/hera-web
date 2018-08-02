@@ -130,6 +130,7 @@
   		  $divisi = mysqli_real_escape_string($db, trim($_POST['divisi']));
   		  $branch = $_POST['branch'];
   		  $status = $_POST['status'];
+  		  $tanggal_join = $_POST['tanggal_join'];
 
   		  $type = $_FILES['img_divisi']['type'];
 		  $fileinfo=PATHINFO($_FILES["img_divisi"]["name"]);
@@ -137,7 +138,7 @@
 		  move_uploaded_file($_FILES["img_divisi"]["tmp_name"],"../upload/page-team/" . $newFilename);
 		  $img_divisi="../upload/page-team/" . $newFilename;
 		
-  		  $query = mysqli_query($db, "INSERT INTO login(username, email_admin, password, nama_lengkap, divisi, branch, img_divisi, status) values ('$username','$email_admin','$password','$nama_lengkap','$divisi','$branch','$img_divisi','$status')");
+  		  $query = mysqli_query($db, "INSERT INTO login(username, email_admin, password, nama_lengkap, divisi, branch, tanggal_join, img_divisi, status) values ('$username','$email_admin','$password','$nama_lengkap','$divisi','$branch','$tanggal_join','$img_divisi','$status')");
   		  if ($query) {
   		  		header('location: page-team.php');
   		  } else {
@@ -183,7 +184,9 @@
 	  		$nama_lengkap = $_POST['nama_lengkap'];
 	  		$divisi = $_POST['divisi'];
 	  		$branch = $_POST['branch'];
+	  		$tanggal_join = $_POST['tanggal_join'];
 	  		$status = $_POST['status'];
+
 
 
 		    // perintah query untuk mengubah data pada tabel is_siswa
@@ -191,6 +194,7 @@
 		                            nama_lengkap = '$nama_lengkap',
 		                            divisi = '$divisi',
 		                            branch = '$branch',
+		                            tanggal_join = '$tanggal_join',
 		                            status = '$status'
 		                            WHERE id_admin   = '$id_admin'");   
 

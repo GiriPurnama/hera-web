@@ -5154,3 +5154,7 @@ input#rkPelamar {
   display: block;
   margin-bottom: 8px;
 }
+.col-md-3.display-inline {
+  display: inline-block;
+  margin: 10px 0px;
+}

@@ -16,9 +16,9 @@ header("Content-Disposition: attachment; filename=pelamar-exportxls-".date("d-m-
   // $nameSql = mysqli_query($db, "SELECT refrensi, MONTHNAME(post_date) AS month, MONTH(post_date) AS tahun_minggu, COUNT(*) AS jumlah FROM recruitment GROUP BY tahun_minggu, refrensi");
   // $nameSql = mysqli_query($db, "SELECT refrensi, MONTHNAME(post_date) AS month, YEARWEEK(post_date) AS tahun_minggu, COUNT(*) AS jumlah FROM recruitment GROUP BY refrensi");
   // $nameSql = mysqli_query($db, "SELECT refrensi, COUNT(*) as jumlah FROM recruitment GROUP BY refrensi");
-  $nameSql = mysqli_query($db, "SELECT WEEK(post_date) AS minggu, refrensi, posisi_rekomendasi, komentar, pengalaman_kerja, nama_lengkap, posisi FROM recruitment WHERE post_date between date_sub(now(),INTERVAL 1 WEEK) and now()  GROUP BY refrensi, posisi");
-  $countPosisi = mysqli_query($db, "SELECT WEEK(post_date) AS minggu, count(*) AS jumlah, refrensi, posisi, posisi_rekomendasi FROM recruitment WHERE post_date between date_sub(now(),INTERVAL 1 WEEK) and now()  GROUP BY posisi ORDER BY refrensi ASC");
-  $countJml = mysqli_query($db, "SELECT WEEK(post_date) AS minggu, count(*) AS jumlah, refrensi FROM recruitment WHERE post_date between date_sub(now(),INTERVAL 1 WEEK) and now() GROUP BY refrensi ORDER BY refrensi ASC");
+  $nameSql = mysqli_query($db, "SELECT WEEK(post_date) AS minggu, refrensi, posisi_rekomendasi, komentar, pengalaman_kerja, nama_lengkap, posisi FROM recruitment WHERE post_date between date_sub(now(),INTERVAL 1 WEEK) and now() and (status_pelamar = 'DISARANKAN' OR status_pelamar = 'REJECTED') GROUP BY refrensi, posisi");
+  $countPosisi = mysqli_query($db, "SELECT WEEK(post_date) AS minggu, count(*) AS jumlah, refrensi, posisi, posisi_rekomendasi FROM recruitment WHERE post_date between date_sub(now(),INTERVAL 1 WEEK) and now() and (status_pelamar = 'DISARANKAN' OR status_pelamar = 'REJECTED')  GROUP BY posisi ORDER BY refrensi ASC");
+  $countJml = mysqli_query($db, "SELECT WEEK(post_date) AS minggu, count(*) AS jumlah, refrensi FROM recruitment WHERE post_date between date_sub(now(),INTERVAL 1 WEEK) and now() and (status_pelamar = 'DISARANKAN' OR status_pelamar = 'REJECTED') GROUP BY refrensi ORDER BY refrensi ASC");
   // $jum_pendaftar = mysqli_num_rows($sqlshow);
   // $jum_individu  = mysqli_num_rows($nameSql); 
         
