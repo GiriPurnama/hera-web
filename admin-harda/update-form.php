@@ -475,7 +475,7 @@ if($_POST['rowpass']) {
                   </select>
                 </div>
                 <div class="form-group">
-                    <label for="wilayah">Lowongan</label>
+                    <label for="wilayah">Wilayah</label>
                     <select class="form-control opacity0" id="refrensi" name="wilayah" required>
                       <option value="<?= $wilayah; ?>"><?= $wilayah; ?></option>
                       <?php 
@@ -721,10 +721,6 @@ $('.loadPage').click(function() {
     location.reload();
 });
 
-$("#tglJoinEdit").dateDropdowns();
-
-$('.day, .month, .year').attr('required','').addClass('form-control col-md-3 display-inline');
-$('.month').addClass('form-control col-md-4 display-inline');
 
 $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor

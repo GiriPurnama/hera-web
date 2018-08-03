@@ -815,7 +815,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="wilayah">Lowongan</label>
+                    <label for="wilayah">Wilayah</label>
                     <select class="form-control opacity0" name="wilayah" required>
                       <option value="">-</option>
                       <?php 
@@ -1200,10 +1200,7 @@ $(document).ready(function () {
  //      autoclose: true
  //  });
 
-   $("#tglJoin").dateDropdowns();
-
-   $('.day, .month, .year').attr('required','').addClass('form-control col-md-3 display-inline');
-   $('.month').addClass('form-control col-md-4 display-inline');
+ 
 
   $("#formPelamar").submit(function(e) {
     $("#loader").show();

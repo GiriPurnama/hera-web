@@ -443,7 +443,8 @@
                         <div><label>(Jasa Payroll)</label></div> 
                       </li>
                       <li>
-                        <h3>Recruitment Service</h3>  
+                        <h3>Recruitment Service</h3>
+                        <div><label>(Rekrut, Maintenance & Payroll)</label></div>  
                       </li>
                       <li>
                         <h3>Head Hunter</h3> 
@@ -453,19 +454,19 @@
                   </div>
 
                   <div class="col-md-12 text-center mg-top20">
-                      <h4>Prinsip Kami</h4>
+                      <h4 class="font-bold" style="color:#000;">Prinsip Kami</h4>
                     <ul class="inline-ul">
                       <li>
-                        <b>Bekerja Sepenuh Hati</b> 
+                        <span class="btn-owl">Bekerja Sepenuh Hati</span> 
                       </li>
                       <li>
-                        <b>Pelayanan Terbaik</b>  
+                        <span class="btn-owl">Pelayanan Terbaik</span>  
                       </li>
                       <li>
-                        <b>Perekrutan Maksimal</b> 
+                        <span class="btn-owl">Perekrutan Maksimal</span> 
                       </li>
                       <li>
-                        <b>SDM Berkualitas</b> 
+                        <span class="btn-owl">SDM Berkualitas</span> 
                       </li>
                     </ul>
                   </div>
