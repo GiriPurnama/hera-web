@@ -104,6 +104,11 @@ if($_POST['rowteam']) {
                 <button type="button" class="btn" data-dismiss="modal">Keluar</button>
               </div>
       </form>
+      <script type="text/javascript">
+         $("#tglJoinEdit").dateDropdowns();
+         $('.day, .month, .year').attr('required','').addClass('form-control col-md-3 display-inline');
+         $('.month').addClass('form-control col-md-4 display-inline');
+      </script>
 <?php }
   }
 ?>
