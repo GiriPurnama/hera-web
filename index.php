@@ -659,7 +659,7 @@
           </div>
 
             <div class="col-lg-8 col-md-6 footer-contact">
-              <h4>Kontak Kami & Map</h4>
+              <h4>Kontak & Lokasi</h4>
               <!-- <div id="info-contact-footer" class="row contact-info owl-carousel owl-theme"> -->
 
                 <?php 

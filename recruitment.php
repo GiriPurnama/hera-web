@@ -74,14 +74,14 @@
 	                  
 	                  <div class="form-group col-md-12">
 	                  <label for="Posisi">Tempat Interview* :</label>
-	                    <select id="branch" class='form-control' name='branch' required>
+	                    <select  class='form-control' id="branchWilayah" name='branch' required>
 	                        <option value="">-</option>
 	                        <?php 
 	                            $lamar = mysqli_query($db, "SELECT * FROM kontak");
 	                            while ($row = mysqli_fetch_assoc($lamar)) {
 	                        ?>
 	        
-	                        <option value="<?= $row['wilayah'];?>"><?= $row["wilayah"];?></option>
+	                        <option id="kantor" data-id="<?= $row['idkontak']; ?>" value="<?= $row['wilayah'];?>"><?= $row["wilayah"];?></option>
 	                        
 	                        <?php    
 	                            }
@@ -94,16 +94,6 @@
 	                  <label for="Posisi">Posisi yang Dilamar* :</label>
 	                    <select class="form-control" id="posisiPelamar" name="posisi" required>
 	                        <option value="">-</option>
-	                        <?php 
-	                            $lowongan = mysqli_query($db, "SELECT * FROM info_lowongan where status='aktif'");
-	                            while ($row = mysqli_fetch_assoc($lowongan)) {
-	                            $nama_lowongan = $row['nama_lowongan'];
-	                            $desc_lowongan = $row['desc_lowongan'];
-	                        ?>
-
-	                        <option value="<?= $nama_lowongan; ?>" data-val="<?= $desc_lowongan; ?>"> <?= $nama_lowongan; ?> </option>
-
-	                        <?php } ?>
 	                        <option value="1">Lainnya</option>
 	                    </select>
 	                    <!-- <input type="text" class="form-control" id="position" name="posisi" required> -->
@@ -366,9 +356,7 @@
 		</div>
 	</div>
 </body>
-</html>
-  <?php include "modal.php"; ?>
-  
+</html>  
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/jquery/jquery-migrate.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -466,9 +454,26 @@ $(".pass_conf").keyup(function(){
 $(document).ready(function () {
 
   $(".deskripsi-lowongan").hide();
+  
+  $('#branchWilayah').on('change', function() {
+   var rowpelamar = $("#branchWilayah").val();
+      
+            $.ajax({
+                type:'POST',
+                url:'ajaxdata.php',
+                data:'rowpelamar='+ rowpelamar,
+                success:function(data){
+                	console.log("sukses");
+                    $('#posisiPelamar').html(data); 
+                }
+            }); 
+        
+    
+  })
+
   $('#posisiPelamar').on('change', function() {
     var deskripsiLowongan = $("#posisiPelamar").find(':selected').attr('data-val');
-    
+
     if (deskripsiLowongan != null) {
       $(".deskripsi-lowongan").show();
       $(".deskripsi-lowongan").html("<b>KUALIFIKASI</b><br><br>" + deskripsiLowongan);
