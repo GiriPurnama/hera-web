@@ -659,7 +659,7 @@
           </div>
 
             <div class="col-lg-8 col-md-6 footer-contact">
-              <h4>Contact Us & Maps</h4>
+              <h4>Kontak Kami & Map</h4>
               <!-- <div id="info-contact-footer" class="row contact-info owl-carousel owl-theme"> -->
 
                 <?php 
@@ -676,7 +676,7 @@
                       <div class="title-footer"><?= $wilayah; ?></div>
                       <p>
                         <?= $alamat; ?><br>
-                        <strong>Phone:</strong> <?= $telepon; ?><br>
+                        <strong>Telepon:</strong> <?= $telepon; ?><br>
                         <strong>Email:</strong> <?= $email; ?><br>
                       </p>
 
