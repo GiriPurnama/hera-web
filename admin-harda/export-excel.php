@@ -16,11 +16,17 @@ header("Content-Disposition: attachment; filename=pelamar-exportxls-".date("d-m-
   // $nameSql = mysqli_query($db, "SELECT refrensi, MONTHNAME(post_date) AS month, MONTH(post_date) AS tahun_minggu, COUNT(*) AS jumlah FROM recruitment GROUP BY tahun_minggu, refrensi");
   // $nameSql = mysqli_query($db, "SELECT refrensi, MONTHNAME(post_date) AS month, YEARWEEK(post_date) AS tahun_minggu, COUNT(*) AS jumlah FROM recruitment GROUP BY refrensi");
   // $nameSql = mysqli_query($db, "SELECT refrensi, COUNT(*) as jumlah FROM recruitment GROUP BY refrensi");
-  $nameSql = mysqli_query($db, "SELECT WEEK(post_date) AS minggu, refrensi, posisi_rekomendasi, komentar, pengalaman_kerja, nama_lengkap, posisi FROM recruitment WHERE post_date between date_sub(now(),INTERVAL 1 WEEK) and now() and (status_pelamar = 'DISARANKAN' OR status_pelamar = 'REJECTED') GROUP BY refrensi, posisi");
-  $countPosisi = mysqli_query($db, "SELECT WEEK(post_date) AS minggu, count(*) AS jumlah, refrensi, posisi, posisi_rekomendasi FROM recruitment WHERE post_date between date_sub(now(),INTERVAL 1 WEEK) and now() and (status_pelamar = 'DISARANKAN' OR status_pelamar = 'REJECTED')  GROUP BY posisi ORDER BY refrensi ASC");
-  $countJml = mysqli_query($db, "SELECT WEEK(post_date) AS minggu, count(*) AS jumlah, refrensi FROM recruitment WHERE post_date between date_sub(now(),INTERVAL 1 WEEK) and now() and (status_pelamar = 'DISARANKAN' OR status_pelamar = 'REJECTED') GROUP BY refrensi ORDER BY refrensi ASC");
+  $nameSql = mysqli_query($db, "SELECT WEEK(post_date) AS minggu, refrensi, posisi_rekomendasi, komentar, pengalaman_kerja, nama_lengkap, posisi, post_date, CONCAT(DATE_FORMAT(DATE_ADD(post_date, INTERVAL(1-DAYOFWEEK(post_date)) DAY),'%Y-%m-%e'), ' - ', DATE_FORMAT(DATE_ADD(post_date, INTERVAL(7-DAYOFWEEK(post_date)) DAY),'%Y-%m-%e')) AS DateRange FROM recruitment WHERE post_date between date_sub(now(),INTERVAL 1 WEEK) and now() and (status_pelamar = 'DISARANKAN' OR status_pelamar = 'REJECTED') GROUP BY post_date, posisi");
+  $nameSql1 = mysqli_query($db, "SELECT WEEK(post_date) AS minggu, post_date, CONCAT(DATE_FORMAT(DATE_ADD(post_date, INTERVAL(1-DAYOFWEEK(post_date)) DAY),'%e-%m-%Y'), ' s/d ', DATE_FORMAT(DATE_ADD(post_date, INTERVAL(7-DAYOFWEEK(post_date)) DAY),'%e-%m-%Y')) AS DateRange FROM recruitment WHERE post_date between date_sub(now(),INTERVAL 1 WEEK) and now()");
+
+  $countPosisi = mysqli_query($db, "SELECT WEEK(post_date) AS minggu, count(*) AS jumlah, refrensi, posisi, posisi_rekomendasi, CONCAT(DATE_FORMAT(DATE_ADD(post_date, INTERVAL(1-DAYOFWEEK(post_date)) DAY),'%Y-%m-%e'), ' - ', DATE_FORMAT(DATE_ADD(post_date, INTERVAL(7-DAYOFWEEK(post_date)) DAY),'%Y-%m-%e')) AS DateRange FROM recruitment WHERE post_date between date_sub(now(),INTERVAL 1 WEEK) and now() and (status_pelamar = 'DISARANKAN' OR status_pelamar = 'REJECTED')  GROUP BY posisi ORDER BY refrensi ASC");
+  $countJml = mysqli_query($db, "SELECT WEEK(post_date) AS minggu, count(*) AS jumlah, refrensi, CONCAT(DATE_FORMAT(DATE_ADD(post_date, INTERVAL(1-DAYOFWEEK(post_date)) DAY),'%Y-%m-%e'), ' - ', DATE_FORMAT(DATE_ADD(post_date, INTERVAL(7-DAYOFWEEK(post_date)) DAY),'%Y-%m-%e')) AS DateRange FROM recruitment WHERE post_date between date_sub(now(),INTERVAL 1 WEEK) and now() and (status_pelamar = 'DISARANKAN' OR status_pelamar = 'REJECTED') GROUP BY refrensi ORDER BY refrensi ASC");
   // $jum_pendaftar = mysqli_num_rows($sqlshow);
-  // $jum_individu  = mysqli_num_rows($nameSql); 
+  // $jum_individu  = mysqli_num_rows($nameSql);
+
+   while($rowperiode = mysqli_fetch_assoc($nameSql1)){
+      $daterange = $rowperiode['DateRange'];
+   } 
         
 ?>     
          
@@ -29,13 +35,14 @@ header("Content-Disposition: attachment; filename=pelamar-exportxls-".date("d-m-
           <td><h3>Data Pelamar</h3></td>
         </tr>
         <tr>
-          <td width="0px"><b>Tanggal :</b> <?php echo date("d-m-Y") ?></td>
+          <td width="0px"><b>Periode Tanggal :</b> <?= $daterange; ?></td>
         </tr>
     </table>    
         <table border="1">  
           <thead bgcolor="eeeeee" align="center">
             <tr bgcolor="eeeeee" >
-             <th>No</ths>
+             <th>No</th>
+             <th>Tanggal</th>
              <th>Referensi</th>
              <th>Nama Lengkap</th>
              <th>Posisi</th>
@@ -55,10 +62,16 @@ header("Content-Disposition: attachment; filename=pelamar-exportxls-".date("d-m-
         $pengalaman = $rowshow['pengalaman_kerja'];
         $minggu = $rowshow['minggu'];
         $komentar = strip_tags($rowshow['komentar'], '<p><a>');
-        $pengalaman_kerja = preg_replace("/\,/", "<br/>", $pengalaman);    
+        $pengalaman_kerja = preg_replace("/\,/", "<br/>", $pengalaman);
+        
+        $post_date = $rowshow['post_date'];
+        $post_date = strtotime($post_date);
+        $post_date = date('j-F-Y', $post_date);  
+
 
           echo '<tr>';
             echo '<td>'.$nomor.'</td>';
+            echo '<td>'.$post_date.'</td>';
             echo '<td>'.$refrensi.'</td>';
             echo '<td>'.$nama_pelamar.'</td>';
             echo '<td>'.$posisi_rekomendasi.'</td>';
@@ -80,7 +93,7 @@ header("Content-Disposition: attachment; filename=pelamar-exportxls-".date("d-m-
           <td><h3>Total Posisi</h3></td>
         </tr>
         <tr>
-          <td width="0px"><b>Tanggal :</b> <?php echo date("d-m-Y") ?></td>
+          <td width="0px"><b>Periode Tanggal :</b> <?= $daterange; ?></td>
         </tr>
     </table>    
         <table border="1">  
@@ -124,7 +137,7 @@ header("Content-Disposition: attachment; filename=pelamar-exportxls-".date("d-m-
           <td><h3>Total Jumlah</h3></td>
         </tr>
         <tr>
-          <td width="0px"><b>Tanggal :</b> <?php echo date("d-m-Y") ?></td>
+           <td width="0px"><b>Periode Tanggal :</b> <?= $daterange; ?></td>
         </tr>
     </table>    
         <table border="1">  
