@@ -172,12 +172,14 @@ jQuery(document).ready(function( $ ) {
 
 });
 
-$("#info-contact").owlCarousel({
-    dots: true,
-    loop: false,
-    items: 1,
-    nav:false,
-    dotsData: true
+$("#info-jobs").owlCarousel({
+    autoplay: true,
+    dots: false,
+    loop: true,
+    items: 4,
+    nav:true,
+    navText:["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'>"],
+    responsive: { 0: { items: 1 }, 768: { items: 1 }, 900: { items: 3 }}
   });
 
 

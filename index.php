@@ -245,7 +245,34 @@
       <div class="container">
 
         <header class="section-header wow fadeInUp">
-          <h3>Karir</h3>
+          <h3>Info Lowongan</h3>
+        </header>
+
+         <div id="info-jobs" class="row owl-carousel owl-theme">
+            <?php 
+              $loker = mysqli_query($db, "SELECT * FROM info_lowongan WHERE status='aktif'");
+              while ($row = mysqli_fetch_assoc($loker)) {
+                $kota = $row['wilayah'];
+                $nama_lowongan = $row['nama_lowongan'];
+                $desc_lowongan = $row['desc_lowongan'];
+                $cut_lowongan = substr($desc_lowongan,0,200). '...';
+            ?>
+
+            <div class="item">
+              <div class="box-info">
+                <h3 class="font-bold"><?= $nama_lowongan; ?></h3>
+                <h4><?= $kota; ?></h4>
+                <p><?= $cut_lowongan; ?></p>
+                <div class="text-center">
+                  <a href="recruitment.hera" class="btn-get-started scrollto">Lamar Sekarang</a>  
+                </div>
+              </div>
+            </div>
+
+            <?php } ?>
+        </div>
+
+        <header class="section-header wow fadeInUp">
           <p>Pilih Karir sesuai dengan minat dan keterampilan anda.</p>
         </header>
 
@@ -561,53 +588,6 @@
           <h3>Kontak Kami</h3>
         </div>
 
-        <div id="info-contact" class="row contact-info owl-carousel owl-theme">
-            <?php 
-              $branch = mysqli_query($db, "SELECT * FROM kontak");
-              while ($row = mysqli_fetch_assoc($branch)) {
-                $wilayah = $row['wilayah'];
-                $alamat = $row['alamat'];
-                $telepon = $row['telepon'];
-                $email = $row['email'];
-                $maps = $row['maps'];
-            ?>
-
-            <div class="item" data-dot="<div class='btn-owl'><?= $wilayah; ?></div>">
-              <h3 class="title"><?= $wilayah; ?></h3>
-             
-              <div class="text-contact">
-                
-                <div class="col-md-4">
-                  <div class="contact-address">
-                    <i class="ion-ios-location-outline"></i>
-                    <h3>Alamat</h3>
-                    <address><?= $alamat; ?></address>
-                   <iframe src="<?= $maps; ?>" width="100%" height="200" frameborder="0" style="border:0; margin-top:20px;" allowfullscreen></iframe>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="contact-phone">
-                    <i class="ion-ios-telephone-outline"></i>
-                    <h3>Telepon</h3>
-                    <p><a href="tel:<?= $telepon; ?>"><?= $telepon; ?></a></p>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="contact-email">
-                    <i class="ion-ios-email-outline"></i>
-                    <h3>Email</h3>
-                    <p><a href="mailto:<?= $email; ?>"><?= $email; ?></a></p>
-                  </div>
-                </div>
-
-              </div> 
-            
-            </div>
-
-            <?php } ?>
-        </div>
 
         <div class="form">
           <div id="sendmessage">Pesan anda telah terikirim. Terimakasih</div>

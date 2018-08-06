@@ -1786,11 +1786,23 @@ h1.title-article{
     position: absolute;
     left: -30px;
     top: 45%;
+    background: #f65f13;
+    border-radius: 50%;
+    font-size: 25px;
+    width: 32px;
+    height: 32px;
+    padding: 5px 8px;
 }
 .owl-next i.fa.fa-chevron-right {
     position: absolute;
     right: -30px;
     top: 45%;
+    background: #f65f13;
+    border-radius: 50%;
+    font-size: 25px;
+    width: 32px;
+    height: 32px;
+    padding: 5px 8px;
 }
 @media (max-width: 768px) {
   .owl-prev i.fa.fa-chevron-left {
@@ -1979,5 +1991,19 @@ ul.inline-ul li{
   ul.inline-ul{
     display: block;
   }  
+}
+.font-bold {
+    font-weight: bold;
+    color: #000;
+}
+.box-info {
+    background-color: rgba(237, 147, 19, 0.26);
+    display: block;
+    padding: 15px;
+    margin: 20px;
+    border-radius: 12px;
+}
+.box-info h3, h4{
+  text-align: center;
 }
 
