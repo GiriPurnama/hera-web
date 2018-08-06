@@ -1018,7 +1018,7 @@
 	if (isset($_POST['artikel_save'])) {
   		  $judul_artikel = mysqli_real_escape_string($db, trim($_POST['judul_artikel']));
   		  $isi_artikel = mysqli_real_escape_string($db, trim($_POST['isi_artikel']));
-  		  $permalink_artikel = strtolower(str_replace([" " , "," , "!" , "." , "&", "/", "."], "-", $judul_artikel));
+  		  $permalink_artikel = strtolower(str_replace([" " , "," , "!" , "." , "&", "/", ".", "?"], "-", $judul_artikel));
 
   		  $type = $_FILES['foto_artikel']['type'];
 		  $fileinfo=PATHINFO($_FILES["foto_artikel"]["name"]);
@@ -1070,7 +1070,7 @@
 
 		    $judul_artikel = $_POST['judul_artikel'];
 	  		$isi_artikel = $_POST['isi_artikel'];
-	  	    $permalink_artikel = strtolower(str_replace([" " , "," , "!" , "." , "&", "/", "."], "-", $judul_artikel));
+	  	    $permalink_artikel = strtolower(str_replace([" " , "," , "!" , "." , "&", "/", ".", "?"], "-", $judul_artikel));
 
 	  		if($_FILES["foto_artikel"]["error"] == 4) {
 	  			$query = mysqli_query($db, "UPDATE artikel SET judul_artikel = '$judul_artikel',
