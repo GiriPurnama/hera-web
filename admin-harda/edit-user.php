@@ -353,6 +353,31 @@
                       <input type="text" class="form-control" name="interview" value="<?= $session_name; ?>" readonly>
                     </div>
 
+                    <div class="col-md-6 form-group mg20 ghost-refrensi">
+                      <label>Ganti Referensi</label>
+                       <select class="form-control" id="refrensiSelect" name="refrensi">
+                        <option <?php if ($refrensi == "" ) echo 'selected' ; ?> value="">-</option>
+
+                        <?PHP 
+                          if ($refrensi != "") { ?>
+                           
+                            <option selected value="<?= $refrensi; ?>"><?= $refrensi; ?></option>
+                         
+                          <?php } ?>
+
+                        <?php 
+                            $refrensi_ganti = mysqli_query($db, "SELECT * FROM login");
+                            while ($row = mysqli_fetch_assoc($refrensi_ganti)) {
+                            $refrensi = $row['nama_lengkap'];
+                        ?>
+                        
+                        <option value="<?= $refrensi; ?>" > <?= $refrensi; ?> </option>
+
+                        <?php } ?>
+                         <option value="1">Lainnya</option>
+                      </select>
+                    </div>
+
                 <!-- Button Simpan Data Pelamar -->
                   <div class="form-group col-md-12">
                     <?PHP 
@@ -786,6 +811,17 @@
       }
   });
 
+
+   $('#refrensiSelect').change(function(){
+      if( $(this).val() == '1'){
+          $('#refrensiSelect').removeAttr('name');
+          $('.ghost-refrensi').append('<input class="form-control" id="rkRefrensi" type="text" name="refrensi" required/>');
+      }else{
+        $('#refrensiSelect').attr('name', 'refrensi');
+        $('#rkRefrensi').remove();
+      }
+  });
+
 </script>
 
 <?php
@@ -924,12 +960,14 @@ if (isset($_POST['simpan'])) {
     $komentar       = $_POST['komentar'];
     $status_pelamar = $_POST['status_pelamar'];
     $posisi_rekomendasi = strtoupper($_POST['posisi_rekomendasi']);
+    $refrensi = strtoupper($_POST['refrensi']);
     $interview = strtoupper($_POST['interview']);
 
     // perintah query untuk mengubah data 
     $query = mysqli_query($db, "UPDATE recruitment SET komentar = '$komentar',
                             status_pelamar  = '$status_pelamar',
                             posisi_rekomendasi = '$posisi_rekomendasi',
+                            refrensi = '$refrensi',
                             interview = '$interview'
                             WHERE id        = '$id'");   
 
@@ -953,12 +991,14 @@ if (isset($_POST['update_tgl'])) {
     $komentar       = $_POST['komentar'];
     $status_pelamar = $_POST['status_pelamar'];
     $posisi_rekomendasi = strtoupper($_POST['posisi_rekomendasi']);
+    $refrensi = strtoupper($_POST['refrensi']);
     $interview = strtoupper($_POST['interview']);
 
     // perintah query untuk mengubah data 
     $query = mysqli_query($db, "UPDATE recruitment SET komentar = '$komentar',
                             status_pelamar  = '$status_pelamar',
                             posisi_rekomendasi = '$posisi_rekomendasi',
+                            refrensi = '$refrensi',
                             interview = '$interview',
                             post_date = NOW()
                             WHERE id        = '$id'");   
