@@ -64,6 +64,8 @@
           $alamat_ktp = $data['alamat_ktp'];
           $no_wa = $data['no_wa'];
           $feedback = $data['feedback'];
+          $tanggal_join = $data['tanggal_join'];
+          $tanggal_resign = $data['tanggal_resign'];
         }
       }
 
@@ -693,10 +695,9 @@
                             <span class="label label-success">Pelamar Diterima</span>
                         <?php } ?>
                     </div>
-
-
+                  
                    <?php  }} ?>
-
+                  
 
                    <div class="col-md-12">
                       <input type="hidden" name="feedback" value="clear-rnd">
@@ -705,6 +706,69 @@
 
                   </form>
               </div>
+
+              <?php
+               $array_join = explode(",",$status_join);
+               foreach ($array_join as $key => $value) { 
+              ?>
+
+              <?php if($value == "Diterima") { ?>
+
+              <div class="box-date mg20">
+                <h3 class="font-bold">Tanggal Join & Resign</h3>
+                <form method="POST" action="">
+                
+                 <?php if ($tanggal_join != "") { ?>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Tanggal Join</label>
+                      <input type="hidden" name="id" value="<?php echo $id; ?>">
+                      <input type="text" class="form-control" id="dateJoin" value="<?= $tanggal_join; ?>" name="tanggal_join" disabled>
+                    </div>
+                  </div>
+
+                 
+                    
+                   <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Tanggal Resign</label>
+                      <input type="text" class="form-control" id="dateResign" value="<?= $tanggal_resign; ?>" name="tanggal_resign">
+                    </div>
+                   </div>
+                    
+                  <div class="col-md-6">
+                    <input type="submit" class="btn btn-primary" name="update_resign" value="Simpan Tanggal">
+                  </div>
+
+                  <?php } else { ?>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Tanggal Join</label>
+                      <input type="hidden" name="id" value="<?php echo $id; ?>">
+                      <input type="text" class="form-control" id="dateJoin" value="<?= $tanggal_join; ?>" name="tanggal_join">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Tanggal Resign</label>
+                      <input type="text" class="form-control" id="dateResign" value="<?= $tanggal_resign; ?>" name="tanggal_resign" disabled>
+                    </div>
+                  </div>
+                    
+                  <div class="col-md-6">
+                    <input type="submit" class="btn btn-primary" name="update_join" value="Simpan Tanggal">
+                  </div>
+
+                  <?php } ?>
+
+                </form>
+              </div>
+
+            <?php }} ?>
+
              <?php }} ?>
           <!--======================= Khusus RND ============================================================-->
 
@@ -742,6 +806,10 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
+<?php
+  include "library-js.php";
+?>
 
 <script>
   $(document).ready(function() {
@@ -822,11 +890,14 @@
       }
   });
 
+  $("#dateJoin, #dateResign").datepicker({ 
+    format: 'yyyy-mm-dd',
+    autoclose: true
+  });
+
 </script>
 
-<?php
-  include "library-js.php";
-?>
+
 </body>
 </html>
 <?php 
@@ -1014,5 +1085,50 @@ if (isset($_POST['update_tgl'])) {
       echo "Gagal";
     } 
   }
-} 
+}
+
+
+if (isset($_POST['update_join'])) {
+   if (isset($_POST['id'])) {
+    $id             = $_POST['id'];
+    $tanggal_join   = $_POST['tanggal_join'];
+  
+    // perintah query untuk mengubah data 
+    $query = mysqli_query($db, "UPDATE recruitment SET tanggal_join = '$tanggal_join' WHERE id = '$id'");   
+
+    // cek query
+    if ($query) {
+      // jika berhasil tampilkan pesan berhasil update data
+      header('Location: '.$_SERVER['REQUEST_URI']);
+      // echo "Berhasil";
+    } else {
+      // jika gagal tampilkan pesan kesalahan
+      // header('location: index.php?alert=1');
+      echo "Gagal";
+    } 
+  }
+}
+
+
+if (isset($_POST['update_resign'])) {
+   if (isset($_POST['id'])) {
+    $id             = $_POST['id'];
+    $tanggal_resign = $_POST['tanggal_resign'];
+  
+    // perintah query untuk mengubah data 
+    $query = mysqli_query($db, "UPDATE recruitment SET tanggal_resign = '$tanggal_resign' WHERE id = '$id'");   
+
+    // cek query
+    if ($query) {
+      // jika berhasil tampilkan pesan berhasil update data
+      header('Location: '.$_SERVER['REQUEST_URI']);
+      // echo "Berhasil";
+    } else {
+      // jika gagal tampilkan pesan kesalahan
+      // header('location: index.php?alert=1');
+      echo "Gagal";
+    } 
+  }
+}
+
 ?>

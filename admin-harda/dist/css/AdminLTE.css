@@ -5158,3 +5158,9 @@ input#rkPelamar, input#rkRefrensi {
   display: inline-block;
   margin: 10px 0px;
 }
+.box-date {
+  border: 1px solid #CCC;
+  display: inline-block;
+  padding: 10px;
+  width: 100%;
+}
