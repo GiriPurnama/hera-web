@@ -110,15 +110,19 @@
             $jum_pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = 'DISARANKAN' AND feedback = 'pending-rnd'");
             $jum_hasil_pelamar = mysqli_num_rows($jum_pelamar);
           ?>
-          <li class="">
-            <a href="page-rnd.php">
-              <i class="fa fa-expand"></i> <span>RND</span>
+
+           <li class="treeview">
+            <a href="#">
+              <i class="fa fa-cubes"></i>
+              <span>Dashboard RND</span>
               <span class="pull-right-container">
-                <!-- <i class="fa fa-angle-left pull-right"></i> -->
+                <i class="fa fa-angle-left pull-right"></i>
               </span>
-            <span class="label label-primary pull-right"><?= $jum_hasil_pelamar; ?></span>
-            </a>
-          </li>
+            <ul class="treeview-menu">
+              <li><a href="page-rnd-dashboard.php"><i class="fa fas fa-tachometer-alt"></i>Dashboard RND</a></li>
+              <li class=""><a href="page-rnd.php"><i class="fa fa-expand"></i> <span>RND</span><span class="pull-right-container"></span><span class="label label-primary pull-right"><?= $jum_hasil_pelamar; ?></span></a></li>    
+            </ul>
+           </li>
         <?php } ?>
 
          <?php if ($status == "RO" || $status == "InternalHRD" || $status == "Chief" || $status == "Master") { ?>

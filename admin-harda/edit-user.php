@@ -66,6 +66,7 @@
           $feedback = $data['feedback'];
           $tanggal_join = $data['tanggal_join'];
           $tanggal_resign = $data['tanggal_resign'];
+          $perusahaan = $data['perusahaan'];
         }
       }
 
@@ -562,7 +563,7 @@
                     if ($nama_pelamar != "" && $nama_lowongan_pelamar != "" && $client_distributor != "" && $status_join != "") { ?>
                     
                   <div class="display-data">
-                      <h3 class="font-bold" style="width: 100%; display: -webkit-box; padding: 10px 15px;">Data Terkirim</h3>
+                      <h3 class="font-bold" style="width: 100%; display: -webkit-box; padding: 10px 15px;">Data Terkirim Recruitment</h3>
                         <div class="col-md-3">
                           <?php
                            $array_nama = explode(",",$nama_pelamar);     
@@ -627,7 +628,7 @@
               ?>
              
               <div class="box-reference">
-                <h3 class="font-bold">Data Pelamar</h3>
+                <h3 class="font-bold">Data Pelamar RND</h3>
                  <div class="col-md-3">
 
                     <?php
@@ -718,27 +719,44 @@
                 <h3 class="font-bold">Tanggal Join & Resign</h3>
                 <form method="POST" action="">
                 
-                 <?php if ($tanggal_join != "") { ?>
+                 <?php if ($tanggal_join == "" || $tanggal_join == "0000-00-00") { ?>
 
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Tanggal Join</label>
                       <input type="hidden" name="id" value="<?php echo $id; ?>">
-                      <input type="text" class="form-control" id="dateJoin" value="<?= $tanggal_join; ?>" name="tanggal_join" disabled>
+                      <input type="text" class="form-control" autocomplete="off" id="dateJoin" value="<?= $tanggal_join; ?>" name="tanggal_join" required>
                     </div>
                   </div>
 
-                 
-                    
                    <div class="col-md-6">
                     <div class="form-group">
                       <label>Tanggal Resign</label>
-                      <input type="text" class="form-control" id="dateResign" value="<?= $tanggal_resign; ?>" name="tanggal_resign">
+                      <input type="text" class="form-control" autocomplete="off" id="dateResign" value="<?= $tanggal_resign; ?>" name="tanggal_resign" disabled>
                     </div>
                    </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Client</label>
+                      <select id="template-client" class="form-control add-client" name="perusahaan" required>
+                        <option value="<?= $perusahaan; ?>"><?= $perusahaan; ?></option>
+                        <?php 
+                             $info_client = mysqli_query($db, "SELECT * FROM menu_client");
+                              while ($row = mysqli_fetch_assoc($info_client)) {
+                              $nama_client = $row['title_client'];
+                        ?>
+                        
+                        <option value="<?= $nama_client; ?>"><?= $nama_client; ?></option>
+                        
+                        <?php } ?>
+                      </select>
+                    </div>
+                  </div>
                     
                   <div class="col-md-6">
-                    <input type="submit" class="btn btn-primary" name="update_resign" value="Simpan Tanggal">
+                    <input type="hidden" name="feedback" value="Join">
+                    <input type="submit" class="btn btn-primary" name="update_join" value="Simpan Tanggal">
                   </div>
 
                   <?php } else { ?>
@@ -747,19 +765,38 @@
                     <div class="form-group">
                       <label>Tanggal Join</label>
                       <input type="hidden" name="id" value="<?php echo $id; ?>">
-                      <input type="text" class="form-control" id="dateJoin" value="<?= $tanggal_join; ?>" name="tanggal_join">
+                      <input type="text" class="form-control" autocomplete="off" id="dateJoin" value="<?= $tanggal_join; ?>" name="tanggal_join" disabled>
                     </div>
                   </div>
 
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Tanggal Resign</label>
-                      <input type="text" class="form-control" id="dateResign" value="<?= $tanggal_resign; ?>" name="tanggal_resign" disabled>
+                      <input type="text" class="form-control" autocomplete="off" id="dateResign" value="<?= $tanggal_resign; ?>" name="tanggal_resign" required>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Perusahaan</label>
+                      <select id="template-client" class="form-control add-client" name="perusahaan" required>
+                        <option value="<?= $perusahaan; ?>"><?= $perusahaan; ?></option>
+                        <?php 
+                             $info_client = mysqli_query($db, "SELECT * FROM menu_client");
+                              while ($row = mysqli_fetch_assoc($info_client)) {
+                              $nama_client = $row['title_client'];
+                        ?>
+                        
+                        <option value="<?= $nama_client; ?>"><?= $nama_client; ?></option>
+                        
+                        <?php } ?>
+                      </select>
                     </div>
                   </div>
                     
                   <div class="col-md-6">
-                    <input type="submit" class="btn btn-primary" name="update_join" value="Simpan Tanggal">
+                    <input type="hidden" name="feedback" value="Resign">
+                    <input type="submit" class="btn btn-primary" name="update_resign" value="Simpan Tanggal">
                   </div>
 
                   <?php } ?>
@@ -1092,9 +1129,11 @@ if (isset($_POST['update_join'])) {
    if (isset($_POST['id'])) {
     $id             = $_POST['id'];
     $tanggal_join   = $_POST['tanggal_join'];
+    $feedback = $_POST['feedback'];
+    $perusahaan = $_POST['perusahaan'];
   
     // perintah query untuk mengubah data 
-    $query = mysqli_query($db, "UPDATE recruitment SET tanggal_join = '$tanggal_join' WHERE id = '$id'");   
+    $query = mysqli_query($db, "UPDATE recruitment SET tanggal_join = '$tanggal_join', feedback = '$feedback', perusahaan = '$perusahaan' WHERE id = '$id'");   
 
     // cek query
     if ($query) {
@@ -1114,9 +1153,11 @@ if (isset($_POST['update_resign'])) {
    if (isset($_POST['id'])) {
     $id             = $_POST['id'];
     $tanggal_resign = $_POST['tanggal_resign'];
+    $feedback = $_POST['feedback'];
+    $perusahaan = $_POST['perusahaan'];
   
     // perintah query untuk mengubah data 
-    $query = mysqli_query($db, "UPDATE recruitment SET tanggal_resign = '$tanggal_resign' WHERE id = '$id'");   
+    $query = mysqli_query($db, "UPDATE recruitment SET tanggal_resign = '$tanggal_resign', feedback = '$feedback', perusahaan = '$perusahaan' WHERE id = '$id'");   
 
     // cek query
     if ($query) {
