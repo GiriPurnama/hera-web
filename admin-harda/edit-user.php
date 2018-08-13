@@ -55,7 +55,7 @@
           $rekomendasi = $posisi_rekomendasi ?: $posisi;
           $berat_badan = $data['berat_badan'];
           $tinggi_badan = $data['tinggi_badan'];
-          $interview = $data['interview'];
+          $interview = $data['interview'] ?: '<b>Belum Interview</b>';
           $copy_cv = $data['copy_cv'];
           $nama_pelamar = $data['nama_pelamar'];
           $nama_lowongan_pelamar = $data['nama_lowongan'];
@@ -354,6 +354,7 @@
                     <div class="col-md-6 form-group mg20">
                       <label>Interviewer</label>
                       <input type="text" class="form-control" name="interview" value="<?= $session_name; ?>" readonly>
+                      <div>Interview : <?= $interview; ?></div>
                     </div>
 
                     <div class="col-md-6 form-group mg20 ghost-refrensi">
@@ -689,11 +690,17 @@
                         </select>
                         
                         <?php if ($value == "Ditolak") { ?>
+
                             <span class="label label-danger">Pelamar Ditolak</span>
+                        
                         <?php } else if ($value == "Dikirim") { ?>
+                            
                             <span class="label label-info">Masih Menunggu</span>
+                        
                         <?PHP } else if($value == "Diterima") { ?>
+                            
                             <span class="label label-success">Pelamar Diterima</span>
+                        
                         <?php } ?>
                     </div>
                   

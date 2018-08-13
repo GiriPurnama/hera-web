@@ -343,7 +343,12 @@
                 $isi_testimonial = $row['isi_testimonial'];
                 $status = $row['status'];
                 $foto_testimonial = $row['foto_testimonial'];
-                $str_testimonial = str_replace("../", "", $foto_testimonial);   
+                $str_testimonial = str_replace("../", "", $foto_testimonial);
+
+                if($status == "Pelamar"){
+                  $status = "Karyawan Eksternal";
+                }
+                   
           ?>
               <div class="item text-center pad-10">
                 <img class="size-img" src="<?= $str_testimonial; ?>" alt="">
