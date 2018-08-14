@@ -17,6 +17,10 @@
       $_SESSION['id_admin'] = $row['id_admin'];
       $_SESSION['img_divisi'] = $row['img_divisi'];
       $_SESSION['branch'] = $row['branch'];
+
+      // Query Automatic
+      $query = mysqli_query($db, "UPDATE recruitment SET status_pelamar = 'Expired' WHERE post_date <= DATE_ADD(CURDATE(), INTERVAL -3 DAY) AND status_pelamar = ''");
+
       header('location:dashboard.php');
     }
     else

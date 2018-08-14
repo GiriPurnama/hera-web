@@ -55,22 +55,22 @@
            </li>
         <?php } ?>
 
-        <li class="">
-          <a href="data-user.php">
-            <i class="fa fa-users"></i> <span>Data Pelamar</span>
-            <span class="pull-right-container">
-              <!-- <i class="fa fa-angle-left pull-right"></i> -->
-            </span>
-          </a>
+
+         <li class="treeview">
+            <a href="#">
+              <i class="fa fa-book"></i>
+              <span>Dashboard Pelamar</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            <ul class="treeview-menu">
+              <li class=""><a href="data-user.php"><i class="fa fa-users"></i> <span>Data Pelamar</span><span class="pull-right-container"></span></a></li>
+              <li class=""><a href="page-reject.php"><i class="fa fa-ban"></i> <span>Data Reject</span><span class="pull-right-container"></span></a></li>
+              <li class=""><a href="page-expired.php"><i class="fa fa-calendar-times-o"></i> <span>Data Expired</span><span class="pull-right-container"></span></a></li>    
+            </ul>
         </li>
-         <li class="">
-          <a href="page-reject.php">
-            <i class="fa fa-ban"></i> <span>Data Reject</span>
-            <span class="pull-right-container">
-              <!-- <i class="fa fa-angle-left pull-right"></i> -->
-            </span>
-          </a>
-        </li>
+
+    
          <li class="">
           <a href="page-lowongan.php">
             <i class="fa fa-clipboard"></i><span>Info Lowongan</span>
