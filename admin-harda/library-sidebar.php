@@ -53,8 +53,6 @@
           </a>
         </li>
 
-
-
         
         <?php if ($status == "RnD" || $status == "EksternalHRD" || $status == "Chief" || $status == "Master") { ?>
          <?php  

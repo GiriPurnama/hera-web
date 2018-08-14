@@ -43,9 +43,7 @@
             <!-- /.box-header -->
 
             <div class="box-body table-responsive no-padding">
-              <a class="btn-export-excel" href="export-excel.php" target="_BLANK">
-                <button class="btn btn-warning btn-submit">Export Excel<i class="far fa-file-excel"></i></button>
-              </a>
+            <span class="pad10"><b>* 3 Hari pelamar</b> tidak datang sistem akan membuat status expired secara Otomatis</span>
               <table class="table table-bordered table-hover" id="table-user">
               <thead>
                 <tr>
