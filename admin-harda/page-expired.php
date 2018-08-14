@@ -44,6 +44,12 @@
 
             <div class="box-body table-responsive no-padding">
             <span class="pad10"><b>* 3 Hari pelamar</b> tidak datang sistem akan membuat status expired secara Otomatis</span>
+             <form method="POST" action="server.php">
+              <input type="hidden" name="branch" value="<?= $cabang; ?>">
+               <div class="btn-export-excel">
+                  <input onclick="return confirm('Apakah yakin akan menghapus semua data ini?')" type="submit" class="btn btn-danger btn-submit" name="delete_all" value="Delete All">
+               </div>
+             </form>
               <table class="table table-bordered table-hover" id="table-user">
               <thead>
                 <tr>

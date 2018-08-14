@@ -5052,6 +5052,8 @@ a .btn.btn-warning i{
 .btn-export-excel{
   position: relative;
   top: 30px;
+  width: 100%;
+  display: block;
 }
 
 .table-report{

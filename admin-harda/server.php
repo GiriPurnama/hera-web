@@ -1,4 +1,5 @@
 <?php
+ $cabang = $_SESSION['branch'];
 //===================== Delete data Pelamar ================================================
 
 	include "../config/koneksi.php"; 
@@ -1192,6 +1193,19 @@
 		}
 	}
 //===================== Kirim Voting ================================================
+
+
+//===================== Delete All ================================================
+	if (isset($_POST['delete_all'])) {
+		$cabang = $_POST['branch'];
+		$query_delete = mysqli_query($db, "DELETE FROM recruitment WHERE branch='$cabang' AND status_pelamar='Expired'");
+		if ($query_delete) {
+			header('location: page-expired.php');
+		} else {
+			echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-expired.php'</script>");
+		}
+	}
+//===================== Delete All ================================================
 
 
 
