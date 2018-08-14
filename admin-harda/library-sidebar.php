@@ -34,6 +34,27 @@
             </span>
           </a>
         </li>
+
+        <li class="">
+          <a href="page-lowongan.php">
+            <i class="fa fa-clipboard"></i><span>Info Lowongan</span>
+            <span class="pull-right-container">
+              <!-- <i class="fa fa-angle-left pull-right"></i> -->
+            </span>
+          </a>
+        </li>
+
+        <li class="">
+          <a href="page-branch.php">
+            <i class="fa fa-group"></i> <span>Branch</span>
+            <span class="pull-right-container">
+              <!-- <i class="fa fa-angle-left pull-right"></i> -->
+            </span>
+          </a>
+        </li>
+
+
+
         
         <?php if ($status == "RnD" || $status == "EksternalHRD" || $status == "Chief" || $status == "Master") { ?>
          <?php  
@@ -67,17 +88,26 @@
               <li class=""><a href="data-user.php"><i class="fa fa-users"></i> <span>Data Pelamar</span><span class="pull-right-container"></span></a></li>
               <li class=""><a href="page-reject.php"><i class="fa fa-ban"></i> <span>Data Reject</span><span class="pull-right-container"></span></a></li>
               <li class=""><a href="page-expired.php"><i class="fa fa-calendar-times-o"></i> <span>Data Expired</span><span class="pull-right-container"></span></a></li>    
-            </ul>
-        </li>
+              
+              <?php if ($status == "RO" || $status == "InternalHRD" || $status == "Chief" || $status == "Master") { ?>
+              <?php  
+                $jum_pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = 'DISARANKAN' AND feedback = 'clear-rnd'");
+                $jum_hasil_pelamar = mysqli_num_rows($jum_pelamar);
+              ?>
+              
+              <li class="">
+                <a href="page-ro.php">
+                  <i class="fa fa-expand"></i> <span>Recruitment</span>
+                  <span class="pull-right-container">
+                    <!-- <i class="fa fa-angle-left pull-right"></i> -->
+                  </span>
+                <span class="label label-primary pull-right"><?= $jum_hasil_pelamar; ?></span>
+                </a>
+              </li>
+              
+              <?php } ?>
 
-    
-         <li class="">
-          <a href="page-lowongan.php">
-            <i class="fa fa-clipboard"></i><span>Info Lowongan</span>
-            <span class="pull-right-container">
-              <!-- <i class="fa fa-angle-left pull-right"></i> -->
-            </span>
-          </a>
+            </ul>
         </li>
 
         
@@ -116,32 +146,6 @@
               <li><a href="page-video.php"><i class="fa fa-file-movie-o"></i>Video</a></li>
             </ul>
         </li>
-
-        <li class="">
-          <a href="page-branch.php">
-            <i class="fa fa-group"></i> <span>Branch</span>
-            <span class="pull-right-container">
-              <!-- <i class="fa fa-angle-left pull-right"></i> -->
-            </span>
-          </a>
-        </li>
-
-         <?php if ($status == "RO" || $status == "InternalHRD" || $status == "Chief" || $status == "Master") { ?>
-         <?php  
-            $jum_pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = 'DISARANKAN' AND feedback = 'clear-rnd'");
-            $jum_hasil_pelamar = mysqli_num_rows($jum_pelamar);
-          ?>
-          <li class="">
-            <a href="page-ro.php">
-              <i class="fa fa-expand"></i> <span>Recruitment</span>
-              <span class="pull-right-container">
-                <!-- <i class="fa fa-angle-left pull-right"></i> -->
-              </span>
-            <span class="label label-primary pull-right"><?= $jum_hasil_pelamar; ?></span>
-            </a>
-          </li>
-        <?php } ?>
-
 
        
         <!-- 
