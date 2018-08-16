@@ -12,6 +12,7 @@
 	  			unlink($row['foto']);
 	  			unlink($row['ktp']);
 	  			unlink($row['ijazah']);
+	  			unlink($row['copy_cv']);
 			  	$query_delete = mysqli_query($db, "DELETE FROM recruitment WHERE id='$id'");
 			  	if ($query_delete) {
 			  		header('location: data-user.php');
@@ -1198,12 +1199,24 @@
 //===================== Delete All ================================================
 	if (isset($_POST['delete_all'])) {
 		$cabang = $_POST['branch'];
-		$query_delete = mysqli_query($db, "DELETE FROM recruitment WHERE branch='$cabang' AND status_pelamar='Expired'");
-		if ($query_delete) {
-			header('location: page-expired.php');
-		} else {
-			echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-expired.php'</script>");
-		}
+
+		$load_data = mysqli_query($db, "SELECT * FROM recruitment WHERE branch='$cabang' AND status_pelamar='Expired'");
+	  	while ($row = mysqli_fetch_assoc($load_data)) {
+	  	if (is_file("upload/".$row['foto']) || ("upload/".$row['ktp']) || ("upload/".$row['ijazah'])) {
+	  			unlink($row['foto']);
+	  			unlink($row['ijazah']);
+	  			unlink($row['ktp']);
+	  			unlink($row['copy_cv']);
+			  	$query_delete = mysqli_query($db, "DELETE FROM recruitment WHERE branch='$cabang' AND status_pelamar='Expired'");
+			  	if ($query_delete) {
+			  		header('location: page-expired.php');
+			  	} else{
+			  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal dihapus'); window.location.href='page-expired.php'</script>");
+			  	}
+	  		} else { 
+	  			echo ("<script LANGUAGE='JavaScript'>window.alert('File Tidak ditemukan'); window.location.href='page-expired.php'</script>");
+	  		}
+	  	}
 	}
 //===================== Delete All ================================================
 
