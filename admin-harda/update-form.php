@@ -705,6 +705,34 @@ if($_POST['rowpass']) {
   }
 ?>
 
+<?php
+    if($_POST['infolowongan']) {
+      $idlowongan = $_POST['infolowongan'];
+      $load_data = mysqli_query($db, "SELECT * FROM info_lowongan WHERE idlowongan='$idlowongan'");
+      while ($row = mysqli_fetch_assoc($load_data)) { 
+        $kota = $row['wilayah'];
+        $nama_lowongan = $row['nama_lowongan'];
+        $desc_lowongan = $row['desc_lowongan'];
+        $cut_lowongan = substr($desc_lowongan,0,200). '...';
+        $idlowongan = $row['idlowongan']   
+?>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1 class="title-bio"><?= $nama_lowongan; ?></h1>
+      <h3><?= $kota; ?></h3>
+    </div>
+    <div class="col-md-12">
+        <div><?= $desc_lowongan; ?></div>
+    </div>
+    <div class="col-md-12 text-center">
+      <a href="recruitment.hera" class="btn-get-started">Lamar Sekarang</a>
+    </div>
+
+  </div> 
+<?php }
+  }
+?>
+
 
 <script type="text/javascript">
   function password_match() {

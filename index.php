@@ -256,15 +256,18 @@
                 $nama_lowongan = $row['nama_lowongan'];
                 $desc_lowongan = $row['desc_lowongan'];
                 $cut_lowongan = substr($desc_lowongan,0,200). '...';
+                $idlowongan = $row['idlowongan']
             ?>
 
             <div class="item">
               <div class="box-info">
                 <h3 class="font-bold"><?= $nama_lowongan; ?></h3>
                 <h4><?= $kota; ?></h4>
-                <p><?= $cut_lowongan; ?></p>
+                <div class="info-text">
+                  <p><?= $cut_lowongan; ?></p>
+                </div>
                 <div class="text-center">
-                  <a href="recruitment.hera" class="btn-get-started scrollto">Lamar Sekarang</a>  
+                  <a href='#modalInfoLowongan' data-toggle='modal' data-id="<?= $idlowongan; ?>" class="btn-get-started">Selengkapnya</a>  
                 </div>
               </div>
             </div>
@@ -761,6 +764,19 @@
       });
     });
 
+     $('#modalInfoLowongan').on('show.bs.modal', function (e) {
+      var infolowongan = $(e.relatedTarget).data('id');
+      //menggunakan fungsi ajax untuk pengambilan data
+      $.ajax({
+          type : 'post',
+          url : 'admin-harda/update-form.php',
+          data :  'infolowongan='+ infolowongan,
+          success : function(data){
+            $('.fetched-data-lowongan').html(data);//menampilkan data ke dalam modal
+          }
+      });
+    });
+
    $("#loader").hide();
    $("#tanggal_lahir").dateDropdowns({
       minAge: 18
@@ -769,6 +785,43 @@
    $('.day, .month, .year').attr('required','').addClass('form-control col-md-3 display-inline');
    $('.month').addClass('form-control col-md-4 display-inline');
   </script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+
+    // Select and loop the container element of the elements you want to equalise
+    $('#info-jobs').each(function(){  
+      
+      // Cache the highest
+      var highestBox = 0;
+      var highestBoxText = 0;
+      
+      // Select and loop the elements you want to equalise
+      $('.box-info', this).each(function(){
+        
+        // If this box is higher than the cached highest then store it
+        if($(this).height() > highestBox) {
+          highestBox = $(this).height(); 
+        }
+      
+      });
+
+      $('.info-text', this).each(function(){
+        
+        // If this box is higher than the cached highest then store it
+        if($(this).height() > highestBoxText) {
+          highestBoxText = $(this).height(); 
+        }
+      });
+     
+      // Set the height of all those children to whichever was highest 
+      $('.info-text',this).height(highestBoxText);
+      $('.box-info',this).height(highestBox);
+                    
+    }); 
+
+  });
+</script>
 
 </body>
 </html>
