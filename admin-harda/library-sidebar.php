@@ -54,7 +54,7 @@
         </li>
 
         
-        <?php if ($status == "RnD" || $status == "EksternalHRD" || $status == "Chief" || $status == "Master") { ?>
+        <?php if ($status == "RnD" || $status == "EksternalHRD" || $status == "Chief" || $status == "Master" || $status == "RO") { ?>
          <?php  
             $jum_pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = 'DISARANKAN' AND feedback = 'pending-rnd'");
             $jum_hasil_pelamar = mysqli_num_rows($jum_pelamar);

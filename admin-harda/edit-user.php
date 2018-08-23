@@ -746,7 +746,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Client</label>
-                      <select id="template-client" class="form-control add-client" name="perusahaan" required>
+                      <select class="form-control add-client" name="perusahaan" required>
                         <option value="<?= $perusahaan; ?>"><?= $perusahaan; ?></option>
                         <?php 
                              $info_client = mysqli_query($db, "SELECT * FROM menu_client");
@@ -786,7 +786,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Perusahaan</label>
-                      <select id="template-client" class="form-control add-client" name="perusahaan" required>
+                      <select class="form-control add-client" name="perusahaan" required>
                         <option value="<?= $perusahaan; ?>"><?= $perusahaan; ?></option>
                         <?php 
                              $info_client = mysqli_query($db, "SELECT * FROM menu_client");

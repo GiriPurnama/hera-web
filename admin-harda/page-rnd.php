@@ -146,7 +146,7 @@
 
                   <td>
                     
-                    <?php if ($status == "RnD" || $status == "EksternalHRD" || $status == "Chief" || $status == "Master") { ?>
+                    <?php if ($status == "RnD" || $status == "EksternalHRD" || $status == "Chief" || $status == "Master" || $status == "RO") { ?>
                   
                       <?php echo "<a href='edit-user.php?id=$row[id]'><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
                       <a href='server.php?id=<?php echo $row['id']; ?>' onclick="return confirm('Apakah yakin data ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
