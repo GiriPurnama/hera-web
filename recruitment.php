@@ -246,7 +246,7 @@
 	                  </div>
 
 	                  <div class="col-md-12">
-	                    <button class="btn btn-primary nextBtn" type="button">Next</button>
+	                    <button class="btn btn-primary nextBtn" id="btnFirst" type="button">Next</button>
 	                  </div>
 	              </div>
 
@@ -705,5 +705,28 @@ $("#tanggal_lahir").dateDropdowns({
 
 $('.day, .month, .year').attr('required','').addClass('form-control col-md-3 display-inline');
 $('.month').addClass('form-control col-md-4 display-inline');
+
+	$('#idCard').change(function() {
+      var idcard = $("#idCard").val();
+      //menggunakan fungsi ajax untuk pengambilan data
+      $.ajax({
+          type : 'post',
+          url : 'query.php',
+          data :  'idcard='+ idcard,
+          success : function(data){
+          	// // $('.fetched-data').html(data);//menampilkan data ke dalam modal
+          	 if(data == "OK"){
+          	 	$('#idCard').css("border", "1px solid #ced4da");
+          	 	$('#btnFirst').removeClass('disabled');     	
+          	 } else {
+          	 	alert("No KTP anda sudah digunakan");
+          	 	$('#btnFirst').addClass('disabled');
+          		$('#idCard').css("border", "1px solid red");     	 	
+          	 }
+          	 console.log(data);	
+          }
+      });
+  });
+
 });
 </script>

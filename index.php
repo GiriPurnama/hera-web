@@ -261,9 +261,9 @@
 
             <div class="item">
               <div class="box-info">
-                <h3 class="font-bold"><?= $nama_lowongan; ?></h3>
-                <h4><?= $kota; ?></h4>
                 <div class="info-text">
+                  <h3 class="font-bold"><?= $nama_lowongan; ?></h3>
+                  <h4><?= $kota; ?></h4>
                   <p><?= $cut_lowongan; ?></p>
                 </div>
                 <div class="text-center">
