@@ -720,6 +720,7 @@
                   </form>
               </div>
 
+            <!--======================= Tanggal Join ============================================================-->
               <?php
                $array_join = explode(",",$status_join);
                foreach ($array_join as $key => $value) { 
@@ -816,6 +817,8 @@
                 </form>
               </div>
 
+            <!--======================= Tanggal Join ============================================================-->
+
             <?php }} ?>
 
              <?php }} ?>
@@ -873,6 +876,7 @@
       
       var x = 1; //initlal text box count
       $(add_button).click(function(e){ //on add input button click
+          $(btn_delete).html("<div class='col-md-12 btn-pad'><a href='javascript:void(0);' class='btn btn-danger del-field'><i class='fa fa-trash'></i>Reset</a></div>");
           e.preventDefault();
           if(x < max_fields){ //max input box allowed
               x++; //text box increment
@@ -884,7 +888,7 @@
               $(add_lowongan).clone().appendTo(".append-lowongan").addClass("remove-field");
               $(add_client).clone().appendTo(".append-client").addClass("remove-field");
               $(add_status).clone().appendTo(".append-status").addClass("remove-field");
-              $(btn_delete).append("<div class='col-md-12 btn-pad'><a href='javascript:void(0);' class='del-field'><i class='fa fa-trash'></i></a></div>");
+             
           }
       });
     
