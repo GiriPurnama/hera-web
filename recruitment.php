@@ -170,7 +170,7 @@
 	                    <div class="display-text">*Harap Isi Jenis Kelamin</div>
 	                  </div>
 
-	                  <div class="form-group col-md-6">
+	                  <div class="form-group col-md-6 error-ktp">
 	                    <label for="idCart">No.KTP* :</label>
 	                    <input type="text" class="form-control" id="idCard" autocomplete="off" name="no_ktp" onKeyPress="return goodchars(event,'0123456789',this)" required>
 	                     <div class="display-text">*Harap Isi KTP</div>
@@ -717,11 +717,14 @@ $('.month').addClass('form-control col-md-4 display-inline');
           	// // $('.fetched-data').html(data);//menampilkan data ke dalam modal
           	 if(data == "OK"){
           	 	$('#idCard').css("border", "1px solid #ced4da");
-          	 	$('#btnFirst').removeClass('disabled');     	
+          	 	$('#btnFirst').removeClass('disabled');
+          	 	$('.error-ktp').removeClass("display");     	
           	 } else {
           	 	alert("No KTP anda sudah digunakan");
           	 	$('#btnFirst').addClass('disabled');
-          		$('#idCard').css("border", "1px solid red");     	 	
+          		$('#idCard').css("border", "1px solid red");
+          		$('.error-ktp').addClass("display");
+          		$(".display-text").text("*No KTP anda sudah terdaftar");
           	 }
           	 console.log(data);	
           }
