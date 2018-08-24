@@ -173,7 +173,7 @@
 	                  <div class="form-group col-md-6 error-ktp">
 	                    <label for="idCart">No.KTP* :</label>
 	                    <input type="text" class="form-control" id="idCard" autocomplete="off" name="no_ktp" onKeyPress="return goodchars(event,'0123456789',this)" required>
-	                     <div class="display-text">*Harap Isi KTP</div>
+	                     <div class="display-text ktpid">*Harap Isi KTP</div>
 	                  </div>
 	                  
 	                  <div class="form-group col-md-6">
@@ -724,7 +724,7 @@ $('.month').addClass('form-control col-md-4 display-inline');
           	 	$('#btnFirst').addClass('disabled');
           		$('#idCard').css("border", "1px solid red");
           		$('.error-ktp').addClass("display");
-          		$(".display-text").text("*No KTP anda sudah terdaftar");
+          		$(".display-text.ktpid").text("*No KTP anda sudah terdaftar");
           	 }
           	 console.log(data);	
           }
