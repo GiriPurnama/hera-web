@@ -388,11 +388,15 @@
                       
                       $dateNow = date('Y-m-d');
                       if ($post_date != $dateNow && $status_pelamar == "") { 
-                    
+          
                     ?>
                       
                       <input type="submit" class="btn btn-primary btn-submit" name="update_tgl" value="Simpan">
                     
+                    <?php } else if ($post_date != $dateNow && $status_pelamar == "Expired") { ?>
+
+                      <input type="submit" class="btn btn-primary btn-submit" name="update_tgl" value="Simpan">
+
                     <?php } else { ?>
 
                       <input type="submit" class="btn btn-primary btn-submit" name="simpan" id="send" value="Simpan">
@@ -494,7 +498,7 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label>Client</label>
-                          <select id="template-client" class="form-control add-client" name="client_distributor[]" required>
+                          <select class="form-control add-client" name="client_distributor[]" required>
                             <option value="">-</option>
                             <?php 
                                  $info_client = mysqli_query($db, "SELECT * FROM menu_client");
@@ -516,19 +520,20 @@
                         </div>
                       </div>
 
-                     <!-- <div class="col-md-2">
+                     <div class="col-md-2">
                         <div class="btn-pelamar">
                           <div class="form-group">
                            <button class="btn btn-default add-btn"><i class="fa fa-plus"></i> Tambah</button>    
                           </div>
                         </div>
-                     </div> -->
+                     </div>
 
                     <div class="wrapper-input">
                       <div class="col-md-2 form-group append-nama"></div>
                       <div class="col-md-3 form-group append-lowongan"></div>
                       <div class="col-md-3 form-group append-client"></div>
                       <div class="col-md-2 form-group append-status"></div>
+                      <div class="col-md-2 form-group append-delete"></div>
                     </div> 
                     
                     <div class="col-md-12">
@@ -746,7 +751,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Client</label>
-                      <select class="form-control add-client" name="perusahaan" required>
+                      <select class="form-control" name="perusahaan" required>
                         <option value="<?= $perusahaan; ?>"><?= $perusahaan; ?></option>
                         <?php 
                              $info_client = mysqli_query($db, "SELECT * FROM menu_client");
@@ -786,7 +791,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Perusahaan</label>
-                      <select class="form-control add-client" name="perusahaan" required>
+                      <select class="form-control" name="perusahaan" required>
                         <option value="<?= $perusahaan; ?>"><?= $perusahaan; ?></option>
                         <?php 
                              $info_client = mysqli_query($db, "SELECT * FROM menu_client");
@@ -864,6 +869,7 @@
       var add_status      = $(".add-status");  
       var add_button      = $(".add-btn"); //Add button ID
       var wrapper         = $(".wrapper-input");
+      var btn_delete      = $(".append-delete"); 
       
       var x = 1; //initlal text box count
       $(add_button).click(function(e){ //on add input button click
@@ -872,19 +878,28 @@
               x++; //text box increment
               // $(wrapper).append('<div class="col-md-2"><div class="form-group"><input type="text" class="form-control" name="nama_pelamar" value="<?= $nama_lengkap; ?>" readonly></div></div>');
               // $(wrapper).append('<div class="col-md-3"><div class="form-group"><input type="text" class="form-control" name="nama_lowongan" value="<?= $rekomendasi; ?>" readonly></div></div>'); //add input box
-              $(add_pelamar).clone().appendTo(".append-nama").addClass("remove-field");
-              $(add_lowongan).clone().appendTo(".append-lowongan").addClass("remove-field");
-              // $(add_)
-              $(add_client).clone().appendTo(".append-client").addClass("remove-field");
-              $(add_status).clone().appendTo(".append-status").addClass("remove-field");
               // $(wrapper).append('<div class="col-md-4"><div class="form-group"><select class="form-control add-status" name="status_join"><option value="">-</option><option value="Dikirim">Dikirim</option><option value="Ditolak">Ditolak</option><option value="Diterima">Diterima</option></select></div></div>'); //add input box
               // $(add_status).clone().insertAfter('.clone-after-status');
+              $(add_pelamar).clone().appendTo(".append-nama").addClass("remove-field");
+              $(add_lowongan).clone().appendTo(".append-lowongan").addClass("remove-field");
+              $(add_client).clone().appendTo(".append-client").addClass("remove-field");
+              $(add_status).clone().appendTo(".append-status").addClass("remove-field");
+              $(btn_delete).append("<div class='col-md-12 btn-pad'><a href='javascript:void(0);' class='del-field'><i class='fa fa-trash'></i></a></div>");
           }
       });
-      
-      $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-        e.preventDefault(); $(this).parent('div').remove(); x--;
+    
+    $(wrapper).on("click",".del-field", function(e){ //user click on remove text
+      e.preventDefault(); $(this).parent('div').remove(); x--;
+       $(".remove-field").remove();
+       $(".btn-pad").remove();
     })
+      
+    $(".del-field").click(function(){
+        $(".remove-field").remove();
+        $(".btn-pad").remove();
+        console.log("test");
+    });
+
   })
 
   $(function () {

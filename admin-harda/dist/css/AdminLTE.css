@@ -5166,3 +5166,21 @@ input#rkPelamar, input#rkRefrensi {
   padding: 10px;
   width: 100%;
 }
+.col-md-12.btn-pad {
+    margin: 10px;
+}
+.btn-pad i.fa.fa-trash {
+    width: 30px;
+    background: orange;
+    text-align: center;
+    height: auto;
+    border-radius: 50%;
+    padding: 7px 0px;
+}
+.btn-pad a {
+  color: #FFF;
+}
+
+.btn-pad a:hover{
+  color: #72afd2;
+}
