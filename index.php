@@ -146,7 +146,7 @@
                while ($row = mysqli_fetch_assoc($artikel_row)) {
                   $judul_artikel = $row['judul_artikel'];
                   $idartikel = $row['idartikel'];
-                  $isi_artikel = $row['isi_artikel'];
+                  $isi_artikel = strip_tags($row['isi_artikel'], '<p><a><li><ol>');
                   $foto_artikel = $row['foto_artikel'];
                   $str_artikel = str_replace("../", "", $foto_artikel);
                   $cut_str = substr($isi_artikel,0,300). '...';
@@ -254,7 +254,7 @@
               while ($row = mysqli_fetch_assoc($loker)) {
                 $kota = $row['wilayah'];
                 $nama_lowongan = $row['nama_lowongan'];
-                $desc_lowongan = $row['desc_lowongan'];
+                $desc_lowongan = strip_tags($row['desc_lowongan'], '<p><a><li><ol>');
                 $cut_lowongan = substr($desc_lowongan,0,200). '...';
                 $idlowongan = $row['idlowongan']
             ?>
