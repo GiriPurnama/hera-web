@@ -534,8 +534,17 @@
                     <label for="status">Status</label>
                     <select class="form-control" name="status" id="status_title">
                         <option value="">-</option>
-                        <option value="ADMIN">Admin</option>
-                        <option value="RECRUITMENT">Recruitment</option>
+                        <option value="Direktur">Direktur</option>
+                        <option value="RO">RO</option>
+                        <option value="Master">Master</option>
+                        <option value="RnD">RnD</option>
+                        <option value="EksternalHRD">EksternalHRD</option>
+                        <option value="InternalHRD">InternalHRD</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Chief">Chief</option>
+                        <option value="MobileSales">MobileSales</option>
+                        <option value="ADMIN">ADMIN</option>
+                        <option value="Operasional">Operasional</option>
                     </select>
                   </div>
                 </div>

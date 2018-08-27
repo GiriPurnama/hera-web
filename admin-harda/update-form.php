@@ -91,8 +91,32 @@ if($_POST['rowteam']) {
                 </div>
                 <div class="form-group">
                   <label for="status">Status</label>
-                  <select class="form-control" name="status" id="status_title">
-                      <option value="<?= $status; ?>"><?= $status; ?></option>
+                  <select class="form-control" name="status" id="status_title" required>
+                      <?php
+                        $status_admin = $status == "Master" ? $status = "IT Support" : $status;
+                        if ($status == "") { 
+                      ?>
+                        <option value="">-</option>            
+                      
+                      <?php } else { ?>
+                      
+
+                      <option value="<?= $status; ?>"><b><?= $status_admin; ?></b></option>
+                      
+                      <?php } ?>
+                      
+                      <option value="Direktur">Direktur</option>
+                      <option value="RO">RO</option>
+                      <option value="Master">Master</option>
+                      <option value="RnD">RnD</option>
+                      <option value="EksternalHRD">EksternalHRD</option>
+                      <option value="InternalHRD">InternalHRD</option>
+                      <option value="Finance">Finance</option>
+                      <option value="Chief">Chief</option>
+                      <option value="MobileSales">MobileSales</option>
+                      <option value="ADMIN">ADMIN</option>
+                      <option value="Operasional">Operasional</option>
+                     
                      <!--  <option <?php if ($status == "ADMIN" ) echo 'selected' ; ?> value="ADMIN">Admin</option>
                       <option <?php if ($status == "RECRUITMENT" ) echo 'selected' ; ?> value="RECRUITMENT">Recruitment</option> -->
                   </select>

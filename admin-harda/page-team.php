@@ -139,6 +139,8 @@
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $("#tglJoin").dateDropdowns();
+  $('.day, .month, .year').attr('required','').addClass('form-control col-md-3 display-inline');
+  $('.month').addClass('form-control col-md-4 display-inline');
 
   $.widget.bridge('uibutton', $.ui.button);
    $(function () {
