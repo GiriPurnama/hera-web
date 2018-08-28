@@ -67,6 +67,7 @@
           $tanggal_join = $data['tanggal_join'];
           $tanggal_resign = $data['tanggal_resign'];
           $perusahaan = $data['perusahaan'];
+          $alasan_resign = $data['alasan_resign'];
         }
       }
 
@@ -751,6 +752,13 @@
 
                   <div class="col-md-12">
                     <div class="form-group">
+                      <label>Alasan Resign</label>
+                      <textarea class="form-control" id="idAlasan" name="alasan_resign" disabled><?= $alasan_resign; ?></textarea>
+                    </div>
+                   </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
                       <label>Client</label>
                       <select class="form-control" name="perusahaan" required>
                         <option value="<?= $perusahaan; ?>"><?= $perusahaan; ?></option>
@@ -788,6 +796,13 @@
                       <input type="text" class="form-control" autocomplete="off" id="dateResign" value="<?= $tanggal_resign; ?>" name="tanggal_resign" required>
                     </div>
                   </div>
+
+                   <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Alasan Resign</label>
+                      <textarea class="form-control" id="idAlasan" name="alasan_resign"><?= $alasan_resign; ?></textarea>
+                    </div>
+                   </div>
 
                   <div class="col-md-12">
                     <div class="form-group">
