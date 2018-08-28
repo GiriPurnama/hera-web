@@ -2018,4 +2018,7 @@ ul.inline-ul li{
   ul.inline-ul li {
     padding: 10px 10px;
   }
+  .member img {
+    height: 300px;
+  }
 }
