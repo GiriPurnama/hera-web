@@ -1221,5 +1221,22 @@
 //===================== Delete All ================================================
 
 
+//===================== Best Employe ================================================
+	if (isset($_POST['simpan_employee'])) {
+		$id_admin = $_POST['id_admin'];
+		$best_employe = $_POST['status_employe'];
+
+		$reset_employe = mysqli_query($db, "UPDATE login SET status_employe = DEFAULT"); 
+
+		$update_employe = mysqli_query($db, "UPDATE login SET status_employe = '$best_employe' WHERE id_admin = '$id_admin'"); 
+
+		if ($update_employe) {
+		  	header('location: dashboard.php');
+		  }  else {
+		  	echo "gagal simpan";
+		  }
+	}
+//===================== Best Employe ================================================
+
 
 ?>

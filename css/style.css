@@ -2006,6 +2006,50 @@ ul.inline-ul li{
 .box-info h3, h4{
   text-align: center;
 }
+.box-employe{
+  position: fixed;
+  z-index: 999;
+  bottom: 0;
+ /* background-image: url(../img/bingkai.png);
+  background-size: 190px 195px;
+  background-repeat: no-repeat;*/
+}
+.box-employe .figure img{
+  position: relative;
+  height: 190px;
+  top: 157px;
+  left: 9px;
+  width: 169px;
+}
+.box-employe h4 {
+  color: #a19a9a;
+  position: relative;
+  top: 150px;
+}
+.box-employe h4, .box-employe h5{
+  position: relative;
+  color: #a19a9a;
+  text-align: center;
+}
+.img-employe img {
+  width: 150px;
+  top: -22px;
+  position: relative;
+  z-index: -15;
+  left: 20px;
+  height: 170px;
+}
+.box-employe .btn-close {
+  cursor: pointer;
+  background: red;
+  color: #fff;
+  border-radius: 50%;
+  width: 100%;
+  padding: 5px 10px;
+  position: relative;
+  top: 178px;
+  left: 195px;
+}
 @media (max-width: 991px){
   .size-box-img {
     width: 100%;

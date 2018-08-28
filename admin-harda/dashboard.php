@@ -31,6 +31,33 @@
 
     <!-- Main content -->
     <section class="content">
+    <?php if ($status == "EksternalHRD" || $status == "InternalHRD" || $status == "Master") { ?>
+      
+      <div class="col-md-12">
+        <h3>Pemilihan Best Employe</h3>
+        <form method="POST" action="server.php">
+          <div class="form-group">
+            <label>Nama Kandidat</label>
+            <select class="form-control" name="id_admin" required>
+              <option value="">-</option>
+              <?php 
+                  $refrensi_ganti = mysqli_query($db, "SELECT * FROM login");
+                  while ($row = mysqli_fetch_assoc($refrensi_ganti)) {
+                    $refrensi = $row['nama_lengkap'];
+                    $id_admin = $row['id_admin'];
+              ?>
+                  <option value="<?= $id_admin; ?>"><?= $refrensi; ?></option>             
+              <?php } ?>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="hidden" name="status_employe" value="best">
+            <input type="submit" class="btn btn-primary" name="simpan_employee" value="Simpan">
+          </div>
+        </form>
+      </div>
+
+    <?php } ?> 
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-lg-4 col-xs-6">
