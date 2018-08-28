@@ -2021,4 +2021,7 @@ ul.inline-ul li{
   .member img {
     height: 300px;
   }
+  #header #logo h1 a, #header #logo h1 a:hover {
+    font-size: 24px;
+  }
 }

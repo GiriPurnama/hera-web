@@ -57,7 +57,7 @@
                   <th>Referensi</th>
                   <th>Interviewer</th>
                   <th>Nama Lengkap</th>
-                  <th>No Handphone</th>
+                  <th>No HP / No WA</th>
                   <th>Tanggal Lahir</th>
                   <!-- <th>Agama</th> -->
                   <!-- <th>Jenis Kelamin</th> -->
@@ -96,7 +96,9 @@
 
                     $tgl_lahir = $row['tanggal_lahir'];
                     $timestamplahir = strtotime($tgl_lahir);
-                    $newDateLahir = date('j F Y', $timestamplahir); 
+                    $newDateLahir = date('j F Y', $timestamplahir);
+
+                    $no_wa = $row['no_wa'] ?: '-'; 
 
                 ?>
                 <tr>
@@ -119,7 +121,7 @@
                   <td><?= $row['refrensi']; ?></td>
                   <td><?= $cek_interview; ?></td>
                   <td><?= $row['nama_lengkap'];?></td>
-                  <th><?= $row['no_handphone']; ?></th>
+                  <th><?= $row['no_handphone']; ?> / <?= $no_wa; ?></th>
                   <td><?= $newDateLahir; ?></td>
                   <!-- <th><?php echo $row['agama']; ?></th> -->
                   <!-- <th><?php echo $row['jenis_kelamin']; ?></th> -->
