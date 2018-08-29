@@ -187,7 +187,7 @@
 	                      <option value="">-</option>
 	                      <option value="Menikah">Menikah</option>
 	                      <option value="Lajang">Lajang</option>
-	                      <option value="Duda">Cerai</option>
+	                      <option value="Cerai">Cerai</option>
 	                    </select>
 	                    <div class="display-text">*Harap Isi Status Sipil</div>
 	                  </div>
