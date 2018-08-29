@@ -59,7 +59,7 @@
                 
                 <?php
                     $no = 1;
-                    $pesan = mysqli_query($db, "SELECT * FROM pesan");
+                    $pesan = mysqli_query($db, "SELECT * FROM pesan ORDER BY idpesan DESC");
                     while ($row = mysqli_fetch_assoc($pesan)) {
                     $post_date = $row['tgl_kirim'];
                     $status = $row['status'];
