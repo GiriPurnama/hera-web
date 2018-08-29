@@ -774,6 +774,24 @@
                       </select>
                     </div>
                   </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Posisi</label>
+                      <select class="form-control" name="posisi_rekomendasi" required>
+                        <option value="<?= $rekomendasi; ?>"><b><?= $rekomendasi; ?></b></option>
+                        <?php 
+                             $jobs = mysqli_query($db, "SELECT * FROM info_lowongan");
+                              while ($row = mysqli_fetch_assoc($jobs)) {
+                              $nama_lowongan = $row['nama_lowongan'];
+                        ?>
+                        
+                        <option value="<?= $nama_lowongan; ?>"><?= $nama_lowongan; ?></option>
+                        
+                        <?php } ?>
+                      </select>
+                    </div>
+                  </div>
                     
                   <div class="col-md-6">
                     <input type="hidden" name="feedback" value="Join">
@@ -816,6 +834,24 @@
                         ?>
                         
                         <option value="<?= $nama_client; ?>"><?= $nama_client; ?></option>
+                        
+                        <?php } ?>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Posisi</label>
+                      <select class="form-control" name="posisi_rekomendasi" required>
+                        <option value="<?= $rekomendasi; ?>"><b><?= $rekomendasi; ?></b></option>
+                        <?php 
+                             $jobs = mysqli_query($db, "SELECT * FROM info_lowongan");
+                              while ($row = mysqli_fetch_assoc($jobs)) {
+                              $nama_lowongan = $row['nama_lowongan'];
+                        ?>
+                        
+                        <option value="<?= $nama_lowongan; ?>"><?= $nama_lowongan; ?></option>
                         
                         <?php } ?>
                       </select>
@@ -1170,11 +1206,12 @@ if (isset($_POST['update_join'])) {
    if (isset($_POST['id'])) {
     $id             = $_POST['id'];
     $tanggal_join   = $_POST['tanggal_join'];
+    $posisi_rekomendasi = $_POST['posisi_rekomendasi'];
     $feedback = $_POST['feedback'];
     $perusahaan = $_POST['perusahaan'];
   
     // perintah query untuk mengubah data 
-    $query = mysqli_query($db, "UPDATE recruitment SET tanggal_join = '$tanggal_join', feedback = '$feedback', perusahaan = '$perusahaan' WHERE id = '$id'");   
+    $query = mysqli_query($db, "UPDATE recruitment SET posisi_rekomendasi = '$posisi_rekomendasi', tanggal_join = '$tanggal_join', feedback = '$feedback', perusahaan = '$perusahaan' WHERE id = '$id'");   
 
     // cek query
     if ($query) {
