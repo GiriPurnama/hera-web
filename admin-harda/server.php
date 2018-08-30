@@ -227,8 +227,8 @@
 
   	// Send Message
   	if (isset($_POST['kirim_pesan'])) {
-  		$to = "giri.purnama78@gmail.com"; // this is your Email address
-	    $from = $_POST['email']; // this is the sender's Email address
+  		$to = $_POST['email']; // this is your Email address
+	    $from = "recruitment@pthardaesaraksa.com"; // this is the sender's Email address
 	    $username = $_POST['nama'];
 	    $subject = $_POST['subjek'];
 	    $message = $username. "\n\n" . $_POST['isi_pesan'];
