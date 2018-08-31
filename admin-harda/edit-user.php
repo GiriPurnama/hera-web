@@ -1233,9 +1233,9 @@ if (isset($_POST['update_resign'])) {
     $tanggal_resign = $_POST['tanggal_resign'];
     $feedback = $_POST['feedback'];
     $perusahaan = $_POST['perusahaan'];
-  
+    $alasan_resign = $_POST['alasan_resign'];
     // perintah query untuk mengubah data 
-    $query = mysqli_query($db, "UPDATE recruitment SET tanggal_resign = '$tanggal_resign', feedback = '$feedback', perusahaan = '$perusahaan' WHERE id = '$id'");   
+    $query = mysqli_query($db, "UPDATE recruitment SET tanggal_resign = '$tanggal_resign', alasan_resign = '$alasan_resign', feedback = '$feedback', perusahaan = '$perusahaan' WHERE id = '$id'");   
 
     // cek query
     if ($query) {
