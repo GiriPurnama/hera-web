@@ -2,6 +2,9 @@
 	error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
 	require_once "../config/koneksi.php";
 
+	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\Exception;
+
 
 	function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
 	{
@@ -191,18 +194,58 @@
 																	 NOW())");
 		if ($query) {
 			header('location: ../info.hera');
-			 $to = "recruiment@pthardaesaraksa.com"; // this is your Email address
-		     $from = $_POST['alamat_email']; // this is the sender's Email address
+			 // $to = "recruiment@pthardaesaraksa.com"; // this is your Email address
+		  //    $from = $_POST['alamat_email']; // this is the sender's Email address
 		  
-		     $subject = "Undangan Interview";
+		     // $subject = "Undangan Interview";
 		     $subject2 = "Undangan Interview PT Harda Esa Raksa";
-		     $message = "Dear, " .$nama_lengkap. "\n\n" ."Terimakasih telah mengirim data diri. Untuk proses lebih lanjut silahkan Walk in Interview Ke Kantor PT Harda Esa Raksa " .$branch."\n\n"."Jadwal Walk in Interview: Senin sampai Jum'at pukul 09.00 - 15.00 WIB"."\n\n"."Nomor Token ID Anda " .$token."\n\n"."Dimohon untuk kedatangannya"."\n\n"."Terimakasih";
-		     $message2 = "Dear, " .$nama_lengkap. "\n\n" ."Terimakasih telah mengirim data diri. Untuk proses lebih lanjut silahkan Walk in Interview Ke Kantor PT Harda Esa Raksa " .$branch."\n\n"."Jadwal Walk in Interview: Senin sampai Jum'at pukul 09.00 - 15.00 WIB"."\n\n"."Nomor Token ID Anda " .$token."\n\n"."Dimohon untuk kedatangannya"."\n\n"."Terimakasih";
+		     // $message = "Dear, " .$nama_lengkap. "\n\n" ."Terimakasih telah mengirim data diri. Untuk proses lebih lanjut silahkan Walk in Interview Ke Kantor PT Harda Esa Raksa " .$branch."\n\n"."Jadwal Walk in Interview: Senin sampai Jum'at pukul 09.00 - 15.00 WIB"."\n\n"."Nomor Token ID Anda " .$token."\n\n"."Dimohon untuk kedatangannya"."\n\n"."Terimakasih";
+		     $message2 = "Dear, " .$nama_lengkap. "<br><br>Terimakasih telah mengirim data diri.<br>Untuk proses lebih lanjut silahkan Walk in Interview Ke Kantor <b>PT Harda Esa Raksa " .$branch."</b>.<br>Jadwal Walk in Interview: <b>Senin sampai Jum'at pukul 09.00 - 15.00 WIB</b> <br><br>Nomor Token ID Anda <b>" .$token."</b> <br><br>Dimohon untuk kedatangannya <br>Terimakasih";
 
-		     $headers = "From:" . $from;
-		     $headers2 = "From:" . $to;
-		     mail($to,$subject,$message,$headers);
-		     mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+		  //    $headers = "From:" . $from;
+		  //    $headers2 = "From:" . $to;
+		  //    mail($to,$subject,$message,$headers);
+		  //    mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+
+			require '../vendor/autoload.php';
+
+		    $mail = new PHPMailer(true);                            
+		    try {
+		        //Server settings
+		        $mail->IsHTML(true);
+				$mail->CharSet = "text/html; charset=UTF-8;";
+		        $mail->isSMTP();                                     
+		        $mail->Host = 'mx1.hostinger.co.id';                      
+		        $mail->SMTPAuth = true;                             
+		        $mail->Username = 'recruitment@pthardaesaraksa.com';     
+		        $mail->Password = 'heraharda123';             
+		        $mail->SMTPOptions = array(
+		            'ssl' => array(
+		            'verify_peer' => false,
+		            'verify_peer_name' => false,
+		            'allow_self_signed' => true
+		            )
+		        );                         
+		        $mail->SMTPSecure = 'ssl';                           
+		        $mail->Port = 465;                                   
+
+		        //Send Email
+		        $mail->setFrom('recruitment@pthardaesaraksa.com');
+		        
+		        //Recipients
+		        $mail->addAddress($alamat_email);              
+		        $mail->addReplyTo('recruitment@pthardaesaraksa.com');
+		        
+		        //Content
+		        $mail->isHTML(true);                                  
+		        $mail->Subject = $subject2;
+		        $mail->Body    = $message2;
+
+		        $mail->send();
+				
+		    } catch (Exception $e) {
+			   	echo ("<script LANGUAGE='JavaScript'>window.alert('Maaf tidak bisa kirim email'); window.location.href='../recruitment.hera'</script>");
+		    }
 		     
 		    // You can also use header('Location: thank_you.php'); to redirect to another page.
 		    // You cannot use header and echo together. It's one or the other.
