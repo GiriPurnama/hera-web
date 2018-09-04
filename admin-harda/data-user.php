@@ -43,9 +43,30 @@
             <!-- /.box-header -->
 
             <div class="box-body table-responsive no-padding">
-              <a class="btn-export-excel" href="export-excel.php" target="_BLANK">
+             <!--  <a class="btn-export-excel" href="export-excel.php" target="_BLANK">
                 <button class="btn btn-warning btn-submit">Export Excel<i class="far fa-file-excel"></i></button>
-              </a>
+              </a> -->
+             <form class="form-export" method="POST" action="export-excel.php">
+                  <div class="col-md-4">
+                      <div class="form-group form-float">
+                          <div class="form-line">
+                            <input type="text" class="form-control" autocomplete="off" name="start_date" id="startDate" placeholder="Tanggal Awal" required>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group form-float">
+                          <div class="form-line">
+                              <input type="text" class="form-control" autocomplete="off" name="end_date" id="endDate" placeholder="Tanggal Akhir" required>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="form-group">
+                        <input type="submit" class="btn btn-primary" name="export_excel" value="Export Report">
+                      </div>
+                  </div>
+              </form>
               <table class="table table-bordered table-hover" id="table-user">
               <thead>
                 <tr>
@@ -200,5 +221,12 @@
 <?php
   include "library-js.php";
 ?>
+
+<script type="text/javascript">
+  $("#startDate, #endDate").datepicker({ 
+    format: 'yyyy-mm-dd',
+    autoclose: true
+  });
+</script>
 </body>
 </html>

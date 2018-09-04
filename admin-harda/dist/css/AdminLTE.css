@@ -5176,3 +5176,14 @@ input#rkPelamar, input#rkRefrensi {
   color: #FFF;
   text-align: left;
 }
+.form-export{
+  position: relative;
+  top: 45px;
+  display: inline-block;
+}
+@media (max-width: 991px){
+  .form-export{
+    margin-bottom: 50px;
+    display: block;
+  }
+}
