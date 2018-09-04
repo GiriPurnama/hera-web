@@ -1,4 +1,6 @@
 <?php
+ use PHPMailer\PHPMailer\PHPMailer;
+ use PHPMailer\PHPMailer\Exception;
  $cabang = $_SESSION['branch'];
 //===================== Delete data Pelamar ================================================
 
@@ -227,14 +229,56 @@
 
   	// Send Message
   	if (isset($_POST['kirim_pesan'])) {
+  		
   		$to = $_POST['email']; // this is your Email address
 	    $from = "recruitment@pthardaesaraksa.com"; // this is the sender's Email address
 	    $username = $_POST['nama'];
-	    $subject = $_POST['subjek'];
-	    $message = $username. "\n\n" . $_POST['isi_pesan'];
+	    $subject2 = $_POST['subjek'];
+	    $message2 = "Dear, ".$username. "<br><br>" . $_POST['isi_pesan'];
 	    $headers = "From:" . $from;
+
+	    require '../vendor/autoload.php';
+
+		    $mail = new PHPMailer(true);                            
+		    try {
+		        //Server settings
+		        $mail->IsHTML(true);
+				$mail->CharSet = "text/html; charset=UTF-8;";
+		        $mail->isSMTP();                                     
+		        $mail->Host = 'mx1.hostinger.co.id';                      
+		        $mail->SMTPAuth = true;                             
+		        $mail->Username = 'recruitment@pthardaesaraksa.com';     
+		        $mail->Password = 'heraharda123';             
+		        $mail->SMTPOptions = array(
+		            'ssl' => array(
+		            'verify_peer' => false,
+		            'verify_peer_name' => false,
+		            'allow_self_signed' => true
+		            )
+		        );                         
+		        $mail->SMTPSecure = 'ssl';                           
+		        $mail->Port = 465;                                   
+
+		        //Send Email
+		        $mail->setFrom('recruitment@pthardaesaraksa.com');
+		        
+		        //Recipients
+		        $mail->addAddress($to);              
+		        $mail->addReplyTo('recruitment@pthardaesaraksa.com');
+		        
+		        //Content
+		        $mail->isHTML(true);                                  
+		        $mail->Subject = $subject2;
+		        $mail->Body    = $message2;
+
+		        $mail->send();
+				
+		    } catch (Exception $e) {
+			   	echo ("<script LANGUAGE='JavaScript'>window.alert('Maaf tidak bisa kirim email'); window.location.href='page-contact.php'</script>");
+		    }
 	    
-	    mail($to,$subject,$message,$headers);
+
+	    // mail($to,$subject,$message,$headers);
 	    
 	  	header('location: page-contact.php');
 	
