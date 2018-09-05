@@ -1289,10 +1289,12 @@
 	if (isset($_POST['simpan_employee'])) {
 		$id_admin = $_POST['id_admin'];
 		$best_employe = $_POST['status_employe'];
+		$bulan = $_POST['bulan'];
+		$short_quote = $_POST['short_quote'];
 
-		$reset_employe = mysqli_query($db, "UPDATE login SET status_employe = DEFAULT"); 
+		$reset_employe = mysqli_query($db, "UPDATE login SET status_employe = DEFAULT, bulan = DEFAULT, short_quote = DEFAULT"); 
 
-		$update_employe = mysqli_query($db, "UPDATE login SET status_employe = '$best_employe' WHERE id_admin = '$id_admin'"); 
+		$update_employe = mysqli_query($db, "UPDATE login SET status_employe = '$best_employe', bulan = '$bulan', short_quote = '$short_quote' WHERE id_admin = '$id_admin'"); 
 
 		if ($update_employe) {
 		  	header('location: dashboard.php');

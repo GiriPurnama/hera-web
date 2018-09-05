@@ -50,6 +50,31 @@
               <?php } ?>
             </select>
           </div>
+
+          <div class="form-group">
+            <label>Bulan</label>
+            <select class="form-control" name="bulan" required>
+              <option value="">-</option>
+              <option value="Januari">Januari</option>
+              <option value="Februari">Februari</option>
+              <option value="Maret">Maret</option>
+              <option value="April">April</option>
+              <option value="Mei">Mei</option>
+              <option value="Juni">Juni</option>
+              <option value="Juli">Juli</option>
+              <option value="Agustus">Agustus</option>
+              <option value="September">September</option>
+              <option value="Oktober">Oktober</option>
+              <option value="November">November</option>
+              <option value="Desember">Desember</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Sambutan</label>
+            <textarea class="form-control" name="short_quote" required></textarea>
+          </div>
+
           <div class="form-group">
             <input type="hidden" name="status_employe" value="best">
             <input type="submit" class="btn btn-primary" name="simpan_employee" value="Simpan">

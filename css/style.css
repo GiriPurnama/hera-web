@@ -2007,37 +2007,41 @@ ul.inline-ul li{
   text-align: center;
 }
 .box-employe{
-  position: fixed;
+  /*position: fixed;*/
   z-index: 999;
   bottom: 0;
+  text-align: center;
  /* background-image: url(../img/bingkai.png);
   background-size: 190px 195px;
   background-repeat: no-repeat;*/
 }
-.box-employe .figure img{
-  position: relative;
+.box-employe .figure-box img{
+  position: absolute;
   height: 190px;
-  top: 157px;
-  left: 9px;
   width: 169px;
+  z-index: 4;
+  left: 33%;
+  top: 4px;
 }
-.box-employe h4 {
-  color: #a19a9a;
-  position: relative;
-  top: 150px;
-}
-.box-employe h4, .box-employe h5{
+
+.box-employe h5{
   position: relative;
   color: #a19a9a;
   text-align: center;
 }
+.img-employe{
+  background: url(../img/bingkai.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 9999999;
+  background-size: 205px 215px;
+}
 .img-employe img {
   width: 150px;
-  top: -22px;
   position: relative;
-  z-index: -15;
-  left: 20px;
+  z-index: 0;
   height: 170px;
+  margin: 40px auto;
 }
 .box-employe .btn-close {
   cursor: pointer;

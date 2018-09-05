@@ -78,28 +78,6 @@
     </div>
   </header><!-- #header -->
 
-  <!-- Best Employee -->
-   <?php 
-      $best_employed = mysqli_query($db, "SELECT * FROM login WHERE status_employe = 'best'");
-      while ($row = mysqli_fetch_assoc($best_employed)) {
-        $nama_lengkap = $row['nama_lengkap'];
-        $foto = $row['img_divisi'];
-        $foto = str_replace("../", "", $foto);   
-      }
-    ?>
-    <div class="box-employe">
-        <span class="btn-close"><fa class="fa fa-close"></fa></span>
-        <h4 class="font-bold">Best Employee</h4>
-        <div class="figure">
-          <img src="img/bingkai.png">
-        </div>  
-        <div class="img-employe">
-          <img src="<?= $foto; ?>">
-        </div>
-        <h5 class="font-bold"><?= $nama_lengkap; ?></h5>
-    </div>
-  <!-- Best Employee -->
-
   <!--==========================
     Intro Section
   ============================-->
@@ -811,9 +789,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
 
-    $(".btn-close").click(function(){
-      $(".box-employe").fadeOut();
-    });
+    $("#modalEmployee").modal();
 
     // Select and loop the container element of the elements you want to equalise
     $('#info-jobs').each(function(){  

@@ -1067,6 +1067,37 @@
   </div>
 </div>
 
+<div class="modal fade" id="modalEmployee" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Best Employee</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <?php 
+                  $best_employed = mysqli_query($db, "SELECT * FROM login WHERE status_employe = 'best'");
+                  while ($row = mysqli_fetch_assoc($best_employed)) {
+                    $nama_lengkap = $row['nama_lengkap'];
+                    $foto = $row['img_divisi'];
+                    $foto = str_replace("../", "", $foto);
+                    $bulan = $row['bulan'];
+                    $short_quote = $row['short_quote'];   
+                  }
+                ?>
+                <div class="box-employe">
+                  <h4 class="font-bold"><?= $bulan; ?></h4>
+                  <div class="img-employe">
+                    <img src="<?= $foto; ?>">
+                  </div>
+                  <h5 class="font-bold"><?= $nama_lengkap; ?></h5>
+                  <p>" <?= $short_quote; ?> "</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- Ajax -->
 <script language="javascript">
