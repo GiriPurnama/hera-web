@@ -1262,6 +1262,26 @@
 	  		}
 	  	}
 	}
+
+	if (isset($_GET['idexpired'])) {
+	  	$id = $_GET['idexpired'];
+	  	
+	  	$load_data = mysqli_query($db, "SELECT * FROM recruitment WHERE id='$id'");
+	  	while ($row = mysqli_fetch_assoc($load_data)) {
+	  		if (is_file("upload/".$row['foto']) || ("upload/".$row['ktp']) || ("upload/".$row['ijazah']) ) {
+	  			unlink($row['foto']);
+	  			unlink($row['ktp']);
+	  			unlink($row['ijazah']);
+	  			unlink($row['copy_cv']);
+			  	$query_delete = mysqli_query($db, "DELETE FROM recruitment WHERE id='$id'");
+			  	if ($query_delete) {
+			  		header('location: page-expired.php');
+			  	} else{
+			  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data Gagal Dihapus'); window.location.href='page-expired.php'</script>");
+			  	}
+	  		}
+	  	}
+  	}
 //===================== Delete All ================================================
 
 
