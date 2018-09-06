@@ -55,6 +55,9 @@
 		$berat_badan = mysqli_real_escape_string($db, trim(strtoupper($_POST['berat_badan'])));
 		$kuliah = strtoupper($_POST['kuliah']);
 		$branch = strtoupper($_POST['branch']);
+		$status_hubungan = strtoupper($_POST['status_hubungan']);
+		$nama_hubungan = strtoupper($_POST['nama_hubungan']);
+		$no_telp = strtoupper($_POST['no_telp']);
 
 		function correctImageOrientationFoto($foto) {
 		  if (function_exists('exif_read_data')) {
@@ -155,6 +158,9 @@
 															token,
 															copy_cv,
 															branch,
+															status_hubungan,
+															nama_hubungan,
+															no_telp,
 															post_date)
 															VALUES('$posisi',
 																	'$refrensi',
@@ -191,6 +197,9 @@
 																	'$token',
 																	'$cv_up',
 																	'$branch',
+																	'$status_hubungan',
+																	'$nama_hubungan',
+																	'$no_telp',
 																	 NOW())");
 		if ($query) {
 			header('location: ../info.hera');

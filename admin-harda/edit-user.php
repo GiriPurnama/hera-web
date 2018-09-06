@@ -68,6 +68,9 @@
           $tanggal_resign = $data['tanggal_resign'];
           $perusahaan = $data['perusahaan'];
           $alasan_resign = $data['alasan_resign'];
+          $status_hubungan = $data['status_hubungan'] ?: '-';
+          $nama_hubungan = $data['nama_hubungan'] ?: '-';
+          $no_telp = $data['no_telp'] ?: '-';
         }
       }
 
@@ -242,6 +245,18 @@
                 <div class="col-md-6 pad-label">
                     <span class="label-user">Pengalaman Kerja</span>
                     <span class="field-user"><?php echo $ndata; ?></span>
+                </div>
+                <div class="col-md-6 pad-label">
+                    <span class="label-user">Status Relasi</span>
+                    <span class="field-user"><?php echo $status_hubungan; ?></span>
+                </div>
+                <div class="col-md-6 pad-label">
+                    <span class="label-user">Nama Relasi</span>
+                    <span class="field-user"><?php echo $nama_hubungan; ?></span>
+                </div>
+                <div class="col-md-6 pad-label">
+                    <span class="label-user">No Telp Relasi</span>
+                    <span class="field-user"><?php echo $no_telp; ?></span>
                 </div>
                 <div class="col-md-6 pad-label">
                     <span class="label-user">Tanggal Post</span>

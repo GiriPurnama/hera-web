@@ -230,7 +230,7 @@
 
 	                  <div class="form-group col-md-6">
 	                    <label for="noHandphone">No WA :</label>
-	                    <input type="text" class="form-control" id="idHandphoneWa" name="no_wa" autocomplete="off" maxlength="12" onKeyPress="return goodchars(event,'0123456789',this)">
+	                    <input type="text" class="form-control" id="idHandphoneWa" name="no_wa" autocomplete="off" maxlength="13" onKeyPress="return goodchars(event,'0123456789',this)">
 	                    <div class="display-text">*Harap Isi No WA</div>
 	                  </div>
 
@@ -302,6 +302,35 @@
 	                  <label for="kemampuan">Promosikan Diri Anda* :</label>
 	                  <input type="text" class="form-control" autocomplete="off" id="promosiDiri" name="promosi_diri" required>
 	                  <div class="display-text">*Harap Promosikan Diri anda</div>
+	                </div>
+
+	                <div class="col-md-12">
+	                  <h3>No yang bisa dihubungi</h3>
+	                </div>
+
+	                <div class="form-group col-md-6">
+	                  <label>Status Hubungan* :</label>
+	                  <select class="form-control opacity0" name="status_hubungan" required>
+	                    <option value="">-</option>
+	                    <option value="Ibu">Ibu</option>
+	                    <option value="Bapak">Bapak</option>
+	                    <option value="Kakak">Kakak</option>
+	                    <option value="Adik">Adik</option>
+	                    <option value="Saudara">Saudara</option>
+	                  </select>
+	                  <div class="display-text">*Harap Isi Status Relasi anda</div>
+	                </div>
+
+	                <div class="form-group col-md-6">
+	                  <label>Nama* :</label>
+	                  <input type="text" class="form-control" name="nama_hubungan" required>
+	                  <div class="display-text">*Isi nama relasi yang bisa dihubungi</div>
+	                </div>
+
+	                <div class="form-group col-md-6">
+	                  <label>No Telepon* :</label>
+	                  <input type="text" class="form-control" name="no_telp" maxlength="13" onKeyPress="return goodchars(event,'0123456789',this)" required>
+	                  <div class="display-text">*Isi no telepon yang bisa hubungi</div>
 	                </div>
 
 	                <div class="col-md-12">
