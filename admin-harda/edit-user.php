@@ -148,11 +148,44 @@
                         echo '<span class="label label-success">Disarankan</span>';
                     } elseif ($status_pelamar == "REJECTED"){
                         echo '<span class="label label-danger">Rejected</span>';
+                    } elseif ($status_pelamar == "Expired") {
+                        echo '<span class="label label-danger">Expired</span>';
                     } else {
                         echo '<span class="label label-info">Belum disarankan</span>';
                     }
                 ?>
               </div>
+              
+              <!-- Button Antrian Expired -->
+                <?php 
+                  if ($status_pelamar == "Expired") { 
+                ?>
+                <div class="col-md-12">
+                   <form id="formAntrian" action="server.php" method="POST">
+                       <input type="hidden" name="id" value="<?php echo $id; ?>">
+                       <div class="form-group ghost-pelamar">
+                         <label>Nomor Antrian</label>
+                         <select class="form-control nomorAntrian" name="antrian" required>
+                          <option value="">-</option>
+                           <?php 
+                            $no = 1;
+                            while ( $no <= 30) {
+                           ?>
+                            <option value="<?= $no; ?>"><?= $no; ?></option>
+                           <?php $no++; } ?>
+                            <option value="lainnya">Lainnya</option>
+                         </select>
+                       </div>         
+                      <div class="form-group">
+                        <input type="submit" class="btn btn-primary" name="simpan_antrian" value="Simpan">
+                      </div>
+                    </form>
+                </div>
+                <?php
+                  }
+                ?>
+              <!-- Button Antrian Expired -->
+
               
                 <div class="col-md-6 pad-label">
                     <span class="label-user">Posisi</span>
@@ -930,6 +963,17 @@
 ?>
 
 <script>
+  $('.nomorAntrian').change(function(){
+      if( $(this).val() == 'lainnya'){
+          $('.nomorAntrian').removeAttr('name');
+          $(this).removeClass('nomorAntrian');
+          $('.ghost-pelamar').append('<input class="form-control nomorAntrian" style="margin-top:20px;" id="rkAntrian" type="number" value="31" name="antrian" required/>');
+      }else{
+        $(this).addClass("nomorAntrian");
+        $('.nomorAntrian').attr('name', 'antrian');
+        $('#rkAntrian').remove();
+      }
+  });
   $(document).ready(function() {
       var max_fields      = 10; //maximum input boxes allowed
       var add_pelamar     = $(".add-pelamar"); //Fields wrapper

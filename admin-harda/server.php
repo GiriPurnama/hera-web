@@ -1305,4 +1305,44 @@
 //===================== Best Employe ================================================
 
 
+//===================== Antrian =================================================
+	if (isset($_POST['rowantrian']) && isset($_POST['rownomor'])) {
+		$id = $_POST['rowantrian'];
+		$no_antrian = $_POST['rownomor'];
+
+		$update_antrian = mysqli_query($db, "UPDATE recruitment SET antrian = '$no_antrian' WHERE id = '$id'");
+
+		if ($update_antrian) {
+			header('location: dashboard.php');
+		} else {
+			echo "Gagal Simpan";
+		}
+	}
+
+	if (isset($_POST['rowcheck'])) {
+		$id = $_POST['rowcheck'];
+
+		$update_antrian = mysqli_query($db, "UPDATE recruitment SET antrian = 'Done' WHERE id = '$id'");
+
+		if ($update_antrian) {
+			header('location: dashboard.php');
+		} else {
+			echo "Gagal Simpan";
+		}
+	}
+
+	if (isset($_POST['simpan_antrian'])) {
+		$id = $_POST['id'];
+		$no_antrian = $_POST['antrian'];
+
+		$update_antrian = mysqli_query($db, "UPDATE recruitment SET antrian = '$no_antrian' WHERE id = '$id'");
+
+		if ($update_antrian) {
+			header('location: dashboard.php');
+		} else {
+			echo "Gagal Update";
+		}
+	}
+//===================== Antrian =================================================
+
 ?>

@@ -239,6 +239,91 @@
             </div>
           </div>
 
+
+          <div class="col-md-12 table-report">
+            <div class="box-body table-responsive">
+            <h3 class="font-bold">Antrian Pelamar</h3>
+              <form id="formAntrian" method="POST">
+                <div class="form-group">
+                  <label>Nama Pelamar</label>
+                  <select class="form-control" id="antrianPelamar" required>
+                    <option value="">-</option>
+                    <?php 
+                        $pelamar_query = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = '' AND antrian = '' ORDER BY id DESC");
+                        while ($row = mysqli_fetch_assoc($pelamar_query)) {
+                          $nama_pelamar = $row['nama_lengkap'];
+                          $refrensi_pelamar = $row['refrensi'];
+                          $id = $row['id'];
+                    ?>
+                        <option data-id = "<?= $id; ?>" value="<?= $nama_pelamar; ?>"><?= $nama_pelamar; ?></option>             
+                    <?php } ?>
+                  </select>
+                </div>
+                 <div class="form-group ghost-pelamar">
+                   <label>Nomor Antrian</label>
+                   <select class="form-control nomorAntrian" name="antrian" required>
+                    <option value="">-</option>
+                     <?php 
+                      $no = 1;
+                      while ( $no <= 30) {
+                     ?>
+                      <option value="<?= $no; ?>"><?= $no; ?></option>
+                     <?php $no++; } ?>
+                      <option value="lainnya">Lainnya</option>
+                   </select>
+                 </div>         
+                <div class="form-group">
+                  <input type="submit" class="btn btn-primary" name="simpan_antrian" value="Simpan">
+                </div>
+              </form>
+              
+              <table class="table table-hover">
+                <tbody>
+                  <tr>
+                    <th>No Antrian</th>
+                    <th>Nama Kandidat</th>
+                    <th>Posisi</th>
+                    <th>Referensi</th>
+                    <th>Status Pelamar</th>
+                    <th>Aksi</th>
+                  </tr>
+                  <?php
+                    $no = 1;
+                    $antrian_query = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND (status_pelamar = '' OR status_pelamar = 'Expired') AND antrian <> '' ORDER BY antrian DESC");
+                    while ($row = mysqli_fetch_assoc($antrian_query)) {
+                      $nama_lengkap_pelamar = $row['nama_lengkap'];
+                      $nama_referensi = $row['refrensi'];
+                      $posisi = $row['posisi'];
+                      $antrian = $row['antrian'];
+                      $id_pelamar = $row['id'];
+                      $status_pelamar = $row['status_pelamar'] == '' ? '<label class="label label-info">Sesuai Tanggal</label>' : '<label class="label label-danger">Expired</label>';
+                  ?>  
+                  <tr>
+                    <td><?= $antrian; ?></td>
+                    <td><?= $nama_lengkap_pelamar; ?></td>
+                    <td><?= $posisi; ?></td>
+                    <td><?= $nama_referensi; ?></td>
+                    <td><?= $status_pelamar; ?></td>
+                    <?php 
+                      if ($antrian == "Done") { 
+                    ?>
+                    <td><label class="label label-info">Done</label></td>
+                    <?php    
+                      } else {
+                    ?>
+                      <td><button data-id="<?= $id_pelamar; ?>" class="btn btn-primary checkDone">Done</button></td>
+                    <?php } ?>
+                  </tr>
+
+                 <?php 
+                    $no++;
+                    }
+                 ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
            <div class="col-lg-12 col-xs-6">
               <div class="small-box bg-aqua">
                 <div class="inner">
@@ -256,7 +341,10 @@
                 </div>
                 <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
               </div>
-          </div>           
+          </div>
+
+          
+
          </div>
         <!-- ./col -->
       </div>
@@ -291,8 +379,52 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
 <script>
   $.widget.bridge('uibutton', $.ui.button);
+   $("#formAntrian").submit(function(e) {
+    e.preventDefault();
+  });
+  $('.nomorAntrian').change(function(){
+      if( $(this).val() == 'lainnya'){
+          $('.nomorAntrian').removeAttr('name');
+          $(this).removeClass('nomorAntrian');
+          $('.ghost-pelamar').append('<input class="form-control nomorAntrian" style="margin-top:20px;" id="rkAntrian" type="number" value="31" name="antrian" required/>');
+      }else{
+        $(this).addClass("nomorAntrian");
+        $('.nomorAntrian').attr('name', 'antrian');
+        $('#rkAntrian').remove();
+      }
+  });
+  $(document).on('submit', '#formAntrian', function(){
+      var rowantrian = $("#antrianPelamar").find(':selected').attr("data-id");
+      var rownomor = $(".nomorAntrian").val();
+      console.log(rowantrian);
+      console.log(rownomor);
+      //menggunakan fungsi ajax untuk pengambilan data
+      $.ajax({
+          type : 'post',
+          url : 'server.php',
+          data :  'rowantrian='+ rowantrian + '&rownomor=' + rownomor,
+          success : function(data){
+             location.reload();
+          }
+      });
+  });
+
+  $(".checkDone").click(function (e) {
+      var rowcheck = $(this).data('id');
+      console.log(rowcheck);
+
+       $.ajax({
+          type : 'post',
+          url : 'server.php',
+          data :  'rowcheck='+ rowcheck,
+          success : function(data){
+             location.reload();
+          }
+      });
+  })
 </script>
 <?php
   include "library-js.php";
