@@ -1,6 +1,273 @@
 <?php 
-   include "config/koneksi.php";
-   include "config/indo_tgl.php";
+
+	error_reporting(E_ALL ^ (E_NOTICE | E_WARNING));
+    include "../config/koneksi.php";
+    include "../config/indo_tgl.php";
+
+	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\Exception;
+
+
+	function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+	{
+	    $pieces = [];
+	    $max = mb_strlen($keyspace, '8bit') - 1;
+	    for ($i = 0; $i < $length; ++$i) {
+	        $pieces []= $keyspace[random_int(0, $max)];
+	    }
+	    return implode('', $pieces);
+	}
+
+	if (isset($_POST['simpan'])) {
+		$posisi = mysqli_real_escape_string($db, trim(strtoupper($_POST['posisi'])));
+		$refrensi = strtoupper($_POST['refrensi']);
+		$nama_lengkap = mysqli_real_escape_string($db, trim(strtoupper($_POST['nama_lengkap'])));
+		$warga_negara = mysqli_real_escape_string($db, trim(strtoupper($_POST['warga_negara'])));
+		$tempat_lahir = mysqli_real_escape_string($db, trim(strtoupper($_POST['tempat_lahir'])));
+		
+		// $tanggal = $_POST['tanggal_lahir'];
+		// $tgl = explode('-',$tanggal);
+		// $tanggal_lahir = $tgl[2]."-".$tgl[1]."-".$tgl[0];
+		$tanggal_lahir = strtoupper($_POST['tanggal_lahir']);
+		
+		$agama = strtoupper($_POST['agama']);
+		$jenis_kelamin = strtoupper($_POST['jenis_kelamin']);
+		$no_ktp = strtoupper($_POST['no_ktp']);
+		$no_sim = strtoupper($_POST['no_sim']);
+		$status_sipil = strtoupper($_POST['status_sipil']);
+		$alamat_email = mysqli_real_escape_string($db, trim(strtoupper($_POST['alamat_email'])));
+		$alamat_sekarang = mysqli_real_escape_string($db, trim(strtoupper($_POST['alamat_sekarang'])));
+		$alamat_ktp = mysqli_real_escape_string($db, trim(strtoupper($_POST['alamat_ktp'])));
+		$no_handphone = strtoupper($_POST['no_handphone']);
+		$no_wa = strtoupper($_POST['no_wa']);
+		$telepon = strtoupper($_POST['telepon']);
+		$pendidikan_terakhir = strtoupper($_POST['pendidikan_terakhir']);
+		$kemampuan_komputer  = mysqli_real_escape_string($db, trim(strtoupper($_POST['kemampuan_komputer'])));
+		$bahasa_asing = strtoupper($_POST['bahasa_asing']);
+		$riwayat_penyakit = mysqli_real_escape_string($db, trim(strtoupper($_POST['riwayat_penyakit'])));
+		$pengalaman_kerja = mysqli_real_escape_string($db, trim(strtoupper($_POST['pengalaman_kerja'])));
+		$perusahaan_kerja = mysqli_real_escape_string($db, trim(strtoupper($_POST['perusahaan_kerja'])));
+		$tahun_kerja = mysqli_real_escape_string($db, trim(strtoupper($_POST['tahun_kerja'])));
+		$lama_pengalaman = strtoupper($_POST['lama_pengalaman']);
+		$foto = mysqli_real_escape_string($db, trim($_POST['foto']));
+		$ktp = mysqli_real_escape_string($db, trim($_POST['ktp']));
+		$ijazah = mysqli_real_escape_string($db, trim($_POST['ijazah']));
+		$promosi_diri = mysqli_real_escape_string($db, trim(strtoupper($_POST['promosi_diri'])));
+		$tinggi_badan = mysqli_real_escape_string($db, trim(strtoupper($_POST['tinggi_badan'])));
+		$berat_badan = mysqli_real_escape_string($db, trim(strtoupper($_POST['berat_badan'])));
+		$kuliah = strtoupper($_POST['kuliah']);
+		$branch = strtoupper($_POST['branch']);
+		$status_hubungan = strtoupper($_POST['status_hubungan']);
+		$nama_hubungan = strtoupper($_POST['nama_hubungan']);
+		$no_telp = strtoupper($_POST['no_telp']);
+
+		function correctImageOrientationFoto($foto) {
+		  if (function_exists('exif_read_data')) {
+		    $exif = exif_read_data($foto);
+		    if($exif && isset($exif['Orientation'])) {
+		      $orientation = $exif['Orientation'];
+		      if($orientation != 1){
+		        $img = imagecreatefromjpeg($foto);
+		        $deg = 0;
+		        switch ($orientation) {
+		          case 3:
+		            $deg = 180;
+		            break;
+		          case 6:
+		            $deg = 270;
+		            break;
+		          case 8:
+		            $deg = 90;
+		            break;
+		        }
+		        if ($deg) {
+		          $img = imagerotate($img, $deg, 0);       
+		        }
+		        imagejpeg($img, $foto, 95);
+		      } // if there is some rotation necessary
+		    } // if have the exif orientation info
+		  } // if function exists     
+		}
+
+
+		$fileinfo=PATHINFO($_FILES["copy_cv"]["name"]);
+		$newFilenameCv=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+		move_uploaded_file($_FILES["copy_cv"]["tmp_name"],"../cv/" . $newFilenameCv);
+		$cv_up="../cv/" . $newFilenameCv;
+	
+		$type = $_FILES['foto']['type'];
+		$fileinfo=PATHINFO($_FILES["foto"]["name"]);
+		$newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+		move_uploaded_file($_FILES["foto"]["tmp_name"],"../upload/" . $newFilename);
+		$location="../upload/" . $newFilename;
+		correctImageOrientationFoto($location);
+
+		$type1 = $_FILES['ktp']['type'];
+		$fileinfo2=PATHINFO($_FILES["ktp"]["name"]);
+		$newFilename2=$fileinfo2['filename'] ."_". time() . "." . $fileinfo2['extension'];
+		move_uploaded_file($_FILES["ktp"]["tmp_name"],"../upload/" . $newFilename2);
+		$location2="../upload/" . $newFilename2;
+
+		$type2 = $_FILES['ijazah']['type'];
+		$fileinfo3=PATHINFO($_FILES["ijazah"]["name"]);
+		$newFilename3=$fileinfo3['filename'] ."_". time() . "." . $fileinfo3['extension'];
+		move_uploaded_file($_FILES["ijazah"]["tmp_name"],"../upload/" . $newFilename3);
+		$location3="../upload/" . $newFilename3;
+
+		$sortName = substr($refrensi,0,2);
+		$token = $sortName."-".random_str(3);
+		
+		$warga_negara = $warga_negara ?: '-';
+      	$no_sim = $no_sim ?: '-';
+        $telepon = $telepon ?: '-';
+        // $bahasa_asing = ($bahasa_asing == "undefined" ? "-" : $bahasa_asing);
+        $riwayat_penyakit = $riwayat_penyakit ?: '-';
+
+		// $jadwal_interview = strtoupper($_POST['jadwal_interview']);
+
+		$query = mysqli_query($db, "INSERT INTO recruitment(posisi,
+															refrensi,
+															nama_lengkap,
+															warga_negara,
+															tempat_lahir,
+															tanggal_lahir,
+															agama,
+															jenis_kelamin,
+															no_ktp,
+															no_sim,
+															status_sipil,
+															alamat_email,
+															alamat_sekarang,
+															alamat_ktp,
+															no_handphone,
+															no_wa,
+															telepon,
+															pendidikan_terakhir,
+															kemampuan_komputer,
+															bahasa_asing,
+															riwayat_penyakit,
+															pengalaman_kerja,
+															perusahaan_kerja,
+															tahun_kerja,
+															lama_pengalaman,
+															foto,
+															ktp,
+															ijazah,
+															jadwal_interview,
+															promosi_diri,
+															tinggi_badan,
+															berat_badan,
+															token,
+															copy_cv,
+															branch,
+															status_hubungan,
+															nama_hubungan,
+															no_telp,
+															post_date)
+															VALUES('$posisi',
+																	'$refrensi',
+																	'$nama_lengkap',
+																	'$warga_negara',
+																	'$tempat_lahir',
+																	'$tanggal_lahir',
+																	'$agama',
+																	'$jenis_kelamin',
+																	'$no_ktp',
+																	'$no_sim',
+																	'$status_sipil',
+																	'$alamat_email',
+																	'$alamat_sekarang',
+																	'$alamat_ktp',
+																	'$no_handphone',
+																	'$no_wa',
+																	'$telepon',
+																	'$pendidikan_terakhir',
+																	'$kemampuan_komputer',
+																	'$bahasa_asing',
+																	'$riwayat_penyakit',
+																	'$pengalaman_kerja',
+																	'$perusahaan_kerja',
+																	'$tahun_kerja',
+																	'$lama_pengalaman',
+																	'$location',
+																	'$location2',
+																	'$location3',
+																	'$jadwal_interview',
+																	'$promosi_diri',
+																	'$tinggi_badan',
+																	'$berat_badan',
+																	'$token',
+																	'$cv_up',
+																	'$branch',
+																	'$status_hubungan',
+																	'$nama_hubungan',
+																	'$no_telp',
+																	 NOW())");
+		if ($query) {
+			header('location: info.hera');
+			 // $to = "recruiment@pthardaesaraksa.com"; // this is your Email address
+		  //    $from = $_POST['alamat_email']; // this is the sender's Email address
+		  
+		     // $subject = "Undangan Interview";
+		     $subject2 = "Undangan Interview PT Harda Esa Raksa";
+		     // $message = "Dear, " .$nama_lengkap. "\n\n" ."Terimakasih telah mengirim data diri. Untuk proses lebih lanjut silahkan Walk in Interview Ke Kantor PT Harda Esa Raksa " .$branch."\n\n"."Jadwal Walk in Interview: Senin sampai Jum'at pukul 09.00 - 15.00 WIB"."\n\n"."Nomor Token ID Anda " .$token."\n\n"."Dimohon untuk kedatangannya"."\n\n"."Terimakasih";
+		     $message2 = "Dear, " .$nama_lengkap. "<br><br>Terimakasih telah mengirim data diri.<br>Untuk proses lebih lanjut silahkan Walk in Interview Ke Kantor <b>PT Harda Esa Raksa " .$branch."</b>.<br>Jadwal Walk in Interview: <b>Senin sampai Jum'at pukul 09.00 - 15.00 WIB</b> <br><br>Nomor Token ID Anda <b>" .$token."</b> <br><br>Dimohon untuk kedatangannya <br>Terimakasih";
+
+		  //    $headers = "From:" . $from;
+		  //    $headers2 = "From:" . $to;
+		  //    mail($to,$subject,$message,$headers);
+		  //    mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+
+			require '../vendor/autoload.php';
+
+		    $mail = new PHPMailer(true);                            
+		    try {
+		        //Server settings
+		        $mail->IsHTML(true);
+				$mail->CharSet = "text/html; charset=UTF-8;";
+		        $mail->isSMTP();                                     
+		        $mail->Host = 'mx1.hostinger.co.id';                      
+		        $mail->SMTPAuth = true;                             
+		        $mail->Username = 'recruitment@pthardaesaraksa.com';     
+		        $mail->Password = 'heraharda123';             
+		        $mail->SMTPOptions = array(
+		            'ssl' => array(
+		            'verify_peer' => false,
+		            'verify_peer_name' => false,
+		            'allow_self_signed' => true
+		            )
+		        );                         
+		        $mail->SMTPSecure = 'ssl';                           
+		        $mail->Port = 465;                                   
+
+		        //Send Email
+		        $mail->setFrom('recruitment@pthardaesaraksa.com');
+		        
+		        //Recipients
+		        $mail->addAddress($alamat_email);              
+		        $mail->addReplyTo('recruitment@pthardaesaraksa.com');
+		        
+		        //Content
+		        $mail->isHTML(true);                                  
+		        $mail->Subject = $subject2;
+		        $mail->Body    = $message2;
+
+		        $mail->send();
+				
+		    } catch (Exception $e) {
+			   	echo ("<script LANGUAGE='JavaScript'>window.alert('Maaf tidak bisa kirim email'); window.location.href='recruitment.hera'</script>");
+		    }
+		     
+		    // You can also use header('Location: thank_you.php'); to redirect to another page.
+		    // You cannot use header and echo together. It's one or the other.
+			// echo ("<script LANGUAGE='JavaScript'>w window.location.href='../info.hera'</script>");
+		} else {
+			// jika gagal tampilkan pesan kesalahan
+			// header('location: index.php?alert=1');
+		echo ("<script LANGUAGE='JavaScript'>window.alert('Maaf data gagal diinput'); window.location.href='recruitment.hera'</script>");
+			// header('location: ../inforegistrasi.php?alert=1');
+		}	
+	}
 ?>
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns#">
@@ -65,7 +332,7 @@
 	                  </div>
 	              </div>
 	          </div>
-	           <form role="form" id="formPelamar" method="post" action="datafiles/insert.php"  enctype="multipart/form-data">
+	           <form role="form" id="formPelamar" method="post" action=""  enctype="multipart/form-data">
 	              <div class="row setup-content" id="step-1">
 	                  
 	                  <div class="col-md-12">

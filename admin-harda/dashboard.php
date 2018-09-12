@@ -243,6 +243,7 @@
           <div class="col-md-12 table-report">
             <div class="box-body table-responsive">
             <h3 class="font-bold">Antrian Pelamar</h3>
+            <p>Untuk pelamar <b>Expired</b> no antrian ada di <b>page expired</b> cari nama pelamar kemudian buka data pelamar tersebut.</p>
               <form id="formAntrian" method="POST">
                 <div class="form-group">
                   <label>Nama Pelamar</label>
