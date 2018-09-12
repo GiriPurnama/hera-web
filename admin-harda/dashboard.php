@@ -250,7 +250,7 @@
                   <select class="form-control" id="antrianPelamar" required>
                     <option value="">-</option>
                     <?php 
-                        $pelamar_query = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = '' AND antrian = '' ORDER BY id DESC");
+                        $pelamar_query = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = '' AND antrian = '' ORDER BY nama_lengkap ASC");
                         while ($row = mysqli_fetch_assoc($pelamar_query)) {
                           $nama_pelamar = $row['nama_lengkap'];
                           $refrensi_pelamar = $row['refrensi'];
