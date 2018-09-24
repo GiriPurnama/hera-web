@@ -464,19 +464,18 @@
                   </div>
                 <!-- Button Simpan Data Pelamar -->
 
-                
-                <!-- Download Dokumen Pelamar -->
-                   <div class="box-dl-img">
-                     <div class="form-group col-md-12">
-                         <h3 class="font-bold">DOWNLOAD DOKUMEN</h3>
-                         <a href="<?= $foto; ?>" target="_blank" class="btn btn-primary">Foto</a>
-                         <a href="<?= $ktp; ?>" target="_blank" class="btn btn-primary">KTP</a>
-                         <a href="<?= $ijazah; ?>" target="_blank" class="btn btn-primary">Ijazah</a>
-                     </div>
-                   </div>
-                <!-- Download Dokumen Pelamar -->
-
               </form>
+              
+              <!-- Download Dokumen Pelamar -->
+                 <div class="box-dl-img">
+                   <div class="form-group col-md-12">
+                       <h3 class="font-bold">DOWNLOAD DOKUMEN</h3>
+                       <a href="<?= $foto; ?>" target="_blank" class="btn btn-primary">Foto</a>
+                       <a href="<?= $ktp; ?>" target="_blank" class="btn btn-primary">KTP</a>
+                       <a href="<?= $ijazah; ?>" target="_blank" class="btn btn-primary">Ijazah</a>
+                   </div>
+                 </div>
+              <!-- Download Dokumen Pelamar -->
 
           <!-- Upload Dokumen Pelamar -->
               <div class="box-upload">
@@ -520,6 +519,19 @@
                     </div>
                   </form>
                 </div>
+
+                <div class="col-md-6">
+                  <form method="POST" action="" enctype="multipart/form-data">
+                    <div class="form-group mg20">
+                      <label for="ijazah">Upload CV</label>
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+                        <input type="file" class="form-control" id="cv" name="copy_cv" required>
+                    </div>
+                    <div class="form-group col-md-12">
+                      <input type="submit" class="btn btn-primary btn-submit" name="simpan_cv"  value="Upload CV">
+                    </div>
+                  </form>
+                </div>
               </div>
           <!-- Upload Dokumen Pelamar -->
 
@@ -540,7 +552,19 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label>Lowongan</label>
-                          <input type="text" class="form-control add-lowongan" name="nama_lowongan[]" value="<?= $rekomendasi; ?>" readonly>
+                          <!-- <input type="text" class="form-control add-lowongan" name="nama_lowongan[]" value="<?= $rekomendasi; ?>" readonly> -->
+                          <select class="form-control add-lowongan" name="nama_lowongan[]" requierd>
+                            <option value="<?= $rekomendasi; ?>"><?= $rekomendasi; ?></option>
+                            <?php 
+                              $row_lowongan = mysqli_query($db, "SELECT * FROM info_lowongan");
+                              while ($rowinfo = mysqli_fetch_assoc($row_lowongan)) {
+                                $nama_lowongan = $rowinfo['nama_lowongan'];
+                            ?>
+
+                            <option value="<?= $nama_lowongan; ?>"><?= $nama_lowongan; ?></option>
+
+                            <?php } ?>
+                          </select>
                         </div>
                       </div>
 
@@ -572,7 +596,18 @@
                      <div class="col-md-2">
                         <div class="btn-pelamar">
                           <div class="form-group">
-                           <button class="btn btn-default add-btn"><i class="fa fa-plus"></i> Tambah</button>    
+                           <?PHP 
+                            if ($feedback == "pending-rnd") {
+                           ?>
+                            
+                            <button class="btn btn-success update-btn"><i class="fa fa-check"></i> Update Data</button>
+                            <button class="btn btn-default add-btn hide"><i class="fa fa-plus"></i> Tambah</button>    
+                           
+                           <?PHP } else { ?>
+
+                            <button class="btn btn-default add-btn"><i class="fa fa-plus"></i> Tambah</button>
+                           
+                           <?php } ?>
                           </div>
                         </div>
                      </div>
@@ -591,7 +626,7 @@
 
                         <?php if ($feedback == "pending-rnd") { ?>
                         
-                        <input type="submit" class="btn btn-primary" value="Menunggu Konfirmasi RND" name="kirim_pelamar" disabled>    
+                        <input type="submit" class="btn btn-primary" id="btn-disabled" value="Menunggu Konfirmasi RND" name="kirim_pelamar" disabled>    
                         
                         <?php } else { ?>
                         
@@ -1014,6 +1049,13 @@
         console.log("test");
     });
 
+     $(".update-btn").click(function(){
+        $("#btn-disabled").prop('disabled', false);
+        $("#btn-disabled").val("Kirim Pelamar");
+        $(".add-btn").removeClass("hide");
+        $(this).addClass("hide");
+     })
+
   })
 
   $(function () {
@@ -1114,12 +1156,11 @@ if (isset($_POST['simpan_foto'])) {
     $type = $_FILES['foto']['type'];
     $fileinfo=PATHINFO($_FILES["foto"]["name"]);
     $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-    if (!$foto==""){  
-      unlink($foto);
-      move_uploaded_file($_FILES["foto"]["tmp_name"],"../upload/" . $newFilename);
-      $location="../upload/" . $newFilename;
-      correctImageOrientationFoto($location);
-    }
+    
+    unlink($foto);
+    move_uploaded_file($_FILES["foto"]["tmp_name"],"../upload/" . $newFilename);
+    $location="../upload/" . $newFilename;
+    correctImageOrientationFoto($location);
 
     $query = mysqli_query($db, "UPDATE recruitment SET foto = '$location' WHERE id = '$id'");   
 
@@ -1145,12 +1186,11 @@ if (isset($_POST['simpan_ktp'])) {
     $type = $_FILES['ktp']['type'];
     $fileinfo=PATHINFO($_FILES["ktp"]["name"]);
     $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-    if (!$ktp==""){  
-      unlink($ktp);
-      move_uploaded_file($_FILES["ktp"]["tmp_name"],"../upload/" . $newFilename);
-      $location="../upload/" . $newFilename;
-    }
-
+ 
+    unlink($ktp);
+    move_uploaded_file($_FILES["ktp"]["tmp_name"],"../upload/" . $newFilename);
+    $location="../upload/" . $newFilename;
+ 
     $query = mysqli_query($db, "UPDATE recruitment SET ktp = '$location' WHERE id = '$id'");   
 
     if ($query) {
@@ -1175,13 +1215,40 @@ if (isset($_POST['simpan_ijazah'])) {
     $type = $_FILES['ijazah']['type'];
     $fileinfo=PATHINFO($_FILES["ijazah"]["name"]);
     $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
-    if (!$ijazah==""){  
-      unlink($ijazah);
-      move_uploaded_file($_FILES["ijazah"]["tmp_name"],"../upload/" . $newFilename);
-      $location="../upload/" . $newFilename;
+   
+    unlink($ijazah);
+    move_uploaded_file($_FILES["ijazah"]["tmp_name"],"../upload/" . $newFilename);
+    $location="../upload/" . $newFilename;
+    
+    $query = mysqli_query($db, "UPDATE recruitment SET ijazah = '$location' WHERE id = '$id'");   
+
+    if ($query) {
+      // jika berhasil tampilkan pesan berhasil update data
+      header('Location: '.$_SERVER['REQUEST_URI']);
+      // echo "Berhasil";
+    } else {
+      // jika gagal tampilkan pesan kesalahan
+      // header('location: index.php?alert=1');
+      echo "Gagal";
     }
 
-    $query = mysqli_query($db, "UPDATE recruitment SET ijazah = '$location' WHERE id = '$id'");   
+
+  }
+}
+
+if (isset($_POST['simpan_cv'])) {
+  if (isset($_POST['id'])) {
+
+    $id = $_POST['id'];
+    $type = $_FILES['copy_cv']['type'];
+    $fileinfo=PATHINFO($_FILES["copy_cv"]["name"]);
+    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+  
+    unlink($copy_cv);
+    move_uploaded_file($_FILES["copy_cv"]["tmp_name"],"../cv/" . $newFilename);
+    $location="../cv/" . $newFilename;
+    
+    $query = mysqli_query($db, "UPDATE recruitment SET copy_cv = '$location' WHERE id = '$id'");   
 
     if ($query) {
       // jika berhasil tampilkan pesan berhasil update data

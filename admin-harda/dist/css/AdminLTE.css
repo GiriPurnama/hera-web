@@ -5138,7 +5138,7 @@ textarea {
 }
 .box-dl-img {
     border: 1px solid #ccc;
-    display: -webkit-box;
+    display: flex;
     margin-bottom: 20px;
     margin-top: 20px;
 }
