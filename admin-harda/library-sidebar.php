@@ -53,15 +53,16 @@
           </a>
         </li>
 
-        <li class="">
+        
+        <!-- <li class="">
           <a href="email-blast.php">
             <i class="fa fa-edit"></i> <span>Email Blast</span>
             <span class="pull-right-container">
-              <!-- <i class="fa fa-angle-left pull-right"></i> -->
+              <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-        </li>
-
+        </li> -->
+        
         
         <?php if ($status == "RnD" || $status == "EksternalHRD" || $status == "Chief" || $status == "Master" || $status == "RO") { ?>
          <?php  
