@@ -641,11 +641,7 @@
             <p>Harda Esa Raksa berdiri sejak tahun 1987 dimulai dari usaha perdagangan alat-alat telekomunikasi dan barang cetak, hingga berawal pada tahun 2007, Harda Esa Raksa mengembangkan bisnis dalam hal penyaluran dan penempatan tenaga kerja.</p>
             <div class="box-info-footer">
               <h3>Jam Kerja</h3>
-              <p> Senin  : 08.00 - 17.00 WIB </p>
-              <p> Selasa : 08.00 - 17.00 WIB </p>
-              <p> Rabu   : 08.00 - 17.00 WIB </p>  
-              <p> Kamis  : 08.00 - 17.00 WIB </p>
-              <p> Jumat  : 08.00 - 17.00 WIB </p>
+              <p> Senin s/d Jumat : 08.00 - 17.00 WIB </p>
               <p>Sabtu & Minggu Libur</p>
             </div>
              <div class="social-links">
