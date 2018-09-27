@@ -211,7 +211,11 @@
 		     // $subject = "Undangan Interview";
 		     $subject2 = "Undangan Interview PT Harda Esa Raksa";
 		     // $message = "Dear, " .$nama_lengkap. "\n\n" ."Terimakasih telah mengirim data diri. Untuk proses lebih lanjut silahkan Walk in Interview Ke Kantor PT Harda Esa Raksa " .$branch."\n\n"."Jadwal Walk in Interview: Senin sampai Jum'at pukul 09.00 - 15.00 WIB"."\n\n"."Nomor Token ID Anda " .$token."\n\n"."Dimohon untuk kedatangannya"."\n\n"."Terimakasih";
-		     $message2 = "Dear, " .$nama_lengkap. "<br><br>Terimakasih telah mengirim data diri.<br>Untuk proses lebih lanjut silahkan Walk in Interview Ke Kantor <b>PT Harda Esa Raksa " .$branch."</b>.<br>Jadwal Walk in Interview: <b>Senin sampai Jum'at pukul 09.00 - 15.00 WIB</b> <br><br>Nomor Token ID Anda <b>" .$token."</b> <br><br>Dimohon untuk kedatangannya <br>Terimakasih";
+		     // $message2 = "Dear, " .$nama_lengkap. "<br><br>Terimakasih telah mengirim data diri.<br>Untuk proses lebih lanjut silahkan Walk in Interview Ke Kantor <b>PT Harda Esa Raksa " .$branch."</b>.<br>Jadwal Walk in Interview: <b>Senin sampai Jum'at pukul 09.00 - 15.00 WIB</b> <br><br>Nomor Token ID Anda <b>" .$token."</b> <br><br>Dimohon untuk kedatangannya <br>Terimakasih";
+		      $message2 = "Dear, " .$nama_lengkap. "<br><br>Berdasarkan lamaran yang telah anda kirimkan melalui
+							website <b>PT Harda Esa Raksa " .$branch."</b>, maka bersama dengan email
+							ini kami mengundang anda untuk mengikuti proses interview pada :<br>Waktu: <b>Senin s/d Jum'at pukul 09.00 s/d 15.00 WIB</b> <br>Tempat : <b>PT HARDA ESA RAKSA " .$branch."<br>Alamat : Gedung ILP Pancoran Lt.3 Ruang 15, Jl. Raya Pasar Minggu No. 39-A Jakarta Selatan.<br>Di harapkan datang menggunakan pakaian Formal dan rapi.<br><br>Demikian yang dapat kami sampaikan, ditunggu kedatangannya.<br>Terimakasih";
+
 
 		  //    $headers = "From:" . $from;
 		  //    $headers2 = "From:" . $to;
