@@ -87,7 +87,7 @@
                   <td><?= $email; ?></td>
                   <td><iframe height="auto" width="200px" src="<?= $maps; ?>" style="border:0;" allowfullscreen></iframe></td>
                   <td>
-                    <?php if ($status == "InternalHRD" || $status == "Master" || $status == "Chief" || $status == "RO") { ?>
+                    <?php if ($status == "InternalHRD" || $status == "Master" || $status == "Chief" || $status == "RO" || $status == "EksternalHRD" ) { ?>
                       <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['idkontak']."><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
                       <a href='server.php?idkontak=<?php echo $row['idkontak']; ?>' onclick="return confirm('Apakah yakin data ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
                     <?php } ?>
