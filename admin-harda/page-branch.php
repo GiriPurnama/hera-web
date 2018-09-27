@@ -58,6 +58,7 @@
                   <th>Branch</th>
                   <th>Alamat</th>
                   <th>Telepon</th>
+                  <th>No Whatsapp</th>
                   <th>Email</th>
                   <th>Maps</th>
                   <th>Aksi</th>
@@ -72,6 +73,7 @@
                       $wilayah = $row['wilayah'];
                       $alamat = $row['alamat'];
                       $telepon = $row['telepon'];
+                      $no_wa = $row['no_wa'] ?: '-';
                       $email = $row['email'];
                       $maps = $row['maps']; 
                 ?>
@@ -81,6 +83,7 @@
                   <td><?php echo $wilayah; ?></td>
                   <td><?php echo $alamat; ?></td>
                   <td><?= $telepon; ?></td>
+                  <td><?= $no_wa; ?></td>
                   <td><?= $email; ?></td>
                   <td><iframe height="auto" width="200px" src="<?= $maps; ?>" style="border:0;" allowfullscreen></iframe></td>
                   <td>

@@ -2073,3 +2073,17 @@ ul.inline-ul li{
     font-size: 24px;
   }
 }
+a.hold-link:focus{
+  color:#f65f13;
+}
+
+a.hold-link.btn-owl {
+  margin-top: 20px;
+  display: inline-block;
+  width: 100%;
+  font-size: 20px;
+}
+.box-info-footer {
+  margin: 20px 0px;
+}
+

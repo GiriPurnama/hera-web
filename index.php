@@ -639,10 +639,21 @@
           <div class="col-lg-4 col-md-6 footer-info">
             <h3>PT Harda Esa Raksa</h3>
             <p>Harda Esa Raksa berdiri sejak tahun 1987 dimulai dari usaha perdagangan alat-alat telekomunikasi dan barang cetak, hingga berawal pada tahun 2007, Harda Esa Raksa mengembangkan bisnis dalam hal penyaluran dan penempatan tenaga kerja.</p>
+            <div class="box-info-footer">
+              <h3>Jam Kerja</h3>
+              <p> Senin  : 08.00 - 17.00 WIB </p>
+              <p> Selasa : 08.00 - 17.00 WIB </p>
+              <p> Rabu   : 08.00 - 17.00 WIB </p>  
+              <p> Kamis  : 08.00 - 17.00 WIB </p>
+              <p> Jumat  : 08.00 - 17.00 WIB </p>
+              <p>Sabtu & Minggu Libur</p>
+            </div>
              <div class="social-links">
-                <a href="https://www.facebook.com/profile.php?id=100011113153945" class="facebook"><i class="fa fa-facebook"></i></a>
-                <a href="https://www.instagram.com/loker_jkt/" class="instagram"><i class="fa fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/company/pt-harda-esa-raksa/" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100011113153945" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/PtHardaEsaRaksa" class="linkedin" target="_blank"><i class="fa fa-twitter"></i></a>
+                <a href="https://www.instagram.com/loker_jkt/" class="instagram" target="_blank"><i class="fa fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/pt-harda-esa-raksa/" class="linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
+                <a href="https://www.youtube.com/channel/UC5ndId8JDdoZsq5eyv8PnLw" class="linkedin" target="_blank"><i class="fa fa-youtube-play"></i></a>
               </div>
           </div>
 
@@ -658,6 +669,7 @@
                     $telepon = $row['telepon'];
                     $email = $row['email'];
                     $maps = $row['maps'];
+                    $no_wa = $row['no_wa'];
                 ?>
                   <div class="row"> 
                     <div class="col-md-6 desc-contact">
@@ -666,6 +678,9 @@
                         <?= $alamat; ?><br>
                         <strong>Telepon:</strong> <?= $telepon; ?><br>
                         <strong>Email:</strong> <?= $email; ?><br>
+                        <?php if ($no_wa != "") { ?>
+                        <a class="hold-link btn-owl" href="https://wa.me/<?= $no_wa; ?>" target = "_blank"><i class="fa fa-whatsapp"></i> Chat Kami</a><br>
+                        <?php } ?> 
                       </p>
 
                     </div>

@@ -371,6 +371,7 @@ if($_POST['rowpesan']) {
         $telepon = $row['telepon'];
         $email = $row['email'];
         $maps = $row['maps'];
+        $no_wa = $row['no_wa'] ?: '-';
 ?>
 
       <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
@@ -395,6 +396,10 @@ if($_POST['rowpesan']) {
                 <div class="form-group">
                   <label for="maps">Maps</label>
                   <input type="text" class="form-control" name="maps" value="<?php echo $maps; ?>">
+                </div>
+                <div class="form-group">
+                  <label for="no_wa">No Whatsapp</label>
+                  <input type="text" class="form-control" name="no_wa" placeholder="No Whatsapp Gunakan Kode Negara (62)" value="<?= $no_wa; ?>" onKeyPress="return goodchars(event,'0123456789',this)">
                 </div>
               </div>
               <div class="box-footer">

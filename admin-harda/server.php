@@ -720,8 +720,9 @@
   		  $telepon = mysqli_real_escape_string($db, trim($_POST['telepon']));
   		  $email = mysqli_real_escape_string($db, trim($_POST['email']));
   		  $maps = $_POST['maps'];
+  		  $no_wa = mysqli_real_escape_string($db, trim($_POST['no_wa']));
 		
-  		  $query = mysqli_query($db, "INSERT INTO kontak(wilayah, alamat, telepon, email, maps) values ('$wilayah','$alamat','$telepon','$email','$maps')");
+  		  $query = mysqli_query($db, "INSERT INTO kontak(wilayah, alamat, telepon, email, maps, no_wa) values ('$wilayah','$alamat','$telepon','$email','$maps','$no_wa')");
   		  if ($query) {
   		  		header('location: page-branch.php');
   		  } else {
@@ -757,6 +758,7 @@
 	  		$telepon = $_POST['telepon'];
 	  		$email = $_POST['email'];
 	  		$maps = $_POST['maps'];
+	  		$no_wa = $_POST['no_wa'];
 
 
 		    // perintah query untuk mengubah data pada tabel is_siswa
@@ -764,7 +766,8 @@
 		                            alamat  = '$alamat',
 		                            telepon= '$telepon',
 		                            email = '$email',
-		                            maps = '$maps'
+		                            maps = '$maps',
+		                            no_wa = '$no_wa'
 		                            WHERE idkontak = '$idkontak'");   
 
 		    // cek query

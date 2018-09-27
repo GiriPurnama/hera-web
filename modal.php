@@ -785,6 +785,10 @@
                     <label for="upload">Maps</label>
                     <input type="text" class="form-control" name="maps" placeholder="Maps" required>
                   </div>
+                  <div class="form-group">
+                    <label for="no_wa">No Whatsapp</label>
+                    <input type="text" class="form-control" name="no_wa" placeholder="No Whatsapp Gunakan Kode Negara (62)" onKeyPress="return goodchars(event,'0123456789',this)">
+                  </div>
                 </div>
 
                 <!-- /.box-body -->
