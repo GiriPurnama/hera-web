@@ -1184,7 +1184,8 @@
 		                            nama_lowongan  = concat(nama_lowongan, '$nama_lowongan_pelamar,'),
 		                            client_distributor = concat(client_distributor, '$client_distributor,'),
 		                            status_join = concat(status_join, '$status_join,'),
-		                            feedback = '$feedback'
+		                            feedback = '$feedback',
+		                            post_date = NOW()
 		                            WHERE id = '$idpelamar'");   
 
 		    // cek query

@@ -49,6 +49,7 @@
                 <tr>
                   <th>No</th>
                   <th>Status</th>
+                  <th>Tanggal</th>
                   <th>Nama Lengkap</th>
                   <th>Posisi</th>
                   <th>Perusahaan</th>
@@ -59,7 +60,7 @@
               <tbody>
                 <?php
                     $no = 1;
-                    $pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = 'DISARANKAN' AND feedback = 'pending-rnd' AND nama_pelamar IS NOT NULL GROUP BY client_distributor ORDER BY post_date ASC");
+                    $pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = 'DISARANKAN' AND feedback = 'pending-rnd' AND nama_pelamar IS NOT NULL ORDER BY post_date DESC");
 
                     while ($row = mysqli_fetch_assoc($pelamar)) {
 
@@ -103,6 +104,7 @@
                         }
                       ?>
                   </td>
+                  <td><?= $newDate; ?></td>
                   <td><?php echo $nama_lengkap; ?></td>
                   <td>
 
