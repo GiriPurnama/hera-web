@@ -1212,7 +1212,8 @@
 		   // $query = mysqli_query($db, "INSERT INTO recruitment(id, nama_pelamar, nama_lowongan, client_distributor, status_join) values ('$idpelamar','$nama_pelamar','$nama_lowongan_pelamar','$client_distributor','$status_join')");
 	
 		    $query = mysqli_query($db, "UPDATE recruitment SET status_join = '$status_join',
-		    												   feedback = '$feedback'
+		    												   feedback = '$feedback',
+		    												   post_date = NOW()
 		    												   WHERE id = '$idpelamar'");   
 
 		    // cek query

@@ -49,6 +49,7 @@
                 <tr>
                   <th>No</th>
                   <th>Status</th>
+                  <th>Tanggal</th>
                   <th>Nama Lengkap</th>
                   <th>Posisi</th>
                   <th>Perusahaan</th>
@@ -103,6 +104,7 @@
                         }
                       ?>
                   </td>
+                  <td><?php echo $newDate; ?></td>
                   <td><?php echo $nama_lengkap; ?></td>
                   <td>
 
