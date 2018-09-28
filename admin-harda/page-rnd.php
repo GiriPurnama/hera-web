@@ -59,7 +59,7 @@
               <tbody>
                 <?php
                     $no = 1;
-                    $pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = 'DISARANKAN' AND feedback = 'pending-rnd' AND nama_pelamar IS NOT NULL ORDER BY client_distributor DESC");
+                    $pelamar = mysqli_query($db, "SELECT * FROM recruitment WHERE branch = '$cabang' AND status_pelamar = 'DISARANKAN' AND feedback = 'pending-rnd' AND nama_pelamar IS NOT NULL GROUP BY client_distributor ORDER BY post_date ASC");
 
                     while ($row = mysqli_fetch_assoc($pelamar)) {
 
