@@ -534,6 +534,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-weight: 700;
   position: relative;
   padding-bottom: 15px;
+  padding-top: 40px;
 }
 
 .section-header h3::before {
