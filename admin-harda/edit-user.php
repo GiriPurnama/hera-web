@@ -713,14 +713,14 @@
 
           <!--======================= Khusus RND ============================================================-->
 
-             <?php if ($status == "RnD" || $status == "EksternalHRD" || $status == "Chief" || $status == "Master") { 
+             <?php if ($status == "RnD" || $status == "EksternalHRD" || $status == "Chief" || $status == "Master" || $status == "RO") { 
                       if ($nama_pelamar != "" && $nama_lowongan_pelamar != "" && $client_distributor != "" && $status_join != "") { 
               ?>
              
               <div class="box-reference">
                 <h3 class="font-bold">Data Pelamar RND</h3>
-                 <div class="col-md-3">
-
+                 <div class="col-md-2">
+                  <label>Nama Pelamar</label>
                     <?php
                      $array_nama = explode(",",$nama_pelamar);     
                      foreach ($array_nama as $key_nama => $value_nama) { ?>
@@ -731,7 +731,8 @@
                   </div>
 
 
-                  <div class="col-md-3">
+                  <div class="col-md-2">
+                  <label>Lowongan</label>
                     <?php
                      $array_lowongan = explode(",",$nama_lowongan_pelamar);     
                      foreach ($array_lowongan as $key_lowongan => $value_lowongan) { ?>
@@ -742,7 +743,8 @@
                   </div>
                  
 
-                  <div class="col-md-3">
+                  <div class="col-md-2">
+                  <label>Client</label>
                     <?php
                      $array_client = explode(",",$client_distributor);     
                      foreach ($array_client as $key_client => $value_client) { ?>
@@ -752,7 +754,21 @@
                     <?php } ?>
                   </div>
                   
+                  <!-- <form method="POST" action="server.php" enctype="multipart/form-data"x>
+                  <div class="col-md-2">
+                  <label>Keterangan</label>
+                  <!-- <?php
+                     $query = mysqli_query($db, "INSERT INTO recruitment(keterangan) values ('$keterangan')");
+                     ?>
+ -->
+                  <!-- <input type="ket" name="keterangan" placeholder="keterangan">
+                  </div>
+                  </form> -->
+
                   <form method="POST" action="server.php" enctype="multipart/form-data">
+                  <div align="text-center">
+                  <label>Status</label>
+                  </div>
                   <?php
                    $array_status = explode(",",$status_join);
                    $numItems =  count($array_status);
@@ -762,7 +778,7 @@
                       if(++$i === $numItems) {
                    ?>
 
-                    <div class="col-md-3 end-select">
+                    <div class="col-md-2">
                         <select class="hide" data-val="<?= $key; ?>" name="status_join[]">
                           <option value="<?= $value; ?>"><?= $value; ?></option>
                         </select>
@@ -770,7 +786,8 @@
                    
                     <?php } else { ?>
                     
-                    <div class="col-md-3 end-select">
+
+                    <div class="col-md-0">
                         <input type="hidden" name="id" value="<?= $id; ?>">
                         <select   data-val="<?= $key; ?>" name="status_join[]">
                           <option value="<?= $value; ?>"><?= $value; ?></option>
@@ -791,17 +808,19 @@
                             <span class="label label-success">Pelamar Diterima</span>
                         
                         <?php } ?>
+
                     </div>
-                  
+                    
                    <?php  }} ?>
+
                   
 
                    <div class="col-md-12">
                       <input type="hidden" name="feedback" value="clear-rnd">
                       <input type="submit" class="btn btn-primary" name="update_pelamar" value="Kirim Data">
-                   </div>
-
+                   </div>                   
                   </form>
+                  
               </div>
 
             <!--======================= Tanggal Join ============================================================-->
