@@ -622,6 +622,45 @@ if($_POST['rowpass']) {
   }
 ?>
 
+
+<?php
+    if($_POST['rowpromo']) {
+      $idpromo = $_POST['rowpromo'];
+      $load_data = mysqli_query($db, "SELECT * FROM promo WHERE idpromo='$idpromo'");
+      while ($row = mysqli_fetch_assoc($load_data)) { 
+        
+        $judul_promo = $row['judul_promo'];
+        $isi_promo = $row['isi_promo'];
+        $foto_promo = $row['foto_promo'];
+        $idpromo = $row['idpromo'];
+      
+?>
+
+      <form role="form" action="server.php" method="POST" enctype="multipart/form-data">
+         <div class="box-body">
+                <div class="form-group">
+                  <input type="hidden" name="idpromo" value="<?= $idpromo; ?>">
+                  <label for="title">Judul Promo</label>
+                  <input type="text" class="form-control" name="judul_promo" id="title_promo" value="<?= $judul_promo; ?>" required>
+                </div>
+                <div class="form-group">
+                  <label for="deskripsi">Deskripsi Promo</label>
+                <textarea id="ck_editorEdit" class="form-control" name="isi_promo" required><?= $isi_promo; ?></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="upload">Gambar Promo</label>
+                  <input type="file" name="foto_promo" id="upload_promo" value="<?= $foto_promo; ?>">
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="update_promo" id="fotoUpdate">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+              </div>
+      </form>
+<?php }
+  }
+?>
+
 <?php
     if($_POST['rowtestimonial']) {
       $idtestimonial = $_POST['rowtestimonial'];
