@@ -63,6 +63,7 @@
           $status_join = $data['status_join'];
           $alamat_ktp = $data['alamat_ktp'];
           $no_wa = $data['no_wa'];
+          $keterangan = $data['keterangan'];
           $feedback = $data['feedback'];
           $tanggal_join = $data['tanggal_join'];
           $tanggal_resign = $data['tanggal_resign'];
@@ -654,7 +655,8 @@
                     
                   <div class="display-data">
                       <h3 class="font-bold" style="width: 100%; display: -webkit-box; padding: 10px 15px;">Data Terkirim Recruitment</h3>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
+                        <label>Nama Pelamar</label>
                           <?php
                            $array_nama = explode(",",$nama_pelamar);     
                            foreach ($array_nama as $key_nama => $value_nama) { ?>
@@ -665,7 +667,8 @@
                         </div>
 
 
-                        <div class="col-md-3">
+                        <div class="col-md-2">
+                        <label>Lowongan</label>
                           <?php
                            $array_lowongan = explode(",",$nama_lowongan_pelamar);     
                            foreach ($array_lowongan as $key_lowongan => $value_lowongan) { ?>
@@ -677,6 +680,7 @@
                        
 
                         <div class="col-md-3">
+                        <label>Client</label>
                           <?php
                            $array_client = explode(",",$client_distributor);     
                            foreach ($array_client as $key_client => $value_client) { ?>
@@ -685,13 +689,26 @@
 
                           <?php } ?>
                         </div>
-                        
 
+                        <!-- <div class="col-md-2">
+                        <label>Keterangan</label>
+                          <?php
+                           $array_keterangan = explode(",",$keterangan);     
+                           foreach ($array_keterangan as $key_keterangan => $value_keterangan) { ?>
+
+                            <div><?= $value_keterangan; ?></div>
+
+                          <?php } ?>
+                        </div> -->
+                        
+                        <div class="col-md-2">
+                        <label>Status</label>
                         <?php
                          $array_status = explode(",",$status_join);
                          foreach ($array_status as $key => $value) { ?>
 
-                          <div class="col-md-3">
+                          <div>
+                          
                               <?php if ($value == "Ditolak") { ?>
                                   <span class="label label-danger">Pelamar Ditolak</span>
                               <?php } else if ($value == "Dikirim") { ?>
@@ -702,10 +719,21 @@
                           </div>
 
                          <?php } ?>
+                         </div>
 
                   </div>
 
                     <?php }} ?>
+                   <div class="col-md-2">
+                        <label>Keterangan</label>
+                          <?php
+                           $array_keterangan = explode(",",$keterangan);     
+                           foreach ($array_keterangan as $key_keterangan => $value_keterangan) { ?>
+
+                            <div><?= $value_keterangan; ?></div>
+
+                          <?php } ?>
+                        </div>
               <!-- ============= Khusus RO ===============================================================================-->
 
                 </div>
@@ -754,16 +782,13 @@
                     <?php } ?>
                   </div>
                   
-                  <!-- <form method="POST" action="server.php" enctype="multipart/form-data"x>
+                  <form method="POST" action="server.php" enctype="multipart/form-data"x>
                   <div class="col-md-2">
                   <label>Keterangan</label>
-                  <!-- <?php
-                     $query = mysqli_query($db, "INSERT INTO recruitment(keterangan) values ('$keterangan')");
-                     ?>
- -->
-                  <!-- <input type="ket" name="keterangan" placeholder="keterangan">
+
+                   <input type="ket" name="keterangan" placeholder="keterangan">
                   </div>
-                  </form> -->
+                  </form>
 
                   <form method="POST" action="server.php" enctype="multipart/form-data">
                   <div align="text-center">

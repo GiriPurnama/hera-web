@@ -33,6 +33,7 @@
   <link href="lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
   <link href="lib/date-picker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+  <link href="lib/magnific/magnific-popup.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
@@ -235,10 +236,79 @@
   <main id="main">
 
     <!--==========================
-      Featured Services Section
+      Promo Section
     ============================-->
     
+  <section id="portfolio"  class="section-bg" >
+      <div class="container">
 
+        <header class="section-header">
+          <h3 class="section-title">Promo</h3>
+          <p>Berikut ini ialah promo - promo terbaru dari PT. Harda Esa Raksa</p>
+        </header>
+
+       <!--  <div class="row">
+
+          <div class="col-lg-12">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-card">Card</li>
+              <li data-filter=".filter-web">Web</li>
+            </ul>
+          </div>
+        </div> -->
+
+       <!--  <div class="row portfolio-container">
+<?php 
+              $promo_row = mysqli_query($db, "SELECT * FROM promo ORDER BY idpromo DESC");
+               while ($row = mysqli_fetch_assoc($promo_row)) {
+                  $judul_promo = $row['judul_promo'];
+                  $idpromo = $row['idpromo'];
+                  $isi_promo = strip_tags($row['isi_promo'], '<p><a><li><ol>');
+                  $foto_promo = $row['foto_promo'];
+                  $str_promo = str_replace("../", "", $foto_promo);
+                  $cut_str = substr($isi_promo,0,10). '...';
+                  $promo_date = $row['post_date_promo'];
+                  $timestamp = strtotime($promo_date);
+                  $newDate = tgl_indo(date('Y-m-d', $timestamp));   
+               ?>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="<?= $str_promo; ?>" class="img-fluid" alt="">
+                <a href="<?= $str_promo; ?>" data-lightbox="portfolio" data-title="<?= $judul_promo; ?>" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                <!-- <a href="<?= $str_promo; ?>" class="link-details" title="More Details" target="_blank"><i class="ion ion-android-open"></i></a> -->
+              <!-- </figure>
+
+              <div class="portfolio-info">
+                <h4><a><?= $judul_promo; ?></a></h4>
+                <p><?= $cut_str; ?></p>
+              </div>
+            </div>
+          </div>
+
+          <?php } ?>
+          </div> -->
+          <?php 
+              $promo_row = mysqli_query($db, "SELECT * FROM promo ORDER BY idpromo DESC");
+               while ($row = mysqli_fetch_assoc($promo_row)) {
+                  $judul_promo = $row['judul_promo'];
+                  $idpromo = $row['idpromo'];
+                  $isi_promo = strip_tags($row['isi_promo'], '<p><a><li><ol>');
+                  $foto_promo = $row['foto_promo'];
+                  $str_promo = str_replace("../", "", $foto_promo);
+                  $cut_str = substr($isi_promo,0,10). '...';
+                  $promo_date = $row['post_date_promo'];
+                  $timestamp = strtotime($promo_date);
+                  $newDate = tgl_indo(date('Y-m-d', $timestamp));   
+               ?>
+          <div class="popup-gallery" align="text-center">
+  <a href='<?= $str_promo; ?>' title="<?= $judul_promo; ?>"><img src="<?= $str_promo; ?>" width="250" height="300"></a>
+  <?php } ?>
+          </div>
+      </div>
+    </section><!-- #portfolio -->
    
 
     <!--==========================
@@ -731,6 +801,7 @@
   <script src="lib/lightbox/js/lightbox.min.js"></script>
   <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
   <script src="lib/datemask/jquery.date-dropdowns.min.js"></script>
+  <script src="lib/magnific/jquery.magnific-popup.min.js"></script>
   <!--<script src="lib/date-picker/js/bootstrap-datepicker.min.js"></script>
   <!-- Contact Form JavaScript File -->
   <script src="contactform/contactform.js"></script>
@@ -822,6 +893,12 @@
       
       });
 
+      $('.parent-container').magnificPopup({
+  delegate: 'a', // child items selector, by clicking on it popup will open
+  type: 'image'
+  // other options
+});
+
       $('.info-text', this).each(function(){
         
         // If this box is higher than the cached highest then store it
@@ -857,6 +934,57 @@
       $('.box',this).height(highestBox);
                     
     });  
+
+     //pop up image
+     $(document).ready(function() {
+  $('.popup-gallery').magnificPopup({
+    delegate: 'a',
+    type: 'image',
+    tLoading: 'Loading image #%curr%...',
+    mainClass: 'mfp-img-mobile',
+    gallery: {
+      enabled: true,
+      navigateByImgClick: true,
+      preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+    },
+    // image: {
+    //   tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+    //   titleSrc: function(item) {
+    //     return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';
+    //   }
+    // }
+  });
+});
+
+      // Pop Up Image
+     $('#open-popup').magnificPopup({
+    items: [
+      {
+        src: 'http://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Peter_%26_Paul_fortress_in_SPB_03.jpg/800px-Peter_%26_Paul_fortress_in_SPB_03.jpg',
+        title: 'Peter & Paul fortress in SPB'
+      },
+      {
+        src: 'https://vimeo.com/123123',
+        type: 'iframe' // this overrides default type
+      },
+      {
+        src: $('<div class="white-popup">Dynamically created element</div>'), // Dynamically created element
+        type: 'inline'
+      },
+      {
+        src: '<div class="white-popup">Popup from HTML string</div>', // HTML string
+        type: 'inline'
+      },
+      {
+        src: '#my-popup', // CSS selector of an element on page that should be used as a popup
+        type: 'inline'
+      }
+    ],
+    gallery: {
+      enabled: true
+    },
+    type: 'image' // this is a default type
+});
 
   });
 </script>

@@ -623,7 +623,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 #about {
   background: url("../img/about-bg.jpg") center top no-repeat fixed;
   background-size: cover;
-  padding: 60px 0 40px 0;
+  padding: 0 0 40px 0;
   position: relative;
 }
 
@@ -1211,7 +1211,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 /* Contact Section
 --------------------------------*/
 #contact {
-  padding: 60px 0;
+  padding-bottom: 40px;
 }
 
 #contact .contact-info {
@@ -2087,4 +2087,17 @@ a.hold-link.btn-owl {
 .box-info-footer {
   margin: 20px 0px;
 }
+
+#open-popup {padding:20px}
+.white-popup {
+  position: center;
+  background: #FFF;
+  width: auto;
+  max-width: 200px;
+  padding: 20px 0 20px 20px;
+  margin: 20px auto;
+  text-align: center;
+  align-content: center;
+}
+
 

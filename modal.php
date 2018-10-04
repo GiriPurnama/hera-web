@@ -908,6 +908,47 @@
     </div>
   </div>
 
+  <div class="modal fade" id="modalPromo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-body">
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Tambah Data Promo</h3>
+              </div>
+              <!-- /.box-header -->
+              <!-- form start -->
+              <form role="form" id="formTestimonial" method="POST" action="server.php" enctype="multipart/form-data">
+                <div class="box-body">
+                  <div class="form-group">
+                    <label for="title">Judul Promo</label>
+                    <input type="text" class="form-control" name="judul_promo" id="judul_promo" placeholder="Judul Promo" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="deskripsi">Isi Promo</label>
+                   <textarea id="ck_editor_promo" class="form-control" name="isi_promo" placeholder="Isi Promo" required></textarea> 
+                  </div>
+                  <div class="form-group">
+                    <label for="upload">Image Promo</label>
+                    <input type="file" name="foto_promo" id="foto_promo" required>
+                  </div>
+                </div>
+
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  <button type="submit" class="btn btn-primary" name="promo_save" id="promoSave">Simpan</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.box -->
+
+          </div>
+        </div>
+    </div>
+  </div>
+
   <div class="modal fade" id="modalTestimonial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-body">
@@ -959,6 +1000,20 @@
 <!---================== Modal Admin ==================================-->
 
 <div class="modal fade" id="modalHomeEdit" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="loadPage" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Update Information</h4>
+            </div>
+            <div class="modal-body">
+                <div class="fetched-data"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalEditPromo" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

@@ -1162,6 +1162,105 @@
 
 //===================== Page Artikel ================================================
 
+//===================== Page Promo ================================================
+	if (isset($_POST['promo_save'])) {
+  		  $judul_promo = mysqli_real_escape_string($db, trim($_POST['judul_promo']));
+  		  $isi_promo = mysqli_real_escape_string($db, trim($_POST['isi_promo']));
+  		  $permalink_promo = strtolower(str_replace([" " , "," , "!" , "." , "&", "/", ".", "?"], "-", $judul_promo));
+
+  		  $type = $_FILES['foto_promo']['type'];
+		  $fileinfo=PATHINFO($_FILES["foto_promo"]["name"]);
+		  $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+		  move_uploaded_file($_FILES["foto_promo"]["tmp_name"],"../upload/page-promo/" . $newFilename);
+		  $img_promo="../upload/page-promo/" . $newFilename;
+		
+  		  $query = mysqli_query($db, "INSERT INTO promo(judul_promo, isi_promo, permalink_promo, foto_promo, post_date_promo) values ('$judul_promo','$isi_promo','$permalink_promo','$img_promo',NOW())");
+  		  if ($query) {
+  		  		header('location: page-promo.php');
+  		  } else {
+  		  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diinsert); window.location.href='page-promo.php'</script>");
+  		  }
+  	}
+
+  	// Delete
+  	if (isset($_GET['idpromo'])) {
+	  	$idpromo = $_GET['idpromo'];
+	  	$load_data = mysqli_query($db, "SELECT * FROM promo WHERE idpromo='$idpromo'");
+	  	while ($row = mysqli_fetch_assoc($load_data)) {
+	  		if (is_file($row['foto_promo'])) {
+	  			unlink($row['foto_promo']);
+			  	$query_delete = mysqli_query($db, "DELETE FROM promo WHERE idpromo='$idpromo'");
+			  	if ($query_delete) {
+			  		header('location: page-promo.php');
+			  	} else{
+			  		echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal dihapus'); window.location.href='page-promo.php'</script>");
+			  	}
+	  		} else { 
+	  			echo ("<script LANGUAGE='JavaScript'>window.alert('File Tidak ditemukan'); window.location.href='page-promo.php'</script>");
+	  			$query_delete = mysqli_query($db, "DELETE FROM promo WHERE idpromo='$idpromo'");
+	  		}
+	  	}
+  	}
+
+  	
+
+  	// Update
+  	if (isset($_POST['update_promo'])) {
+
+	  if (isset($_POST['idpromo'])) {
+
+		    $idpromo = $_POST['idpromo'];
+
+		  	$query = mysqli_query($db, "SELECT * FROM promo WHERE idpromo='$idpromo'") or die('Query Error : '.mysqli_error($db));
+	        while ($data  = mysqli_fetch_assoc($query)) {
+	        	$foto_promo = $data['foto_promo'];
+	        }
+
+		    $judul_promo = $_POST['judul_promo'];
+	  		$isi_promo = $_POST['isi_promo'];
+	  	    $permalink_promo = strtolower(str_replace([" " , "," , "!" , "." , "&", "/", ".", "?"], "-", $judul_artikel));
+
+	  		if($_FILES["foto_promo"]["error"] == 4) {
+	  			$query = mysqli_query($db, "UPDATE promo SET judul_promo = '$judul_promo',
+		                            isi_promo  = '$isi_promo',
+		                            permalink_promo = '$permalink_promo'
+		                            WHERE idpromo  = '$idpromo'");   
+			    // cek query
+			    if ($query) {
+			      header('location: page-promo.php');
+			    } else {
+			      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-promo.php'</script>");
+			    }
+	  		
+	  		} else {
+		        $type = $_FILES['foto_promo']['type'];
+			    $fileinfo=PATHINFO($_FILES["foto_promo"]["name"]);
+			    $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
+			    if (!$foto_promo =="" || $foto_promo ==""){  
+				    unlink($foto_promo);
+				    move_uploaded_file($_FILES["foto_promo"]["tmp_name"],"../upload/page-promo/" . $newFilename);
+				    $location_promo="../upload/page-promo/" . $newFilename;
+				}
+
+			    // perintah query untuk mengubah data pada tabel is_siswa
+			    $query = mysqli_query($db, "UPDATE promo SET judul_promo = '$judul_promo',
+			                            isi_promo  = '$isi_promo',
+			                            permalink_promo = '$permalink_promo',
+			                            foto_promo = '$location_promo'
+			                            WHERE idpromo   = '$idpromo'");   
+
+			    // cek query
+			    if ($query) {
+			      header('location: page-promo.php');
+			    } else {
+			      echo ("<script LANGUAGE='JavaScript'>window.alert('Data gagal diupdate'); window.location.href='page-promo.php'</script>");
+			    } 
+	  		}
+	  }
+	} 
+
+//===================== Page Promo================================================
+
 
 //===================== Kirim Pelamar ================================================
 
@@ -1176,6 +1275,7 @@
 		    $nama_pelamar = implode(',', $_POST['nama_pelamar']);
 		    $nama_lowongan_pelamar = implode(',', $_POST['nama_lowongan']);
 		    $client_distributor = implode(',', $_POST['client_distributor']);
+		    $keterangan = implode(',', $_POST['keterangan']);
 		    $status_join = implode(',', $_POST['status_join']);
 
 		   // $query = mysqli_query($db, "INSERT INTO recruitment(id, nama_pelamar, nama_lowongan, client_distributor, status_join) values ('$idpelamar','$nama_pelamar','$nama_lowongan_pelamar','$client_distributor','$status_join')");
@@ -1183,6 +1283,7 @@
 		    $query = mysqli_query($db, "UPDATE recruitment SET nama_pelamar =  concat(nama_pelamar, '$nama_pelamar,'),
 		                            nama_lowongan  = concat(nama_lowongan, '$nama_lowongan_pelamar,'),
 		                            client_distributor = concat(client_distributor, '$client_distributor,'),
+		                            keterangan  = concat(keterangan, '$keterangan,'),
 		                            status_join = concat(status_join, '$status_join,'),
 		                            feedback = '$feedback',
 		                            post_date = NOW()
