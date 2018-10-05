@@ -980,6 +980,8 @@
                       <option value="">-</option>
                       <option value="Pelamar">Pelamar</option>
                       <option value="Client">Client</option>
+                      <option value="Client">Karyawan Internal</option>
+                      <option value="Client">Karyawan Magang</option>
                     </select>
                   </div>
                 </div>
