@@ -626,11 +626,12 @@ if($_POST['rowpass']) {
 <?php
     if($_POST['rowpromo']) {
       $idpromo = $_POST['rowpromo'];
+
       $load_data = mysqli_query($db, "SELECT * FROM promo WHERE idpromo='$idpromo'");
       while ($row = mysqli_fetch_assoc($load_data)) { 
         
         $judul_promo = $row['judul_promo'];
-        $isi_promo = $row['isi_promo'];
+        // $isi_promo = $row['isi_promo'];
         $foto_promo = $row['foto_promo'];
         $idpromo = $row['idpromo'];
       
@@ -640,15 +641,15 @@ if($_POST['rowpass']) {
          <div class="box-body">
                 <div class="form-group">
                   <input type="hidden" name="idpromo" value="<?= $idpromo; ?>">
-                  <label for="title">Judul Promo</label>
+                  <label for="title">Judul Informasi</label>
                   <input type="text" class="form-control" name="judul_promo" id="title_promo" value="<?= $judul_promo; ?>" required>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="deskripsi">Deskripsi Promo</label>
                 <textarea id="ck_editorEdit" class="form-control" name="isi_promo" required><?= $isi_promo; ?></textarea>
-                </div>
+                </div> -->
                 <div class="form-group">
-                  <label for="upload">Gambar Promo</label>
+                  <label for="upload">Gambar Informasi</label>
                   <input type="file" name="foto_promo" id="upload_promo" value="<?= $foto_promo; ?>">
                 </div>
               </div>
@@ -695,8 +696,8 @@ if($_POST['rowpass']) {
                   <select class="form-control" name="status">
                       <option <?php if ($status == "Pelamar" ) echo 'selected' ; ?> value="Pelamar">Pelamar</option>
                       <option <?php if ($status == "Client" ) echo 'selected' ; ?> value="Client">Client</option>
-                      <option <?php if ($status == "Client" ) echo 'selected' ; ?> value="Client">Karyawan Internal</option>
-                      <option <?php if ($status == "Client" ) echo 'selected' ; ?> value="Client">Karyawan Magang</option>
+                      <option <?php if ($status == "Karyawan Internal" ) echo 'selected' ; ?> value="Karyawan Internal">Karyawan Internal</option>
+                      <option <?php if ($status == "Karyawan Magang" ) echo 'selected' ; ?> value="Karyawan Magang">Karyawan Magang</option>
                   </select>
                 </div>
               </div>

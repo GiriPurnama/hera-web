@@ -915,22 +915,22 @@
             <!-- general form elements -->
             <div class="box box-primary">
               <div class="box-header with-border">
-                <h3 class="box-title">Tambah Data Promo</h3>
+                <h3 class="box-title">Tambah Data Informasi</h3>
               </div>
               <!-- /.box-header -->
               <!-- form start -->
               <form role="form" id="formTestimonial" method="POST" action="server.php" enctype="multipart/form-data">
                 <div class="box-body">
                   <div class="form-group">
-                    <label for="title">Judul Promo</label>
-                    <input type="text" class="form-control" name="judul_promo" id="judul_promo" placeholder="Judul Promo" required>
+                    <label for="title">Judul Informasi</label>
+                    <input type="text" class="form-control" name="judul_promo" id="judul_promo" placeholder="Judul Informasi" required>
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="deskripsi">Isi Promo</label>
                    <textarea id="ck_editor_promo" class="form-control" name="isi_promo" placeholder="Isi Promo" required></textarea> 
-                  </div>
+                  </div> -->
                   <div class="form-group">
-                    <label for="upload">Image Promo</label>
+                    <label for="upload">Image Informasi</label>
                     <input type="file" name="foto_promo" id="foto_promo" required>
                   </div>
                 </div>
@@ -980,8 +980,8 @@
                       <option value="">-</option>
                       <option value="Pelamar">Pelamar</option>
                       <option value="Client">Client</option>
-                      <option value="Client">Karyawan Internal</option>
-                      <option value="Client">Karyawan Magang</option>
+                      <option value="Karyawan Internal">Karyawan Internal</option>
+                      <option value="Karyawan Magang">Karyawan Magang</option>
                     </select>
                   </div>
                 </div>
