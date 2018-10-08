@@ -73,7 +73,7 @@
               <li><a href="#">Video</a></li>
             </ul>
           </li> -->
-          <li><a href="#contact">Kontak</a></li>
+          <li><a href="#footer">Kontak</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
@@ -198,6 +198,85 @@
     </section>
     <!-- #about -->
 
+    <!--==========================
+      Promo Section
+    ============================-->
+    
+  <section id="portfolio"  class="section-bg" >
+      <div class="container">
+
+        <header class="section-header">
+          <h3 class="section-title">Informasi</h3>
+          <p>Berikut ini adalah informasi - informasi terbaru dari PT. Harda Esa Raksa</p>
+        </header>
+
+       <!--  <div class="row">
+
+          <div class="col-lg-12">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-card">Card</li>
+              <li data-filter=".filter-web">Web</li>
+            </ul>
+          </div>
+        </div> -->
+
+       <div class="row portfolio-container">
+<?php 
+              $promo_row = mysqli_query($db, "SELECT * FROM promo ORDER BY idpromo DESC");
+               while ($row = mysqli_fetch_assoc($promo_row)) {
+                  $judul_promo = $row['judul_promo'];
+                  $idpromo = $row['idpromo'];
+                  $foto_promo = $row['foto_promo'];
+                  $str_promo = str_replace("../", "", $foto_promo);
+                  $promo_date = $row['post_date_promo'];
+                  $timestamp = strtotime($promo_date);
+                  $newDate = tgl_indo(date('Y-m-d', $timestamp));   
+               ?>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="<?= $str_promo; ?>" class="img-fluid" alt="">
+                <a href="<?= $str_promo; ?>" data-lightbox="portfolio" data-title="<?= $judul_promo; ?>" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="<?= $str_promo; ?>" class="link-details" data-title="<?= $judul_promo; ?>" title="More Details" target="_blank"><i class="ion ion-android-open"></i></a> -->
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a><?= $judul_promo; ?></a></h4>
+                </div>
+            </div>
+          </div>
+
+          <?php } ?>
+          </div>
+          <!-- <div class="row">
+          <div class="col-md-12">
+          <div class="popup-gallery" align="text-center">
+          <?php 
+              $promo_row = mysqli_query($db, "SELECT * FROM promo ORDER BY idpromo DESC");
+               while ($row = mysqli_fetch_assoc($promo_row)) {
+                  $judul_promo = $row['judul_promo'];
+                  $idpromo = $row['idpromo'];
+                  $foto_promo = $row['foto_promo'];
+                  $str_promo = str_replace("../", "", $foto_promo);
+                  $cut_str = substr($isi_promo,0,10). '...';
+                  $promo_date = $row['post_date_promo'];
+                  $timestamp = strtotime($promo_date);
+                  $newDate = tgl_indo(date('Y-m-d', $timestamp));   
+               ?>
+          <div class="popup-gallery" align="text-center">
+  <a href='<?= $str_promo; ?>' title="<?= $judul_promo; ?>"><img src="<?= $str_promo; ?>" width="250" height="300"></a>
+  <?php } ?>
+          </div>
+      </div>
+      </div> -->
+      </div>
+    </section>
+    <!-- #Promo -->
+
+
+<!-- Section Artikel -->
   <section id="featured-services">
       <div class="container">
        <header class="section-header">
@@ -231,84 +310,10 @@
 
         </div>
       </div>
-    </section><!-- #featured-services -->
+    </section>
+    <!-- #featured-services -->
 
   <main id="main">
-
-    <!--==========================
-      Promo Section
-    ============================-->
-    
-  <section id="portfolio"  class="section-bg" >
-      <div class="container">
-
-        <header class="section-header">
-          <h3 class="section-title">Promo</h3>
-          <p>Berikut ini ialah promo - promo terbaru dari PT. Harda Esa Raksa</p>
-        </header>
-
-       <!--  <div class="row">
-
-          <div class="col-lg-12">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
-          </div>
-        </div> -->
-
-       <!--  <div class="row portfolio-container">
-<?php 
-              $promo_row = mysqli_query($db, "SELECT * FROM promo ORDER BY idpromo DESC");
-               while ($row = mysqli_fetch_assoc($promo_row)) {
-                  $judul_promo = $row['judul_promo'];
-                  $idpromo = $row['idpromo'];
-                  $isi_promo = strip_tags($row['isi_promo'], '<p><a><li><ol>');
-                  $foto_promo = $row['foto_promo'];
-                  $str_promo = str_replace("../", "", $foto_promo);
-                  $cut_str = substr($isi_promo,0,10). '...';
-                  $promo_date = $row['post_date_promo'];
-                  $timestamp = strtotime($promo_date);
-                  $newDate = tgl_indo(date('Y-m-d', $timestamp));   
-               ?>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="<?= $str_promo; ?>" class="img-fluid" alt="">
-                <a href="<?= $str_promo; ?>" data-lightbox="portfolio" data-title="<?= $judul_promo; ?>" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
-                <!-- <a href="<?= $str_promo; ?>" class="link-details" title="More Details" target="_blank"><i class="ion ion-android-open"></i></a> -->
-              <!-- </figure>
-
-              <div class="portfolio-info">
-                <h4><a><?= $judul_promo; ?></a></h4>
-                <p><?= $cut_str; ?></p>
-              </div>
-            </div>
-          </div>
-
-          <?php } ?>
-          </div> -->
-          <?php 
-              $promo_row = mysqli_query($db, "SELECT * FROM promo ORDER BY idpromo DESC");
-               while ($row = mysqli_fetch_assoc($promo_row)) {
-                  $judul_promo = $row['judul_promo'];
-                  $idpromo = $row['idpromo'];
-                  $isi_promo = strip_tags($row['isi_promo'], '<p><a><li><ol>');
-                  $foto_promo = $row['foto_promo'];
-                  $str_promo = str_replace("../", "", $foto_promo);
-                  $cut_str = substr($isi_promo,0,10). '...';
-                  $promo_date = $row['post_date_promo'];
-                  $timestamp = strtotime($promo_date);
-                  $newDate = tgl_indo(date('Y-m-d', $timestamp));   
-               ?>
-          <div class="popup-gallery" align="text-center">
-  <a href='<?= $str_promo; ?>' title="<?= $judul_promo; ?>"><img src="<?= $str_promo; ?>" width="250" height="300"></a>
-  <?php } ?>
-          </div>
-      </div>
-    </section><!-- #portfolio -->
    
 
     <!--==========================
@@ -375,7 +380,7 @@
       <div class="container">
 
         <header class="section-header">
-          <h3>Klien Kami</h3>
+          <h3>Klien</h3>
         </header>
 
         <div class="owl-carousel  owl-theme clients-carousel">
@@ -662,11 +667,11 @@
     <!--==========================
       Contact Section
     ============================-->
-    <section id="contact" class="section-bg contact wow fadeInUp">
+   <section id="contact" class="section-bg contact wow fadeInUp">
       <div class="container">
 
         <div class="section-header">
-          <h3>Kontak Kami</h3>
+          <h3>Kontak</h3>
         </div>
 
 
@@ -699,7 +704,7 @@
       </div>
     </section><!-- #contact -->
 
-  </main>
+<!--   </main> -->
 
   <!--==========================
     Footer
@@ -768,10 +773,39 @@
 
             </div>
 
+            
+           <!--  <div class="col-md-12 form wow fadeInUp">
+
+          <div id="sendmessage">Pesan anda telah terkirim. Terimakasih</div>
+          <div id="errormessage"></div> 
+                    <form action="" method="post" role="form" class="contactForm">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="text" name="nama" class="form-control" id="name" placeholder="Nama Anda" data-rule="minlen:3" data-msg="Tolong Masukan nama minimal 3 karakter" />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email Anda" data-rule="email" data-msg="Tolong Masukan email yang valid" />
+                <div class="validation"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="subjek" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Tolong Masukan nama minimal 4 karakter" />
+              <div class="validation"></div>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="isi_pesan" rows="5" data-rule="required" data-msg="Tolong tuliskan isi pesan anda" placeholder="Pesan"></textarea>
+              <div class="validation"></div>
+            </div>
+            <div class="text-center"><button type="submit" name="contact">Kirim Pesan</button></div>
+          </form>
+        </div> -->
 
           </div>
         </div>
       </div>
+      
+      
 
         <div class="container">
           <div class="copyright">
@@ -780,6 +814,7 @@
         </div>
       </div>
   </footer><!-- #footer -->
+            
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 

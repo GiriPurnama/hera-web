@@ -1165,16 +1165,14 @@
 //===================== Page Promo ================================================
 	if (isset($_POST['promo_save'])) {
   		  $judul_promo = mysqli_real_escape_string($db, trim($_POST['judul_promo']));
-  		  $isi_promo = mysqli_real_escape_string($db, trim($_POST['isi_promo']));
-  		  $permalink_promo = strtolower(str_replace([" " , "," , "!" , "." , "&", "/", ".", "?"], "-", $judul_promo));
-
+  		  
   		  $type = $_FILES['foto_promo']['type'];
 		  $fileinfo=PATHINFO($_FILES["foto_promo"]["name"]);
 		  $newFilename=$fileinfo['filename'] ."_". time() . "." . $fileinfo['extension'];
 		  move_uploaded_file($_FILES["foto_promo"]["tmp_name"],"../upload/page-promo/" . $newFilename);
 		  $img_promo="../upload/page-promo/" . $newFilename;
 		
-  		  $query = mysqli_query($db, "INSERT INTO promo(judul_promo, isi_promo, permalink_promo, foto_promo, post_date_promo) values ('$judul_promo','$isi_promo','$permalink_promo','$img_promo',NOW())");
+  		  $query = mysqli_query($db, "INSERT INTO promo(judul_promo, foto_promo, post_date_promo) values ('$judul_promo','$img_promo',NOW())");
   		  if ($query) {
   		  		header('location: page-promo.php');
   		  } else {
@@ -1217,13 +1215,8 @@
 	        }
 
 		    $judul_promo = $_POST['judul_promo'];
-	  		$isi_promo = $_POST['isi_promo'];
-	  	    $permalink_promo = strtolower(str_replace([" " , "," , "!" , "." , "&", "/", ".", "?"], "-", $judul_artikel));
-
 	  		if($_FILES["foto_promo"]["error"] == 4) {
 	  			$query = mysqli_query($db, "UPDATE promo SET judul_promo = '$judul_promo',
-		                            isi_promo  = '$isi_promo',
-		                            permalink_promo = '$permalink_promo'
 		                            WHERE idpromo  = '$idpromo'");   
 			    // cek query
 			    if ($query) {
@@ -1244,8 +1237,6 @@
 
 			    // perintah query untuk mengubah data pada tabel is_siswa
 			    $query = mysqli_query($db, "UPDATE promo SET judul_promo = '$judul_promo',
-			                            isi_promo  = '$isi_promo',
-			                            permalink_promo = '$permalink_promo',
 			                            foto_promo = '$location_promo'
 			                            WHERE idpromo   = '$idpromo'");   
 

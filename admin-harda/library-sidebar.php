@@ -133,7 +133,7 @@
             ?>
             <ul class="treeview-menu">
               <li><a href="page-artikel.php"><i class="fa fa-file"></i>Page Artikel</a></li>
-              <li><a href="page-promo.php"><i class="fa fa-file"></i>Page Promo</a></li>
+              <li><a href="page-promo.php"><i class="fa fa-info-circle"></i>Page Information</a></li>
               <li><a href="page-testimonial.php"><i class="fa fa-trophy"></i>Page Testimonial</a></li>
               <li><a href="page-home.php"><i class="fa fa-home"></i>Page Home</a></li>
               <li><a href="page-client.php"><i class="fa fa-users"></i>Page Client</a></li>

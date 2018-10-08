@@ -25,7 +25,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-user"></i>Page Web</a></li>
-        <li class="active">Page Promo</li>
+        <li class="active">Page Information</li>
       </ol>
     </section>
 
@@ -35,7 +35,7 @@
         <div class="col-xs-12">
           <div class="box pad10">
             <div class="box-header">
-              <h3 class="box-title">Promo PT. Harda Esa Raksa</h3>
+              <h3 class="box-title">Informasi terbaru PT. Harda Esa Raksa</h3>
               <div class="box-tools">
                 
               </div>
@@ -44,7 +44,7 @@
 
             <div class="box-body table-responsive no-padding">
               <a class="btn-export-excel" href="javascript:void(0);" target="_BLANK">
-                <button class="btn btn-warning btn-submit" data-toggle="modal" data-target="#modalPromo">Tambah Promo<i class="fa fa-archive"></i></button>
+                <button class="btn btn-warning btn-submit" data-toggle="modal" data-target="#modalPromo">Tambah Informasi<i class="fa fa-archive"></i></button>
               </a>
                <!-- <a class="btn-export-excel" href="javascript:void(0);" target="_BLANK">
                 <button class="btn btn-warning btn-submit" data-toggle="modal" data-target="#modalGaleri">Tambah Foto<i class="fa fa-file-image-o"></i></button>
@@ -53,9 +53,9 @@
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Judul Promo</th>
-                  <th>Image Promo</th>
-                  <th>Tanggal Promo</th>
+                  <th>Judul Informasi</th>
+                  <th>Image Informasi</th>
+                  <th>Tanggal Informasi</th>
                   <th>Aksi</th>
                 </tr>
               </thead>
@@ -81,7 +81,7 @@
 
                     <?php echo "<a href='#modalHomeEdit' id='custId' data-toggle='modal' data-id=".$row['idpromo']."><span class='action-icon'><i class='fa fa-cogs'></i></span></a>" ?>
                     
-                    <a href='server.php?idpromo=<?php echo $row['idpromo']; ?>' onclick="return confirm('Apakah yakin Promo ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
+                    <a href='server.php?idpromo=<?php echo $row['idpromo']; ?>' onclick="return confirm('Apakah yakin Informasi ini akan dihapus?')"><span class='action-icon'><i class='fa fa-trash'></i></span></a>
                  
                   </td>
                 </tr>
