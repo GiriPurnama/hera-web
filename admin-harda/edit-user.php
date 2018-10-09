@@ -63,7 +63,6 @@
           $status_join = $data['status_join'];
           $alamat_ktp = $data['alamat_ktp'];
           $no_wa = $data['no_wa'];
-          $keterangan = $data['keterangan'];
           $feedback = $data['feedback'];
           $tanggal_join = $data['tanggal_join'];
           $tanggal_resign = $data['tanggal_resign'];
@@ -655,7 +654,7 @@
                     
                   <div class="display-data">
                       <h3 class="font-bold" style="width: 100%; display: -webkit-box; padding: 10px 15px;">Data Terkirim Recruitment</h3>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                         <label>Nama Pelamar</label>
                           <?php
                            $array_nama = explode(",",$nama_pelamar);     
@@ -667,7 +666,7 @@
                         </div>
 
 
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                         <label>Lowongan</label>
                           <?php
                            $array_lowongan = explode(",",$nama_lowongan_pelamar);     
@@ -701,7 +700,7 @@
                           <?php } ?>
                         </div> -->
                         
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                         <label>Status</label>
                         <?php
                          $array_status = explode(",",$status_join);
@@ -724,13 +723,13 @@
                   </div>
 
                     <?php }} ?>
-                   <div class="col-md-2">
+                   <!-- <div class="col-md-2">
                         <label>Keterangan</label>
                           <?php
                            $array_keterangan = explode(",",$keterangan);     
                            foreach ($array_keterangan as $key_keterangan => $value_keterangan) { ?>
 
-                            <div><?= $value_keterangan; ?></div>
+                            <div><?= $value_keterangan; ?></div> -->
 
                           <?php } ?>
                         </div>
@@ -747,7 +746,7 @@
              
               <div class="box-reference">
                 <h3 class="font-bold">Data Pelamar RND</h3>
-                 <div class="col-md-2">
+                 <div class="col-md-3">
                   <label>Nama Pelamar</label>
                     <?php
                      $array_nama = explode(",",$nama_pelamar);     
@@ -759,7 +758,7 @@
                   </div>
 
 
-                  <div class="col-md-2">
+                  <div class="col-md-3">
                   <label>Lowongan</label>
                     <?php
                      $array_lowongan = explode(",",$nama_lowongan_pelamar);     
@@ -771,7 +770,7 @@
                   </div>
                  
 
-                  <div class="col-md-2">
+                  <div class="col-md-3">
                   <label>Client</label>
                     <?php
                      $array_client = explode(",",$client_distributor);     
@@ -782,14 +781,14 @@
                     <?php } ?>
                   </div>
                   
-                  <form method="POST" action="server.php" enctype="multipart/form-data"x>
+                  <!-- <form method="POST" action="server.php" enctype="multipart/form-data"x>
                   <div class="col-md-2">
                   <label>Keterangan</label>
 
                    <input type="ket" name="keterangan" placeholder="keterangan">
                   </div>
                   </form>
-
+ -->
                   <form method="POST" action="server.php" enctype="multipart/form-data">
                   <div align="text-center">
                   <label>Status</label>
@@ -803,7 +802,7 @@
                       if(++$i === $numItems) {
                    ?>
 
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <select class="hide" data-val="<?= $key; ?>" name="status_join[]">
                           <option value="<?= $value; ?>"><?= $value; ?></option>
                         </select>
@@ -812,7 +811,7 @@
                     <?php } else { ?>
                     
 
-                    <div class="col-md-0">
+                    <div class="col-md-3">
                         <input type="hidden" name="id" value="<?= $id; ?>">
                         <select   data-val="<?= $key; ?>" name="status_join[]">
                           <option value="<?= $value; ?>"><?= $value; ?></option>

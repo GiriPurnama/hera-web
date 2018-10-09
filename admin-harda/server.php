@@ -1266,7 +1266,6 @@
 		    $nama_pelamar = implode(',', $_POST['nama_pelamar']);
 		    $nama_lowongan_pelamar = implode(',', $_POST['nama_lowongan']);
 		    $client_distributor = implode(',', $_POST['client_distributor']);
-		    $keterangan = implode(',', $_POST['keterangan']);
 		    $status_join = implode(',', $_POST['status_join']);
 
 		   // $query = mysqli_query($db, "INSERT INTO recruitment(id, nama_pelamar, nama_lowongan, client_distributor, status_join) values ('$idpelamar','$nama_pelamar','$nama_lowongan_pelamar','$client_distributor','$status_join')");
@@ -1274,7 +1273,6 @@
 		    $query = mysqli_query($db, "UPDATE recruitment SET nama_pelamar =  concat(nama_pelamar, '$nama_pelamar,'),
 		                            nama_lowongan  = concat(nama_lowongan, '$nama_lowongan_pelamar,'),
 		                            client_distributor = concat(client_distributor, '$client_distributor,'),
-		                            keterangan  = concat(keterangan, '$keterangan,'),
 		                            status_join = concat(status_join, '$status_join,'),
 		                            feedback = '$feedback',
 		                            post_date = NOW()
