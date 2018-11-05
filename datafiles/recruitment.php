@@ -924,59 +924,137 @@ $(document).ready(function () {
 
 
 // Validation Image
-    // $('#fotoUpload').change(function(){
-    //    var fuData = document.getElementById('fotoUpload');
-    //    var FileUploadPath = fuData.value;
+    $('#fotoUpload').change(function(){
+       var fuData = document.getElementById('fotoUpload');
+       var FileUploadPath = fuData.value;
 
       
-    //    var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+       var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
 
-    //    if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
-    //       $("#finish").removeClass("disabled");
-    //       $(".error-notif-foto").removeClass("has-error");
-    //       $(".error-notif-foto").removeClass("display");
-    //    } else {
-    //       $('#finish').addClass('disabled');
-    //       $(".error-notif-foto").addClass("has-error");
-    //       $(".error-notif-foto").addClass("display");
-    //    }
-    // })
+       if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
+          $("#finish").removeClass("disabled");
+          $(".error-notif-foto").removeClass("has-error");
+          $(".error-notif-foto").removeClass("display");
 
-    //  $('#ijazahUpload').change(function(){
-    //    var fuData = document.getElementById('ijazahUpload');
-    //    var FileUploadPath = fuData.value;
+          // Validasi Size
+	          if (fuData.files && fuData.files[0]) {
+
+	            var size = fuData.files[0].size;
+
+	            if(size > 5242880){
+	            	// Ukuran 1048576 == 1 MB
+	                alert("Ukuran FOTO tidak boleh lebih 5 MB");
+	              	$('#finish').addClass('disabled');
+		            $(".error-notif-foto").addClass("has-error");
+		            $(".error-notif-foto").addClass("display");
+	                return;
+	            }else{
+	                $('#finish').removeClass('disabled');
+		            $(".error-notif-foto").removeClass("has-error");
+		            $(".error-notif-foto").removeClass("display");
+	                var reader = new FileReader();
+	                reader.onload = function(e) {
+	                    $('#blah').attr('src', e.target.result);
+	                }
+
+	                reader.readAsDataURL(fuData.files[0]);
+	            }
+	        }
+        // Validasi Size
+       } else {
+          $('#finish').addClass('disabled');
+          $(".error-notif-foto").addClass("has-error");
+          $(".error-notif-foto").addClass("display");
+       }
+    })
+
+     $('#ijazahUpload').change(function(){
+       var fuData = document.getElementById('ijazahUpload');
+       var FileUploadPath = fuData.value;
 
       
-    //    var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+       var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
 
-    //    if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
-    //       $("#finish").removeClass("disabled");
-    //       $(".error-notif-ijazah").removeClass("has-error");
-    //       $(".error-notif-ijazah").removeClass("display");
-    //    } else {
-    //       $('#finish').addClass('disabled');
-    //       $(".error-notif-ijazah").addClass("has-error");
-    //       $(".error-notif-ijazah").addClass("display");
-    //    }
-    // })
+       if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
+          $("#finish").removeClass("disabled");
+          $(".error-notif-ijazah").removeClass("has-error");
+          $(".error-notif-ijazah").removeClass("display");
 
-    //  $('#ktpUpload').change(function(){
-    //    var fuData = document.getElementById('ktpUpload');
-    //    var FileUploadPath = fuData.value;
+        // Validasi Size
+	          if (fuData.files && fuData.files[0]) {
+
+	            var size = fuData.files[0].size;
+
+	            if(size > 5242880){
+	            	// Ukuran 1048576 == 1 MB
+	                alert("Ukuran IJAZAH tidak boleh lebih 5 MB");
+	              	$('#finish').addClass('disabled');
+		            $(".error-notif-ijazah").addClass("has-error");
+		            $(".error-notif-ijazah").addClass("display");
+	                return;
+	            }else{
+	                $('#finish').removeClass('disabled');
+		            $(".error-notif-ijazah").removeClass("has-error");
+		            $(".error-notif-ijazah").removeClass("display");
+	                var reader = new FileReader();
+	                reader.onload = function(e) {
+	                    $('#blah').attr('src', e.target.result);
+	                }
+
+	                reader.readAsDataURL(fuData.files[0]);
+	            }
+	        }
+        // Validasi Size
+       } else {
+          $('#finish').addClass('disabled');
+          $(".error-notif-ijazah").addClass("has-error");
+          $(".error-notif-ijazah").addClass("display");
+       }
+    })
+
+     $('#ktpUpload').change(function(){
+       var fuData = document.getElementById('ktpUpload');
+       var FileUploadPath = fuData.value;
 
       
-    //    var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+       var Extension = FileUploadPath.substring(FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
 
-    //    if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
-    //       $("#finish").removeClass("disabled");
-    //       $(".error-notif-ktp").removeClass("has-error");
-    //       $(".error-notif-ktp").removeClass("display");
-    //    } else {
-    //       $('#finish').addClass('disabled');
-    //       $(".error-notif-ktp").addClass("has-error");
-    //       $(".error-notif-ktp").addClass("display");
-    //    }
-    // })
+       if (Extension == "gif" || Extension == "png" || Extension == "bmp" || Extension == "jpeg" || Extension == "jpg") {
+          $("#finish").removeClass("disabled");
+          $(".error-notif-ktp").removeClass("has-error");
+          $(".error-notif-ktp").removeClass("display");
+
+        // Validasi Size
+	          if (fuData.files && fuData.files[0]) {
+
+	            var size = fuData.files[0].size;
+
+	            if(size > 5242880){
+	            	// Ukuran 1048576 == 1 MB
+	                alert("Ukuran KTP tidak boleh lebih 5 MB");
+	              	$('#finish').addClass('disabled');
+		            $(".error-notif-ktp").addClass("has-error");
+		            $(".error-notif-ktp").addClass("display");
+	                return;
+	            }else{
+	                $('#finish').removeClass('disabled');
+		            $(".error-notif-ktp").removeClass("has-error");
+		            $(".error-notif-ktp").removeClass("display");
+	                var reader = new FileReader();
+	                reader.onload = function(e) {
+	                    $('#blah').attr('src', e.target.result);
+	                }
+
+	                reader.readAsDataURL(fuData.files[0]);
+	            }
+	        }
+        // Validasi Size
+       } else {
+          $('#finish').addClass('disabled');
+          $(".error-notif-ktp").addClass("has-error");
+          $(".error-notif-ktp").addClass("display");
+       }
+    })
  // Validation Image
 
   $('#refrensi').change(function(){
